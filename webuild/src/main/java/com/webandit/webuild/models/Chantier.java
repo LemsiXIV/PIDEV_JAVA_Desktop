@@ -1,18 +1,33 @@
 package com.webandit.webuild.models;
 
+import javafx.scene.control.Button;
+
+import java.sql.Date;
+
 public class Chantier {
     private int id ;
     private String nom,description;
-    private String date;
+    private Date date;
     private float remuneration;
 
+    public Button getManage() {
+        return Manage;
+    }
+
+    public void setManage(Button manage) {
+        Manage = manage;
+    }
+
+    private Button Manage;
+
     public Chantier() {}
-    public Chantier(int id, String nom, String description, String date, float remuneration) {
-        this.id = id;
+    public Chantier( String nom, String description, Date date, float remuneration) {
+
         this.nom = nom;
         this.description = description;
         this.date = date;
         this.remuneration = remuneration;
+        this.Manage = new Button("Manage");
     }
 
 
@@ -40,11 +55,11 @@ public class Chantier {
         this.description = description;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
