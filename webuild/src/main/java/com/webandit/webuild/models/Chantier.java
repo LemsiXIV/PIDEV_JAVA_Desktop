@@ -3,23 +3,19 @@ package com.webandit.webuild.models;
 import javafx.scene.control.Button;
 
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Chantier {
+    //variabels
     private int id ;
     private String nom,description;
     private Date date;
     private float remuneration;
-
-    public Button getManage() {
-        return Manage;
-    }
-
-    public void setManage(Button manage) {
-        Manage = manage;
-    }
-
+    private List<Tasks> tasks;
     private Button Manage;
 
+    //constructure
     public Chantier() {}
     public Chantier( String nom, String description, Date date, float remuneration) {
 
@@ -28,8 +24,31 @@ public class Chantier {
         this.date = date;
         this.remuneration = remuneration;
         this.Manage = new Button("Manage");
+        this.tasks = new ArrayList<>();
     }
 
+    public void addTask(Tasks task)
+    {
+        tasks.add(task);
+        task.setId_chantier(this);
+    }
+    //getters & setters
+
+    public List<Tasks> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Tasks> tasks) {
+        this.tasks = tasks;
+    }
+
+    public Button getManage() {
+        return Manage;
+    }
+
+    public void setManage(Button manage) {
+        Manage = manage;
+    }
 
     public int getId() {
         return id;
