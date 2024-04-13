@@ -8,41 +8,32 @@
 <?import javafx.scene.control.TreeTableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane fx:id="mainAnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/codeCss.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.mouna.AjouterPostController">
+<AnchorPane fx:id="mainAnchorPane" prefHeight="400.0" prefWidth="772.0" stylesheets="@../css/codeCss.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.mouna.AjouterPostController">
     <children>
-        <TextField fx:id="nom" layoutX="158.0" layoutY="66.0" prefHeight="25.0" prefWidth="179.0" promptText="Nom" stylesheets="@../css/codeCss.css" />
-        <TextField fx:id="titre" layoutX="158.0" layoutY="95.0" prefHeight="25.0" prefWidth="179.0" promptText="Titre" stylesheets="@../css/codeCss.css" />
-        <TextField fx:id="description" layoutX="158.0" layoutY="158.0" prefHeight="25.0" prefWidth="179.0" promptText="Description" stylesheets="@../css/codeCss.css" />
-        <TextField fx:id="auteur" layoutX="158.0" layoutY="192.0" prefHeight="25.0" prefWidth="179.0" promptText="Auteur" stylesheets="@../css/codeCss.css" />
-        <DatePicker fx:id="date" layoutX="158.0" layoutY="124.0" onAction="#selectdate" promptText="aaaa-mm-jj" stylesheets="@../css/codeCss.css" />
+        <TextField fx:id="titre" layoutX="87.0" layoutY="236.0" prefHeight="26.0" prefWidth="136.0" promptText="Titre" stylesheets="@../css/codeCss.css" />
+        <TextField fx:id="description" layoutX="87.0" layoutY="299.0" prefHeight="25.0" prefWidth="136.0" promptText="Description" stylesheets="@../css/codeCss.css" />
+        <TextField fx:id="auteur" layoutX="87.0" layoutY="333.0" prefHeight="25.0" prefWidth="136.0" promptText="Auteur" stylesheets="@../css/codeCss.css" />
+        <DatePicker fx:id="date" layoutX="87.0" layoutY="265.0" onAction="#selectdate" prefWidth="136.0" promptText="aaaa-mm-jj" stylesheets="@../css/codeCss.css" />
+        <Label layoutX="33.0" layoutY="242.0" prefHeight="18.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Titre :" />
+        <Label fx:id="datteee" layoutX="33.0" layoutY="267.0" prefHeight="25.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Date :" />
+        <Label layoutX="33.0" layoutY="305.0" prefHeight="17.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Description :" />
+        <Label layoutX="33.0" layoutY="335.0" prefHeight="17.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Auteur :" />
 
-        <Label layoutX="64.0" layoutY="66.0" prefHeight="25.0" prefWidth="80.0" stylesheets="@../css/codeCss.css" text="Nom :" />
-        <Label layoutX="64.0" layoutY="99.0" prefHeight="17.0" prefWidth="68.0" stylesheets="@../css/codeCss.css" text="Titre :" />
-        <Label fx:id="datteee" layoutX="64.0" layoutY="124.0" prefHeight="25.0" prefWidth="74.0" stylesheets="@../css/codeCss.css" text="Date :" />
-        <Label layoutX="64.0" layoutY="162.0" prefHeight="17.0" prefWidth="74.0" stylesheets="@../css/codeCss.css" text="Description :" />
-        <Label layoutX="64.0" layoutY="192.0" prefHeight="17.0" prefWidth="74.0" stylesheets="@../css/codeCss.css" text="Auteur :" />
+        <Button layoutX="104.0" layoutY="369.0" mnemonicParsing="false" onAction="#AddPost" prefHeight="25.0" prefWidth="80.0" stylesheets="@../css/codeCss.css" text="Add" />
+        <Label fx:id="titreErrorLabel" layoutX="227.0" layoutY="242.0" prefHeight="17.0" prefWidth="179.0" />
+        <Label fx:id="dateErrorLabel" layoutX="227.0" layoutY="271.0" prefHeight="17.0" prefWidth="165.0" />
+        <Label fx:id="descriptionErrorLabel" layoutX="230.0" layoutY="303.0" prefHeight="17.0" prefWidth="174.0" />
+        <Label fx:id="auteurErrorLabel" layoutX="227.0" layoutY="337.0" prefHeight="17.0" prefWidth="179.0" />
 
-        <Button layoutX="205.0" layoutY="223.0" mnemonicParsing="false" onAction="#AddPost" prefHeight="25.0" prefWidth="80.0" stylesheets="@../css/codeCss.css" text="Add" />
-        <Label fx:id="nomCompErrorLabel" layoutX="348.0" layoutY="70.0" prefHeight="17.0" prefWidth="165.0" />
-        <Label fx:id="titreErrorLabel" layoutX="349.0" layoutY="99.0" prefHeight="17.0" prefWidth="179.0" />
-        <Label fx:id="dateErrorLabel" layoutX="349.0" layoutY="128.0" prefHeight="17.0" prefWidth="165.0" />
-        <Label fx:id="descriptionErrorLabel" layoutX="349.0" layoutY="162.0" prefHeight="17.0" prefWidth="174.0" />
-        <Label fx:id="auteurErrorLabel" layoutX="349.0" layoutY="192.0" prefHeight="17.0" prefWidth="179.0" />
-
-        <TreeTableView fx:id="tvc" editable="true" layoutX="38.0" layoutY="346.0" prefHeight="298.0" prefWidth="430.0" stylesheets="@../css/codeCss.css">
+        <TreeTableView fx:id="tvc" layoutX="38.0" layoutY="17.0" prefHeight="204.0" prefWidth="720.0" stylesheets="@../css/codeCss.css">
 
             <columns>
-                <TreeTableColumn fx:id="id" prefWidth="75.0" text="ID" />
-                <TreeTableColumn fx:id="Nom" prefWidth="75.0" text="Nom" />
-                <TreeTableColumn fx:id="Titre" prefWidth="75.0" text="Titre" />
-                <TreeTableColumn fx:id="Description" prefWidth="75.0" text="Description" />
-                <TreeTableColumn fx:id="Auteur" prefWidth="75.0" text="Auteur" />
-                <TreeTableColumn fx:id="Date" prefWidth="75.0" text="Date" />
+                <TreeTableColumn fx:id="id" prefWidth="75.0" style="-fx-alignment: center;" text="ID" />
+                <TreeTableColumn fx:id="Titre" prefWidth="104.7999496459961" style="-fx-alignment: center;" text="Titre" />
+                <TreeTableColumn fx:id="Description" prefWidth="210.39996337890625" style="-fx-alignment: center;" text="Description" />
+                <TreeTableColumn fx:id="Auteur" prefWidth="87.20004272460938" style="-fx-alignment: center;" text="Auteur" />
+                <TreeTableColumn fx:id="Date" prefWidth="116.79998779296875" style="-fx-alignment: center;" text="Date" />
             </columns>
         </TreeTableView>
-
-        <Label fx:id="label1" layoutX="59.0" layoutY="249.0" prefHeight="33.0" prefWidth="578.0" />
-        <Label fx:id="label2" layoutX="59.0" layoutY="282.0" prefHeight="25.0" prefWidth="578.0" />
-        <Label fx:id="label3" layoutX="59.0" layoutY="307.0" prefHeight="26.0" prefWidth="584.0" />
     </children>
 </AnchorPane>

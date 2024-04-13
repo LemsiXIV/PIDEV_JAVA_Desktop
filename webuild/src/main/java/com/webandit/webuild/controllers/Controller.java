@@ -74,4 +74,5 @@ public class Controller implements Initializable {
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
+
 }

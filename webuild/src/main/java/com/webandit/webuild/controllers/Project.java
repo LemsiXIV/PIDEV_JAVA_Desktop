@@ -4,9 +4,13 @@ import com.webandit.webuild.models.Chantier;
 import com.webandit.webuild.services.ServiceChantier;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.StackPane;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -151,6 +155,13 @@ public class Project {
         } else {
             showAlert("Aucune sélection", "Aucun chantier sélectionné");
         }
+    }
+    @FXML
+    private StackPane contentArea;
+    public void Tasks(ActionEvent actionEvent)throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Tasks.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
     }
 
 }

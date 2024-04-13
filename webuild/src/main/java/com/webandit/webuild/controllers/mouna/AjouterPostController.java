@@ -60,14 +60,7 @@ public class AjouterPostController {
     private Label dateErrorLabel;
 
 
-    @FXML
-    private Label label1;
 
-    @FXML
-    private Label label2;
-
-    @FXML
-    private Label label3;
 
     @FXML
     private TreeTableView<Post> tvc;
@@ -359,7 +352,6 @@ public class AjouterPostController {
         }
         return null;
     }
-
     // Méthode pour charger les données dans le TreeTableView
     private void initializetreetableviewbutton() {
         TreeTableColumn<Post, Void> actionColumn = new TreeTableColumn<>("Actions");
