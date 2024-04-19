@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 public class ServiceChantier implements CRUD<Chantier> {
-    private Connection cnx;
+    public static Connection cnx;
     public ServiceChantier() {
         cnx = DBConnection.getInstance().getCnx();
     }

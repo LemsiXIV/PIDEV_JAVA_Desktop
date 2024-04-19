@@ -59,7 +59,7 @@ public class Controller implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
 
-    public void Materiel(ActionEvent actionEvent) throws IOException{
+    public void MaterielController(ActionEvent actionEvent) throws IOException{
         Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Materiel.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
