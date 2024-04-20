@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Forum">
+   <children>
+      <Text layoutX="65.0" layoutY="165.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ERRORRRR 404 PICTUR NOT FOUNDDD YA NESSS">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+      <Text layoutX="252.0" layoutY="208.0" strokeType="OUTSIDE" strokeWidth="0.0" text="YA MOUNA" textAlignment="CENTER">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>
