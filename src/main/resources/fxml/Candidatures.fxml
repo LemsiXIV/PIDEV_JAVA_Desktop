@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.gluonhq.charm.glisten.control.TextField?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="552.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Candidatures">
+    <children>
+        <Label contentDisplay="CENTER" layoutX="197.0" layoutY="29.0" lineSpacing="3.0" prefHeight="32.0" prefWidth="205.0" text="Mes Candidatures" textAlignment="CENTER" textFill="#2aa60c">
+            <font>
+                <Font name="System Bold" size="22.0" />
+            </font>
+        </Label>
+        <TableView fx:id="tablecan" layoutX="23.0" layoutY="71.0" prefHeight="408.0" prefWidth="395.0">
+            <columns>
+                <TableColumn fx:id="coloffre" prefWidth="83.20004272460938" text="Offer Title" />
+                <TableColumn fx:id="coldescrp" prefWidth="103.20003509521484" text="Description" />
+                <TableColumn fx:id="colcomp" prefWidth="107.199951171875" text="Competences" />
+                <TableColumn fx:id="colemail" prefWidth="100.0" text="Email Address" />
+            </columns>
+        </TableView>
+      <ButtonBar layoutX="110.0" layoutY="500.0" prefHeight="40.0" prefWidth="577.0">
+        <buttons>
+          <Button mnemonicParsing="false" text="Add Candidature" />
+            <Button mnemonicParsing="false" text="Delete Candidature" />
+            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="139.0" text="Update Candidature" />
+            <Button mnemonicParsing="false" text="Select" />
+        </buttons>
+      </ButtonBar>
+      <TextField fx:id="idclient" layoutX="544.0" layoutY="151.0" />
+      <Label layoutX="443.0" layoutY="155.0" prefHeight="18.0" prefWidth="54.0" text="ID Client" />
+      <TextField fx:id="descp" layoutX="544.0" layoutY="199.0" />
+      <Label layoutX="443.0" layoutY="203.0" prefHeight="18.0" prefWidth="66.0" text="Description" />
+      <TextField fx:id="comp" layoutX="544.0" layoutY="249.0" />
+      <Label layoutX="443.0" layoutY="253.0" prefHeight="18.0" prefWidth="90.0" text="Compétences" />
+      <Label layoutX="443.0" layoutY="303.0" prefHeight="18.0" prefWidth="54.0" text="Offre" />
+      <ChoiceBox fx:id="offrelist" layoutX="544.0" layoutY="300.0" prefWidth="150.0" />
+        <Button layoutX="619.0" layoutY="32.0" mnemonicParsing="false" text="Consulter les offres" />
+    </children>
+</AnchorPane>
