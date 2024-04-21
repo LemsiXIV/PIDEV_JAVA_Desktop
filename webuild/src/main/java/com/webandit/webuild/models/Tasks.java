@@ -6,7 +6,19 @@ public class Tasks {
 
     //variabels
     private int id,status;
-    private String name,priority,description;
+    private String name;
+    private String priority;
+    private String description;
+
+    public String getNomchantier() {
+        return nomchantier;
+    }
+
+    public void setNomchantier(String nomchantier) {
+        this.nomchantier = nomchantier;
+    }
+
+    private String nomchantier;
     private Date due;
     private Chantier id_chantier;
 
@@ -22,6 +34,15 @@ public class Tasks {
         this.due = due;
         this.id_chantier = chantier;
     }
+    public Tasks(  String name, String priority,int status, String description, Date due , String chnom) {
+
+        this.status = status;
+        this.name = name;
+        this.priority = priority;
+        this.description = description;
+        this.due = due;
+        this.nomchantier = chnom;
+    }
 
     // toString affichafe
 
@@ -34,7 +55,7 @@ public class Tasks {
                 ", priority='" + priority + '\'' +
                 ", description='" + description + '\'' +
                 ", due=" + due +
-                ", id_chantier=" + id_chantier +
+                ", nom chantier=" + nomchantier +
                 '}';
     }
 

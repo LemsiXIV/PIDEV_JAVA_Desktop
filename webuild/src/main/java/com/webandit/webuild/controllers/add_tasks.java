@@ -66,6 +66,7 @@ public class add_tasks {
 
           Tasks task = new Tasks(ts_name.getText(), ts_priority.getText(), Integer.parseInt(ts_status.getText()), ts_description.getText(), sqlDate, selectedChantier);
           ps.insertOne(task);
+
       } catch (SQLException | NumberFormatException e) {
           showAlert("Erreur de saisie", "Erreur dans la saisie des données!");
       }

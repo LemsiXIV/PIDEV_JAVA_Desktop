@@ -69,7 +69,6 @@ public class ServiceChantier implements CRUD<Chantier> {
         String req = "SELECT * FROM `chantier` ";
         Statement st = cnx.createStatement();
         ResultSet result = st.executeQuery(req);
-
         while (result.next()) {
             Chantier ch = new Chantier();
             ch.setId(result.getInt("id"));
