@@ -1,0 +1,65 @@
+/* Set the background color for the AnchorPane */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #feeafa, #8e9aaf);
+}
+
+/* Style for TableView */
+.table-view {
+    -fx-background-color: #F8BC24; /* Fond jaune */
+    -fx-border-color: #FFD700; /* Jaune doré */
+}
+
+/* Style for TextFields */
+.textfield {
+    -fx-background-color: #26D48C; /* Jaune */
+    -fx-border-color: #26D48C; /* Jaune doré */
+}
+
+.textfield:focused {
+    -fx-border-color: #FFD700; /* Jaune doré */
+}
+
+/* Style for Buttons */
+.button {
+    -fx-background-color: #FFD700; /* Jaune doré */
+    -fx-text-fill: #000000; /* Noir */
+}
+
+.button:hover {
+    -fx-background-color: #FFA500; /* Orange */
+}
+
+/* Style for TableView columns */
+.table-column {
+    -fx-background-color: #F8BC24; /* Fond jaune */
+    -fx-text-fill: #000000; /* Noir */
+}
+
+/* Style for TableView header */
+.table-view .column-header {
+    -fx-background-color: #F8BC24; /* Jaune doré */
+    -fx-text-fill: #000000; /* Noir */
+}
+
+/* Style for TableView rows */
+.table-row-cell:even {
+    -fx-background-color: #F8BC24; /* Fond jaune */
+}
+
+/* Style for Labels */
+.label {
+    -fx-text-fill: #26D48C; /* Jaune doré */
+}
+
+/* Style for Error Labels */
+.error-label {
+    -fx-text-fill: #FFD700; /* Jaune doré */
+}
+
+.empty-field {
+    -fx-border-color: #FF0000; /* Rouge */
+}
+
+.empty-label {
+    -fx-text-fill: #FF0000; /* Rouge */
+}

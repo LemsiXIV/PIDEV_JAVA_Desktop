@@ -23,9 +23,7 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    exit.setOnMouseClicked(e->{
-        System.exit(0);
-    });
+
         try {
             Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
             contentArea.getChildren().removeAll();
@@ -66,7 +64,7 @@ public class Controller implements Initializable {
     }
 
     public void Forum(ActionEvent actionEvent)throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Forum.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/forumXml.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
@@ -76,4 +74,5 @@ public class Controller implements Initializable {
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
+
 }

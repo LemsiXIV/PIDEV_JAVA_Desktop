@@ -16,7 +16,7 @@ public class HelloApplication extends Application {
 
 
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/hello-view.fxml"));
-        stage.initStyle(StageStyle.UNDECORATED);
+
 
         root.setOnMousePressed(event -> {
             x = event.getSceneX();

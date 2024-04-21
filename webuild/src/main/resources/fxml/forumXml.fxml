@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="642.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.mouna.AjouterPostController">
+   <children>
+      <StackPane fx:id="contentArea" prefHeight="400.0" prefWidth="631.0">
+         <children>
+            <AnchorPane fx:id="mainAnchorPane" prefHeight="400.0" prefWidth="772.0" stylesheets="@../css/codeCss.css">
+               <children>
+                  <TextField fx:id="titre" layoutX="87.0" layoutY="236.0" prefHeight="26.0" prefWidth="136.0" promptText="Titre" stylesheets="@../css/codeCss.css" />
+                  <TextField fx:id="description" layoutX="87.0" layoutY="299.0" prefHeight="25.0" prefWidth="136.0" promptText="Description" stylesheets="@../css/codeCss.css" />
+                  <TextField fx:id="auteur" layoutX="87.0" layoutY="333.0" prefHeight="25.0" prefWidth="136.0" promptText="Auteur" stylesheets="@../css/codeCss.css" />
+                  <DatePicker fx:id="date" layoutX="87.0" layoutY="265.0" onAction="#selectdate" prefWidth="136.0" promptText="aaaa-mm-jj" stylesheets="@../css/codeCss.css" />
+                  <Label layoutX="33.0" layoutY="242.0" prefHeight="18.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Titre :" />
+                  <Label fx:id="datteee" layoutX="33.0" layoutY="267.0" prefHeight="25.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Date :" />
+                  <Label layoutX="33.0" layoutY="305.0" prefHeight="17.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Description :" />
+                  <Label layoutX="33.0" layoutY="335.0" prefHeight="17.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Auteur :" />
+                  <Button layoutX="104.0" layoutY="369.0" mnemonicParsing="false" onAction="#AddPost" prefHeight="25.0" prefWidth="80.0" stylesheets="@../css/codeCss.css" text="Add" />
+                  <Label fx:id="titreErrorLabel" layoutX="227.0" layoutY="242.0" prefHeight="17.0" prefWidth="179.0" />
+                  <Label fx:id="dateErrorLabel" layoutX="227.0" layoutY="271.0" prefHeight="17.0" prefWidth="165.0" />
+                  <Label fx:id="descriptionErrorLabel" layoutX="230.0" layoutY="303.0" prefHeight="17.0" prefWidth="174.0" />
+                  <Label fx:id="auteurErrorLabel" layoutX="227.0" layoutY="337.0" prefHeight="17.0" prefWidth="179.0" />
+                  <TreeTableView fx:id="tvc" layoutX="-7.0" layoutY="14.0" prefHeight="204.0" prefWidth="602.0" stylesheets="@../css/codeCss.css">
+                     <columns>
+                        <TreeTableColumn fx:id="Titre" prefWidth="88.79998779296875" style="-fx-alignment: center;" text="Titre" />
+                        <TreeTableColumn fx:id="Description" prefWidth="253.59999084472656" style="-fx-alignment: center;" text="Description" />
+                        <TreeTableColumn fx:id="Auteur" prefWidth="62.4000244140625" style="-fx-alignment: center;" text="Auteur" />
+                        <TreeTableColumn fx:id="Date" prefWidth="106.40008544921875" style="-fx-alignment: center;" text="Date" />
+                     </columns>
+                  </TreeTableView>
+                  <Button layoutX="223.0" layoutY="369.0" mnemonicParsing="false" onAction="#selectPost" text="select" />
+                  <Button layoutX="310.0" layoutY="369.0" mnemonicParsing="false" onAction="#updatePost" text="update" />
+                  <Button layoutX="398.0" layoutY="369.0" mnemonicParsing="false" onAction="#commentaire_page" text="commentaire" />
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

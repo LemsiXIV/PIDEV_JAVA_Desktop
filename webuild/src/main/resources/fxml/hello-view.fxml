@@ -121,22 +121,6 @@
     <top>
         <VBox prefHeight="96.0" prefWidth="931.0" BorderPane.alignment="CENTER">
             <children>
-                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" styleClass="white-background" stylesheets="@../css/style.css">
-                    <children>
-                        <Label fx:id="exit">
-                            <graphic>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../image/square_14034319.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <HBox.margin>
-                                <Insets right="10.0" />
-                            </HBox.margin>
-                        </Label>
-                    </children>
-                </HBox>
                 <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="931.0" spacing="5.0" styleClass="navbar-top" stylesheets="@../css/style.css">
                     <children>
                         <Pane prefHeight="39.0" prefWidth="62.0" />
