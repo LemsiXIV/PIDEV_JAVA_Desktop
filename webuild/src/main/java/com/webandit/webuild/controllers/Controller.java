@@ -65,6 +65,12 @@ public class Controller implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
 
+    public void LocationController(ActionEvent actionEvent) throws IOException{
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Location.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
+
     public void Forum(ActionEvent actionEvent)throws IOException {
         Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Forum.fxml"));
         contentArea.getChildren().removeAll();

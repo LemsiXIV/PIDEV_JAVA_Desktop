@@ -98,4 +98,21 @@ public class ServiceMateriel implements CRUD<Materiel> {
             throw new SQLException("Failed to fetch materiels: " + e.getMessage());
         }
     }
+
+    public Materiel selectOne(int id) throws SQLException {
+        String query = "SELECT * FROM pack_materiel WHERE id = ?";
+        PreparedStatement pstmt = cnx.prepareStatement(query);
+        pstmt.setInt(1, id);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            Materiel materiel = new Materiel();
+            materiel.setId(rs.getInt("id"));
+            materiel.setLibelle(rs.getString("libelle"));
+            materiel.setDescription(rs.getString("description"));
+            materiel.setPrix(rs.getInt("prix"));
+            materiel.setImage(rs.getString("image"));
+            return materiel;
+        }
+        return null; // Retourner null si aucune assurance correspondante n'est trouvée
+    }
 }

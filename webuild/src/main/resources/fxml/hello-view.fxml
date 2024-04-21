@@ -110,6 +110,19 @@
                                 </Button>
                             </children>
                         </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#LocationController" prefHeight="45.0" prefWidth="158.0" text="Location">
+                                    <graphic>
+                                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../image/icons8-work-50.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </HBox>
                     </children>
                     <padding>
                         <Insets bottom="10.0" top="10.0" />
