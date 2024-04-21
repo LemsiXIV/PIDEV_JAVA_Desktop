@@ -47,7 +47,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Offres" prefHeight="45.0" prefWidth="158.0" text="Offres">
+                                <Button mnemonicParsing="false" onAction="#Offres" prefHeight="45.0" prefWidth="158.0" text="BackOffice:Offres">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -60,11 +60,24 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="195.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Candidatures" prefHeight="45.0" prefWidth="158.0" text="Candidatures">
+                                <Button mnemonicParsing="false" onAction="#Candidatures" prefHeight="45.0" prefWidth="158.0" text="BackOffice:Candidatures">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
                                                 <Image url="@../image/icons8-candidates-66.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="94.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#FrontOffres" prefHeight="45.0" prefWidth="158.0" text="Offres">
+                                    <graphic>
+                                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../image/icons8-insurance-50.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>

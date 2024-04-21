@@ -25,12 +25,13 @@
                 <TableColumn fx:id="colemail" prefWidth="100.0" text="Email Address" />
             </columns>
         </TableView>
-      <ButtonBar layoutX="110.0" layoutY="500.0" prefHeight="40.0" prefWidth="577.0">
+      <ButtonBar layoutX="30.0" layoutY="500.0" prefHeight="40.0" prefWidth="658.0">
         <buttons>
           <Button fx:id="addCan" mnemonicParsing="false" onAction="#addCandidature" text="Add Candidature" />
             <Button fx:id="deleteCan" mnemonicParsing="false" onAction="#deleteCandidature" text="Delete Candidature" />
             <Button fx:id="updateCan" mnemonicParsing="false" onAction="#updateCandidature" prefHeight="26.0" prefWidth="139.0" text="Update Candidature" />
             <Button fx:id="selectCan" mnemonicParsing="false" onAction="#selectCandidature" text="Select" />
+            <Button fx:id="clear" mnemonicParsing="false" onAction="#clear" text="Clear" />
         </buttons>
       </ButtonBar>
       <TextField fx:id="idclient" layoutX="544.0" layoutY="151.0" />

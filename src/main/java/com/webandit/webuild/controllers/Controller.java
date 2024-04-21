@@ -82,5 +82,10 @@ public class Controller implements Initializable {
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
+    public void FrontOffres(ActionEvent actionEvent)throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/FrontOffres.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
 
 }

@@ -42,6 +42,8 @@ public class Candidatures {
     private TextField email;
 
     @FXML
+    private Button clear;
+    @FXML
     private Button addCan;
     @FXML
     private Button deleteCan;
@@ -139,6 +141,16 @@ public class Candidatures {
                 if (compValue.isEmpty() || descpValue.isEmpty() || idClientValue.isEmpty() || emailValue.isEmpty() || selectedOffreTitle == null) {
                     showAlert("Erreur de saisie", "Veuillez remplir tous les champs et sélectionner une offre.");
                     return; // Exit the method if any field is empty or no offre is selected
+                }
+                // Validate description length
+                if (descpValue.length() <= 14) {
+                    showAlert("Erreur de saisie", "La description doit contenir plus de 14 caractères.");
+                    return; // Exit the method if description length is too short
+                }
+                // Validate email format using regular expression
+                if (!isValidEmail(emailValue)) {
+                    showAlert("Erreur de saisie", "Veuillez saisir une adresse e-mail valide.");
+                    return; // Exit the method if email is invalid
                 }
                 ServiceOffre serviceOffre = new ServiceOffre();
                 Offre selectedOffre = serviceOffre.getOffreByTitle(selectedOffreTitle);
@@ -238,5 +250,17 @@ public class Candidatures {
             showAlert("Aucune sélection", "Aucune candidature sélectionnée");
         }
     }
+    private boolean isValidEmail(String email) {
+        // Regular expression pattern for email validation
+        String emailPattern = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        return email.matches(emailPattern);
+    }
 
+    @FXML
+    void clear(ActionEvent event) {
+        comp.clear();
+        descp.clear();
+        idclient.clear();
+        email.clear();
+    }
 }

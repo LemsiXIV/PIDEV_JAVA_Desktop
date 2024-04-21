@@ -254,7 +254,7 @@ public class Offres {
         return title.matches("[a-zA-Z\\s]+") && title.length() >= 4;
     }
 
-    @FXML
+   /* @FXML
     void switchToCandidatures(ActionEvent event) throws IOException  {
 // Load Candidatures.fxml
         Parent candidaturesParent = FXMLLoader.load(getClass().getResource("/fxml/Candidatures.fxml"));
@@ -266,6 +266,6 @@ public class Offres {
         // Set the new scene
         stage.setScene(candidaturesScene);
         stage.show();
-    }
+    }*/
 
 }

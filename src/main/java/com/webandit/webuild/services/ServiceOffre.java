@@ -127,4 +127,24 @@ public class ServiceOffre implements CRUD<Offre> {
         // Return null if no Offre with the given title is found
         return null;
     }
+
+    public List<Offre> rechercherOffres(String searchTerm) throws SQLException {
+        List<Offre> searchResults = new ArrayList<>();
+        String query = "SELECT * FROM offre WHERE title LIKE ? OR description LIKE ?";
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(query)) {
+            String searchPattern = "%" + searchTerm + "%";
+            preparedStatement.setString(1, searchPattern);
+            preparedStatement.setString(2, searchPattern);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Offre offre = new Offre();
+                    offre.setId(resultSet.getInt("id"));
+                    offre.setTitle(resultSet.getString("title"));
+                    offre.setDescription(resultSet.getString("description"));
+                    searchResults.add(offre);
+                }
+            }
+        }
+        return searchResults;
+    }
 }
