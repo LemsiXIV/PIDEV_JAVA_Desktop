@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="450.0" prefWidth="666.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.AddAssu">
+    <children>
+    <VBox alignment="TOP_CENTER" layoutX="107.2" layoutY="14.0" prefHeight="382.0" prefWidth="438.0" AnchorPane.leftAnchor="107.0">
+        <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Assurance">
+                <font>
+                    <Font name="Arial Bold" size="12.0" />
+                </font></Text>
+            <TextField fx:id="txtNom" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+                <font>
+                    <Font name="Arial Bold" size="12.0" />
+                </font></Text>
+            <TextArea fx:id="txtDescription" prefHeight="58.0" prefWidth="300.0" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="image">
+                <font>
+                    <Font name="Arial Bold" size="12.0" />
+                </font></Text>
+            <TextField fx:id="txtImage" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condition d'age">
+                <font>
+                    <Font name="Arial Bold" size="12.0" />
+                </font></Text>
+            <TextField fx:id="xtCondition_age" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condition medicale">
+                <font>
+                    <Font name="Arial Bold" size="12.0" />
+                </font></Text>
+            <TextField fx:id="txtCondition_medicale" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condition financiere">
+                <font>
+                    <Font name="Arial Bold" size="12.0" />
+                </font></Text>
+            <TextField fx:id="txtCondition_financiere" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Franchise">
+                <font>
+                    <Font name="Arial Bold" size="12.0" />
+                </font></Text>
+            <TextField fx:id="txtFranchise" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prime">
+                <font>
+                    <Font name="Arial Bold" size="12.0" />
+                </font>
+            </Text>
+            <TextField fx:id="txtPrime" prefHeight="34.0" prefWidth="300.0" stylesheets="@../css/style.css">
+                <styleClass>
+                    <String fx:value="form-container" />
+                    <String fx:value="input-field" />
+                </styleClass>
+            </TextField>
+        </children>
+    </VBox>
+        <Button fx:id="addAssu" layoutX="304.0" layoutY="396.0" mnemonicParsing="false" onAction="#AddAssurance" style="-fx-background-color: #dab104;" text="Ajouter">
+            <font>
+                <Font name="Arial Bold" size="12.0" />
+            </font>
+      </Button>
+      <Button fx:id="viewlist" layoutX="190.0" layoutY="395.0" mnemonicParsing="false" onAction="#BackToList" text="view list" />
+    </children>
+</AnchorPane>

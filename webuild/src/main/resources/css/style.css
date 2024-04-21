@@ -31,3 +31,41 @@
 .mouse-moved:hover{
         -fx-background-color: #E4E4E4;
 }
+.list-view {
+        -fx-background-color: #f0f0f0; /* Background color */
+}
+
+.list-cell {
+        -fx-padding: 10px; /* Padding around each cell */
+        -fx-background-color: #ffffff; /* Cell background color */
+        -fx-border-color: #cccccc; /* Border color */
+        -fx-border-width: 1px; /* Border width */
+}
+
+.list-cell:hover {
+        -fx-background-color: #e0e0e0; /* Background color on hover */
+}
+
+.list-cell:selected {
+        -fx-background-color: #bfbfbf; /* Background color when selected */
+        -fx-text-fill: #ffffff; /* Text color when selected */
+}
+/* Style du formulaire */
+.form-container {
+        width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style des champs de saisie */
+.input-field {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box; /* Pour inclure le padding dans la largeur */
+}
