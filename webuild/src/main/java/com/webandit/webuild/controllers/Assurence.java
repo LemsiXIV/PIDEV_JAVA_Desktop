@@ -215,6 +215,7 @@ public class Assurence implements Initializable {
 
             pstmt.executeUpdate();
             showAssu();
+            clearFields();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -244,6 +245,7 @@ public class Assurence implements Initializable {
             pstmt.setInt(1, id);
             pstmt.executeUpdate();
             showAssu();
+            clearFields();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -266,6 +268,8 @@ public class Assurence implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+
+
     }
 
 

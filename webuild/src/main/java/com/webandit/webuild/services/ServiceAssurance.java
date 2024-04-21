@@ -84,13 +84,13 @@ public  class ServiceAssurance implements CRUD<Assurance>{
         ResultSet rs = st.executeQuery(req);
         while (rs.next()){
             Assurance a = new Assurance();
-            a.setId(rs.getInt(("id")));
-            a.setNom(rs.getString((1)));
-            a.setDescription(rs.getString((2)));
-            a.setImage(rs.getString((3)));
-            a.setCondition_age(rs.getString((4)));
-            a.setCondition_medicale(rs.getString((5)));
-            a.setCondition_financiere(rs.getString((6)));
+            a.setId(rs.getInt((1)));
+            a.setNom(rs.getString((2)));
+            a.setDescription(rs.getString((3)));
+            a.setImage(rs.getString((4)));
+            a.setCondition_age(rs.getString((5)));
+            a.setCondition_medicale(rs.getString((6)));
+            a.setCondition_financiere(rs.getString((7)));
             a.setFranchise(rs.getInt((8)));
             a.setPrime(rs.getInt((9)));
             assuranceList.add(a);

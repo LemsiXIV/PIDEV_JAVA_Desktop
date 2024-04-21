@@ -25,6 +25,8 @@ public class Demande {
    }
 
 
+
+
    public int getId_d() {
       return id_d;
    }
