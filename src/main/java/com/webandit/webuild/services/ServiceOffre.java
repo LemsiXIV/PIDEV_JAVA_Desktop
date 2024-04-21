@@ -83,4 +83,28 @@ public class ServiceOffre implements CRUD<Offre> {
 
         return offreList;
     }
+
+    //retrieving offre based on their id
+    public Offre getOffreById(int id) throws SQLException {
+        String req = "SELECT * FROM `offre` WHERE `id`=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1, id);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            Offre offre = new Offre();
+            offre.setId(rs.getInt("id"));
+            offre.setTitle(rs.getString("title"));
+            offre.setDescription(rs.getString("description"));
+            offre.setSalary(rs.getFloat("salary"));
+            offre.setLatitude(rs.getBigDecimal("latitude"));
+            offre.setLongitude(rs.getBigDecimal("longitude"));
+            return offre;
+        }
+
+        // Return null if no Offre with the given ID is found
+        return null;
+    }
+
 }

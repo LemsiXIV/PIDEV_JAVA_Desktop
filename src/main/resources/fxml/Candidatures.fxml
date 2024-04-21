@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -41,6 +41,8 @@
       <Label layoutX="443.0" layoutY="253.0" prefHeight="18.0" prefWidth="90.0" text="Compétences" />
       <Label layoutX="443.0" layoutY="303.0" prefHeight="18.0" prefWidth="54.0" text="Offre" />
       <ChoiceBox fx:id="offrelist" layoutX="544.0" layoutY="300.0" prefWidth="150.0" />
-        <Button layoutX="619.0" layoutY="32.0" mnemonicParsing="false" text="Consulter les offres" />
+        <Button layoutX="610.0" layoutY="32.0" mnemonicParsing="false" text="Consulter les offres" />
+      <TextField fx:id="email" layoutX="544.0" layoutY="111.0" />
+      <Label layoutX="443.0" layoutY="115.0" prefHeight="18.0" prefWidth="90.0" text="Email" />
     </children>
 </AnchorPane>

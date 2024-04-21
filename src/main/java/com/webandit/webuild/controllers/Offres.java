@@ -1,6 +1,7 @@
 package com.webandit.webuild.controllers;
 
 import com.webandit.webuild.models.Offre;
+import com.webandit.webuild.services.ServiceCandidature;
 import com.webandit.webuild.services.ServiceOffre;
 import com.webandit.webuild.utils.DBConnection;
 import javafx.collections.FXCollections;
@@ -18,10 +19,17 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import java.io.IOException;
 public class Offres {
 
     ServiceOffre ps = new ServiceOffre();
+
+    @FXML
+    private Button btnSwitch;
 
     @FXML
     private Button btnclear;
@@ -154,9 +162,15 @@ public class Offres {
         Offre selectedOffre = table.getSelectionModel().getSelectedItem();
         if (selectedOffre != null) {
             try {
+                // Get the ID of the selected offre
+                int offreId = selectedOffre.getId();
+
                 // Call the deleteOne function from the service to delete the Offre from the database
                 ServiceOffre serviceOffre = new ServiceOffre();
                 serviceOffre.deleteOne(selectedOffre);
+                // Delete associated candidatures
+                ServiceCandidature serviceCandidature = new ServiceCandidature();
+                serviceCandidature.deleteCandidatesByOfferId(offreId);
 
                 // Refresh the table view after deleting
                 afficherOffre();
@@ -238,6 +252,20 @@ public class Offres {
     private boolean isValidTitle(String title) {
         // Check if the title contains only letters and is longer than 4 characters
         return title.matches("[a-zA-Z\\s]+") && title.length() >= 4;
+    }
+
+    @FXML
+    void switchToCandidatures(ActionEvent event) throws IOException  {
+// Load Candidatures.fxml
+        Parent candidaturesParent = FXMLLoader.load(getClass().getResource("/fxml/Candidatures.fxml"));
+        Scene candidaturesScene = new Scene(candidaturesParent);
+
+        // Get the stage from the button
+        Stage stage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+
+        // Set the new scene
+        stage.setScene(candidaturesScene);
+        stage.show();
     }
 
 }

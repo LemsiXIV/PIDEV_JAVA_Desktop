@@ -59,7 +59,7 @@ public class ServiceCandidature implements CRUD<Candidature>{
     @Override
     public List<Candidature> selectAll() throws SQLException {
         List<Candidature> candidatureList = new ArrayList<>();
-
+        ServiceOffre serviceOffre = new ServiceOffre();
         String req = "SELECT * FROM `candidature`";
         Statement st = cnx.createStatement();
 
@@ -69,7 +69,15 @@ public class ServiceCandidature implements CRUD<Candidature>{
             Candidature c = new Candidature();
 
             c.setId(rs.getInt("id"));
-            //c.setOffre(new Offre(rs.getInt("offre_id")));
+            // Fetch Offre based on offre_id
+            int offreId = rs.getInt("offre_id");
+            Offre offre = serviceOffre.getOffreById(offreId); // Replace serviceOffre with the appropriate instance of ServiceOffre
+            c.setOffre(offre);
+            if (offre != null) {
+                c.setOffreTitle(offre.getTitle());
+            } else {
+                c.setOffreTitle(""); // Set a default value if offre is null
+            }
             c.setId_client(rs.getInt("id_client"));
             c.setDescription(rs.getString("description"));
             c.setCompetences(rs.getString("competences"));
@@ -80,5 +88,14 @@ public class ServiceCandidature implements CRUD<Candidature>{
 
         return candidatureList;
     }
+
+    public void deleteCandidatesByOfferId(int offerId) throws SQLException {
+        String deleteQuery = "DELETE FROM candidature WHERE offre_id = ?";
+        try (PreparedStatement statement = cnx.prepareStatement(deleteQuery)) {
+            statement.setInt(1, offerId);
+            statement.executeUpdate();
+        }
+    }
+
 }
 

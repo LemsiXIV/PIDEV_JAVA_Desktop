@@ -46,5 +46,6 @@
                 <Button fx:id="btnselect" mnemonicParsing="false" onAction="#selectOffre" text="Select" />
             </buttons>
         </ButtonBar>
+      <Button fx:id="btnSwitch" layoutX="689.0" layoutY="43.0" mnemonicParsing="false" onAction="#switchToCandidatures" text="Voir Candidatures" />
     </children>
 </AnchorPane>

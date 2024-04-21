@@ -24,7 +24,7 @@ public class Candidatures {
     private TableColumn<Candidature, String> colemail;
 
     @FXML
-    private TableColumn<Candidature, Offre> coloffre;
+    private TableColumn<Candidature, String> coloffre;
 
     @FXML
     private TextField comp;
@@ -34,12 +34,14 @@ public class Candidatures {
 
     @FXML
     private TextField idclient;
+    @FXML
+    private TextField email;
 
     @FXML
-    private ChoiceBox<?> offrelist;
+    private ChoiceBox<Offre> offrelist;
 
     @FXML
-    private TableView<?> tablecan;
+    private TableView<Candidature> tablecan;
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -55,20 +57,19 @@ public class Candidatures {
     }
     @FXML
     void initialize() {
-        colTitle.setCellValueFactory(new PropertyValueFactory<>("Title"));
-        colDescrp.setCellValueFactory(new PropertyValueFactory<>("Description"));
-        colSalary.setCellValueFactory(new PropertyValueFactory<>("Salary"));
-        colLati.setCellValueFactory(new PropertyValueFactory<>("Latitude"));
-        colLongi.setCellValueFactory(new PropertyValueFactory<>("Longitude"));
-        afficherOffre(); //refrech el tableview
+        coloffre.setCellValueFactory(new PropertyValueFactory<>("offreTitle"));
+        coldescrp.setCellValueFactory(new PropertyValueFactory<>("description"));
+        colcomp.setCellValueFactory(new PropertyValueFactory<>("competences"));
+        colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        afficherCandidature(); //refrech el tableview
     }
     @FXML
     void clearField(ActionEvent event) {
-        tit.clear();
-        descrp.clear();
-        salary.clear();
-        lati.clear();
-        longi.clear();
+        idclient.clear();
+        descp.clear();
+        comp.clear();
+        email.clear();
+        offrelist.getItems().clear();
     }
 
 }
