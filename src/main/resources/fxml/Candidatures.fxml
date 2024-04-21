@@ -27,10 +27,10 @@
         </TableView>
       <ButtonBar layoutX="110.0" layoutY="500.0" prefHeight="40.0" prefWidth="577.0">
         <buttons>
-          <Button mnemonicParsing="false" text="Add Candidature" />
-            <Button mnemonicParsing="false" text="Delete Candidature" />
-            <Button mnemonicParsing="false" prefHeight="26.0" prefWidth="139.0" text="Update Candidature" />
-            <Button mnemonicParsing="false" text="Select" />
+          <Button fx:id="addCan" mnemonicParsing="false" onAction="#addCandidature" text="Add Candidature" />
+            <Button fx:id="deleteCan" mnemonicParsing="false" onAction="#deleteCandidature" text="Delete Candidature" />
+            <Button fx:id="updateCan" mnemonicParsing="false" onAction="#updateCandidature" prefHeight="26.0" prefWidth="139.0" text="Update Candidature" />
+            <Button fx:id="selectCan" mnemonicParsing="false" onAction="#selectCandidature" text="Select" />
         </buttons>
       </ButtonBar>
       <TextField fx:id="idclient" layoutX="544.0" layoutY="151.0" />
@@ -40,8 +40,7 @@
       <TextField fx:id="comp" layoutX="544.0" layoutY="249.0" />
       <Label layoutX="443.0" layoutY="253.0" prefHeight="18.0" prefWidth="90.0" text="Compétences" />
       <Label layoutX="443.0" layoutY="303.0" prefHeight="18.0" prefWidth="54.0" text="Offre" />
-      <ChoiceBox fx:id="offrelist" layoutX="544.0" layoutY="300.0" prefWidth="150.0" />
-        <Button layoutX="610.0" layoutY="32.0" mnemonicParsing="false" text="Consulter les offres" />
+      <ChoiceBox fx:id="offreChoiceBox" layoutX="544.0" layoutY="300.0" prefWidth="150.0" />
       <TextField fx:id="email" layoutX="544.0" layoutY="111.0" />
       <Label layoutX="443.0" layoutY="115.0" prefHeight="18.0" prefWidth="90.0" text="Email" />
     </children>

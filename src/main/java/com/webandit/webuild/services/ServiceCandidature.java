@@ -96,6 +96,45 @@ public class ServiceCandidature implements CRUD<Candidature>{
             statement.executeUpdate();
         }
     }
+    public List<Candidature> getCandidaturesByOffreTitle(String offreTitle) throws SQLException {
+        List<Candidature> candidatures = new ArrayList<>();
+        String query = "SELECT * FROM candidature WHERE offreTitle = ?";
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            statement.setString(1, offreTitle);
+            try (ResultSet resultSet = statement.executeQuery()) {
+                while (resultSet.next()) {
+                    Candidature candidature = new Candidature();
+                    candidature.setId(resultSet.getInt("id"));
+                    candidature.setOffreTitle(resultSet.getString("offreTitle"));
+                    candidature.setDescription(resultSet.getString("description"));
+                    candidature.setCompetences(resultSet.getString("competences"));
+                    candidature.setEmail(resultSet.getString("email"));
+                    candidatures.add(candidature);
+                }
+            }
+        }
+        return candidatures;
+    }
+    public List<Candidature> getCandidaturesByOffre(Offre offre) throws SQLException {
+        String req = "SELECT * FROM `candidature` WHERE `offre_id`=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1, offre.getId()); // Assuming Offre has a method getId() to retrieve its ID
+
+        ResultSet rs = ps.executeQuery();
+        List<Candidature> candidatures = new ArrayList<>();
+
+        while (rs.next()) {
+            // Construct Candidature objects from the result set
+            Candidature candidature = new Candidature();
+            // Set properties of the candidature object from the result set
+            candidature.setId(rs.getInt("id"));
+            // Set other properties of the candidature object...
+            candidatures.add(candidature);
+        }
+
+        return candidatures;
+    }
+
 
 }
 
