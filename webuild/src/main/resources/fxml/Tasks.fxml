@@ -39,7 +39,7 @@
                                  <children>
                                     <AnchorPane prefHeight="360.0" prefWidth="722.0">
                                        <children>
-                                          <TableView fx:id="ts_view" layoutX="18.0" layoutY="65.0" prefHeight="294.0" prefWidth="846.0">
+                                          <TableView fx:id="ts_view" editable="true" layoutX="18.0" layoutY="65.0" prefHeight="294.0" prefWidth="846.0">
                                              <columns>
                                                 <TableColumn fx:id="ts_view_chnt" prefWidth="75.0" text="Chantier" />
                                                 <TableColumn fx:id="ts_view_name" prefWidth="75.0" text="Task_Name" />

@@ -8,14 +8,17 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 public class add_tasks {
 
     ServiceTasks ps = new ServiceTasks();
     ServiceChantier cs = new ServiceChantier();
+    private Stage stage; // Declare Stage
 
     @FXML
     private ChoiceBox<Chantier> ts_chantierChoiceBox;
@@ -40,6 +43,89 @@ public class add_tasks {
         alert.setContentText(content);
         alert.show();
     }
+
+
+    // Method to perform validation
+    public boolean validateFields() {
+        boolean isValid = true;
+
+        if (!isValidName(ts_name.getText())) {
+            displayError(ts_name, "Le nom de la tâche doit contenir uniquement des lettres");
+            isValid = false;
+        } else {
+            displaySuccess(ts_name);
+        }
+
+        if (!isValidPriority(ts_priority.getText())) {
+            displayError(ts_priority, "La priorité doit être 'High', 'Medium' ou 'Low'");
+            isValid = false;
+        } else {
+            displaySuccess(ts_priority);
+        }
+
+        if (!isValidStatus(ts_status.getText())) {
+            displayError(ts_status, "Le statut doit être '1' (pour terminé) ou '0' (pour non terminé)");
+            isValid = false;
+        } else {
+            displaySuccess(ts_status);
+        }
+
+        if (!isValidDescription(ts_description.getText())) {
+            displayError(ts_description, "La description doit avoir entre 10 et 255 caractères");
+            isValid = false;
+        } else {
+            displaySuccess(ts_description);
+        }
+
+        // Add validation for other fields
+
+        return isValid;
+    }
+
+    // Method to validate task name
+    private boolean isValidName(String name) {
+        return Pattern.matches("[a-zA-Z]+", name);
+    }
+
+    // Method to validate task priority
+    private boolean isValidPriority(String priority) {
+        return priority.equalsIgnoreCase("High") || priority.equalsIgnoreCase("Medium") || priority.equalsIgnoreCase("Low");
+    }
+
+    // Method to validate task status
+    private boolean isValidStatus(String status) {
+        return status.equals("1") || status.equals("0");
+    }
+
+    // Method to validate task description length
+    private boolean isValidDescription(String description) {
+        return description.length() >= 10 && description.length() <= 255;
+    }
+
+    // Method to display error message
+    private void displayError(TextField field, String errorMessage) {
+        field.getStyleClass().add("error-field");
+        showAlert("Erreur de validation", errorMessage);
+    }
+
+    private void displayError(TextArea field, String errorMessage) {
+        field.getStyleClass().add("error-field");
+        showAlert("Erreur de validation", errorMessage);
+    }
+
+    // Method to display success message
+    private void displaySuccess(TextField field) {
+        field.getStyleClass().remove("error-field");
+    }
+
+    private void displaySuccess(TextArea field) {
+        field.getStyleClass().remove("error-field");
+    }
+
+    // Method to display alert
+
+
+
   /*  public void Add_task(ActionEvent event) {
         try {
             LocalDate localDate = ts_due.getValue();
@@ -53,7 +139,7 @@ public class add_tasks {
             showAlert("Erreur de saisie", "Erreur dans la saisie des données!");
         }
     }*/
-  public void Add_task(ActionEvent event) {
+ /* public void Add_task(ActionEvent event) {
       try {
           LocalDate localDate = ts_due.getValue();
           java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
@@ -67,6 +153,31 @@ public class add_tasks {
           Tasks task = new Tasks(ts_name.getText(), ts_priority.getText(), Integer.parseInt(ts_status.getText()), ts_description.getText(), sqlDate, selectedChantier);
           ps.insertOne(task);
 
+      } catch (SQLException | NumberFormatException e) {
+          showAlert("Erreur de saisie", "Erreur dans la saisie des données!");
+      }
+  }*/
+  public void setStage(Stage stage) {
+      this.stage = stage;
+  }
+
+    public void Add_task(ActionEvent event) {
+      try {
+          // Perform validation
+          if (validateFields()) {
+              LocalDate localDate = ts_due.getValue();
+              java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+
+              Chantier selectedChantier = ts_chantierChoiceBox.getValue(); // Get selected Chantier
+              if (selectedChantier == null) {
+                  showAlert("Error", "Please select a Chantier");
+                  return;
+              }
+
+              Tasks task = new Tasks(ts_name.getText(), ts_priority.getText(), Integer.parseInt(ts_status.getText()), ts_description.getText(), sqlDate, selectedChantier);
+              ps.insertOne(task);
+              stage.close();
+          }
       } catch (SQLException | NumberFormatException e) {
           showAlert("Erreur de saisie", "Erreur dans la saisie des données!");
       }
@@ -89,4 +200,8 @@ public class add_tasks {
             e.printStackTrace();
         }
     }
+
+
+
+
 }

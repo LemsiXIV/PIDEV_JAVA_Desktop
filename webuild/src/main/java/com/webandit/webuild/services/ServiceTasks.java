@@ -33,6 +33,7 @@ public class ServiceTasks implements CRUD<Tasks> {
             preparedStatement.setInt(3, tasks.getStatus());
             preparedStatement.setString(4, tasks.getDescription());
             preparedStatement.setDate(5, tasks.getDue());
+            preparedStatement.setInt(6, tasks.getId()); // Set the ID parameter
 
 
             preparedStatement.executeUpdate();
@@ -68,5 +69,10 @@ public class ServiceTasks implements CRUD<Tasks> {
 
         System.out.println(tasksList);
         return tasksList;
+    }
+
+    @Override
+    public List<Tasks> selectListDerou() throws SQLException {
+        return null;
     }
 }

@@ -80,4 +80,23 @@ public class ServiceChantier implements CRUD<Chantier> {
         }
         return chantierList;
     }
+
+    @Override
+    public List<Chantier> selectListDerou() throws SQLException {
+        List<Chantier> chantierListDerou = new ArrayList<>();
+        String req = "SELECT * FROM `chantier` ";
+        Statement st = cnx.createStatement();
+        ResultSet result = st.executeQuery(req);
+        while (result.next()) {
+            Chantier ch = new Chantier();
+            ch.setId(result.getInt("id"));
+            ch.setNom(result.getString("nom"));
+            ch.setDescription(result.getString("description"));
+            ch.setRemuneration(result.getFloat("remuneration"));
+            ch.setDate(result.getDate("start_date"));
+            chantierListDerou.add(ch);
+        }
+        return chantierListDerou;
+
+    }
 }

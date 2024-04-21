@@ -13,6 +13,7 @@ import javafx.scene.layout.StackPane;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.regex.Pattern;
 
 public class Project {
     ServiceChantier ps = new ServiceChantier();
@@ -64,18 +65,69 @@ public class Project {
         alert.setContentText(content);
         alert.show();
     }
+    // Method to perform validation for the Chantier name
+    private boolean isValidChantierName(String name) {
+        return Pattern.matches("[a-zA-Z]{5,20}", name);
+    }
+
+    // Method to perform validation for the Chantier remuneration
+    private boolean isValidChantierRemuneration(String remuneration) {
+        return Pattern.matches("\\d+(\\.\\d+)?", remuneration);
+    }
+
+    // Method to perform validation for the Chantier description
+    private boolean isValidChantierDescription(String description) {
+        return description.length() >= 7 && description.length() <= 50;
+    }
+
+    // Method to perform validation for the Chantier date
+    private boolean isValidChantierDate(LocalDate date) {
+        // Check if the date is not null and is after or equal to today's date
+        return date != null && !date.isBefore(LocalDate.now());
+    }
+
+    // Method to display error message
+    private void displayError(TextField field, String errorMessage) {
+        field.getStyleClass().add("error-field");
+        showAlert("Erreur de validation", errorMessage);
+    }
+
+    // Method to remove error style
+    private void removeErrorStyle(TextField field) {
+        field.getStyleClass().remove("error-field");
+    }
+
     @FXML
     void addchantier(ActionEvent event) {
         try {
             LocalDate localDate = ch_date.getValue();
+            if (!isValidChantierDate(localDate)) {
+                showAlert("Erreur de saisie", "La date doit être ultérieure à aujourd'hui !");
+                return;
+            }
+
             java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+
+            if (!isValidChantierName(ch_nom.getText())) {
+                displayError(ch_nom, "Le nom du chantier doit contenir uniquement des lettres et avoir une longueur entre 5 et 20 caractères !");
+                return;
+            } else {
+                removeErrorStyle(ch_nom);
+            }
+
+            if (!isValidChantierRemuneration(ch_remuneration.getText())) {
+                displayError(ch_remuneration, "La rémunération doit être un nombre flottant !");
+                return;
+            } else {
+                removeErrorStyle(ch_remuneration);
+            }
 
             Chantier ch = new Chantier(ch_nom.getText(), ch_description.getText(), sqlDate, Float.parseFloat(ch_remuneration.getText()));
 
-            ps.insertOne(ch); // Accessing ServiceChantier methods via 'ps' instance
-            afficherChantier(); // Refresh the table after adding a chantier
+            ps.insertOne(ch);
+            afficherChantier();
         } catch (SQLException | NumberFormatException e) {
-            showAlert("Erreur de saisie", "Erreur dans la saisie des données!");
+            showAlert("Erreur de saisie", "Erreur dans la saisie des données !");
         }
     }
 

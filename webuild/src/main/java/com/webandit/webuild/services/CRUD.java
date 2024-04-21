@@ -8,4 +8,5 @@ public interface CRUD<T> {
     void updateOne(T t) throws SQLException;
     void deleteOne(int t) throws SQLException;
     List<T> selectAll() throws SQLException;
+    List<T> selectListDerou() throws SQLException;
 }

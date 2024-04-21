@@ -17,6 +17,12 @@ public class Chantier {
 
     //constructure
     public Chantier() {}
+    public Chantier(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+
+
+    }
     public Chantier( String nom, String description, Date date, float remuneration) {
 
         this.nom = nom;

@@ -9,15 +9,6 @@ public class Tasks {
     private String name;
     private String priority;
     private String description;
-
-    public String getNomchantier() {
-        return nomchantier;
-    }
-
-    public void setNomchantier(String nomchantier) {
-        this.nomchantier = nomchantier;
-    }
-
     private String nomchantier;
     private Date due;
     private Chantier id_chantier;
@@ -70,7 +61,13 @@ public class Tasks {
 
 
     // Getters & Setters
+    public String getNomchantier() {
+        return nomchantier;
+    }
 
+    public void setNomchantier(String nomchantier) {
+        this.nomchantier = nomchantier;
+    }
 
     public Chantier getId_chantier() {
         return id_chantier;
