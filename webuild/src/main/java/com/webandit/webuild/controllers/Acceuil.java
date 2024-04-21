@@ -14,7 +14,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Controller implements Initializable {
+public class Acceuil implements Initializable {
     @FXML
     private Label exit;
 
@@ -23,9 +23,9 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    exit.setOnMouseClicked(e->{
-        System.exit(0);
-    });
+        exit.setOnMouseClicked(e->{
+            System.exit(0);
+        });
         try {
             Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
             contentArea.getChildren().removeAll();
@@ -48,7 +48,7 @@ public class Controller implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
     public void Assurence(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Assurence.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/frontassurance.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
@@ -73,19 +73,6 @@ public class Controller implements Initializable {
 
     public void Utilisateur(ActionEvent actionEvent)throws IOException {
         Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Utilisateur.fxml"));
-        contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll(fxml);
-    }
-    @FXML
-    void Client(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Acceuil.fxml"));
-        contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll(fxml);
-    }
-
-    @FXML
-    void demande(ActionEvent event) throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/backdemande.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }

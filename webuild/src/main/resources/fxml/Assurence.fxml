@@ -2,74 +2,20 @@
 
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="488.0" prefWidth="759.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Assurence">
    <children>
-      <VBox layoutX="10.4" layoutY="12.0" prefHeight="426.0" prefWidth="312.0" AnchorPane.leftAnchor="10.0">
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Assurance">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font></Text>
-            <TextField fx:id="txtNom" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font></Text>
-            <TextArea fx:id="txtDescription" prefHeight="58.0" prefWidth="300.0" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="image">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font></Text>
-            <TextField fx:id="txtImage" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condition d'age">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font></Text>
-            <TextField fx:id="xtCondition_age" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condition medicale">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font></Text>
-            <TextField fx:id="txtCondition_medicale" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Condition financiere">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font></Text>
-            <TextField fx:id="txtCondition_financiere" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Franchise">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font></Text>
-            <TextField fx:id="txtFranchise" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Prime">
-               <font>
-                  <Font name="Arial Bold" size="12.0" />
-               </font>
-            </Text>
-            <TextField fx:id="txtPrime" prefHeight="34.0" prefWidth="300.0" stylesheets="@../css/style.css">
-               <styleClass>
-                  <String fx:value="form-container" />
-                  <String fx:value="input-field" />
-               </styleClass>
-            </TextField>
-            <Button fx:id="deml" mnemonicParsing="false" onAction="#demlist" text="demande list" />
-         </children>
-      </VBox>
-
-      <ListView fx:id="listAssurance" layoutX="336.0" layoutY="16.0" prefHeight="111.0" prefWidth="414.0" style="-fx-background-color: #dab104;" />
-      <TableView fx:id="tableAssu" layoutX="338.0" layoutY="137.0" onMouseClicked="#getData" prefHeight="338.0" prefWidth="414.0">
+      <TableView fx:id="tableAssu" layoutX="12.0" layoutY="44.0" onMouseClicked="#getData" prefHeight="200.0" prefWidth="734.0" style="-fx-background-color: #c90e0e;">
         <columns>
-          <TableColumn fx:id="colid" prefWidth="50.39996337890625" text="id" />
+           <TableColumn fx:id="colid" prefWidth="50.39996337890625" text="id" />
           <TableColumn fx:id="colnom" prefWidth="44.0" text="nom" />
             <TableColumn fx:id="coldesc" prefWidth="44.0" text="desc" />
             <TableColumn fx:id="colimg" prefWidth="44.0" text="img" />
@@ -80,18 +26,77 @@
             <TableColumn fx:id="colprime" prefWidth="44.0" text="prime" />
         </columns>
       </TableView>
-      <Button fx:id="addAssu" layoutX="99.0" layoutY="448.0" mnemonicParsing="false" onAction="#AddAssurance" style="-fx-background-color: #dab104;" text="Ajouter">
+      <Button fx:id="addAssu" layoutX="237.0" layoutY="448.0" mnemonicParsing="false" onAction="#AddAssurance" style="-fx-background-color: #c90e0e;" text="Ajouter" textFill="#eaeaea">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="UpAssu" layoutX="176.0" layoutY="448.0" mnemonicParsing="false" onAction="#UpdateAssurance" style="-fx-background-color: #dab104;" text="Modifier">
+      <Button fx:id="UpAssu" layoutX="437.0" layoutY="448.0" mnemonicParsing="false" onAction="#UpdateAssurance" style="-fx-background-color: #c90e0e;" text="Modifier" textFill="#fcfcfc">
          <font>
             <Font name="Arial Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="delAssu" layoutX="10.0" layoutY="447.0" mnemonicParsing="false" onAction="#DeleteAssurance" style="-fx-background-color: #dab104;" text="Supprimer">
+      <Button fx:id="delAssu" layoutX="335.0" layoutY="447.0" mnemonicParsing="false" onAction="#DeleteAssurance" style="-fx-background-color: #c90e0e;" text="Supprimer" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="add" layoutX="256.0" layoutY="447.0" mnemonicParsing="false" onAction="#GoToAdd" text="Add" />
+      <Button fx:id="add" layoutX="690.0" layoutY="413.0" mnemonicParsing="false" onAction="#GoToAdd" text="form" />
+      <TextField fx:id="txtPrime" layoutX="632.0" layoutY="358.0" prefHeight="26.0" prefWidth="76.0" stylesheets="@../css/style.css">
+         <styleClass>
+            <String fx:value="form-container" />
+            <String fx:value="input-field" />
+         </styleClass>
+      </TextField>
+      <Text layoutX="610.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prime">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtFranchise" layoutX="627.0" layoutY="291.0" prefHeight="26.0" prefWidth="85.0" />
+      <Text layoutX="599.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Franchise">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtCondition_financiere" layoutX="469.0" layoutY="360.0" prefHeight="26.0" prefWidth="91.0" />
+      <Text layoutX="437.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition financiere">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtCondition_medicale" layoutX="459.0" layoutY="291.0" prefHeight="26.0" prefWidth="98.0" />
+      <Text layoutX="421.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition medicale">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField layoutX="279.0" layoutY="358.0" prefHeight="26.0" prefWidth="111.0" fx:id="xtCondition_age" />
+      <Text layoutX="245.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Condition d'age">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtImage" layoutX="277.0" layoutY="291.0" prefHeight="26.0" prefWidth="116.0" />
+      <Text layoutX="273.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="image">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="txtDescription" layoutX="63.0" layoutY="355.0" prefHeight="23.0" prefWidth="158.0" />
+      <Text layoutX="30.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
+      <TextField fx:id="txtNom" layoutX="53.0" layoutY="292.0" />
+      <Text layoutX="24.0" layoutY="278.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom Assurance">
+         <font>
+            <Font name="Arial Bold" size="12.0" />
+         </font>
+      </Text>
+      <Button fx:id="deml" layoutX="623.0" layoutY="447.0" mnemonicParsing="false" onAction="#demlist" text="liste des demandes" />
+      <Label layoutX="266.0" layoutY="14.0" text="Liste des Assurances" textFill="#c90e0e">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

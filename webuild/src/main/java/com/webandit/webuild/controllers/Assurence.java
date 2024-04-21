@@ -12,12 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
@@ -71,8 +66,7 @@ public class Assurence implements Initializable {
     @FXML
     private TableView<Assurance> tableAssu;
 
-    @FXML
-    private ListView<Assurance> listAssurance;
+
 
     @FXML
     private TextField txtCondition_financiere;
@@ -100,7 +94,22 @@ public class Assurence implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        showAssu();
+
+       txtFranchise.setTextFormatter(new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*")) { // Vérifier si le nouveau texte contient uniquement des chiffres
+                return change; // Autoriser le changement
+            }
+            return null; // Bloquer le changement
+        }));
+        txtPrime.setTextFormatter(new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*")) { // Vérifier si le nouveau texte contient uniquement des chiffres
+                return change; // Autoriser le changement
+            }
+            return null; // Bloquer le changement
+        }));
+       showAssu();
     }
 
     public ObservableList<Assurance> getAssurances() {
@@ -135,7 +144,7 @@ public class Assurence implements Initializable {
     public void showAssu() {
         ObservableList<Assurance> list = getAssurances();
         tableAssu.setItems(list);
-        listAssurance.setItems(list);
+
         colid.setCellValueFactory(new PropertyValueFactory<Assurance, Integer>("id"));
         colnom.setCellValueFactory(new PropertyValueFactory<Assurance, String>("nom"));
         coldesc.setCellValueFactory(new PropertyValueFactory<Assurance, String>("description"));

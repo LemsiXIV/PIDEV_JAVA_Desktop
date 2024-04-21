@@ -10,17 +10,16 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import java.time.LocalDate;
 
 public class Backdemande {
 
@@ -52,13 +51,13 @@ public class Backdemande {
     private TextField commentairetxt;
 
     @FXML
-    private TextField ddebuttxt;
+    private DatePicker ddebuttxt;
 
     @FXML
     private Button deldembtn;
 
     @FXML
-    private TextField dfintxt;
+    private DatePicker dfintxt;
 
     @FXML
     private Button moddembtn;
@@ -73,6 +72,13 @@ public class Backdemande {
     // Method to initialize the controller
     @FXML
     public void initialize() {
+       montanttxt.setTextFormatter(new TextFormatter<>(change -> {
+            String newText = change.getControlNewText();
+            if (newText.matches("\\d*")) { // Vérifier si le nouveau texte contient uniquement des chiffres
+                return change; // Autoriser le changement
+            }
+            return null; // Bloquer le changement
+        }));
         try { ServiceAssurance sa =new ServiceAssurance();
             List<Assurance> assurances = sa.selectAll();
             populateAssuranceChoiceBox(assurances);
@@ -80,6 +86,26 @@ public class Backdemande {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        ddebuttxt.valueProperty().addListener((observable, oldValue, newValue) -> {
+            // Check if the new date is before the current date
+            if (newValue != null && newValue.isBefore(LocalDate.now())) {
+                // Show an error message
+                showAlert("Error", "La date sélectionnée ne peux pas etre dans le passé.");
+                // Reset the DatePicker to the current date
+                ddebuttxt.setValue(LocalDate.now());
+            }
+        });
+        dfintxt.valueProperty().addListener((observable, oldValue, newValue) -> {
+            // Check if the new date is before the current date
+            if (newValue != null && newValue.isBefore(LocalDate.now())) {
+                // Show an error message
+                showAlert("Erreur", "La date sélectionnée ne peux pas etre dans le passé.");
+                // Reset the DatePicker to the current date
+                dfintxt.setValue(LocalDate.now());
+            }
+        });
+
+
     }
 
     // Method to fetch and display all demandes in the TableView
@@ -116,8 +142,9 @@ public class Backdemande {
 
             // Get values from the input fields
         String montantStr = montanttxt.getText();
-        String debutStr = ddebuttxt.getText();
-        String finStr = dfintxt.getText();
+
+        Date debut = Date.valueOf(ddebuttxt.getValue());
+        Date fin = Date.valueOf(dfintxt.getValue());
         String commentaire = commentairetxt.getText();
 
 
@@ -125,8 +152,6 @@ public class Backdemande {
         int montant = Integer.parseInt(montantStr);
 
         // Parse debut and fin strings into Date objects
-        Date debut = Date.valueOf(debutStr);
-        Date fin = Date.valueOf(finStr);
 
         String selectedAssuranceName = assurancetxt.getValue();
 
@@ -192,8 +217,8 @@ public class Backdemande {
 
     private void clearFields() {
         montanttxt.clear();
-        ddebuttxt.clear();
-        dfintxt.clear();
+        ddebuttxt.setValue(null);
+        dfintxt.setValue(null);
         commentairetxt.clear();
     }
     private void populateAssuranceChoiceBox(List<Assurance> assurances) {
@@ -238,13 +263,14 @@ public class Backdemande {
         if (selectedDemande != null) {
             // Set the data of the selected demande to the input fields
             montanttxt.setText(String.valueOf(selectedDemande.getMontant()));
-            ddebuttxt.setText(selectedDemande.getDate_debut().toString());
-            dfintxt.setText(selectedDemande.getDate_fin().toString());
+            ddebuttxt.setValue(selectedDemande.getDate_debut().toLocalDate());
+            dfintxt.setValue(selectedDemande.getDate_fin().toLocalDate());
             commentairetxt.setText(selectedDemande.getCommentaire());
 
             // Set the selected assurance name in the ChoiceBox
             String selectedAssuranceName = selectedDemande.getA().getNom();
             assurancetxt.setValue(selectedAssuranceName);
+
         }
     }
 
@@ -261,8 +287,8 @@ public class Backdemande {
 
         // Get values from the input fields
         String montantStr = montanttxt.getText();
-        String debutStr = ddebuttxt.getText();
-        String finStr = dfintxt.getText();
+        Date debut = Date.valueOf(ddebuttxt.getValue());
+        Date fin = Date.valueOf(dfintxt.getValue());
         String commentaire = commentairetxt.getText();
         String selectedAssuranceName = assurancetxt.getValue(); // Get the selected assurance from the ChoiceBox
 
@@ -270,16 +296,11 @@ public class Backdemande {
         int montant = Integer.parseInt(montantStr);
 
         // Parse debut and fin strings into Date objects
-        Date debut = Date.valueOf(debutStr);
-        Date fin = Date.valueOf(finStr);
 
-        // Check if an assurance name is selected
+
         if (selectedAssuranceName == null) {
-            // Handle the case where no assurance is selected (show error message, etc.)
             return;
         }
-
-        // Retrieve the assurance instance based on its name
         Assurance selectedAssurance = null;
         try {
             ServiceAssurance sa = new ServiceAssurance();
@@ -293,14 +314,9 @@ public class Backdemande {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
-        // Check if the selected assurance was found
         if (selectedAssurance == null) {
-            // Handle the case where the selected assurance was not found (show error message, etc.)
             return;
         }
-
-        // Set the modified values to the selected demande
         selectedDemande.setA(selectedAssurance);
         selectedDemande.setMontant(montant);
         selectedDemande.setDate_debut(debut);
@@ -317,8 +333,15 @@ public class Backdemande {
             clearFields();
         } catch (SQLException e) {
             e.printStackTrace();
-            // Handle the error appropriately (e.g., show an error message to the user)
+
         }
+    }
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
 
