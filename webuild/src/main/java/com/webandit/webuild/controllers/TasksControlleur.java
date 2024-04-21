@@ -50,7 +50,19 @@ public class TasksControlleur {
         alert.setContentText(content);
         alert.show();
     }
+    private void showAlertSuc(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.show();
+    }
 
+    private void showAlertWar(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.show();
+    }
     public void add_Task(ActionEvent event) throws IOException {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/add_tasks.fxml"));
@@ -88,13 +100,26 @@ public class TasksControlleur {
                 updateButton.setOnAction(event -> {
                     Tasks task = getTableView().getItems().get(getIndex());
                     // Implement update action here
+
                     System.out.println("Update button clicked for task: " + task.getName());
                 });
 
                 deleteButton.setOnAction(event -> {
-                    Tasks task = getTableView().getItems().get(getIndex());
                     // Implement delete action here
-                    System.out.println("Delete button clicked for task: " + task.getName());
+                    Tasks task = getTableView().getItems().get(getIndex());
+                    int var = task.getId();
+                    if (var != 0 ) {
+                        try {
+                            taskSer.deleteOne(var); // Accessing ServiceTask methods via 'taskSer' instance
+                            affichertasks(); // Refresh the table after deleting a Tasks
+                            showAlertSuc("Success ", "Tache supprimer  !");
+                        } catch (SQLException e) {
+                            showAlert("Erreur", "Erreur lors de la suppression de la tache !");
+                        }
+                    } else {
+                        showAlertWar("Aucune sélection", "Aucun tache sélectionné");
+                    }
+
                 });
             }
 

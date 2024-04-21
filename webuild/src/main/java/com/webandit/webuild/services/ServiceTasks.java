@@ -51,11 +51,12 @@ public class ServiceTasks implements CRUD<Tasks> {
     @Override
     public List<Tasks> selectAll() throws SQLException {
         List<Tasks> tasksList = new ArrayList<>();
-        String req = "SELECT c.nom ,t.name,t.priority,t.status,t.description,t.due FROM `task` t INNER JOIN `chantier` c ON t.id_chantier_id = c.id ";
+        String req = "SELECT * FROM `task` t INNER JOIN `chantier` c ON t.id_chantier_id = c.id ";
         Statement  st = cnx.createStatement();
             ResultSet result = st.executeQuery(req);
             while (result.next()) {
-                Tasks ts = new Tasks() ;
+                Tasks ts = new Tasks();
+                ts.setId(result.getInt("t.id"));
                 ts.setNomchantier(result.getString("c.nom"));
                 ts.setName(result.getString("t.name"));
                 ts.setPriority(result.getString("t.priority"));

@@ -25,6 +25,15 @@ public class Tasks {
     // Constructure
     public Tasks(){}
 
+    public Tasks(  int id ,String name, String priority,int status, String description, Date due ,  String chnom) {
+        this.id = id;
+        this.status = status;
+        this.name = name;
+        this.priority = priority;
+        this.description = description;
+        this.due = due;
+        this.nomchantier = chnom;
+    }
     public Tasks(  String name, String priority,int status, String description, Date due , Chantier chantier) {
 
         this.status = status;
