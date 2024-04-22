@@ -20,6 +20,7 @@ public class Controller implements Initializable {
 
     @FXML
     private StackPane contentArea;
+    private String loggedInUserEmail;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,5 +76,15 @@ public class Controller implements Initializable {
         Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Utilisateur.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
+
+    }
+    public void Signup(javafx.event.ActionEvent actionEvent)throws IOException{
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Signup.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
+    public void Login(javafx.event.ActionEvent actionEvent)throws IOException{
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
+
     }
 }

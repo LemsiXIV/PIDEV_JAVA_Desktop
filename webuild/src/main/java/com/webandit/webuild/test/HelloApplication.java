@@ -15,7 +15,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/hello-view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
         stage.initStyle(StageStyle.UNDECORATED);
 
         root.setOnMousePressed(event -> {
@@ -27,9 +27,14 @@ public class HelloApplication extends Application {
             stage.setY(event.getSceneY() - y);
         });
 
-        stage.setScene(new Scene(root, 931 , 674));
+        stage.setScene(new Scene(root, 700 , 500));
         stage.setTitle("WeBuild");
         stage.show();
+    }
+    private void switchToSignIn(Stage stage) throws IOException {
+        Parent signInRoot = FXMLLoader.load(getClass().getResource("/fxml/Signup.fxml"));
+        Scene signInScene = new Scene(signInRoot, 700, 500);
+        stage.setScene(signInScene);
     }
 
     public static void main(String[] args) {

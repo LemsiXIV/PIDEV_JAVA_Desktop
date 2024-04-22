@@ -110,6 +110,8 @@
                                 </Button>
                             </children>
                         </HBox>
+
+
                     </children>
                     <padding>
                         <Insets bottom="10.0" top="10.0" />
@@ -219,12 +221,12 @@
                             </children>
                         </HBox>
                         <Pane prefHeight="60.0" prefWidth="130.0" HBox.hgrow="ALWAYS" />
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Utilisateur" prefHeight="50.0" prefWidth="193.0" text="Lemsi mohamed haithem">
+                  <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Utilisateur" prefHeight="50.0" prefWidth="193.0" text="Profile">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
+                           <!--<image>
                               <Image url="@../image/admin-22.jpg" />
-                           </image>
+                           </image> !-->
                         </ImageView>
                      </graphic>
                      <font>
