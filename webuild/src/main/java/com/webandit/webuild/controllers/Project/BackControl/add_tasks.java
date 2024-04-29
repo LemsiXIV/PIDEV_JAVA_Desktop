@@ -1,4 +1,4 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.Project.BackControl;
 
 import com.webandit.webuild.models.Chantier;
 import com.webandit.webuild.models.Tasks;
@@ -7,8 +7,11 @@ import com.webandit.webuild.services.ServiceTasks;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -63,12 +66,7 @@ public class add_tasks {
             displaySuccess(ts_priority);
         }
 
-        if (!isValidStatus(ts_status.getText())) {
-            displayError(ts_status, "Le statut doit être '1' (pour terminé) ou '0' (pour non terminé)");
-            isValid = false;
-        } else {
-            displaySuccess(ts_status);
-        }
+
 
         if (!isValidDescription(ts_description.getText())) {
             displayError(ts_description, "La description doit avoir entre 10 et 255 caractères");
@@ -125,38 +123,6 @@ public class add_tasks {
     // Method to display alert
 
 
-
-  /*  public void Add_task(ActionEvent event) {
-        try {
-            LocalDate localDate = ts_due.getValue();
-            java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
-
-            Tasks ch = new Tasks(ts_name.getText(), ts_priority.getText(), Integer.parseInt(ts_status.getText()), ts_description.getText(), sqlDate, null) ;
-
-            ps.insertOne(ch); // Accessing ServiceChantier methods via 'ps' instance
-            // afficherChantier(); // Refresh the table after adding a chantier
-        } catch (SQLException | NumberFormatException e) {
-            showAlert("Erreur de saisie", "Erreur dans la saisie des données!");
-        }
-    }*/
- /* public void Add_task(ActionEvent event) {
-      try {
-          LocalDate localDate = ts_due.getValue();
-          java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
-
-          Chantier selectedChantier = ts_chantierChoiceBox.getValue(); // Get selected Chantier
-          if (selectedChantier == null) {
-              showAlert("Error", "Please select a Chantier");
-              return;
-          }
-
-          Tasks task = new Tasks(ts_name.getText(), ts_priority.getText(), Integer.parseInt(ts_status.getText()), ts_description.getText(), sqlDate, selectedChantier);
-          ps.insertOne(task);
-
-      } catch (SQLException | NumberFormatException e) {
-          showAlert("Erreur de saisie", "Erreur dans la saisie des données!");
-      }
-  }*/
   public void setStage(Stage stage) {
       this.stage = stage;
   }
@@ -174,8 +140,15 @@ public class add_tasks {
                   return;
               }
 
-              Tasks task = new Tasks(ts_name.getText(), ts_priority.getText(), Integer.parseInt(ts_status.getText()), ts_description.getText(), sqlDate, selectedChantier);
+              Tasks task = new Tasks(ts_name.getText(), ts_priority.getText(), 0, ts_description.getText(), sqlDate, selectedChantier);
               ps.insertOne(task);
+              Notifications notification = Notifications.create()
+                      .title("Title")
+                      .text("Your notification message")
+                      .graphic(null) // You can set a graphic if needed
+                      .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
+                      .position(Pos.BOTTOM_RIGHT);
+              notification.show();
               stage.close();
           }
       } catch (SQLException | NumberFormatException e) {

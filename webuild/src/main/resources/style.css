@@ -1,0 +1,103 @@
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+.search-box2{
+    -fx-background-color: #a16f61;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+    -fx-background-color: #faf0e6;
+    -fx-background-radius: 30;
+}
+.Categories-button{
+    -fx-background-color: #742b1f;
+    -fx-background-radius: 30;
+}
+.logo-button{
+    -fx-background-color: #742b1f;
+    -fx-background-radius: 30;
+}
+.shop-button{
+    -fx-background-color: #742b1f;
+    -fx-background-radius: 30;
+}
+.whoarewe-button{
+    -fx-background-color: #742b1f;
+    -fx-background-radius: 30;
+}
+.Myprofile-button{
+    -fx-background-color: #742b1f;
+    -fx-background-radius: 30;
+}.Basket-button{
+     -fx-background-color: #742b1f;
+     -fx-background-radius: 30;
+ }.SCROLLPAN{
+      -fx-background:#e2c09e;
+
+  }.scroll-bar{
+       -fx-background-color: #e8b8b0;
+
+   }
+.table-header-background {
+    -fx-background-color: #a16f61; /* Header background color */
+}
+.table-header-background .label {
+    -fx-text-fill: white; /* Header text color */
+    -fx-font-weight: bold; /* Header font weight */
+}
+.table-row-cell:selected {
+    -fx-background-color: #d39386; /* Background color of selected rows */
+    -fx-text-fill: white; /* Text color of selected rows */
+}
+.table-row-cell {
+    -fx-background-color: #a16f61; /* Background color of each row */
+    -fx-text-fill: #333333; /* Text color */
+    -fx-border-color: #dddddd; /* Border color */
+    -fx-border-width: 0.5px; /* Border width */
+}
+.column-header {
+    -fx-background-color: #a16f61; /* Column header background color */
+}
+
+
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.top-bar{
+    -fx-background-color: #ead2bb;
+}
+.img.rounded-corners {
+    border-radius: 30px;
+}
+.selected{
+    -fx-background-color: #766f64;
+}
+.mouse-moved :hover{
+    -fx-background-color: #cac6c3;
+}
+
+.Product-Vbox{
+    -fx-background-color: #bb8e6d;
+    -fx-background-radius: 30;
+    border-radius: 30px;
+}
+
+.table-column-cell{
+    -fx-background-color:rgb(188,143,143);
+    -fx-border-color:rgb(159,159,159);
+}
+.fruit-item{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30;
+}
+.shadowwww{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}

@@ -1,4 +1,4 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.Project.BackControl;
 
 import com.webandit.webuild.models.Chantier;
 import com.webandit.webuild.services.ServiceChantier;
@@ -211,7 +211,7 @@ public class Project {
     @FXML
     private StackPane contentArea;
     public void Tasks(ActionEvent actionEvent)throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Tasks.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Project/Back/Tasks.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }

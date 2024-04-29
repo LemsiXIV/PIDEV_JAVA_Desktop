@@ -13,7 +13,6 @@ public class Chantier {
     private Date date;
     private float remuneration;
     private List<Tasks> tasks;
-    private Button Manage;
 
     //constructure
     public Chantier() {}
@@ -29,7 +28,7 @@ public class Chantier {
         this.description = description;
         this.date = date;
         this.remuneration = remuneration;
-        this.Manage = new Button("Manage");
+
         this.tasks = new ArrayList<>();
     }
 
@@ -48,13 +47,6 @@ public class Chantier {
         this.tasks = tasks;
     }
 
-    public Button getManage() {
-        return Manage;
-    }
-
-    public void setManage(Button manage) {
-        Manage = manage;
-    }
 
     public int getId() {
         return id;

@@ -1,0 +1,151 @@
+.white-background{
+    -fx-background-color: #aca0a0;
+}
+.navbar{
+    -fx-background-color: #F8BC24;
+}.navbar-top{
+     -fx-background-color: #000103;
+ }
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+.button
+{
+    -fx-background-color: transparent;
+}
+.button:hover
+{
+    -fx-background-color: #26D48C;
+}
+.button:pressed
+{
+    -fx-background-color: #788081;
+}
+.round-layout{
+    -fx-border-radius: 50;
+    -fx-border-color: #D7D7D7;
+}
+.selected{
+    -fx-background-color: #F3F3F3;
+}
+.mouse-moved:hover{
+    -fx-background-color: #E4E4E4;
+}
+
+
+.table-view .column-header,
+.table-view .column-header-background .filler {
+    -fx-background-color:  #6622CC;
+}
+.table-view .column-header .label{
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-alignment: CENTER_LEFT;
+}
+.table-view .cell{
+    -fx-cell-size: 35;
+    -fx-alignment: center-left;
+    -fx-background-color: #29292D;
+    -fx-border-color: #29292D;
+    -fx-text-fill: lightgray;
+    -fx-alignment: CENTER_LEFT;
+
+}
+.table-row-cell:selected {
+    -fx-background-color: whitesmoke;
+    -fx-text-background-color:  #6622CC;
+
+
+}
+
+/* scroll bar starts here */
+
+/* The increment and decrement button CSS class of scrollbar */
+.table-view .increment-button ,.table-view .decrement-button {
+    -fx-background-color:transparent;
+    -fx-background-radius: 2em;
+
+}
+
+/* The main scrollbar **track** CSS class  */
+.table-view .scroll-bar:horizontal .track,
+.table-view .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    -fx-border-color:derive( #6622CC,80%);
+
+    -fx-background-radius: 2em;
+    -fx-border-radius:2em;
+}
+
+/* The main scrollbar **thumb** CSS class which we drag every time (movable) */
+.table-view .scroll-bar:horizontal .thumb,
+.table-view .scroll-bar:vertical .thumb {
+    -fx-background-color:derive( #6622CC,90%);
+    -fx-background-insets: 2, 0, 0;
+    -fx-background-radius: 2em;
+
+}
+
+/* chart properties */
+
+.chart {
+    -fx-padding: 10px;
+    -fx-background-color: transparent;
+    -fx-legend-visible: false;
+}
+.chart-plot-background {
+    -fx-background-color:transparent;
+}
+
+.chart-pie {
+    -fx-border-color: derive(-fx-pie-color, 1%);
+    -fx-border-width: 0px;
+}
+
+
+
+
+                                                       /* CSS */
+                                                   .button-28 {
+                                                       appearance: none;
+                                                       background-color: transparent;
+                                                       border: 2px solid #1A1A1A;
+                                                       border-radius: 15px;
+                                                       box-sizing: border-box;
+                                                       color: #3B3B3B;
+                                                       cursor: pointer;
+                                                       display: inline-block;
+                                                       font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+                                                       font-size: 16px;
+                                                       font-weight: 600;
+                                                       line-height: normal;
+                                                       margin: 0;
+                                                       min-height: 60px;
+                                                       min-width: 0;
+                                                       outline: none;
+                                                       padding: 16px 24px;
+                                                       text-align: center;
+                                                       text-decoration: none;
+                                                       transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+                                                       user-select: none;
+                                                       -webkit-user-select: none;
+                                                       touch-action: manipulation;
+                                                       width: 100%;
+                                                       will-change: transform;
+                                                   }
+
+.button-28:disabled {
+    pointer-events: none;
+}
+
+.button-28:hover {
+    color: #fff;
+    background-color: #1A1A1A;
+    box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+    transform: translateY(-2px);
+}
+
+.button-28:pressed {
+    box-shadow: none;
+    transform: translateY(0);
+}

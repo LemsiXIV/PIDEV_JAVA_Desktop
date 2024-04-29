@@ -41,7 +41,7 @@ public class Controller implements Initializable {
     }
 
     public void project(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Project.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Project/Back/Project.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
@@ -75,4 +75,9 @@ public class Controller implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
 
+    public void back(ActionEvent event) throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Project/front/front_project.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
 }
