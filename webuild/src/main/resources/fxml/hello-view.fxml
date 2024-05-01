@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Controller">
     <left>
-        <VBox prefHeight="614.0" prefWidth="158.0" styleClass="navbar" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+        <VBox prefHeight="800.0" prefWidth="200.0" styleClass="navbar" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
             <children>
                 <VBox prefHeight="582.0" prefWidth="158.0" spacing="25.0">
                     <children>
@@ -119,7 +119,7 @@
         </VBox>
     </left>
     <top>
-        <VBox prefHeight="96.0" prefWidth="931.0" BorderPane.alignment="CENTER">
+        <VBox prefHeight="100.0" prefWidth="1300.0" BorderPane.alignment="CENTER">
             <children>
                 <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="931.0" spacing="5.0" styleClass="navbar-top" stylesheets="@../css/style.css">
                     <children>
@@ -232,9 +232,9 @@
         </VBox>
     </top>
     <center>
-        <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+        <AnchorPane prefHeight="700.0" prefWidth="1100.0" BorderPane.alignment="CENTER">
             <children>
-                <StackPane fx:id="contentArea" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                <StackPane fx:id="contentArea" maxHeight="700.0" maxWidth="1099.0" minHeight="700.0" minWidth="1099.0" prefHeight="700.0" prefWidth="1099.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
             </children>
         </AnchorPane>
     </center>

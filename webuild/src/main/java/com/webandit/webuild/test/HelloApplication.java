@@ -15,8 +15,8 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
 
-     //  Parent root = FXMLLoader.load(getClass().getResource("/fxml/hello-view.fxml"));
-     Parent root = FXMLLoader.load(getClass().getResource("/fxml/Project/front/front_project.fxml"));
+       Parent root = FXMLLoader.load(getClass().getResource("/fxml/hello-view.fxml"));
+     //Parent root = FXMLLoader.load(getClass().getResource("/fxml/Project/front/front_project.fxml"));
 
 
         root.setOnMousePressed(event -> {
@@ -28,7 +28,7 @@ public class HelloApplication extends Application {
             stage.setY(event.getSceneY() - y);
         });
 
-        stage.setScene(new Scene(root, 1200 , 845));
+        stage.setScene(new Scene(root, 1300 , 800));
         stage.setTitle("WeBuild");
         stage.show();
     }
