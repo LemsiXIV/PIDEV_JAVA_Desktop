@@ -5,6 +5,10 @@ import com.webandit.webuild.models.Demande;
 import com.webandit.webuild.services.ServiceAssurance;
 import com.webandit.webuild.services.ServiceDemande;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 
 
@@ -13,7 +17,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
@@ -29,6 +35,8 @@ private TextField commentairetxt;
 
 @FXML
 private DatePicker ddebuttxt;
+    @FXML
+    private Button back;
 
 @FXML
 private DatePicker dfintxt;
@@ -126,6 +134,15 @@ private TextField montanttxt;
     public void initialize() {
         // Set the selected Assurance ID in the assuranceIdField
         assuranceField.setText(String.valueOf(selectedAssuranceName));
+    }
+
+    @FXML
+    void goback(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/fxml/Acceuil.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
     }
 }
 

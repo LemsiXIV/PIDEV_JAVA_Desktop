@@ -76,4 +76,10 @@ public class Acceuil implements Initializable {
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
+    @FXML
+    void Admin(ActionEvent event)throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/hello-view.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
 }

@@ -46,5 +46,7 @@
             <Font name="AGA Arabesque Desktop" size="18.0" />
          </font>
       </Text>
+      <Button fx:id="validateBtn" layoutX="18.0" layoutY="325.0" mnemonicParsing="false" onAction="#RejectDemande" style="-fx-background-color: #c90e0e;" text="Rejeter" textFill="WHITE" />
+      <Button fx:id="valid" layoutX="346.0" layoutY="475.0" mnemonicParsing="false" onAction="#checkAndValidateDemande" text="validité" />
    </children>
 </AnchorPane>

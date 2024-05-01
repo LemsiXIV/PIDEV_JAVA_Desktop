@@ -30,7 +30,10 @@
                         </Label>
                         <HBox alignment="CENTER" prefHeight="45.0" prefWidth="158.0" spacing="15.0" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#home" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Home" />
+                                <Button mnemonicParsing="false" onAction="#home" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Home">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                             </children>
                             <styleClass>
                                 <String fx:value="mouse-moved" />
@@ -39,31 +42,52 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Condidatures" prefHeight="45.0" prefWidth="158.0" text="Condidate" />
+                                <Button mnemonicParsing="false" onAction="#Condidatures" prefHeight="45.0" prefWidth="158.0" text="Candidature" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="94.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Assurence" prefHeight="45.0" prefWidth="158.0" text="Assurance" />
+                                <Button mnemonicParsing="false" onAction="#Assurence" prefHeight="45.0" prefWidth="158.0" text="Assurance" textFill="#fffbfb">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                             </children>
                         </HBox>
-                  <Button mnemonicParsing="false" onAction="#demande" prefHeight="45.0" prefWidth="158.0" text="Demande Assurance" />
+                  <Button mnemonicParsing="false" onAction="#demande" prefHeight="45.0" prefWidth="158.0" text="Demande Assurance" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Materiel" prefHeight="45.0" prefWidth="158.0" text="Matriel" />
+                                <Button mnemonicParsing="false" onAction="#Materiel" prefHeight="45.0" prefWidth="158.0" text="Materiel" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="195.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#project" prefHeight="45.0" prefWidth="158.0" text="Project" />
+                                <Button mnemonicParsing="false" onAction="#project" prefHeight="45.0" prefWidth="158.0" text="Project" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="245.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Forum" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Forum" />
+                                <Button mnemonicParsing="false" onAction="#Forum" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Forum" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
                             </children>
                         </HBox>
-                  <Button fx:id="client" mnemonicParsing="false" onAction="#Client" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Partie Client" />
+                  <Button fx:id="client" mnemonicParsing="false" onAction="#Client" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Partie Client" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
                     </children>
                     <padding>
                         <Insets bottom="10.0" top="10.0" />

@@ -2,7 +2,7 @@ module com.webandit.webuild {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-
+    requires twilio;
 
 
     exports com.webandit.webuild.controllers;

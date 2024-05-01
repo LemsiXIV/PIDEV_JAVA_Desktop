@@ -30,6 +30,11 @@
          </font></Label>
       <DatePicker fx:id="ddebuttxt" layoutX="119.0" layoutY="161.0" prefHeight="26.0" prefWidth="122.0" />
       <DatePicker fx:id="dfintxt" layoutX="405.0" layoutY="161.0" prefHeight="26.0" prefWidth="122.0" />
+      <Button fx:id="back" layoutX="10.0" layoutY="14.0" mnemonicParsing="false" onAction="#goback" style="-fx-background-color: #ffffff;" text="&lt;">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
       <TextField fx:id="commentairetxt" layoutX="129.0" layoutY="233.0" prefHeight="50.0" prefWidth="418.0" />
       <Button fx:id="adddembtn" layoutX="499.0" layoutY="311.0" mnemonicParsing="false" onAction="#addDemande" style="-fx-background-color: #f7bf16;" text="Confirm" textFill="#202020">
          <font>

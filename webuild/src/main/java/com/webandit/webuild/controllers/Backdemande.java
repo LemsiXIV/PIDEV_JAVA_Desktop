@@ -23,7 +23,8 @@ import java.time.LocalDate;
 
 public class Backdemande {
 
-
+    @FXML
+    private Button valid;
     @FXML
     private TableColumn<Demande, String> colAssurance;
 
@@ -205,9 +206,11 @@ public class Backdemande {
                 // Use the service to add the demande
                 serviceDemande.insertOne(demande);
                 System.out.println("Demande ajoutée avec succès !");
-                showDemandes();
-                // Clear the input fields after adding the demande
+
+
+
                 clearFields();
+                showDemandes();
             } catch (SQLException e) {
                 e.printStackTrace();
                 // Handle the error appropriately (e.g., show an error message to the user)
@@ -343,9 +346,80 @@ public class Backdemande {
         alert.setContentText(message);
         alert.showAndWait();
     }
+    @FXML
+    void RejectDemande(ActionEvent event) {
+        // Get the selected demande from the TableView
+        Demande selectedDemande = tabdem.getSelectionModel().getSelectedItem();
 
+        // Check if a demande is selected
+        if (selectedDemande == null) {
+            // Handle the case where no demande is selected (show error message, etc.)
+            showAlert("Error", "No demande selected.");
+            return;
+        }
+
+        // Set the status of the demande to 1 (approved)
+        selectedDemande.setStatus(2);
+
+        try {
+            // Update the status in the database
+            ServiceDemande serviceDemande = new ServiceDemande();
+            serviceDemande.updateStatus(selectedDemande.getId_d(), 2);
+
+            // Send an SMS notification to the client
+            String clientPhoneNumber = "***"; // Get the client's phone number from the demande or any other source
+            String message = "On est desolé, Votre demande a été rejetée."; // Message to send
+          //send sms 
+
+            // Show a success message
+            showAlert("success message ", "Demande rejeter et notification envoyée.");
+
+            // Refresh the TableView
+            showDemandes();
+
+            clearFields();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle database error
+        }
+    }
+    @FXML
+    void checkAndValidateDemande(ActionEvent event) {
+        // Get the selected demande from the TableView
+        Demande selectedDemande = tabdem.getSelectionModel().getSelectedItem();
+
+        // Check if a demande is selected
+        if (selectedDemande == null) {
+            // Handle the case where no demande is selected (show error message, etc.)
+            showAlert("Error", "No demande selected.");
+            return;
+        }
+
+        try {
+            // Validate the demande
+            ServiceDemande serviceDemande = new ServiceDemande();
+            boolean validated = serviceDemande.validDemande(selectedDemande);
+            // Show appropriate message based on validation result
+            if (validated) {
+                showAlert("Success", "La demande a été revue et approuvée avec succès.");
+            } else {
+                showAlert("Success", "La demande est encore en attente.");
+            }
+            // Refresh the TableView after modification
+            showDemandes();
+            // Clear the input fields
+            clearFields();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle database error
+        }
+    }
 
 }
+
+
+
+
 
 
 

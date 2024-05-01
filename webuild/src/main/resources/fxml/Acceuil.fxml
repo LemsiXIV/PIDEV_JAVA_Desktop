@@ -47,7 +47,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Condidatures" prefHeight="45.0" prefWidth="158.0" text="Condidate">
+                                <Button mnemonicParsing="false" onAction="#Condidatures" prefHeight="45.0" prefWidth="158.0" text="Candidature">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -60,7 +60,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="94.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Assurence" prefHeight="45.0" prefWidth="158.0" text="Assurence">
+                                <Button mnemonicParsing="false" onAction="#Assurence" prefHeight="45.0" prefWidth="158.0" text="Assurance">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -73,7 +73,7 @@
                         </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Materiel" prefHeight="45.0" prefWidth="158.0" text="Matriel">
+                                <Button mnemonicParsing="false" onAction="#Materiel" prefHeight="45.0" prefWidth="158.0" text="Materiel">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
@@ -218,19 +218,14 @@
                                 </ImageView>
                             </children>
                         </HBox>
-                        <Pane prefHeight="60.0" prefWidth="130.0" HBox.hgrow="ALWAYS" />
-                        <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Utilisateur" prefHeight="50.0" prefWidth="193.0" text="Lemsi mohamed haithem">
-                            <graphic>
-                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../image/admin-22.jpg" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <font>
-                                <Font name="Comic Sans MS" size="14.0" />
-                            </font>
+                        <Pane prefHeight="60.0" prefWidth="130.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <Button layoutX="426.0" layoutY="3.0" mnemonicParsing="false" onAction="#Admin" text="Admin">
+                           <font>
+                              <Font size="10.0" />
+                           </font>
                         </Button>
+                     </children></Pane>
                     </children>
                     <padding>
                         <Insets left="20.0" right="20.0" />

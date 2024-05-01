@@ -6,10 +6,7 @@ import com.webandit.webuild.utils.DBConnection;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,7 +44,13 @@ public class ServiceDemande implements CRUD<Demande> {
         pstmt.setString(6, demande.getCommentaire());
         pstmt.setInt(7, demande.getStatus());
         pstmt.setInt(8, demande.getId_d());
-        pstmt.executeUpdate();
+        int rowsAffected = pstmt.executeUpdate();
+
+        if (rowsAffected == 1) {
+            System.out.println("Demande updated successfully.");
+        } else {
+            System.out.println("Failed to update demande.");
+        }
     }
 
     @Override
@@ -79,5 +82,40 @@ public class ServiceDemande implements CRUD<Demande> {
             demandes.add(demande);
         }
         return demandes;
+    }
+    public void updateStatus(int demandeId, int status) throws SQLException {
+        String query = "UPDATE demande SET status = ? WHERE id_d = ?";
+        PreparedStatement pstmt = cnx.prepareStatement(query);
+        pstmt.setInt(1, status);
+        pstmt.setInt(2, demandeId);
+        pstmt.executeUpdate();
+    }
+    // Method to validate a demande based on montant and duration
+    public boolean validDemande(Demande demande) {
+        try {
+            // Check if montant is less than 3000 and duration is more than a year
+            if (demande.getMontant() < 3000 && calculateDurationInDays(demande.getDate_debut(), demande.getDate_fin())>365) {
+                // If conditions are met, update status to 1
+                demande.setStatus(1);
+                // Update the demande in the database
+                updateOne(demande);
+                // Return true to indicate success
+                return true;
+            } else {
+                // Return false to indicate failure
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            // Handle the error appropriately
+            return false;
+        }
+    }
+
+
+    // Helper method to calculate duration between two dates in days
+    private long calculateDurationInDays(Date startDate, Date endDate) {
+        long diffInMillies = Math.abs(endDate.getTime() - startDate.getTime());
+        return diffInMillies / (24 * 60 * 60 * 1000);
     }
 }
