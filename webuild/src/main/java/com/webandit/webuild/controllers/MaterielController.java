@@ -2,6 +2,8 @@ package com.webandit.webuild.controllers;
 
 import com.webandit.webuild.models.Materiel;
 import com.webandit.webuild.utils.DBConnection;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -10,7 +12,12 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-
+import javafx.stage.FileChooser;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import java.io.File;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -19,9 +26,9 @@ import java.sql.Statement;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-
 public class MaterielController implements Initializable {
     private Connection cnx;
+    private File selectedImageFile;
     @FXML
     private TableColumn<Materiel, String> descriptionColumn;
 
@@ -33,9 +40,6 @@ public class MaterielController implements Initializable {
 
     @FXML
     private TableColumn<Materiel, String> imageColumn;
-
-    @FXML
-    private TextField imageField;
 
     @FXML
     private TableColumn<Materiel, String> libelleColumn;
@@ -51,10 +55,13 @@ public class MaterielController implements Initializable {
 
     @FXML
     private Button savebtn;
+
     @FXML
     private Button savebtn2;
+
     @FXML
     private Button savebtn3;
+
     @FXML
     private TableView<Materiel> tableMateriel;
 
@@ -69,15 +76,15 @@ public class MaterielController implements Initializable {
         }));
         showMateriel();
     }
+
     @FXML
     void saveMateriel(ActionEvent event) {
         String libelle = libelleField.getText().trim();
         String description = descriptionField.getText().trim();
-        String image = imageField.getText().trim();
         int prix;
 
         // Validate input fields
-        if (libelle.isEmpty() || description.isEmpty() || image.isEmpty() || prixField.getText().isEmpty()) {
+        if (libelle.isEmpty() || description.isEmpty() || prixField.getText().isEmpty()) {
             showErrorDialog("Empty fields", "Please fill all the fields.");
             return;
         }
@@ -93,8 +100,14 @@ public class MaterielController implements Initializable {
             return;
         }
 
-        com.webandit.webuild.models.Materiel newMateriel = new com.webandit.webuild.models.Materiel(libelle, description, prix, image);
+        // Set the image path
+        String imagePath = ""; // Initialize with an empty string
+        if (selectedImageFile != null) {
+            imagePath = selectedImageFile.getAbsolutePath();
+        }
 
+        // Create the new Materiel object with the image path
+        Materiel newMateriel = new Materiel(libelle, description, prix, imagePath);
 
         // Save materiel
         try {
@@ -109,17 +122,17 @@ public class MaterielController implements Initializable {
         }
     }
 
+
     @FXML
     void handleTableViewSelection(MouseEvent event) {
         if (event.getClickCount() == 1) { // Check for single click
             // Get the selected item from the table view
-            com.webandit.webuild.models.Materiel selectedMateriel = tableMateriel.getSelectionModel().getSelectedItem();
+            Materiel selectedMateriel = tableMateriel.getSelectionModel().getSelectedItem();
             if (selectedMateriel != null) {
                 // Fill the text fields with the attributes of the selected materiel
                 libelleField.setText(selectedMateriel.getLibelle());
                 descriptionField.setText(selectedMateriel.getDescription());
                 prixField.setText(String.valueOf(selectedMateriel.getPrix()));
-                imageField.setText(selectedMateriel.getImage());
 
                 // Set a lambda function to update the materiel when the Save button is clicked
                 savebtn2.setOnAction(e -> updateMateriel(selectedMateriel));
@@ -127,14 +140,34 @@ public class MaterielController implements Initializable {
         }
     }
 
-    void updateMateriel(com.webandit.webuild.models.Materiel materiel) {
+    @FXML
+    void importImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select Image");
+        fileChooser.getExtensionFilters().addAll(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+        );
+        selectedImageFile = fileChooser.showOpenDialog(null); // Update selectedImageFile
+        if (selectedImageFile != null) {
+            // Set the image path in the Materiel object
+            String imagePath = selectedImageFile.getAbsolutePath();
+            // Update the selected materiel's image path
+            Materiel selectedMateriel = tableMateriel.getSelectionModel().getSelectedItem();
+            if (selectedMateriel != null) {
+                selectedMateriel.setImage(imagePath);
+            }
+        }
+    }
+
+
+
+    void updateMateriel(Materiel materiel) {
         String libelle = libelleField.getText().trim();
         String description = descriptionField.getText().trim();
-        String image = imageField.getText().trim();
         int prix;
 
         // Validate input fields
-        if (libelle.isEmpty() || description.isEmpty() || image.isEmpty() || prixField.getText().isEmpty()) {
+        if (libelle.isEmpty() || description.isEmpty() || prixField.getText().isEmpty()) {
             showErrorDialog("Empty fields", "Please fill all the fields.");
             return;
         }
@@ -154,7 +187,6 @@ public class MaterielController implements Initializable {
         materiel.setLibelle(libelle);
         materiel.setDescription(description);
         materiel.setPrix(prix);
-        materiel.setImage(image);
 
         // Update materiel in the database
         try {
@@ -169,11 +201,10 @@ public class MaterielController implements Initializable {
         }
     }
 
-
     @FXML
     void deleteMateriel(ActionEvent event) {
         // Get the selected item from the TableView
-        com.webandit.webuild.models.Materiel selectedMateriel = tableMateriel.getSelectionModel().getSelectedItem();
+        Materiel selectedMateriel = tableMateriel.getSelectionModel().getSelectedItem();
         if (selectedMateriel == null) {
             showErrorDialog("No Selection", "Veuillez selectionner une pack materiel a supprimer.");
             return;
@@ -203,9 +234,7 @@ public class MaterielController implements Initializable {
         }
     }
 
-
-
-    public ObservableList<Materiel> getMateriel(){
+    public ObservableList<Materiel> getMateriel() {
         ObservableList<Materiel> materiels = FXCollections.observableArrayList();
         String query = "SELECT * FROM pack_materiel";
         cnx = DBConnection.getInstance().getCnx();
@@ -232,26 +261,50 @@ public class MaterielController implements Initializable {
     private void clearFields() {
         libelleField.clear();
         descriptionField.clear();
-        imageField.clear();
         prixField.clear();
     }
 
     public void showMateriel() {
         ObservableList<Materiel> list = getMateriel();
         tableMateriel.setItems(list);
-        idColumn.setCellValueFactory(new PropertyValueFactory<Materiel, Integer>("id"));
-        libelleColumn.setCellValueFactory(new PropertyValueFactory<Materiel, String>("libelle"));
-        descriptionColumn.setCellValueFactory(new PropertyValueFactory<Materiel, String>("description"));
-        imageColumn.setCellValueFactory(new PropertyValueFactory<Materiel, String>("image"));
-        prixColumn.setCellValueFactory(new PropertyValueFactory<Materiel, Integer>("prix"));
+
+        libelleColumn.setCellValueFactory(new PropertyValueFactory<>("libelle"));
+        descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+        prixColumn.setCellValueFactory(new PropertyValueFactory<>("prix"));
+
+        imageColumn.setCellValueFactory(cellData -> {
+            StringProperty imagePathProperty = new SimpleStringProperty(cellData.getValue().getImage());
+            return imagePathProperty;
+        });
+
+        // Custom cell factory for the image column
+        imageColumn.setCellFactory(column -> {
+            return new TableCell<Materiel, String>() {
+                private final ImageView imageView = new ImageView();
+
+                @Override
+                protected void updateItem(String imagePath, boolean empty) {
+                    super.updateItem(imagePath, empty);
+                    if (imagePath == null || empty) {
+                        setGraphic(null);
+                    } else {
+                        try {
+                            File file = new File(imagePath);
+                            Image image = new Image(file.toURI().toString());
+                            imageView.setImage(image);
+                            imageView.setFitWidth(50); // Adjust width as needed
+                            imageView.setPreserveRatio(true);
+                            setGraphic(imageView);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            };
+        });
     }
+
     private void showErrorDialog(String title, String message) {
         // Implement error dialog display
     }
-
-    @FXML
-    void initialize() {
-    }
-
-
 }

@@ -29,12 +29,19 @@ public class ServiceMateriel implements CRUD<Materiel> {
             ps.setString(4, materiel.getImage());
 
             System.out.println("Materiel Added !");
-            ps.executeUpdate();
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected == 1) {
+                System.out.println("Materiel inserted successfully.");
+            } else {
+                System.err.println("Failed to insert materiel: No rows affected.");
+            }
             ps.close(); // Close PreparedStatement after use
         } catch (SQLException e) {
-            throw new SQLException("Failed to insert materiel: " + e.getMessage());
+            System.err.println("Failed to insert materiel: " + e.getMessage());
+            throw e; // Throw the exception further
         }
     }
+
 
     @Override
     public void updateOne(Materiel materiel) throws SQLException {

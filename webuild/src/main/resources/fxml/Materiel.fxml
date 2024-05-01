@@ -11,36 +11,35 @@
 <AnchorPane prefHeight="664.0" prefWidth="892.0" style="-fx-background-color: #000000;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.MaterielController">
    <children>
       <TableView fx:id="tableMateriel" layoutX="41.0" layoutY="32.0" onMouseClicked="#handleTableViewSelection" prefHeight="200.0" prefWidth="709.0">
-        <columns>
-            <TableColumn fx:id="idColumn" prefWidth="58.66667175292969" text="Id" />
-            <TableColumn fx:id="libelleColumn" prefWidth="117.33329772949219" text="Libelle" />
-            <TableColumn fx:id="descriptionColumn" prefWidth="262.6666717529297" text="description" />
-            <TableColumn fx:id="prixColumn" minWidth="0.0" prefWidth="61.999908447265625" text="prix" />
-            <TableColumn fx:id="imageColumn" prefWidth="361.33343505859375" text="image" />
-        </columns>
+         <columns>
+            <TableColumn fx:id="libelleColumn" prefWidth="150.0" text="Libelle" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="300.0" text="Description" />
+            <TableColumn fx:id="prixColumn" prefWidth="100.0" text="Prix" />
+            <TableColumn fx:id="imageColumn" prefWidth="150.0" text="Image" />
+
+         </columns>
       </TableView>
-      <Text fill="WHITE" layoutX="84.0" layoutY="284.0" strokeType="OUTSIDE" strokeWidth="0.0" text="libelle">
+      <Text fill="WHITE" layoutX="91.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Libelle">
          <font>
             <Font name="Cambria Math" size="20.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="401.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description">
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="91.0" layoutY="330.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description">
          <font>
             <Font name="Cambria Math" size="20.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="91.0" layoutY="433.0" strokeType="OUTSIDE" strokeWidth="0.0" text="prix">
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="91.0" layoutY="451.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prix">
          <font>
             <Font name="Cambria Math" size="20.0" />
-         </font></Text>
-      <Text fill="WHITE" layoutX="84.0" layoutY="358.0" strokeType="OUTSIDE" strokeWidth="0.0" text="image">
-         <font>
-            <Font name="Cambria Math" size="20.0" />
-         </font></Text>
-      <Button fx:id="savebtn" layoutX="153.0" layoutY="474.0" mnemonicParsing="false" onAction="#saveMateriel" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #009900;" text="Ajouter" />
-      <TextField fx:id="prixField" layoutX="159.0" layoutY="415.0" />
-      <TextField fx:id="imageField" layoutX="156.0" layoutY="340.0" />
-      <TextField fx:id="libelleField" layoutX="155.0" layoutY="266.0" prefHeight="31.0" prefWidth="151.0" />
-      <TextField fx:id="descriptionField" layoutX="401.0" layoutY="285.0" prefHeight="165.0" prefWidth="322.0" />
-      <Button fx:id="savebtn2" layoutX="241.0" layoutY="474.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #3A9BDC;" text="Modifier" />
-      <Button fx:id="savebtn3" layoutX="196.0" layoutY="515.0" mnemonicParsing="false" onAction="#deleteMateriel" prefHeight="31.0" prefWidth="78.0" style="-fx-background-color: #c23b22;" text="Supprimer" />
+         </font>
+      </Text>
+      <Button fx:id="savebtn" layoutX="41.0" layoutY="490.0" mnemonicParsing="false" onAction="#saveMateriel" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #009900;" text="Ajouter" />
+      <Button fx:id="savebtn2" layoutX="201.0" layoutY="490.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #3A9BDC;" text="Modifier" />
+      <Button fx:id="savebtn3" layoutX="361.0" layoutY="490.0" mnemonicParsing="false" onAction="#deleteMateriel" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #c23b22;" text="Supprimer" />
+      <Button fx:id="importImageButton" layoutX="521.0" layoutY="490.0" mnemonicParsing="false" onAction="#importImage" prefHeight="31.0" prefWidth="150.0" style="-fx-background-color: #3A9BDC;" text="Importer image" />
+      <TextField fx:id="libelleField" layoutX="200.0" layoutY="262.0" prefHeight="31.0" prefWidth="200.0" />
+      <TextField fx:id="descriptionField" layoutX="200.0" layoutY="314.0" prefHeight="100.0" prefWidth="400.0" />
+      <TextField fx:id="prixField" layoutX="200.0" layoutY="430.0" prefHeight="31.0" prefWidth="200.0" />
    </children>
 </AnchorPane>
