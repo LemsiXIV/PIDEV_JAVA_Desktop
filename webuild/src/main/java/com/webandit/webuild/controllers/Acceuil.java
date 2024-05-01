@@ -48,7 +48,7 @@ public class Acceuil implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
     public void Assurence(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/frontassurance.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/assurancefront.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }

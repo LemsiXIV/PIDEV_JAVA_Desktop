@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<?import java.lang.String?>
+<AnchorPane prefHeight="250.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.AssuranceCardController">
+
+    <children>
+        <VBox prefHeight="200.0" prefWidth="200.0" spacing="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <children>
+                <!-- Titre -->
+                <Label fx:id="titre" style="-fx-font-weight: bold;">
+                    <font>
+                        <Font name="Cambria" size="24.0" />
+                    </font>
+                </Label>
+                <!-- Description -->
+                <Label fx:id="description" style="-fx-font-weight: normal;">
+                    <font>
+                        <Font name="Cambria" size="20.0" />
+                    </font>
+                </Label>
+                <!-- Conditions -->
+                <Label fx:id="conditions" style="-fx-font-weight: normal;">
+                    <font>
+                        <Font name="Cambria" size="20.0" />
+                    </font>
+                </Label>
+                <!-- Franchise -->
+                <Label fx:id="franchise" style="-fx-font-weight: normal;">
+                    <font>
+                        <Font name="Cambria" size="20.0" />
+                    </font>
+                </Label>
+                <!-- Prime -->
+                <Label fx:id="prime" style="-fx-font-weight: normal;">
+                    <font>
+                        <Font name="Cambria" size="20.0" />
+                    </font>
+                </Label>
+            </children>
+        </VBox>
+    </children>
+    <styleClass>
+        <String fx:value="assurance-item" />
+        <String fx:value="shadow" />
+    </styleClass>
+</AnchorPane>
+
