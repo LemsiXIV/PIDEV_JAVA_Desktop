@@ -9,18 +9,25 @@ import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import com.webandit.webuild.controllers.Controller;
-
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.image.ImageView;
 public class Login {
 
         @FXML
         private TextField emailtxt;
 
         @FXML
-        private TextField pwdtxt;
+        private PasswordField pwdtxt;
         @FXML
         private Button LoginButton;
         @FXML
@@ -29,6 +36,34 @@ public class Login {
         private Label emailerr;
         @FXML
         private Label pwderr;
+        @FXML
+        private TextField pwdtxtShow;
+        @FXML
+        private ImageView openEyeIcon;
+        @FXML
+        private ImageView closeEyeIcon;
+        String pwd;
+    public void initialize(){
+        pwdtxtShow.setVisible(false);
+        openEyeIcon.setVisible(false);
+
+    }
+        @FXML
+        void Close_Eye(MouseEvent event) {
+            pwdtxtShow.setVisible(true);
+            openEyeIcon.setVisible(true);
+            closeEyeIcon.setVisible(false);
+            pwdtxt.setVisible(false);
+        }
+        @FXML
+        void Open_Eye(MouseEvent event) {
+            pwdtxtShow.setVisible(false);
+            openEyeIcon.setVisible(false);
+            closeEyeIcon.setVisible(true);
+            pwdtxt.setVisible(true);
+        }
+
+
     private boolean validatorPassword() {
         String password = pwdtxt.getText();
         if (password.isEmpty()) {
@@ -106,7 +141,19 @@ public class Login {
         }
 
     }
-
+    @FXML
+    void hidePassword(KeyEvent event) {
+        pwd=pwdtxt.getText();
+        pwdtxtShow.setText(pwd);
     }
+
+    @FXML
+    void showPassword(KeyEvent event) {
+        pwd=pwdtxtShow.getText();
+        pwdtxt.setText(pwd);
+    }
+
+
+}
 
 

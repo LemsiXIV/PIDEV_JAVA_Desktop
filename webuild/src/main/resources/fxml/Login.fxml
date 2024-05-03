@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -18,17 +19,16 @@
          </font></Label>
       <Label layoutX="344.0" layoutY="120.0" text="Email :" />
       <Label layoutX="333.0" layoutY="182.0" text="Password :" />
-      <TextField fx:id="emailtxt" layoutX="398.0" layoutY="116.0" />
-      <TextField fx:id="pwdtxt" layoutX="398.0" layoutY="178.0" />
-      <Button fx:id="LoginButton" layoutX="439.0" layoutY="230.0" mnemonicParsing="false" onAction="#Login" text="Log In" />
+      <TextField fx:id="emailtxt" layoutX="398.0" layoutY="116.0" promptText="Entrer votre email" />
+      <Button fx:id="LoginButton" layoutX="439.0" layoutY="276.0" mnemonicParsing="false" onAction="#Login" text="Log In" />
       <Hyperlink fx:id="signinlink" layoutX="429.0" layoutY="344.0" onAction="#changeToSignIn" text="Sign In" textFill="#2980f2">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Hyperlink>
       <Label layoutX="362.0" layoutY="314.0" text="You don't have an account? Click here " />
-      <Label fx:id="emailerr" layoutX="400.0" layoutY="149.0" prefHeight="18.0" prefWidth="158.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="42.0" />
-      <Label fx:id="pwderr" layoutX="395.0" layoutY="212.0" prefHeight="18.0" prefWidth="150.0" />
+      <Label fx:id="emailerr" layoutX="344.0" layoutY="149.0" prefHeight="18.0" prefWidth="242.0" AnchorPane.leftAnchor="344.0" AnchorPane.rightAnchor="14.0" />
+      <Label fx:id="pwderr" layoutX="364.0" layoutY="212.0" prefHeight="18.0" prefWidth="226.0" />
       <HBox prefHeight="500.0" prefWidth="266.0">
          <children>
             <AnchorPane prefHeight="500.0" prefWidth="700.0" style="-fx-background-color: #FAD02C;">
@@ -47,5 +47,17 @@
             </AnchorPane>
          </children>
       </HBox>
+      <ImageView fx:id="closeEyeIcon" fitHeight="35.0" fitWidth="34.0" layoutX="550.0" layoutY="189.0" onMouseClicked="#Close_Eye" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/clipart2914561.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="pwdtxtShow" layoutX="398.0" layoutY="185.0" onKeyReleased="#showPassword" promptText="entrer votre mot de passe" />
+      <ImageView fx:id="openEyeIcon" fitHeight="35.0" fitWidth="34.0" layoutX="550.0" layoutY="181.0" onMouseClicked="#Open_Eye" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../image/clipart3894601.png" />
+         </image>
+      </ImageView>
+      <PasswordField fx:id="pwdtxt" layoutX="398.0" layoutY="185.0" onKeyReleased="#hidePassword" promptText="Entrer votre mot de passe" />
    </children>
 </AnchorPane>

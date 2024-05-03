@@ -12,9 +12,13 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import com.webandit.webuild.models.Utilisateur;
 import javafx.stage.Stage;
+import javafx.scene.control.PasswordField;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 
 public class Signup {
 
@@ -31,7 +35,9 @@ public class Signup {
         private TextField prenomtxt;
 
         @FXML
-        private TextField pwdtxt;
+        private PasswordField pwdtxt;
+        @FXML
+        private PasswordField confirmPass;
 
         @FXML
         private TextField telephonetxt;
@@ -49,6 +55,27 @@ public class Signup {
         private Label pwderr;
         @FXML
         private Label tlperr;
+    @FXML
+    private ImageView closeEyeIcon;
+    @FXML
+    private ImageView openEyeIcon;
+    @FXML
+    private TextField pwdtxtshow;
+    @FXML
+    private ImageView closeEyeIcon1;
+    @FXML
+    private ImageView openEyeIcon1;
+    @FXML
+    private TextField showconfpwd;
+    String confpwd;
+    String pwd;
+    public void initialize(){
+        pwdtxtshow.setVisible(false);
+        openEyeIcon.setVisible(false);
+        showconfpwd.setVisible(false);
+        openEyeIcon1.setVisible(false);
+
+    }
 
 private boolean validatorNom(){
     String nom = nomtxt.getText();
@@ -231,6 +258,46 @@ private boolean validatorNom(){
                 }*/
 
         }
+    @FXML
+    void close_Eye(MouseEvent event) {
+        pwdtxtshow.setVisible(true);
+        openEyeIcon.setVisible(true);
+        closeEyeIcon.setVisible(false);
+        pwdtxt.setVisible(false);
+        showconfpwd.setVisible(true);
+        openEyeIcon1.setVisible(true);
+        closeEyeIcon1.setVisible(false);
+        confirmPass.setVisible(false);
+
+    }
+
+    @FXML
+    void hidePassword(KeyEvent event) {
+        pwd=pwdtxt.getText();
+        pwdtxtshow.setText(pwd);
+        confpwd=confirmPass.getText();
+        showconfpwd.setText(confpwd);
+    }
+
+    @FXML
+    void open_Eye(MouseEvent event) {
+        pwdtxtshow.setVisible(false);
+        openEyeIcon.setVisible(false);
+        closeEyeIcon.setVisible(true);
+        pwdtxt.setVisible(true);
+        showconfpwd.setVisible(false);
+        openEyeIcon1.setVisible(false);
+        closeEyeIcon1.setVisible(true);
+        confirmPass.setVisible(true);
+    }
+
+    @FXML
+    void showPassword(KeyEvent event) {
+        pwd=pwdtxtshow.getText();
+        pwdtxt.setText(pwd);
+        confpwd=showconfpwd.getText();
+        confirmPass.setText(confpwd);
+    }
 
     }
 
