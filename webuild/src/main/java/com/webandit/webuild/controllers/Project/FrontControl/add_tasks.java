@@ -1,6 +1,5 @@
-package com.webandit.webuild.controllers.Project.BackControl;
+package com.webandit.webuild.controllers.Project.FrontControl;
 
-import com.webandit.webuild.controllers.Project.FrontControl.task_front;
 import com.webandit.webuild.models.Chantier;
 import com.webandit.webuild.models.Tasks;
 import com.webandit.webuild.services.ServiceChantier;
@@ -104,12 +103,24 @@ public class add_tasks {
     // Method to display error message
     private void displayError(TextField field, String errorMessage) {
         field.getStyleClass().add("error-field");
-        showAlert("Erreur de validation", errorMessage);
+        Notifications notification = Notifications.create()
+                .title("error-field")
+                .text("Erreur de validation"+errorMessage )
+                .graphic(null) // You can set a graphic if needed
+                .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
+                .position(Pos.CENTER);
+        notification.show();
     }
 
     private void displayError(TextArea field, String errorMessage) {
         field.getStyleClass().add("error-field");
-        showAlert("Erreur de validation", errorMessage);
+         Notifications notification = Notifications.create()
+                .title("error-field")
+                .text("Erreur de validation"+errorMessage )
+                .graphic(null) // You can set a graphic if needed
+                .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
+                .position(Pos.CENTER);
+        notification.show();
     }
 
     // Method to display success message
@@ -146,15 +157,14 @@ public class add_tasks {
 
               Tasks task = new Tasks(ts_name.getText(), ts_priority.getText(), 0, ts_description.getText(), sqlDate, selectedChantier);
               ps.insertOne(task);
-              if (frontController != null) {
-                  frontController.acctualise(); // Call acctualise() method of task_front
-              }
+              frontController.acctualise(); // Call acctualise() method of task_front
+
               Notifications notification = Notifications.create()
-                      .title("Title")
-                      .text("Your notification message")
+                      .title("Notifications")
+                      .text("Task added Successfully ")
                       .graphic(null) // You can set a graphic if needed
                       .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
-                      .position(Pos.BOTTOM_RIGHT);
+                      .position(Pos.CENTER);
               notification.show();
               stage.close();
           }

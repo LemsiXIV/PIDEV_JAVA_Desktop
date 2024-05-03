@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="700.0" maxWidth="1099.0" minHeight="700.0" minWidth="1099.0" prefHeight="700.0" prefWidth="1099.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Project.FrontControl.project_front">
    <center>
-      <StackPane maxHeight="700.0" maxWidth="1099.0" minHeight="700.0" minWidth="1099.0" prefHeight="700.0" prefWidth="1099.0" BorderPane.alignment="CENTER">
+      <StackPane fx:id="contentArea" maxHeight="700.0" maxWidth="1099.0" minHeight="700.0" minWidth="1099.0" prefHeight="700.0" prefWidth="1099.0" BorderPane.alignment="CENTER">
          <children>
             <VBox prefHeight="700.0" prefWidth="1097.0" styleClass="white-background" stylesheets="@../../../css/style.css">
                <children>
@@ -71,19 +71,25 @@
                         <Insets left="30.0" />
                      </VBox.margin>
                   </HBox>
-                  <Label prefHeight="55.0" text="Projects">
-                     <font>
-                        <Font size="33.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="20.0" />
-                     </VBox.margin>
-                  </Label>
-                  <HBox maxHeight="559.0" maxWidth="990.0" minHeight="559.0" minWidth="990.0" prefHeight="553.0" prefWidth="990.0" VBox.vgrow="ALWAYS">
+                  <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="30.0">
                      <children>
-                        <ScrollPane maxHeight="559.0" maxWidth="928.0" minHeight="559.0" minWidth="928.0" prefHeight="559.0" prefWidth="928.0" styleClass="transparent" stylesheets="@../../../css/style.css">
+                        <Label prefHeight="55.0" text="Projects">
+                           <font>
+                              <Font size="33.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" onAction="#Add_Project" prefHeight="42.0" prefWidth="92.0" style="-fx-border-radius: 50%; -fx-background-color: #00A855;" stylesheets="@../../../css/style.css" text="ADD">
+                           <font>
+                              <Font name="Corbel" size="20.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="559.0" maxWidth="1102.0" minHeight="559.0" minWidth="990.0" prefHeight="559.0" prefWidth="1102.0" VBox.vgrow="ALWAYS">
+                     <children>
+                        <ScrollPane maxHeight="559.0" maxWidth="1067.0" minHeight="559.0" minWidth="928.0" prefHeight="559.0" prefWidth="1067.0" styleClass="transparent" stylesheets="@../../../css/style.css">
                            <content>
-                              <VBox fx:id="Project_Ligne_Info" prefHeight="557.0" prefWidth="926.0" spacing="10.0" styleClass="white-background" stylesheets="@../../../css/style.css">
+                              <VBox fx:id="Project_Ligne_Info" prefHeight="557.0" prefWidth="1052.0" spacing="10.0" styleClass="white-background" stylesheets="@../../../css/style.css">
                                  <children>
                                     <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="200.0" spacing="10.0" styleClass="light-gray-background" stylesheets="@../../../css/style.css">
                                        <children>
@@ -128,7 +134,7 @@
                         </ScrollPane>
                         <VBox prefHeight="445.0" prefWidth="57.0">
                            <children>
-                              <VBox maxHeight="503.0" minHeight="494.0" prefHeight="503.0" prefWidth="58.0">
+                              <VBox maxHeight="560.0" minHeight="494.0" prefHeight="560.0" prefWidth="46.0">
                                  <children>
                                     <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="55.0" maxWidth="43.0" minHeight="55.0" prefHeight="55.0" prefWidth="43.0" styleClass="light-gray-background" stylesheets="@../../../css/style.css" text="#">
                                        <font>

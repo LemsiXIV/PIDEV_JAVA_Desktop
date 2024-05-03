@@ -75,4 +75,29 @@ public class ServiceTasks implements CRUD<Tasks> {
     public List<Tasks> selectListDerou() throws SQLException {
         return null;
     }
+
+    public List<Tasks> selectById(int id) throws SQLException {
+        List<Tasks> tasksList = new ArrayList<>();
+        String req = "SELECT * FROM `task` WHERE id_chantier_id = ?";
+
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(req)) {
+            preparedStatement.setInt(1, id);
+            try (ResultSet result = preparedStatement.executeQuery()) {
+                while (result.next()) {
+                    Tasks ts = new Tasks();
+                    ts.setId(result.getInt("id"));
+                    ts.setNomchantier(result.getString("id_chantier_id"));
+                    ts.setName(result.getString("name"));
+                    ts.setPriority(result.getString("priority"));
+                    ts.setStatus(result.getInt("status"));
+                    ts.setDescription(result.getString("description"));
+                    ts.setDue(result.getDate("due"));
+                    tasksList.add(ts);
+                }
+            }
+        }
+
+        System.out.println(tasksList);
+        return tasksList;
+    }
 }

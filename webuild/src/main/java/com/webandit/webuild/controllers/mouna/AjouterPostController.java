@@ -23,6 +23,7 @@ import com.webandit.webuild.services.PostService;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class AjouterPostController {
@@ -85,16 +86,16 @@ public class AjouterPostController {
     @FXML
     void AddPost(ActionEvent event) throws SQLException {
         // Vérifiez si les champs requis sont vides
-        if (titre.getText().isEmpty() || description.getText().isEmpty() || auteur.getText().isEmpty() || date.getValue() == null) {
+        if (titre.getText().isEmpty() || description.getText().isEmpty() || auteur.getText().isEmpty() ) {
             setupValidation();
             return;
         }
-
+        java.util.Date x = ps.GetCurentDate();
         // Date
-        java.sql.Date currentDate = java.sql.Date.valueOf(date.getValue());
+     // java.sql.Date currentDate = java.sql.Date.valueOf(date.getValue());
 
         // Créez une nouvelle instance de Post avec les données fournies
-        Post post = new Post(titre.getText(), description.getText(), auteur.getText(), currentDate);
+        Post post = new Post(titre.getText(), description.getText(), auteur.getText(), x);
 
         if (setupValidationtype() == 0) {
             // Ajoutez le post à la base de données
@@ -119,10 +120,11 @@ public class AjouterPostController {
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
 
         // Appeler la méthode pour afficher les posts
         afficherPosts();
+
 
         // Préparation des boutons
         initializetreetableviewbutton();
@@ -247,21 +249,11 @@ public class AjouterPostController {
             displaySuccess(auteur, auteurErrorLabel);
         }
 
-        // Validation pour la date du post
-        if (!isValidDate(date.getValue())) {
-            displayError(date, dateErrorLabel, "Veuillez sélectionner une date valide");
-            error++;
-        } else {
-            displaySuccess(date, dateErrorLabel);
-        }
+
 
         return error;
     }
 
-    private boolean isValidDate(LocalDate value) {
-        // Vérifiez si la date n'est pas dans le futur
-        return !value.isAfter(LocalDate.now());
-    }
 
     private boolean isValidString(String input) {
         // Vérifiez si la chaîne n'est pas vide
