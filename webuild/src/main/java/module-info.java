@@ -3,6 +3,9 @@ module com.webandit.webuild {
     requires javafx.fxml;
     requires java.sql;
     requires twilio;
+    requires kernel;
+    requires layout;
+    requires java.desktop;
 
 
     exports com.webandit.webuild.controllers;

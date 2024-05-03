@@ -14,15 +14,22 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
+import java.io.File;
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.time.LocalDate;
-
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import java.awt.Desktop;
 public class Backdemande {
-
+    @FXML
+    private Button pdf;
     @FXML
     private Button valid;
     @FXML
@@ -414,6 +421,54 @@ public class Backdemande {
             // Handle database error
         }
     }
+    @FXML
+    void generateContract(ActionEvent event) {
+        // Get the selected demande from the TableView
+        Demande selectedDemande = tabdem.getSelectionModel().getSelectedItem();
+
+        // Check if a demande is selected
+        if (selectedDemande == null) {
+            showAlert("Error", "No demande selected.");
+            return;
+        }
+
+        // Check if the demande is validated (status = 1)
+        if (selectedDemande.getStatus() != 1) {
+            showAlert("Error", "Only validated demandes can generate contracts.");
+            return;
+        }
+
+        try {    String pdfFileName = "contract_" + selectedDemande.getId_d() + ".pdf";
+            PdfDocument pdfDocument = new PdfDocument(new PdfWriter(pdfFileName));
+            Document document = new Document(pdfDocument);
+
+            // Add content to the PDF document
+            document.add(new Paragraph("Contract for Demande ID: " + selectedDemande.getId_d()));
+            document.add(new Paragraph("Montant: " + selectedDemande.getMontant()));
+            document.add(new Paragraph("Date Debut: " + selectedDemande.getDate_debut()));
+            document.add(new Paragraph("Date Fin: " + selectedDemande.getDate_fin()));
+            // Add more demande-specific details as needed
+
+            // Close the document
+            document.close();
+
+            // Show a success message
+            showAlert("Success", "Contract generated successfully for Demande ID: " + selectedDemande.getId_d());
+            // Open the generated PDF file
+            File file = new File(pdfFileName);
+            if (file.exists()) {
+                Desktop.getDesktop().open(file);
+            } else {
+                showAlert("Error", "Failed to open generated contract.");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to generate contract.");
+        }
+    }
+
+    // Existing controller code...
+
 
 }
 
