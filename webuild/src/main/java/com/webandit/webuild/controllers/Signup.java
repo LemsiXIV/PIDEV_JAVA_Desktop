@@ -67,6 +67,8 @@ public class Signup {
     private ImageView openEyeIcon1;
     @FXML
     private TextField showconfpwd;
+    @FXML
+    private Label confirmerr;
     String confpwd;
     String pwd;
     public void initialize(){
@@ -218,11 +220,23 @@ private boolean validatorNom(){
         }
     }
 
+    private boolean validatorConfirmPassword(){
+        String pwd=pwdtxt.getText();
+        String confirmPwd=confirmPass.getText();
+        if(!pwd.equals(confirmPwd)){
+            confirmerr.setStyle("-fx-text-fill: red;");
+            confirmerr.setText("Passwords do not match");
+            confirmerr.requestFocus();
+            return false;
+        }
+        return true;
+    }
+
 
     @FXML
         void addUtilisateur(ActionEvent event) {
             com.webandit.webuild.services.serviceUtilisateur sp = new serviceUtilisateur();
-            if (!validatorNom() || !validatorPrenom() || !validatorAdresse() || !validatorEmail() || !validatorPassword() || !validatorTelephone() ) {
+            if (!validatorNom() || !validatorPrenom() || !validatorAdresse() || !validatorEmail() || !validatorPassword() || !validatorTelephone() || !validatorConfirmPassword() ) {
             return;}
             try {
                     String email = emailtxt.getText();
@@ -264,10 +278,7 @@ private boolean validatorNom(){
         openEyeIcon.setVisible(true);
         closeEyeIcon.setVisible(false);
         pwdtxt.setVisible(false);
-        showconfpwd.setVisible(true);
-        openEyeIcon1.setVisible(true);
-        closeEyeIcon1.setVisible(false);
-        confirmPass.setVisible(false);
+
 
     }
 
@@ -275,8 +286,7 @@ private boolean validatorNom(){
     void hidePassword(KeyEvent event) {
         pwd=pwdtxt.getText();
         pwdtxtshow.setText(pwd);
-        confpwd=confirmPass.getText();
-        showconfpwd.setText(confpwd);
+
     }
 
     @FXML
@@ -285,20 +295,39 @@ private boolean validatorNom(){
         openEyeIcon.setVisible(false);
         closeEyeIcon.setVisible(true);
         pwdtxt.setVisible(true);
-        showconfpwd.setVisible(false);
-        openEyeIcon1.setVisible(false);
-        closeEyeIcon1.setVisible(true);
-        confirmPass.setVisible(true);
+
     }
 
     @FXML
     void showPassword(KeyEvent event) {
         pwd=pwdtxtshow.getText();
         pwdtxt.setText(pwd);
+
+    }
+    @FXML
+    void hidePassword1(KeyEvent event) {
+        confpwd=confirmPass.getText();
+        showconfpwd.setText(confpwd);
+    }
+    @FXML
+    void open_Eye1(MouseEvent event) {
+        showconfpwd.setVisible(false);
+        openEyeIcon1.setVisible(false);
+        closeEyeIcon1.setVisible(true);
+        confirmPass.setVisible(true);
+    }
+    @FXML
+    void showPassword1(KeyEvent event) {
         confpwd=showconfpwd.getText();
         confirmPass.setText(confpwd);
     }
-
+    @FXML
+    void close_Eye1(MouseEvent event) {
+        showconfpwd.setVisible(true);
+        openEyeIcon1.setVisible(true);
+        closeEyeIcon1.setVisible(false);
+        confirmPass.setVisible(false);
+    }
     }
 
 

@@ -33,7 +33,7 @@
       <Label fx:id="adresseerr" layoutX="360.0" layoutY="217.0" prefHeight="18.0" prefWidth="159.0" />
       <Label fx:id="tlperr" layoutX="363.0" layoutY="259.0" prefHeight="18.0" prefWidth="249.0" />
       <Label fx:id="emailerr" layoutX="363.0" layoutY="311.0" prefHeight="18.0" prefWidth="271.0" />
-      <Label fx:id="pwderr" layoutX="358.0" layoutY="367.0" prefHeight="18.0" prefWidth="258.0" />
+      <Label fx:id="pwderr" layoutX="358.0" layoutY="354.0" prefHeight="42.0" prefWidth="344.0" />
       <HBox prefHeight="500.0" prefWidth="258.0">
          <children>
             <AnchorPane prefHeight="458.0" prefWidth="258.0" style="-fx-background-color: #FAD02C;">
@@ -54,7 +54,7 @@
       </HBox>
       <PasswordField fx:id="pwdtxt" layoutX="364.0" layoutY="341.0" onKeyReleased="#hidePassword" />
       <Label layoutX="264.0" layoutY="392.0" text="Confirmer mot de passe" />
-      <PasswordField fx:id="confirmPass" layoutX="399.0" layoutY="388.0" onKeyReleased="#hidePassword" />
+      <PasswordField fx:id="confirmPass" layoutX="399.0" layoutY="388.0" onKeyReleased="#hidePassword1" />
       <ImageView fx:id="closeEyeIcon" fitHeight="18.0" fitWidth="25.0" layoutX="524.0" layoutY="347.0" onMouseClicked="#close_Eye" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/clipart2914561.png" />
@@ -66,16 +66,17 @@
          </image>
       </ImageView>
       <TextField fx:id="pwdtxtshow" layoutX="365.0" layoutY="341.0" onKeyReleased="#showPassword" />
-      <ImageView fx:id="openEyeIcon1" fitHeight="26.0" fitWidth="25.0" layoutX="555.0" layoutY="388.0" onMouseClicked="#open_Eye" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="openEyeIcon1" fitHeight="26.0" fitWidth="25.0" layoutX="554.0" layoutY="388.0" onMouseClicked="#open_Eye1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/clipart3894601.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="closeEyeIcon1" fitHeight="18.0" fitWidth="25.0" layoutX="555.0" layoutY="394.0" onMouseClicked="#close_Eye" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="closeEyeIcon1" fitHeight="18.0" fitWidth="25.0" layoutX="554.0" layoutY="394.0" onMouseClicked="#close_Eye1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/clipart2914561.png" />
          </image>
       </ImageView>
-      <TextField fx:id="showconfpwd" layoutX="399.0" layoutY="388.0" onKeyReleased="#showPassword" />
+      <TextField fx:id="showconfpwd" layoutX="399.0" layoutY="388.0" onKeyReleased="#showPassword1" />
+      <Label fx:id="confirmerr" layoutX="399.0" layoutY="414.0" prefHeight="18.0" prefWidth="223.0" />
    </children>
 </AnchorPane>
