@@ -36,7 +36,12 @@ public class HelloApplication extends Application {
         Scene signInScene = new Scene(signInRoot, 700, 500);
         stage.setScene(signInScene);
     }
-
+   /* private void changeToReset(Stage stage) throws IOException {
+        Parent signInRoot = FXMLLoader.load(getClass().getResource("/fxml/Reset-pwd.fxml"));
+        Scene changeToReset = new Scene(signInRoot, 700, 500);
+        stage.setScene(changeToReset);
+    }
+*/
     public static void main(String[] args) {
         launch();
     }

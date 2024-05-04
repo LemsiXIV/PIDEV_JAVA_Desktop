@@ -23,45 +23,45 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
 public class Login {
 
-        @FXML
-        private TextField emailtxt;
+    @FXML
+    private TextField emailtxt;
 
-        @FXML
-        private PasswordField pwdtxt;
-        @FXML
-        private Button LoginButton;
-        @FXML
-        private Hyperlink signinlink;
-        @FXML
-        private Label emailerr;
-        @FXML
-        private Label pwderr;
-        @FXML
-        private TextField pwdtxtShow;
-        @FXML
-        private ImageView openEyeIcon;
-        @FXML
-        private ImageView closeEyeIcon;
-        String pwd;
+    @FXML
+    private PasswordField pwdtxt;
+    @FXML
+    private Button LoginButton;
+    @FXML
+    private Hyperlink signinlink;
+    @FXML
+    private Label emailerr;
+    @FXML
+    private Label pwderr;
+    @FXML
+    private TextField pwdtxtShow;
+    @FXML
+    private ImageView openEyeIcon;
+    @FXML
+    private ImageView closeEyeIcon;
+    String pwd;
     public void initialize(){
         pwdtxtShow.setVisible(false);
         openEyeIcon.setVisible(false);
 
     }
-        @FXML
-        void Close_Eye(MouseEvent event) {
-            pwdtxtShow.setVisible(true);
-            openEyeIcon.setVisible(true);
-            closeEyeIcon.setVisible(false);
-            pwdtxt.setVisible(false);
-        }
-        @FXML
-        void Open_Eye(MouseEvent event) {
-            pwdtxtShow.setVisible(false);
-            openEyeIcon.setVisible(false);
-            closeEyeIcon.setVisible(true);
-            pwdtxt.setVisible(true);
-        }
+    @FXML
+    void Close_Eye(MouseEvent event) {
+        pwdtxtShow.setVisible(true);
+        openEyeIcon.setVisible(true);
+        closeEyeIcon.setVisible(false);
+        pwdtxt.setVisible(false);
+    }
+    @FXML
+    void Open_Eye(MouseEvent event) {
+        pwdtxtShow.setVisible(false);
+        openEyeIcon.setVisible(false);
+        closeEyeIcon.setVisible(true);
+        pwdtxt.setVisible(true);
+    }
 
 
     private boolean validatorPassword() {
@@ -84,60 +84,61 @@ public class Login {
         else{
             return true;
         }}
-        @FXML
-        void Login(ActionEvent event) {
-           String email= emailtxt.getText();
-           String password= pwdtxt.getText();
-            if ( !validatorEmail() || !validatorPassword()  ) {
-                return;
-            }
-            com.webandit.webuild.services.serviceUtilisateur sp = new serviceUtilisateur();
+    @FXML
+    void Login(ActionEvent event) {
+        String email= emailtxt.getText();
+        String password= pwdtxt.getText();
+        if ( !validatorEmail() || !validatorPassword()  ) {
+            return;
+        }
+        com.webandit.webuild.services.serviceUtilisateur sp = new serviceUtilisateur();
 
-            try {
-                String userExists = sp.Login(email);
-                if (userExists==null){
-                    //System.out.println(userExists);
+        try {
+            String userExists = sp.Login(email);
+            if (userExists==null){
+                //System.out.println(userExists);
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Login Failed");
+                alert.setContentText("No user found with the email: " + email);
+                alert.show();
+            }else {
+                if(password.equals(userExists)){
+                    SessionManagement.getInstance().setLoggedInUserEmail(email);
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/hello-view.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) LoginButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
+                }else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
                     alert.setTitle("Login Failed");
-                    alert.setContentText("No user found with the email: " + email);
+                    alert.setContentText("Incorrect password for the user: " + email);
                     alert.show();
-                }else {
-                    if(password.equals(userExists)){
-                        SessionManagement.getInstance().setLoggedInUserEmail(email);
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/hello-view.fxml"));
-                        Parent root = loader.load();
-                        Scene scene = new Scene(root);
-                        Stage stage = (Stage) LoginButton.getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-                    }else {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Login Failed");
-                        alert.setContentText("Incorrect password for the user: " + email);
-                        alert.show();
-                    }
                 }
-            } catch (SQLException | IOException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur de saisie");
-                alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
-                alert.show();
             }
+        } catch (SQLException | IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de saisie");
+            alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
+            alert.show();
         }
+    }
     @FXML
     void changeToSignIn(ActionEvent event) {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Signup.fxml"));
-                Parent root = loader.load();
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) signinlink.getScene().getWindow();
-                stage.setScene(scene);
-                stage.show();
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Signup.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) signinlink.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
         } catch (IOException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur de saisie");
-                alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
-                alert.show();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de saisie");
+            alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
+            alert.show();
         }
 
     }
@@ -152,8 +153,23 @@ public class Login {
         pwd=pwdtxtShow.getText();
         pwdtxt.setText(pwd);
     }
+    @FXML
+    void changeToReset(ActionEvent event) throws IOException {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Reset-pwd.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) signinlink.getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur de saisie");
+            alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
+            alert.show();
+        }
 
+    }
 
 }
-
 

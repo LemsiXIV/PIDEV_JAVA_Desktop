@@ -87,4 +87,8 @@ public class Controller implements Initializable {
         Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
 
     }
+    public void ResetPwd(javafx.event.ActionEvent actionEvent)throws IOException{
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Reset-pwd.fxml"));
+
+    }
 }
