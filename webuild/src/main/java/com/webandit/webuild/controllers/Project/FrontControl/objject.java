@@ -97,7 +97,7 @@ public class objject implements Initializable {
         Project_name.setEditable(true);
         Project_discription.setEditable(true);
         Project_rem.setEditable(true);
-        
+
     }
 
     public void update(ActionEvent event) {
