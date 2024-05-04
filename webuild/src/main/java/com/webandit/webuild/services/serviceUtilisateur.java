@@ -78,4 +78,12 @@ public class serviceUtilisateur implements CRUD<Utilisateur>{
         return result;
 
      }
+    public void updatePassword(String email, String password) throws SQLException {
+        //String passwordencrypted = encrypt(password);
+
+        String query = "UPDATE `utilisateur` SET `pwd` = '" + password + "' WHERE `email` = '" + email + "'";
+        Statement statement = cnx.createStatement();
+        statement.executeUpdate(query);
+        statement.close();
+    }
 }

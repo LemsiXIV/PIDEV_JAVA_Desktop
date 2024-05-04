@@ -13,6 +13,6 @@
       <Button fx:id="envoyer_email" layoutX="383.0" layoutY="133.0" mnemonicParsing="false" onAction="#validerEmail" text="Valider" />
       <Label layoutX="72.0" layoutY="191.0" text="saisir le code " />
       <TextField fx:id="code" layoutX="196.0" layoutY="187.0" />
-      <Button layoutX="384.0" layoutY="187.0" mnemonicParsing="false" onAction="#verifierCode" text="Vérifier" />
+      <Button fx:id="codeVerifier" layoutX="384.0" layoutY="187.0" mnemonicParsing="false" onAction="#verifierCode" text="Vérifier" />
    </children>
 </AnchorPane>

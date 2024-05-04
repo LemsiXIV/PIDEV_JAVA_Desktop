@@ -2,13 +2,18 @@ package com.webandit.webuild.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import java.io.IOException;
 import java.util.Properties;
 
 public class ResetPwd {
@@ -23,6 +28,8 @@ public class ResetPwd {
     private TextField email;
 
     private String generatedCode;
+    @FXML
+    private Button codeVerifier;
 
     private String generateVerificationCode() {
         // Generate a random 6-digit code
@@ -64,8 +71,8 @@ public class ResetPwd {
     private void sendEmail(String toEmail, String subject, String body) throws MessagingException {
         // SMTP server configuration
         String host = "smtp.gmail.com"; // Replace with the actual SMTP server address
-        String username = "hadil.miladi@esprit.tn"; // Replace with your email address
-        String password = "h1a2d3i4l5"; // Replace with your email password
+        String username = ""; // Replace with your email address
+        String password = ""; // Replace with your email password
         int port = 587; // Change the port if required
 
         // Set properties
@@ -108,6 +115,19 @@ public class ResetPwd {
         String enteredCode = code.getText();
         if (enteredCode.equals(generatedCode)) {
             showAlert(Alert.AlertType.INFORMATION, "Code Verified", "Verification code is correct. You can proceed.");
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Change-pwd.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) codeVerifier.getScene().getWindow();
+                stage.setScene(scene);
+                stage.show();
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur de saisie");
+                alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
+                alert.show();
+            }
         } else {
             showAlert(Alert.AlertType.ERROR, "Invalid Verification Code", "The verification code you entered is invalid.");
         }

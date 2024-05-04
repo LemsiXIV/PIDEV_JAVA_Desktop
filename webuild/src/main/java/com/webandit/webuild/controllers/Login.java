@@ -42,6 +42,8 @@ public class Login {
     private ImageView openEyeIcon;
     @FXML
     private ImageView closeEyeIcon;
+    @FXML
+    private Hyperlink forgotLink;
     String pwd;
     public void initialize(){
         pwdtxtShow.setVisible(false);
@@ -159,7 +161,7 @@ public class Login {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Reset-pwd.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
-            Stage stage = (Stage) signinlink.getScene().getWindow();
+            Stage stage = (Stage) forgotLink.getScene().getWindow();
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
