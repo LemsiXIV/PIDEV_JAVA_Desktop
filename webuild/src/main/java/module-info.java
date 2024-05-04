@@ -2,7 +2,9 @@ module com.webandit.webuild {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
-
+    requires kernel;
+    requires layout;
+    requires java.mail;
 
 
     exports com.webandit.webuild.controllers;
@@ -12,6 +14,8 @@ module com.webandit.webuild {
     opens com.webandit.webuild.models;
     exports com.webandit.webuild.test;
     opens com.webandit.webuild.test to javafx.fxml;
+    exports com.webandit.webuild.controllers.mouna.front;
+    opens com.webandit.webuild.controllers.mouna.front to javafx.fxml;
 
 
 }

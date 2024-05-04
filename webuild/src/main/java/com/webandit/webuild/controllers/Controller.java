@@ -75,4 +75,9 @@ public class Controller implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
 
+    public void Frontforum(ActionEvent actionEvent)throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/gridpost.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
 }

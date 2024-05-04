@@ -31,6 +31,11 @@ public class AjouterCommentaireController {
 
     @FXML
     private TextField nom;
+    @FXML
+    private TextField nbrLikes;
+
+    @FXML
+    private TextField nbrDislikes;
 
     @FXML
     private DatePicker date;
@@ -42,13 +47,17 @@ public class AjouterCommentaireController {
     private Label nomErrorLabel;
 
     @FXML
+    private Label nbrLikesErrorLabel;
+
+    @FXML
+    private Label nbrDislikesErrorLabel;
+    @FXML
     private Label dateErrorLabel;
 
     @FXML
     private TreeTableView<Commentaire> tvc;
 
-    @FXML
-    private TreeTableColumn<Commentaire, Integer> post_id;
+
 
     @FXML
     private TreeTableColumn<Commentaire, Integer> nbrlikes;
@@ -119,7 +128,7 @@ public class AjouterCommentaireController {
             tvc.setRoot(root);
             tvc.setShowRoot(false);
 
-            post_id.setCellValueFactory(new TreeItemPropertyValueFactory<>("post_id"));
+
             Contenu.setCellValueFactory(new TreeItemPropertyValueFactory<>("contenu"));
             Nom.setCellValueFactory(new TreeItemPropertyValueFactory<>("nom"));
             nbrlikes.setCellValueFactory(new TreeItemPropertyValueFactory<>("nbrLikes"));
@@ -141,7 +150,51 @@ public class AjouterCommentaireController {
     }
 
     public void setupValidation() {
-        // Implémentez votre logique de validation ici
+        // Validation pour le contenu du commentaire
+        if (contenu.getText().isEmpty()) {
+            displayError( contenuErrorLabel, "Veuillez entrer du contenu.");
+        } else {
+            displaySuccess( contenuErrorLabel, "contenu validé");
+        }
+
+        // Validation pour le nom de l'auteur du commentaire
+        if (nom.getText().isEmpty() || nom.getText().matches("\\d+")) {
+            displayError(nomErrorLabel, "Veuillez entrer un nom valide (sans chiffres).");
+        } else {
+            displaySuccess( nomErrorLabel,"Nom validé");
+        }
+
+        // Validation pour la date de création du commentaire (pas de date future)
+        if (date.getValue() == null || date.getValue().isAfter(LocalDate.now())) {
+            displayError(dateErrorLabel, "Veuillez sélectionner une date valide (pas de date future).");
+        } else {
+            displaySuccess(dateErrorLabel, "date validé");
+        }
+
+        // Validation pour le nombre de likes (doit être un entier)
+        try {
+            Integer.parseInt(nbrlikes.getText());
+            displaySuccess( nbrLikesErrorLabel,"nbr likes validé");
+        } catch (NumberFormatException e) {
+            displayError(nbrLikesErrorLabel, "Veuillez entrer un nombre entier pour les likes.");
+        }
+
+        // Validation pour le nombre de dislikes (doit être un entier)
+        try {
+            Integer.parseInt(nbrdislikes.getText());
+            displaySuccess(nbrDislikesErrorLabel, "");
+        } catch (NumberFormatException e) {
+            displayError( nbrDislikesErrorLabel, "Veuillez entrer un nombre entier pour les dislikes.");
+        }
+    }
+    private void displaySuccess(Label label, String message) {
+        label.setText(message);
+        label.setTextFill(Color.GREEN); // Assurez-vous d'importer javafx.scene.paint.Color
+    }
+
+    private void displayError(Label label, String message) {
+        label.setText(message);
+        label.setTextFill(Color.RED); // Assurez-vous d'importer javafx.scene.paint.Color
     }
 
     private void showAlert(String title, String content) {
@@ -162,6 +215,8 @@ public class AjouterCommentaireController {
                 selectCommentaire.setContenu(contenu.getText());
                 selectCommentaire.setNom(nom.getText());
                 selectCommentaire.setDateCreation(java.sql.Date.valueOf(date.getValue()));
+
+
 
                 // Appelez la fonction d'update du service pour mettre à jour la base de données
                 cs.updateOne(selectCommentaire);

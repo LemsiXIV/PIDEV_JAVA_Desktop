@@ -19,7 +19,7 @@
                     <children>
                         <Label text="Contenu :" />
                         <TextArea fx:id="contenuTextArea" prefHeight="200.0" prefWidth="175.0" />
-                  <Label fx:id="ContenuLabelError" prefHeight="32.0" prefWidth="264.0" />
+                        <Label fx:id="ContenuLabelError" prefHeight="32.0" prefWidth="264.0" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -29,7 +29,7 @@
                     <children>
                         <Label text="Nom :" />
                         <TextField fx:id="nomTextField" prefWidth="175.0" />
-                  <Label fx:id="NomLabelError" prefHeight="30.0" prefWidth="226.0" text="NomLabelError" />
+                        <Label fx:id="NomLabelError" prefHeight="30.0" prefWidth="226.0" text="NomLabelError" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -39,7 +39,7 @@
                     <children>
                         <Label text="Date de création :" />
                         <DatePicker fx:id="dateCreationDatePicker" prefWidth="175.0" />
-                  <Label fx:id="DateLabelError" prefHeight="18.0" prefWidth="257.0" text="label" />
+                        <Label fx:id="DateLabelError" prefHeight="18.0" prefWidth="257.0" text="label" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -49,7 +49,7 @@
                     <children>
                         <Label text="Nombre de Likes :" />
                         <TextField fx:id="nbrLikesTextField" prefWidth="175.0" />
-                  <Label fx:id="LikesLabelError" prefHeight="18.0" prefWidth="186.0" text="Label" />
+                        <Label fx:id="LikesLabelError" prefHeight="18.0" prefWidth="186.0" text="Label" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -59,7 +59,7 @@
                     <children>
                         <Label text="Nombre de Dislikes :" />
                         <TextField fx:id="nbrDislikesTextField" alignment="TOP_LEFT" prefWidth="175.0" />
-                  <Label fx:id="DislikesLabelError" prefHeight="18.0" prefWidth="183.0" text="Label" />
+                        <Label fx:id="DislikesLabelError" prefHeight="18.0" prefWidth="183.0" text="Label" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

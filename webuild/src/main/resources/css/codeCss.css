@@ -63,3 +63,12 @@
 .empty-label {
     -fx-text-fill: #FF0000; /* Rouge */
 }
+
+.comment-item {
+    border: 1px solid #ccc; /* Bordure solide de 1 pixel */
+    border-radius: 5px; /* Coins arrondis */
+    padding: 10px; /* Espacement intérieur */
+    margin-bottom: 10px; /* Marge en bas pour séparer les commentaires */
+    background-color: #f9f9f9; /* Couleur de fond */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}

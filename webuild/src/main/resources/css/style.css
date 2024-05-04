@@ -1,11 +1,11 @@
 .white-background{
--fx-background-color: #fff;
-        }
+        -fx-background-color: #fff;
+}
 .navbar{
         -fx-background-color: #F8BC24;
 }.navbar-top{
-        -fx-background-color: #000103;
-}
+         -fx-background-color: #000103;
+ }
 .transparent{
         -fx-background-color: rgba(0,0,0,0);
 }

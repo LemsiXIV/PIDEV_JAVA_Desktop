@@ -13,18 +13,18 @@
 <AnchorPane fx:id="mainAnchorPane" prefHeight="482.0" prefWidth="853.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.mouna.AjouterCommentaireController">
     <children>
 
-        <Button layoutX="406.0" layoutY="236.0" mnemonicParsing="false" onAction="#ajoutComment" prefHeight="25.0" prefWidth="80.0" stylesheets="@../css/codeCss.css" text="Add" />
+        <Button layoutX="609.0" layoutY="238.0" mnemonicParsing="false" onAction="#ajoutComment" prefHeight="25.0" prefWidth="80.0" stylesheets="@../css/codeCss.css" text="Add" />
         <Label fx:id="contenuErrorLabel" layoutX="227.0" layoutY="242.0" prefHeight="17.0" prefWidth="179.0" />
-        <Label fx:id="dateCreationErrorLabel" layoutX="223.0" layoutY="368.0" prefHeight="17.0" prefWidth="165.0" />
+        <Label fx:id="dateCreationErrorLabel" layoutX="195.0" layoutY="368.0" prefHeight="17.0" prefWidth="165.0" />
         <Label fx:id="nomErrorLabel" layoutX="230.0" layoutY="303.0" prefHeight="17.0" prefWidth="174.0" />
         <Label fx:id="nbrLikesErrorLabel" layoutX="227.0" layoutY="337.0" prefHeight="17.0" prefWidth="179.0" />
         <Label fx:id="nbrDislikesErrorLabel" layoutX="227.0" layoutY="337.0" prefHeight="17.0" prefWidth="179.0" />
-        <DatePicker fx:id="date" onAction="#selectdate" prefWidth="136.0" promptText="aaaa-mm-jj" stylesheets="@../css/codeCss.css" />
+
 
         <TreeTableView fx:id="tvc" layoutX="7.0" layoutY="17.0" prefHeight="204.0" prefWidth="758.0" stylesheets="@../css/codeCss.css">
 
             <columns>
-                <TreeTableColumn fx:id="post_id" prefWidth="75.0" style="-fx-alignment: center;" text="ID" />
+
                 <TreeTableColumn fx:id="Contenu" prefWidth="88.79998779296875" style="-fx-alignment: center;" text="Contenu" />
                 <TreeTableColumn fx:id="Nom" prefWidth="253.59999084472656" style="-fx-alignment: center;" text="Nom" />
                 <TreeTableColumn fx:id="Date" prefWidth="106.40008544921875" style="-fx-alignment: center;" text="Date de Création" />
@@ -35,19 +35,19 @@
             </columns>
         </TreeTableView>
 
-        <Button layoutX="406.0" layoutY="266.0" mnemonicParsing="false" onAction="#selectCommentaire" prefHeight="26.0" prefWidth="80.0" text="select" />
-        <Button layoutX="406.0" layoutY="298.0" mnemonicParsing="false" onAction="#updateComment" prefHeight="26.0" prefWidth="80.0" text="update" />
-      <Button layoutX="406.0" layoutY="332.0" mnemonicParsing="false" onAction="#Deletecomment" prefHeight="26.0" prefWidth="80.0" text="Delete" />
+        <Button layoutX="609.0" layoutY="271.0" mnemonicParsing="false" onAction="#selectCommentaire" prefHeight="26.0" prefWidth="80.0" text="select" />
+        <Button layoutX="609.0" layoutY="307.0" mnemonicParsing="false" onAction="#updateComment" prefHeight="26.0" prefWidth="80.0" text="update" />
+      <Button layoutX="609.0" layoutY="341.0" mnemonicParsing="false" onAction="#Deletecomment" prefHeight="26.0" prefWidth="80.0" text="Delete" />
       <VBox alignment="CENTER" layoutX="30.0" layoutY="237.0" prefHeight="221.0" prefWidth="290.0">
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                <children>
-            
+      
                     <Label prefHeight="18.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Contenu :" />
                     <TextField fx:id="contenu" prefHeight="26.0" prefWidth="136.0" promptText="Contenu" stylesheets="@../css/codeCss.css" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
+            <HBox alignment="CENTER" prefHeight="82.0" prefWidth="290.0" spacing="25.0">
                <children>
                     <Label prefHeight="17.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Nom :" />
                     <TextField fx:id="nom" prefHeight="25.0" prefWidth="136.0" promptText="Nom" stylesheets="@../css/codeCss.css" />
@@ -56,23 +56,15 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
                <children>
                     <Label fx:id="datteee" prefHeight="25.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Date de Création :" />
-                    <DatePicker fx:id="dateCreation" onAction="#selectdate" prefWidth="136.0" promptText="aaaa-mm-jj" stylesheets="@../css/codeCss.css" />
+                    <DatePicker fx:id="date" onAction="#selectdate" prefWidth="136.0" promptText="aaaa-mm-jj" stylesheets="@../css/codeCss.css" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
-               <children>
-                    <Label prefHeight="17.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="likes :" />
-                    <TextField fx:id="nbrLikes" prefHeight="25.0" prefWidth="136.0" promptText="Nombre de Likes" stylesheets="@../css/codeCss.css" />
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="25.0">
-               <children>
-                  <Label text="dislikes :" />
-                    <TextField fx:id="nbrDislikes" prefHeight="25.0" prefWidth="136.0" promptText="Nombre de Dislikes" stylesheets="@../css/codeCss.css" />
-               </children>
-            </HBox>
+
          </children>
       </VBox>
-      <Button layoutX="406.0" layoutY="364.0" mnemonicParsing="false" onAction="#refrech" prefHeight="25.0" prefWidth="80.0" text="Refrech" />
+      <Button layoutX="609.0" layoutY="377.0" mnemonicParsing="false" onAction="#refrech" prefHeight="25.0" prefWidth="80.0" text="Refrech" />
+      <Label fx:id="ContenuLabelError" layoutX="358.0" layoutY="263.0" prefHeight="26.0" prefWidth="145.0" />
+      <Label fx:id="NomLabelError" layoutX="345.0" layoutY="329.0" prefHeight="33.0" prefWidth="118.0" />
+      <Label fx:id="DateLabelError" layoutX="344.0" layoutY="403.0" prefHeight="26.0" prefWidth="126.0" />
     </children>
 </AnchorPane>

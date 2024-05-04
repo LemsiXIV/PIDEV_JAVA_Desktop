@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TreeTableColumn?>
 <?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
@@ -23,22 +24,26 @@
                   <Label fx:id="datteee" layoutX="33.0" layoutY="267.0" prefHeight="25.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Date :" />
                   <Label layoutX="33.0" layoutY="305.0" prefHeight="17.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Description :" />
                   <Label layoutX="33.0" layoutY="335.0" prefHeight="17.0" prefWidth="47.0" stylesheets="@../css/codeCss.css" text="Auteur :" />
-                  <Button layoutX="104.0" layoutY="369.0" mnemonicParsing="false" onAction="#AddPost" prefHeight="25.0" prefWidth="80.0" stylesheets="@../css/codeCss.css" text="Add" />
+                  <Button layoutX="437.0" layoutY="360.0" mnemonicParsing="false" onAction="#AddPost" prefHeight="25.0" prefWidth="80.0" stylesheets="@../css/codeCss.css" text="Add" />
                   <Label fx:id="titreErrorLabel" layoutX="227.0" layoutY="242.0" prefHeight="17.0" prefWidth="179.0" />
                   <Label fx:id="dateErrorLabel" layoutX="227.0" layoutY="271.0" prefHeight="17.0" prefWidth="165.0" />
                   <Label fx:id="descriptionErrorLabel" layoutX="230.0" layoutY="303.0" prefHeight="17.0" prefWidth="174.0" />
                   <Label fx:id="auteurErrorLabel" layoutX="227.0" layoutY="337.0" prefHeight="17.0" prefWidth="179.0" />
-                  <TreeTableView fx:id="tvc" layoutX="-7.0" layoutY="14.0" prefHeight="204.0" prefWidth="602.0" stylesheets="@../css/codeCss.css">
+                  <TreeTableView fx:id="tvc" editable="true" layoutX="-7.0" layoutY="14.0" prefHeight="204.0" prefWidth="602.0" stylesheets="@../css/codeCss.css">
                      <columns>
                         <TreeTableColumn fx:id="Titre" prefWidth="88.79998779296875" style="-fx-alignment: center;" text="Titre" />
-                        <TreeTableColumn fx:id="Description" prefWidth="253.59999084472656" style="-fx-alignment: center;" text="Description" />
-                        <TreeTableColumn fx:id="Auteur" prefWidth="62.4000244140625" style="-fx-alignment: center;" text="Auteur" />
-                        <TreeTableColumn fx:id="Date" prefWidth="106.40008544921875" style="-fx-alignment: center;" text="Date" />
+                        <TreeTableColumn fx:id="Description" prefWidth="183.20001220703125" style="-fx-alignment: center;" text="Description" />
+                        <TreeTableColumn fx:id="Auteur" prefWidth="72.79998779296875" style="-fx-alignment: center;" text="Auteur" />
+                        <TreeTableColumn fx:id="Date" prefWidth="96.0" style="-fx-alignment: center;" text="Date" />
+                        <TreeTableColumn fx:id="Imgtab" prefWidth="77.59991455078125" style="-fx-alignment: center;" text="Img" />
                      </columns>
                   </TreeTableView>
-                  <Button layoutX="223.0" layoutY="369.0" mnemonicParsing="false" onAction="#selectPost" text="select" />
-                  <Button layoutX="310.0" layoutY="369.0" mnemonicParsing="false" onAction="#updatePost" text="update" />
-                  <Button layoutX="398.0" layoutY="369.0" mnemonicParsing="false" onAction="#commentaire_page" text="commentaire" />
+                  <Button layoutX="522.0" layoutY="360.0" mnemonicParsing="false" onAction="#commentaire_page" text="commentaire" />
+                  <Label layoutX="24.0" layoutY="373.0" text="image link" />
+                  <Button fx:id="Parcourir" layoutX="230.0" layoutY="368.0" mnemonicParsing="false" onAction="#parcourirImage" text="..." />
+                  <Button fx:id="generatePdfButton" layoutX="539.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleGeneratePdfButton" prefHeight="26.0" prefWidth="68.0" text="PDF" />
+                  <TextField fx:id="imgField" editable="false" layoutX="87.0" layoutY="368.0" prefHeight="26.0" prefWidth="136.0" />
+                  <ImageView fx:id="image" fitHeight="99.0" fitWidth="174.0" layoutX="263.0" layoutY="290.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </AnchorPane>
          </children>

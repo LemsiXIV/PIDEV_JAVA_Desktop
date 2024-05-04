@@ -34,6 +34,8 @@ public class Commentaire {
     public Commentaire(int i, String contenu2, String nom2, Date sqlDate, int i1, int i2, int i3) {
     }
 
+    public Commentaire(int idComment, String contentComment, int postId) {
+    }
 
 
     public int getNbrlikes() {

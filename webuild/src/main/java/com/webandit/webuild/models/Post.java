@@ -10,6 +10,16 @@ public class Post {
     private String description;
     private String auteur;
     private Date date;
+    private String img;
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
     private List<Commentaire> commentaires;
 
 
@@ -22,7 +32,15 @@ public class Post {
     }
 
 
+    public Post( String titre, String description, String auteur, Date date, String img) {
 
+        this.titre = titre;
+        this.description = description;
+        this.auteur = auteur;
+        this.date = date;
+        this.img = img;
+        this.commentaires = new ArrayList<>();
+    }
     public Post(int id, String titre, String description, String auteur, Date date) {
         this.id = id;
         this.titre = titre;

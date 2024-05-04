@@ -110,6 +110,20 @@
                                 </Button>
                             </children>
                         </HBox>
+
+                <HBox alignment="CENTER" layoutX="10.0" layoutY="245.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
+                    <children>
+                        <Button mnemonicParsing="false" onAction="#Frontforum" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="ForumFront">
+                            <graphic>
+                                <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../image/icons8-forum-100.png" />
+                                    </image>
+                                </ImageView>
+                            </graphic>
+                        </Button>
+                    </children>
+                </HBox>
                     </children>
                     <padding>
                         <Insets bottom="10.0" top="10.0" />
@@ -153,26 +167,6 @@
                             </children>
                         </HBox>
                         <Pane layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="295.0" />
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="780.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="804.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="829.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
-                            </image>
-                        </ImageView>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" styleClass="navbar">
@@ -203,11 +197,11 @@
                             </children>
                         </HBox>
                         <Pane prefHeight="60.0" prefWidth="130.0" HBox.hgrow="ALWAYS" />
-                  <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Utilisateur" prefHeight="50.0" prefWidth="193.0" text="Lemsi mohamed haithem">
+                  <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#Utilisateur" prefHeight="50.0" prefWidth="193.0" text="JOMAA Mouna">
                      <graphic>
                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@../image/admin-22.jpg" />
+                              <Image url="@../image/cvmounaphoto.jpg" />
                            </image>
                         </ImageView>
                      </graphic>
