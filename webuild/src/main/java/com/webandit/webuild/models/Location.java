@@ -3,22 +3,22 @@ package com.webandit.webuild.models;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 
-import com.webandit.webuild.models.Materiel;
-
 public class Location {
-    private int id_l, id_user;
-    Date date_d, date_f;
-    Materiel M;
+    private int id_l;
+    private int id_user;
+    private Date date_d;
+    private Date date_f;
+    private Materiel m;
 
     public Location() {
     }
 
     public Location(int id_l, int id_user, Date date_d, Date date_f, Materiel m) {
         this.id_l = id_l;
-        this.M = m;
+        this.id_user = id_user;
         this.date_d = date_d;
         this.date_f = date_f;
-        this.id_user = id_user;
+        this.m = m;
     }
 
     public int getId_l() {
@@ -54,11 +54,11 @@ public class Location {
     }
 
     public Materiel getM() {
-        return M;
+        return m;
     }
 
     public void setM(Materiel m) {
-        this.M = m;
+        this.m = m;
     }
 
     public String getDate_dString() {
@@ -75,12 +75,10 @@ public class Location {
     public String toString() {
         return "Location{" +
                 "id_l=" + id_l +
-                ", M=" + M +
+                ", id_user=" + id_user +
                 ", date_d=" + date_d +
                 ", date_f=" + date_f +
-                ", id_user=" + id_user +
+                ", m=" + m +
                 '}';
     }
-
-
 }

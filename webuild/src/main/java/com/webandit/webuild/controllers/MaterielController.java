@@ -33,7 +33,7 @@ public class MaterielController implements Initializable {
     private TableColumn<Materiel, String> descriptionColumn;
 
     @FXML
-    private TextField descriptionField;
+    private TextArea descriptionField;
 
     @FXML
     private TableColumn<Materiel, Integer> idColumn;
