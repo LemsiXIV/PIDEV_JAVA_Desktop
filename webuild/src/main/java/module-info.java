@@ -3,7 +3,10 @@ module com.webandit.webuild {
     requires javafx.fxml;
     requires java.sql;
     requires javafx.base;
-
+    requires com.google.zxing;
+    requires stripe.java;
+    requires java.desktop;
+    requires javafx.swing;
 
 
     exports com.webandit.webuild.controllers;

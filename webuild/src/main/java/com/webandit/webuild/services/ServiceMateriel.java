@@ -122,4 +122,30 @@ public class ServiceMateriel implements CRUD<Materiel> {
         }
         return null; // Retourner null si aucune assurance correspondante n'est trouvée
     }
+    public List<Materiel> searchMateriels(String searchQuery) throws SQLException {
+        try {
+            String req = "SELECT * FROM pack_materiel WHERE libelle LIKE ?";
+            PreparedStatement ps = cnx.prepareStatement(req);
+            ps.setString(1, "%" + searchQuery + "%");
+            ResultSet rs = ps.executeQuery();
+
+            List<Materiel> materiels = new ArrayList<>();
+            while (rs.next()) {
+                Materiel materiel = new Materiel();
+                materiel.setId(rs.getInt("id"));
+                materiel.setLibelle(rs.getString("libelle"));
+                materiel.setDescription(rs.getString("description"));
+                materiel.setPrix(rs.getInt("prix"));
+                materiel.setImage(rs.getString("image"));
+                materiels.add(materiel);
+            }
+
+            rs.close(); // Close ResultSet after use
+            ps.close(); // Close PreparedStatement after use
+
+            return materiels;
+        } catch (SQLException e) {
+            throw new SQLException("Failed to search materiels: " + e.getMessage());
+        }
+    }
 }

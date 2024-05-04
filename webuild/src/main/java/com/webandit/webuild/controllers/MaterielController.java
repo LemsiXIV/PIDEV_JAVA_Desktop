@@ -160,7 +160,7 @@ public class MaterielController implements Initializable {
     }
 
 
-
+    @FXML
     void updateMateriel(Materiel materiel) {
         String libelle = libelleField.getText().trim();
         String description = descriptionField.getText().trim();

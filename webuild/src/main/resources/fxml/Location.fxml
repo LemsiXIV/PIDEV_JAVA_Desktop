@@ -34,7 +34,7 @@
                                                 <Font name="Cambria" size="18.0" />
                                             </font>
                                         </TextField>
-                                        <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="search-button" stylesheets="@style.css" text="Search" textFill="white" />
+                                        <Button fx:id="searchButton" mnemonicParsing="false" prefHeight="40.0" prefWidth="100.0" styleClass="search-button" stylesheets="@style.css" text="Search" textFill="white" />
                                     </children>
                                     <styleClass>
                                         <String fx:value="search-box" />
@@ -46,7 +46,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="444.0" prefWidth="480.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
                             <children>
-                                <ScrollPane fx:id="scroll" prefHeight="461.0" prefWidth="758.0" style="-fx-background-color: transparent;" stylesheets="@style.css" HBox.hgrow="ALWAYS">
+                                <ScrollPane fx:id="scroll" prefHeight="502.0" prefWidth="695.0" style="-fx-background-color: transparent;" stylesheets="@style.css" HBox.hgrow="ALWAYS">
                                     <HBox.margin>
                                         <Insets left="50.0" right="10.0" top="10.0" />
                                     </HBox.margin>

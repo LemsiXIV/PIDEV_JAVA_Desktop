@@ -222,3 +222,22 @@
     -fx-background-radius: 20; /* Pour rendre le ComboBox rond */
     -fx-background-color: lightgreen; /* Pour définir la couleur de fond en vert clair */
 }
+
+.detail-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.confirm-button {
+    -fx-background-color: #4CAF50; /* Green */
+    -fx-border: none;
+    -fx-color: white;
+    -fx-padding: 10px 20px;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #45a049; /* Darker Green */
+}
