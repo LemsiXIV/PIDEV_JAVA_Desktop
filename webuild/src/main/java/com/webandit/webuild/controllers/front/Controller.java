@@ -1,15 +1,12 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.front;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -31,7 +28,7 @@ public class Controller implements Initializable {
         System.exit(0);
     });
         try {
-            Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
+            Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/front/home.fxml"));
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
         }catch (IOException ex){
@@ -41,7 +38,7 @@ public class Controller implements Initializable {
     }
 
     public void home(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/front/home.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
@@ -76,17 +73,17 @@ public class Controller implements Initializable {
     }
 
     public void Utilisateur(ActionEvent actionEvent)throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Utilisateur.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/front/UserProfil.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
 
     }
-    /*public void Signup(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Signup.fxml"));
+    public void Admin(javafx.event.ActionEvent actionEvent)throws IOException{
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/back/HomeAdmin.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
-    public void Login(javafx.event.ActionEvent actionEvent)throws IOException{
+    /*public void Login(javafx.event.ActionEvent actionEvent)throws IOException{
         Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
 
     }

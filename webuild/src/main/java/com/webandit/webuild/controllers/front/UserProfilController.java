@@ -1,5 +1,6 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.front;
 
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -14,10 +15,9 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Utilisateur {
+public class UserProfilController {
 
     @FXML
     private TextField adressetxt;

@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import com.webandit.webuild.models.Utilisateur;
 import javafx.stage.Stage;
 import javafx.scene.control.PasswordField;
-import com.webandit.webuild.services.serviceUtilisateur;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.scene.image.ImageView;
@@ -250,7 +250,7 @@ private boolean validatorNom(){
                     }else {
                     com.webandit.webuild.models.Utilisateur u = new Utilisateur( nomtxt.getText(), prenomtxt.getText(),Integer.parseInt(telephonetxt.getText()),  adressetxt.getText(),emailtxt.getText(), pwdtxt.getText());
                     sp.insertOne(u);
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/hello-view.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/front/hello-view.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) savebtn.getScene().getWindow();

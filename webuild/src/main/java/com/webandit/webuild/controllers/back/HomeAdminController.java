@@ -1,5 +1,6 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.back;
 
+import com.webandit.webuild.controllers.front.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class AdminController implements Initializable {
+public class HomeAdminController implements Initializable {
     @FXML
     private Label exit;
 
@@ -28,7 +29,7 @@ public class AdminController implements Initializable {
             System.exit(0);
         });
         try {
-            Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
+            Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/back/Dashboard.fxml"));
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
         }catch (IOException ex){
@@ -38,7 +39,7 @@ public class AdminController implements Initializable {
     }
 
     public void home(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/back/Dashboard.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
@@ -73,7 +74,7 @@ public class AdminController implements Initializable {
     }
 
     public void Utilisateur(ActionEvent actionEvent)throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Utilisateur.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/front/UserProfil.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
 

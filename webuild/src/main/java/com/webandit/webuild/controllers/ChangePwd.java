@@ -8,7 +8,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import com.webandit.webuild.controllers.Controller;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -17,9 +17,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.AdminController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="674.0" prefWidth="931.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.front.Controller">
     <left>
-        <VBox prefHeight="614.0" prefWidth="158.0" styleClass="navbar" stylesheets="@../css/style.css" BorderPane.alignment="CENTER">
+        <VBox prefHeight="614.0" prefWidth="158.0" styleClass="navbar" stylesheets="@../../css/style.css" BorderPane.alignment="CENTER">
             <children>
                 <VBox prefHeight="582.0" prefWidth="158.0" spacing="10.0">
                     <children>
@@ -28,13 +28,13 @@
                                 <Font name="Arial" size="14.0" />
                             </font>
                         </Label>
-                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="158.0" spacing="15.0" stylesheets="@../css/style.css">
+                        <HBox alignment="CENTER" prefHeight="45.0" prefWidth="158.0" spacing="15.0" stylesheets="@../../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#home" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Home">
+                                <Button mnemonicParsing="false" onAction="#home" prefHeight="45.0" prefWidth="158.0" stylesheets="@../../css/style.css" text="Home">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../image/icons8-home-512.png" />
+                                                <Image url="@../../image/icons8-home-512.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -45,65 +45,78 @@
                                 <String fx:value="selected" />
                             </styleClass>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../../css/style.css">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#Condidatures" prefHeight="45.0" prefWidth="158.0" text="Condidate">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../image/icons8-candidates-66.png" />
+                                                <Image url="@../../image/icons8-candidates-66.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
                                 </Button>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="94.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="94.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../../css/style.css">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#Assurence" prefHeight="45.0" prefWidth="158.0" text="Assurence">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../image/icons8-insurance-50.png" />
+                                                <Image url="@../../image/icons8-insurance-50.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
                                 </Button>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="144.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../../css/style.css">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#Materiel" prefHeight="45.0" prefWidth="158.0" text="Matriel">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../image/icons8-work-50.png" />
+                                                <Image url="@../../image/icons8-work-50.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
                                 </Button>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="195.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="195.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../../css/style.css">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#project" prefHeight="45.0" prefWidth="158.0" text="Project">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../image/icons8-project-50.png" />
+                                                <Image url="@../../image/icons8-project-50.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
                                 </Button>
                             </children>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="245.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="245.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#Forum" prefHeight="45.0" prefWidth="158.0" stylesheets="@../css/style.css" text="Forum">
+                                <Button mnemonicParsing="false" onAction="#Forum" prefHeight="45.0" prefWidth="158.0" stylesheets="@../../css/style.css" text="Forum">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../image/icons8-forum-100.png" />
+                                                <Image url="@../../image/icons8-forum-100.png" />
+                                            </image>
+                                        </ImageView>
+                                    </graphic>
+                                </Button>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../../css/style.css">
+                            <children>
+                                <Button mnemonicParsing="false" onAction="#Admin" prefHeight="45.0" prefWidth="158.0" text="Admin">
+                                    <graphic>
+                                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image url="@../../image/icons8-candidates-66.png" />
                                             </image>
                                         </ImageView>
                                     </graphic>
@@ -123,13 +136,13 @@
     <top>
         <VBox prefHeight="96.0" prefWidth="931.0" BorderPane.alignment="CENTER">
             <children>
-                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" styleClass="white-background" stylesheets="@../css/style.css">
+                <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="5.0" styleClass="white-background" stylesheets="@../../css/style.css">
                     <children>
                         <Label fx:id="exit">
                             <graphic>
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../image/square_14034319.png" />
+                                        <Image url="@../../image/square_14034319.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -139,14 +152,14 @@
                         </Label>
                     </children>
                 </HBox>
-                <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="931.0" spacing="5.0" styleClass="navbar-top" stylesheets="@../css/style.css">
+                <HBox alignment="CENTER_LEFT" prefHeight="41.0" prefWidth="931.0" spacing="5.0" styleClass="navbar-top" stylesheets="@../../css/style.css">
                     <children>
                         <Pane prefHeight="39.0" prefWidth="62.0" />
                         <HBox alignment="CENTER_LEFT" prefHeight="39.0" prefWidth="266.0" spacing="5.0">
                             <children>
                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../image/location-sign_17736.png" />
+                                        <Image url="@../../image/location-sign_17736.png" />
                                     </image>
                                 </ImageView>
                                 <Label prefHeight="16.0" prefWidth="246.0" text="ty cite ghazela petite arianna, esprit" textFill="#788081">
@@ -160,7 +173,7 @@
                             <children>
                                 <ImageView fitHeight="18.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../image/email_542689.png" />
+                                        <Image url="@../../image/email_542689.png" />
                                     </image>
                                 </ImageView>
                                 <Label prefHeight="16.0" prefWidth="150.0" text="WeBuild@expert.com" textFill="#788081">
@@ -173,22 +186,22 @@
                         <Pane layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="295.0" />
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
+                                <Image url="@../../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="780.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
+                                <Image url="@../../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="804.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
+                                <Image url="@../../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
                             </image>
                         </ImageView>
                         <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="829.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
+                                <Image url="@../../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
                             </image>
                         </ImageView>
                     </children>
@@ -210,12 +223,12 @@
                             </children>
                         </HBox>
                         <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="34.0" prefWidth="6.0" />
-                        <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="238.0" spacing="5.0" styleClass="round-layout" stylesheets="@../css/style.css">
+                        <HBox alignment="CENTER" maxHeight="-Infinity" prefHeight="35.0" prefWidth="238.0" spacing="5.0" styleClass="round-layout" stylesheets="@../../css/style.css">
                             <children>
-                                <TextField prefHeight="26.0" prefWidth="192.0" promptText="Search" styleClass="transparent" stylesheets="@../css/style.css" />
+                                <TextField prefHeight="26.0" prefWidth="192.0" promptText="Search" styleClass="transparent" stylesheets="@../../css/style.css" />
                                 <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../image/search_4687318.png" />
+                                        <Image url="@../../image/search_4687318.png" />
                                     </image>
                                 </ImageView>
                             </children>
@@ -238,8 +251,8 @@
                         <Insets left="20.0" right="20.0" />
                     </padding>
                <stylesheets>
-                  <URL value="@../css/style.css" />
-                  <URL value="@../css/style.css" />
+                  <URL value="@../../css/style.css" />
+                  <URL value="@../../css/style.css" />
                </stylesheets>
                 </HBox>
             </children>

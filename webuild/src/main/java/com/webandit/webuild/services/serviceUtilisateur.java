@@ -52,9 +52,13 @@ public class serviceUtilisateur implements CRUD<Utilisateur>{
         ResultSet rs= st.executeQuery(req);
         while (rs.next()){
             Utilisateur p = new Utilisateur();
-            p.setId(rs.getInt(1));
             p.setNom(rs.getString("nom"));
-            p.setPrenom(rs.getString("prenom"));
+            p.setPrenom(rs.getString("prénom"));
+            p.setTelephone(rs.getInt("téléphone"));
+            p.setAdresse(rs.getString("adresse"));
+            p.setEmail(rs.getString("email"));
+
+
             personList.add(p);
         }
         return  personList;
