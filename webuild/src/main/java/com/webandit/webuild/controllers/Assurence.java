@@ -3,6 +3,9 @@ package com.webandit.webuild.controllers;
 import com.webandit.webuild.models.Assurance;
 import com.webandit.webuild.services.ServiceAssurance;
 import com.webandit.webuild.utils.DBConnection;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,13 +17,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.*;
 import java.util.ResourceBundle;
+
+
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.control.TableColumn;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Assurence implements Initializable {
     private Connection cnx;
@@ -148,13 +163,44 @@ public class Assurence implements Initializable {
         colid.setCellValueFactory(new PropertyValueFactory<Assurance, Integer>("id"));
         colnom.setCellValueFactory(new PropertyValueFactory<Assurance, String>("nom"));
         coldesc.setCellValueFactory(new PropertyValueFactory<Assurance, String>("description"));
-        colimg.setCellValueFactory(new PropertyValueFactory<Assurance, String>("image"));
+
+        colimg.setCellValueFactory(cellData -> {
+            StringProperty imagePathProperty = new SimpleStringProperty(cellData.getValue().getImage());
+            return imagePathProperty;
+        });
+
+        // Custom cell factory for the image column
+        colimg.setCellFactory(column -> {
+            return new TableCell<Assurance, String>() {
+                private final ImageView imageView = new ImageView();
+
+                @Override
+                protected void updateItem(String imagePath, boolean empty) {
+                    super.updateItem(imagePath, empty);
+                    if (imagePath == null || empty) {
+                        setGraphic(null);
+                    } else {
+                        try {
+                            File file = new File(imagePath);
+                            Image image = new Image(file.toURI().toString());
+                            imageView.setImage(image);
+                            imageView.setFitWidth(50); // Adjust width as needed
+                            imageView.setPreserveRatio(true);
+                            setGraphic(imageView);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+            };
+        });
         colage.setCellValueFactory(new PropertyValueFactory<Assurance, String>("condition_age"));
         colmedicale.setCellValueFactory(new PropertyValueFactory<Assurance, String>("condition_medicale"));
         colfinanaciere.setCellValueFactory(new PropertyValueFactory<Assurance, String>("condition_financiere"));
         colfranchise.setCellValueFactory(new PropertyValueFactory<Assurance, Integer>("franchise"));
         colprime.setCellValueFactory(new PropertyValueFactory<Assurance, Integer>("prime"));
     }
+
 
     @FXML
     void AddAssurance(ActionEvent event) {
@@ -166,11 +212,11 @@ public class Assurence implements Initializable {
         String conditionFinanciere = txtCondition_financiere.getText();
         int franchise = Integer.parseInt(txtFranchise.getText());
         int prime = Integer.parseInt(txtPrime.getText());
-
+        String imageUrl = uploadImage();
         Assurance newAssurance = new Assurance();
         newAssurance.setNom(nom);
         newAssurance.setDescription(description);
-        newAssurance.setImage(image);
+        newAssurance.setImage(imageUrl);
         newAssurance.setCondition_age(conditionAge);
         newAssurance.setCondition_medicale(conditionMedicale);
         newAssurance.setCondition_financiere(conditionFinanciere);
@@ -261,14 +307,7 @@ public class Assurence implements Initializable {
         }
 
     }
-    @FXML
-    void GoToAdd(ActionEvent event) throws IOException {
-        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/fxml/addAssu.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();
-    }
+
     @FXML
     void demlist(ActionEvent event)throws IOException {
         Parent tableViewParent = FXMLLoader.load(getClass().getResource("/fxml/Backdemande.fxml"));
@@ -277,8 +316,38 @@ public class Assurence implements Initializable {
         window.setScene(tableViewScene);
         window.show();
     }
+    @FXML
+    void chooseImage(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose Image File");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"));
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            // Set the selected image file's path to the txtImage text field
+            txtImage.setText(selectedFile.toURI().toString());
+        }
+    }
 
-
+    private String uploadImage() {
+        String imageUrl = null;
+        String destinationDirectory = "C:/Bureau/pi-java/PIDEV_JAVA_Desktop/webuild/images/"; // Change this to your desired directory
+        File selectedFile = new File(txtImage.getText().replace("file:/", "")); // Remove "file:/" prefix
+        File destinationFolder = new File(destinationDirectory);
+        if (!destinationFolder.exists()) {
+            destinationFolder.mkdirs(); // Create the directory if it doesn't exist
+        }
+        String fileName = selectedFile.getName();
+        String destinationFilePath = destinationDirectory + File.separator + fileName;
+        File destinationFile = new File(destinationFilePath);
+        try {
+            Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            imageUrl = destinationFilePath; // Construct the image URL
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle file copying exception
+        }
+        return imageUrl;
+    }
     }
 
 

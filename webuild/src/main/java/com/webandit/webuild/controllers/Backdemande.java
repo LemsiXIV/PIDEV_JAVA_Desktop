@@ -374,7 +374,7 @@ public class Backdemande {
             serviceDemande.updateStatus(selectedDemande.getId_d(), 2);
 
             // Send an SMS notification to the client
-            String clientPhoneNumber = ""; // Get the client's phone number from the demande or any other source
+            String clientPhoneNumber = "+21698134491"; // Get the client's phone number from the demande or any other source
             String message = "On est desolé, Votre demande a été rejetée."; // Message to send
             TwilioSMSFXML.sendSMS(clientPhoneNumber, message);
 

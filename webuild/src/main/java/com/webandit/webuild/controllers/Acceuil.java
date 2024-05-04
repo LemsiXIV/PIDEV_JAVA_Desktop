@@ -54,7 +54,7 @@ public class Acceuil implements Initializable {
     }
 
     public void Condidatures(ActionEvent actionEvent)throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/ShowAssurance.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Condidatures.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }

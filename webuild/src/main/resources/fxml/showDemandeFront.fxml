@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.String?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.image.ImageView?>
-<AnchorPane prefHeight="621.0" prefWidth="801.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.assurancefront">
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.webandit.webuild.controllers.ShowDemandeFront"
+            prefHeight="400.0" prefWidth="600.0">
     <children>
 
 
@@ -24,8 +23,7 @@
                                 <Insets left="20.0" right="20.0" />
                             </VBox.margin>
                             <children>
-                                <Button mnemonicParsing="false" onAction="#addchoice" text="choisir cette assurance" />
-                                <Button mnemonicParsing="false" onAction="#seedem" text="Voir ma liste de demandes" />
+
                                 <HBox alignment="CENTER" prefHeight="56.0" prefWidth="500.0" stylesheets="@style.css">
                                     <styleClass>
                                         <String fx:value="search-box" />
@@ -51,7 +49,7 @@
                                         </GridPane>
                                     </content>
                                 </ScrollPane>
-                                <ImageView fx:id="selectedAssuranceImage" fitHeight="150.0" fitWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" />
+
                             </children>
                             <VBox.margin>
                                 <Insets bottom="50.0" left="50.0" />

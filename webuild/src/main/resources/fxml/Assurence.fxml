@@ -24,6 +24,7 @@
             <TableColumn fx:id="colfinanaciere" prefWidth="44.0" text="c_financiere" />
             <TableColumn fx:id="colfranchise" prefWidth="44.0" text="franchise" />
             <TableColumn fx:id="colprime" prefWidth="44.0" text="prime" />
+
         </columns>
       </TableView>
       <Button fx:id="addAssu" layoutX="237.0" layoutY="448.0" mnemonicParsing="false" onAction="#AddAssurance" style="-fx-background-color: #c90e0e;" text="Ajouter" textFill="#eaeaea">
@@ -38,7 +39,6 @@
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-      <Button fx:id="add" layoutX="690.0" layoutY="413.0" mnemonicParsing="false" onAction="#GoToAdd" text="form" />
       <TextField fx:id="txtPrime" layoutX="632.0" layoutY="358.0" prefHeight="26.0" prefWidth="76.0" stylesheets="@../css/style.css">
          <styleClass>
             <String fx:value="form-container" />
@@ -93,6 +93,8 @@
          </font>
       </Text>
       <Button fx:id="deml" layoutX="623.0" layoutY="447.0" mnemonicParsing="false" onAction="#demlist" text="liste des demandes" />
+
+      <Button fx:id="btnChooseImage" layoutX="638.0" layoutY="414.0" mnemonicParsing="false" onAction="#chooseImage" text="chooseImage" />
       <Label layoutX="266.0" layoutY="14.0" text="Liste des Assurances" textFill="#c90e0e">
          <font>
             <Font name="System Bold" size="20.0" />
