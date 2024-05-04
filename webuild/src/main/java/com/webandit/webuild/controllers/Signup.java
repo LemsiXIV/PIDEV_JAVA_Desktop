@@ -13,7 +13,7 @@ import javafx.scene.control.TextField;
 import com.webandit.webuild.models.Utilisateur;
 import javafx.stage.Stage;
 import javafx.scene.control.PasswordField;
-
+import com.webandit.webuild.services.serviceUtilisateur;
 import java.io.IOException;
 import java.sql.SQLException;
 import javafx.scene.image.ImageView;
@@ -235,14 +235,14 @@ private boolean validatorNom(){
 
     @FXML
         void addUtilisateur(ActionEvent event) {
-            com.webandit.webuild.services.serviceUtilisateur sp = new serviceUtilisateur();
+            serviceUtilisateur sp = new serviceUtilisateur();
             if (!validatorNom() || !validatorPrenom() || !validatorAdresse() || !validatorEmail() || !validatorPassword() || !validatorTelephone() || !validatorConfirmPassword() ) {
             return;}
             try {
                     String email = emailtxt.getText();
-                    String userExists = sp.Login(email);
 
-                    if(userExists!=null){
+
+                    if(sp.selectByEmail(email)){
                         Alert alert = new Alert(Alert.AlertType.ERROR);
                         alert.setTitle("User Exists");
                         alert.setContentText("A user with the same email already exists.");

@@ -1,15 +1,12 @@
 package com.webandit.webuild.controllers;
 
-import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +14,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Controller implements Initializable {
+public class AdminController implements Initializable {
     @FXML
     private Label exit;
 
@@ -27,9 +24,9 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    exit.setOnMouseClicked(e->{
-        System.exit(0);
-    });
+        exit.setOnMouseClicked(e->{
+            System.exit(0);
+        });
         try {
             Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
             contentArea.getChildren().removeAll();

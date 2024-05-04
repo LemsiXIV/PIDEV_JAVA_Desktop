@@ -5,10 +5,10 @@ import java.util.Date;
 public class Utilisateur {
     private int id, telephone;
     private Date datenaiss;
-    private String nom, prenom, fonction, adresse, email, pwd;
-    private Boolean isActive;
+    private String nom, prenom, fonction, adresse, email, pwd, role;
+    private Boolean isActivated;
 
-    public Utilisateur(int id, int telephone, Date datenaiss, String nom, String prenom, String fonction, String adresse, String email, String pwd, Boolean isActive) {
+    public Utilisateur(int id, int telephone, Date datenaiss, String nom, String prenom, String fonction, String adresse, String email, String pwd, Boolean isActivated, String role) {
         this.id = id;
         this.telephone = telephone;
         this.datenaiss = datenaiss;
@@ -18,7 +18,8 @@ public class Utilisateur {
         this.adresse = adresse;
         this.email = email;
         this.pwd = pwd;
-        this.isActive = isActive;
+        this.isActivated = isActivated;
+        this.role="User";
     }
 
     public Utilisateur( String nom, String prenom,int telephone, String adresse, String email, String pwd) {
@@ -37,8 +38,17 @@ public class Utilisateur {
         this.email = email;
 
     }
+    public Utilisateur( int id,String nom, String prenom,int telephone, String adresse, String email, String pwd) {
+        this.telephone = telephone;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.id= id;
+        this.pwd=pwd;
 
-    public Utilisateur(int telephone, Date datenaiss, String nom, String prenom, String fonction, String adresse, String email, String pwd, Boolean isActive) {
+    }
+    public Utilisateur(int telephone, Date datenaiss, String nom, String prenom, String fonction, String adresse, String email, String pwd, Boolean isActivated) {
         this.telephone = telephone;
         this.datenaiss = datenaiss;
         this.nom = nom;
@@ -47,7 +57,7 @@ public class Utilisateur {
         this.adresse = adresse;
         this.email = email;
         this.pwd = pwd;
-        this.isActive = isActive;
+        this.isActivated = isActivated;
     }
 
     public Utilisateur() {}
@@ -125,13 +135,18 @@ public class Utilisateur {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return isActivated;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        isActivated = true;
     }
 
+    public String getRole() {
+        return role;
+    }
 
-
+    public void setRole(String role) {
+        this.role = role;
+    }
 }

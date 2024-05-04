@@ -71,8 +71,8 @@ public class ResetPwd {
     private void sendEmail(String toEmail, String subject, String body) throws MessagingException {
         // SMTP server configuration
         String host = "smtp.gmail.com"; // Replace with the actual SMTP server address
-        String username = ""; // Replace with your email address
-        String password = ""; // Replace with your email password
+        String username = "hadil.miladi@esprit.tn"; // Replace with your email address
+        String password = "h1a2d3i4l5"; // Replace with your email password
         int port = 587; // Change the port if required
 
         // Set properties

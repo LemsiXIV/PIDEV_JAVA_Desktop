@@ -59,23 +59,37 @@ public class serviceUtilisateur implements CRUD<Utilisateur>{
         }
         return  personList;
     }
-    public String Login (String email) throws SQLException {
-        String req = "SELECT `pwd` FROM `utilisateur` WHERE `email` = '" + email + "'";
+    public Utilisateur Login (String mail, String password) throws SQLException {
+        String req = "SELECT * FROM `utilisateur` WHERE `email` = '" + mail + "' AND `pwd` = '" + password + "'";
         Statement st = cnx.createStatement();
         ResultSet resultset =st.executeQuery(req);
-        String pwd= null;
-        if(resultset.next()){
-            pwd= resultset.getString("pwd");
+        try (resultset){
+            if(resultset.next()){
+               //int id= resultset.getInt("id");
+                String nom = resultset.getString("nom");
+                String email = resultset.getString("email");
+                String pwd = resultset.getString("pwd");
+                String prenom = resultset.getString("prénom");
+                //String fonction = resultset.getString("fonction_utilisateur");
+                String adresse = resultset.getString("adresse");
+                int num=resultset.getInt("téléphone");
+
+                return new Utilisateur(nom, prenom,num,  adresse,  email, pwd);
+            }else {
+                return null;
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
         }
-        resultset.close();
-        st.close();
-        return pwd;
     }
-     public ResultSet selectByEmail( String email) throws SQLException{
+     public boolean selectByEmail( String email) throws SQLException{
         String req="SELECT * FROM `utilisateur` WHERE `email` ='" + email + "'";
         Statement st= cnx.createStatement();
         ResultSet result=st.executeQuery(req);
-        return result;
+        boolean emailExists = result.next();
+         result.close();
+         st.close();
+        return emailExists;
 
      }
     public void updatePassword(String email, String password) throws SQLException {

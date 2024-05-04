@@ -185,54 +185,23 @@ public class Utilisateur {
     }
 
     private serviceUtilisateur sp = new serviceUtilisateur();
-    private String loggedInEmail;
 
     public void initialize() {
-
-        loggedInEmail = SessionManagement.getInstance().getLoggedInUserEmail();
-        setUserInfo();
+        nomtxt.setText(SessionManagement.getInstance().getNom());
+        prenomtxt.setText(SessionManagement.getInstance().getPrenom());
+        emailtxt.setText(SessionManagement.getInstance().getEmail());
+        adressetxt.setText(SessionManagement.getInstance().getAdresse());
+        tlptxt.setText(String.valueOf(SessionManagement.getInstance().getTelephone()));
     }
 
-    void setUserInfo() {
-        try {
-            ResultSet resultSet = sp.selectByEmail(loggedInEmail);
-            if (resultSet.next()) {
-                String nom = resultSet.getString("nom");
-                String prenom = resultSet.getString("prénom");
-                String adresse = resultSet.getString("adresse");
-                int telephone = resultSet.getInt("téléphone");
 
-                // Set user information to the text fields
-                nomtxt.setText(nom);
-                prenomtxt.setText(prenom);
-                adressetxt.setText(adresse);
-                tlptxt.setText(Integer.toString(telephone));
-                emailtxt.setText(loggedInEmail);
-            } else {
-
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText(null);
-                alert.setContentText("No user found with the email: " + loggedInEmail);
-                alert.showAndWait();
-            }
-        } catch (SQLException e) {
-
-            e.printStackTrace();
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("An error occurred while retrieving user information." + e);
-            alert.showAndWait();
-        }
-    }
     @FXML
     void deleteUser(ActionEvent event) {
         com.webandit.webuild.models.Utilisateur u = new com.webandit.webuild.models.Utilisateur(nomtxt.getText(), prenomtxt.getText(), Integer.parseInt(tlptxt.getText()), adressetxt.getText(), emailtxt.getText());
 
         try {
             sp.deleteOne(u);
-            SessionManagement.getInstance().clearSession();
+            SessionManagement.getInstance().cleanUserSession();
             try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
                 Parent root = loader.load();

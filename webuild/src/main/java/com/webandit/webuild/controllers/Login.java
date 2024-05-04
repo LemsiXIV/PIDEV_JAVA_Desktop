@@ -1,4 +1,5 @@
 package com.webandit.webuild.controllers;
+import com.webandit.webuild.models.Utilisateur;
 import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,6 +10,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import com.webandit.webuild.controllers.Controller;
+import com.webandit.webuild.services.serviceUtilisateur;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -44,6 +46,9 @@ public class Login {
     private ImageView closeEyeIcon;
     @FXML
     private Hyperlink forgotLink;
+    @FXML
+    private Label exit;
+    private final serviceUtilisateur serviceutilisater = new serviceUtilisateur();
     String pwd;
     public void initialize(){
         pwdtxtShow.setVisible(false);
@@ -88,43 +93,28 @@ public class Login {
         }}
     @FXML
     void Login(ActionEvent event) {
-        String email= emailtxt.getText();
-        String password= pwdtxt.getText();
-        if ( !validatorEmail() || !validatorPassword()  ) {
-            return;
-        }
-        com.webandit.webuild.services.serviceUtilisateur sp = new serviceUtilisateur();
-
         try {
-            String userExists = sp.Login(email);
-            if (userExists==null){
-                //System.out.println(userExists);
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Login Failed");
-                alert.setContentText("No user found with the email: " + email);
-                alert.show();
-            }else {
-                if(password.equals(userExists)){
-                    SessionManagement.getInstance().setLoggedInUserEmail(email);
-
+            Utilisateur utilisateur;
+            if ((utilisateur = serviceutilisater.Login(emailtxt.getText(), pwdtxt.getText())) != null) {
+                SessionManagement.getInstance(utilisateur.getId(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getPwd(), utilisateur.getAdresse(), utilisateur.getTelephone());
+                try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/hello-view.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) LoginButton.getScene().getWindow();
                     stage.setScene(scene);
                     stage.show();
-                }else {
+                } catch (IOException e) {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Login Failed");
-                    alert.setContentText("Incorrect password for the user: " + email);
+                    alert.setTitle("Erreur de saisie");
+                    alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
                     alert.show();
                 }
+            } else {
+                pwderr.setText("Your username or password are incorrect");
             }
-        } catch (SQLException | IOException e) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur de saisie");
-            alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
-            alert.show();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
     @FXML
