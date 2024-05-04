@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
@@ -23,22 +24,26 @@ public class TaskObj implements Initializable {
     private Label Project_rem1;
 
     @FXML
-    private Label TASK_Priority;
+    private TextField TASK_Priority;
+
+    @FXML
+    private TextField TASK_Status;
 
     @FXML
     private Label TASK_date;
 
     @FXML
-    private Label TASK_discription;
+    private TextField TASK_discription;
 
     @FXML
-    private Label TASK_name;
+    private TextField TASK_name;
+
+
 
     @FXML
     private ImageView img_user;
 
-    @FXML
-    private Label TASK_Status;
+
     int id ;
     public void setId(int id) {
         this.id=id;
@@ -81,8 +86,51 @@ public class TaskObj implements Initializable {
     @FXML
     void updateTASK(ActionEvent event) {
 
+
+        // Collect the updated data from the text fields
+        String updatedName = TASK_name.getText();
+        String updatedDescription = TASK_discription.getText();
+        String updatedPriority = TASK_Priority.getText();
+        int updatedStatus = Integer.parseInt(TASK_Status.getText());
+
+        // Update the data via the ServiceTasks class
+        try {
+            Tasks tasks = new Tasks(id,updatedName, updatedPriority, updatedStatus , updatedDescription);
+            cs.updatefront(tasks);
+            // If the update is successful, you may want to disable editing and update the UI accordingly
+            TASK_name.setEditable(false);
+            TASK_discription.setEditable(false);
+            TASK_Priority.setEditable(false);
+            TASK_Status.setEditable(false);
+            Notifications notification = Notifications.create()
+                    .title("Update Task")
+                    .text(" updating the task Successfully  " )
+                    .graphic(null)
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.CENTER);
+            notification.show();
+        } catch (SQLException e) {
+            // Handle the exception gracefully
+            Notifications notification = Notifications.create()
+                    .title("Update Task")
+                    .text("Error in updating the task: " + e.getMessage())
+                    .graphic(null)
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT);
+            notification.show();
+        }
+
+
     }
 
+    @FXML
+    void unlock(ActionEvent event) {
+        // Enable editing for the text fields
+        TASK_name.setEditable(true);
+        TASK_discription.setEditable(true);
+        TASK_Priority.setEditable(true);
+        TASK_Status.setEditable(true);
+    }
 
     public void setData(Tasks tasks) {
         TASK_name.setText(tasks.getName());

@@ -39,6 +39,20 @@ public class ServiceTasks implements CRUD<Tasks> {
             preparedStatement.executeUpdate();
         }
     }
+    public void updatefront(Tasks tasks) throws SQLException {
+        String sql = "UPDATE task SET name=?, priority=?, status=?, description=? WHERE id=?";
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(sql)) {
+            preparedStatement.setString(1, tasks.getName());
+            preparedStatement.setString(2, tasks.getPriority());
+            preparedStatement.setInt(3, tasks.getStatus());
+            preparedStatement.setString(4, tasks.getDescription());
+
+            preparedStatement.setInt(5, tasks.getId()); // Set the ID parameter
+
+
+            preparedStatement.executeUpdate();
+        }
+    }
 
     @Override
     public void deleteOne(int id) throws SQLException {

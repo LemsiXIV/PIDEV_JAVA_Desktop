@@ -1,6 +1,7 @@
 package com.webandit.webuild.controllers.Project.FrontControl;
 
 import com.webandit.webuild.models.Chantier;
+import com.webandit.webuild.models.Tasks;
 import com.webandit.webuild.services.ServiceChantier;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,6 +11,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -27,13 +29,13 @@ public class objject implements Initializable {
     private Label Project_date;
 
     @FXML
-    private Label Project_discription;
+    private TextField Project_discription;
 
     @FXML
-    private Label Project_name;
+    private TextField Project_name;
 
     @FXML
-    private Label Project_rem;
+    private TextField Project_rem;
 
     @FXML
     private ImageView img_user;
@@ -89,9 +91,48 @@ public class objject implements Initializable {
         }
 
     }
-
+    @FXML
+    void unlock(ActionEvent event) {
+        // Enable editing for the text fields
+        Project_name.setEditable(true);
+        Project_discription.setEditable(true);
+        Project_rem.setEditable(true);
+        
+    }
 
     public void update(ActionEvent event) {
+        // Collect the updated data from the text fields
+        String updatedName = Project_name.getText();
+        String updatedDescription = Project_discription.getText();
+
+        Float updatedrem = Float.parseFloat(Project_rem.getText());
+
+        // Update the data via the ServiceTasks class
+        try {
+            Chantier tasks = new Chantier(id,updatedName, updatedDescription, updatedrem );
+            cs.updatepro(tasks);
+            // If the update is successful, you may want to disable editing and update the UI accordingly
+            Project_name.setEditable(false);
+            Project_discription.setEditable(false);
+            Project_rem.setEditable(false);
+
+            Notifications notification = Notifications.create()
+                    .title("Update Project")
+                    .text(" updating the Project Successfully  " )
+                    .graphic(null)
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.CENTER);
+            notification.show();
+        } catch (SQLException e) {
+            // Handle the exception gracefully
+            Notifications notification = Notifications.create()
+                    .title("Update Project")
+                    .text("Error in updating the Project: " + e.getMessage())
+                    .graphic(null)
+                    .hideAfter(Duration.seconds(5))
+                    .position(Pos.BOTTOM_RIGHT);
+            notification.show();
+        }
 
     }
 

@@ -8,9 +8,11 @@ public class Tasks {
     private int id,status;
     private String name;
     private String priority;
+    private int prio;
     private String description;
     private String nomchantier;
     private Date due;
+    private  String datee;
     private Chantier id_chantier;
 
     // Constructure
@@ -24,6 +26,15 @@ public class Tasks {
         this.description = description;
         this.due = due;
         this.nomchantier = chnom;
+    }
+    public Tasks(  int id ,String name, String priority,int status, String description, Date due ) {
+        this.id = id;
+        this.status = status;
+        this.name = name;
+        this.priority = priority;
+        this.description = description;
+        this.due = due;
+
     }
     public Tasks(  String name, String priority,int status, String description, Date due , Chantier chantier) {
 
@@ -42,6 +53,16 @@ public class Tasks {
         this.description = description;
         this.due = due;
         this.nomchantier = chnom;
+    }
+
+    public Tasks(int id, String updatedName, String updatedPriority, int updatedStatus, String updatedDescription) {
+    this.id=id;
+    this.name=updatedName;
+    this.priority=updatedPriority;
+    this.status=updatedStatus;
+    this.description=updatedDescription;
+
+
     }
 
     // toString affichafe

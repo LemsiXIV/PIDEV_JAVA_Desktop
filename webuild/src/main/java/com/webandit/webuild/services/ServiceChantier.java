@@ -53,6 +53,17 @@ public class ServiceChantier implements CRUD<Chantier> {
             preparedStatement.executeUpdate();
         }
     }
+    public void updatepro(Chantier chantier) throws SQLException {
+        String sql = "UPDATE chantier SET nom=?, description=?, remuneration=? WHERE id=?";
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(sql)) {
+            preparedStatement.setString(1, chantier.getNom());
+            preparedStatement.setString(2, chantier.getDescription());
+            preparedStatement.setFloat(3, chantier.getRemuneration());
+            preparedStatement.setInt(4, chantier.getId());
+
+            preparedStatement.executeUpdate();
+        }
+    }
 
 
     @Override

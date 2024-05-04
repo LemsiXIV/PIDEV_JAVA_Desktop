@@ -22,6 +22,13 @@ public class Chantier {
 
 
     }
+    public Chantier(int id, String nom,String des,float rem) {
+        this.id = id;
+        this.nom = nom;
+        this.description=des;
+        this.remuneration=rem;
+
+    }
     public Chantier( String nom, String description, Date date, float remuneration) {
 
         this.nom = nom;

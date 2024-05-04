@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
@@ -22,21 +23,9 @@
             <Insets left="10.0" />
          </HBox.margin>
       </Label>
-      <Label fx:id="Project_name" contentDisplay="CENTER" prefHeight="23.0" prefWidth="149.0" text="Project 1">
-         <font>
-            <Font name="Corbel" size="17.0" />
-         </font>
-      </Label>
-      <Label fx:id="Project_discription" prefHeight="23.0" prefWidth="227.0" text="blablalbalblablabla">
-         <font>
-            <Font name="Corbel" size="17.0" />
-         </font>
-      </Label>
-      <Label fx:id="Project_rem" prefWidth="150.0" text="51513151$">
-         <font>
-            <Font name="Corbel" size="17.0" />
-         </font>
-      </Label>
+      <TextField fx:id="Project_name" editable="false" prefHeight="23.0" prefWidth="149.0" />
+      <TextField fx:id="Project_discription" editable="false" prefHeight="23.0" prefWidth="227.0" />
+      <TextField fx:id="Project_rem" editable="false" prefHeight="23.0" prefWidth="150.0" />
       <Label fx:id="Project_date" prefWidth="140.0" text="05/07/2000">
          <font>
             <Font name="Corbel" size="17.0" />
@@ -44,6 +33,15 @@
       </Label>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
+            <Button mnemonicParsing="false" onAction="#unlock">
+               <graphic>
+                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../image/icons8-work-50.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
             <Button mnemonicParsing="false" onAction="#update" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: #07D2B3;" styleClass="buttonv" stylesheets="@../../../css/style.css">
                <graphic>
                   <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
