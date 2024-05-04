@@ -1,38 +1,14 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.Assurance.front;
 
-import com.webandit.webuild.models.Assurance;
+import com.webandit.webuild.controllers.Assurance.front.CardDem;
 import com.webandit.webuild.models.Demande;
-import com.webandit.webuild.services.ServiceAssurance;
 import com.webandit.webuild.services.ServiceDemande;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
-import com.webandit.webuild.models.Assurance;
-import com.webandit.webuild.services.ServiceAssurance;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;

@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="532.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Backdemande">
+<AnchorPane prefHeight="532.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Assurance.back.Backdemande">
    <children>
       <TableView fx:id="tabdem" layoutX="5.0" layoutY="43.0" onMouseClicked="#getdatadem" prefHeight="268.0" prefWidth="734.0" style="-fx-background-color: #c90e0e;">
         <columns>
@@ -48,6 +48,6 @@
       </Text>
       <Button fx:id="validateBtn" layoutX="18.0" layoutY="325.0" mnemonicParsing="false" onAction="#RejectDemande" style="-fx-background-color: #c90e0e;" text="Rejeter" textFill="WHITE" />
       <Button fx:id="valid" layoutX="346.0" layoutY="475.0" mnemonicParsing="false" onAction="#checkAndValidateDemande" text="validité" />
-      <Button fx:id="pdf" layoutX="417.0" layoutY="478.0" mnemonicParsing="false" onAction="#generateContract" text="Button" />
+      <Button fx:id="pdf" layoutX="417.0" layoutY="478.0" mnemonicParsing="false" onAction="#generateContract" text="pdf" />
    </children>
 </AnchorPane>

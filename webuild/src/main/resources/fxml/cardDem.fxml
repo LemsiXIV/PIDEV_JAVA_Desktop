@@ -1,28 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.webandit.webuild.controllers.CardDem"
-            prefHeight="400.0" prefWidth="600.0">
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Assurance.front.CardDem">
 
 
 
         <children>
-            <VBox layoutX="13.0" layoutY="31.0" prefHeight="188.0" prefWidth="174.0" spacing="10">
+            <VBox layoutX="13.0" layoutY="31.0" prefHeight="188.0" prefWidth="313.0" spacing="10">
                 <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                 <children>
 
-                    <VBox prefHeight="150.0" prefWidth="250.0" spacing="5.0">
+                    <VBox prefHeight="150.0" prefWidth="230.0" spacing="5.0">
                         <!-- Titre -->
                         <Label fx:id="Nom" style="-fx-font-weight: bold;">
                             <font>
@@ -60,10 +57,10 @@
                     </VBox>
                 </children>
             </VBox>
+      <Button layoutX="105.0" layoutY="287.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="221.0"   onAction="#generateContract" text="getContract" />
         </children>
         <styleClass>
             <String fx:value="fruit-item" />
             <String fx:value="shadow" />
         </styleClass>
     </AnchorPane>
-

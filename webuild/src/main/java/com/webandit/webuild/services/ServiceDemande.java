@@ -20,29 +20,31 @@ public class ServiceDemande implements CRUD<Demande> {
 
     @Override
     public void insertOne(Demande demande) throws SQLException {
-        String query = "INSERT INTO demande (assurance_id, montant, user, date_debut, date_fin, commentaire, status) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO demande (assurance_id, montant,  date_debut, date_fin, commentaire, status,user_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
         PreparedStatement pstmt = cnx.prepareStatement(query);
         pstmt.setInt(1, demande.getA().getId());
         pstmt.setInt(2, demande.getMontant());
-        pstmt.setInt(3, demande.getUser());
-        pstmt.setDate(4, demande.getDate_debut());
-        pstmt.setDate(5, demande.getDate_fin());
-        pstmt.setString(6, demande.getCommentaire());
-        pstmt.setInt(7, demande.getStatus());
+
+        pstmt.setDate(3, demande.getDate_debut());
+        pstmt.setDate(4, demande.getDate_fin());
+        pstmt.setString(5, demande.getCommentaire());
+        pstmt.setInt(6, demande.getStatus());
+        pstmt.setInt(7, demande.getUser());
         pstmt.executeUpdate();
     }
 
     @Override
     public void updateOne(Demande demande) throws SQLException {
-        String query = "UPDATE demande SET assurance_id = ?, montant = ?, user = ?, date_debut = ?, date_fin = ?, commentaire = ?, status = ? WHERE id_d = ?";
+        String query = "UPDATE demande SET assurance_id = ?, montant = ?, date_debut = ?, date_fin = ?, commentaire = ?, status = ?, user_id = ? WHERE id_d = ?";
         PreparedStatement pstmt = cnx.prepareStatement(query);
         pstmt.setInt(1, demande.getA().getId());
         pstmt.setInt(2, demande.getMontant());
-        pstmt.setInt(3, demande.getUser());
-        pstmt.setDate(4, demande.getDate_debut());
-        pstmt.setDate(5, demande.getDate_fin());
-        pstmt.setString(6, demande.getCommentaire());
-        pstmt.setInt(7, demande.getStatus());
+
+        pstmt.setDate(3, demande.getDate_debut());
+        pstmt.setDate(4, demande.getDate_fin());
+        pstmt.setString(5, demande.getCommentaire());
+        pstmt.setInt(6, demande.getStatus());
+        pstmt.setInt(7, demande.getUser());
         pstmt.setInt(8, demande.getId_d());
         int rowsAffected = pstmt.executeUpdate();
 
@@ -74,7 +76,7 @@ public class ServiceDemande implements CRUD<Demande> {
             Assurance assurance = serviceAssurance.selectOne(rs.getInt("assurance_id"));
             demande.setA(assurance); // Définir l'objet Assurance pour la demande
             demande.setMontant(rs.getInt("montant"));
-            demande.setUser(rs.getInt("user"));
+            demande.setUser(rs.getInt("user_id"));
             demande.setDate_debut(rs.getDate("date_debut"));
             demande.setDate_fin(rs.getDate("date_fin"));
             demande.setCommentaire(rs.getString("commentaire"));
@@ -118,4 +120,25 @@ public class ServiceDemande implements CRUD<Demande> {
         long diffInMillies = Math.abs(endDate.getTime() - startDate.getTime());
         return diffInMillies / (24 * 60 * 60 * 1000);
     }
+    public Assurance selectOne(int id) throws SQLException {
+        String query = "SELECT * FROM assurance WHERE id = ?";
+        PreparedStatement pstmt = cnx.prepareStatement(query);
+        pstmt.setInt(1, id);
+        ResultSet rs = pstmt.executeQuery();
+        if (rs.next()) {
+            Assurance assurance = new Assurance();
+            assurance.setId(rs.getInt("id"));
+            assurance.setNom(rs.getString("nom"));
+            assurance.setDescription(rs.getString("description"));
+            assurance.setImage(rs.getString("image"));
+            assurance.setCondition_age(rs.getString("condition_age"));
+            assurance.setCondition_medicale(rs.getString("condition_medicale"));
+            assurance.setCondition_financiere(rs.getString("condition_financiere"));
+            assurance.setFranchise(rs.getInt("franchise"));
+            assurance.setPrime(rs.getInt("prime"));
+            return assurance;
+        }
+        return null; // Retourner null si aucune assurance correspondante n'est trouvée
+    }
+
 }

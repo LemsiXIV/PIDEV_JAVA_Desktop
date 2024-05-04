@@ -9,7 +9,7 @@
 
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<AnchorPane prefHeight="250.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.AssuranceCardController">
+<AnchorPane prefHeight="250.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Assurance.front.AssuranceCardController">
 
     <children>
         <VBox layoutX="13.0" layoutY="31.0" prefHeight="188.0" prefWidth="174.0" spacing="10">

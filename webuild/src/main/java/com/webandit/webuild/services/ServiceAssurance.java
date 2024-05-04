@@ -120,5 +120,31 @@ public  class ServiceAssurance implements CRUD<Assurance>{
         return null; // Retourner null si aucune assurance correspondante n'est trouvée
     }
 
-}
+
+    public List<Assurance> rechercherOffres(String searchTerm) throws SQLException {
+        List<Assurance> searchResults = new ArrayList<>();
+        String query = "SELECT * FROM assurance WHERE nom LIKE ? OR description LIKE ? ";
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(query)) {
+            String searchPattern = "%" + searchTerm + "%";
+            preparedStatement.setString(1, searchPattern);
+            preparedStatement.setString(2, searchPattern);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                   Assurance assurance= new Assurance();
+
+                    assurance.setId(resultSet.getInt("id"));
+                    assurance.setNom(resultSet.getString("nom"));
+                    assurance.setDescription(resultSet.getString("description"));
+                    assurance.setImage(resultSet.getString("image"));
+                    assurance.setCondition_age(resultSet.getString("condition_age"));
+                    assurance.setCondition_medicale(resultSet.getString("condition_medicale"));
+                    assurance.setCondition_financiere(resultSet.getString("condition_financiere"));
+                    assurance.setFranchise(resultSet.getInt("franchise"));
+                    assurance.setPrime(resultSet.getInt("prime"));
+                    searchResults.add(assurance);
+                }
+            }
+        }
+        return searchResults;
+    }}
 

@@ -1,4 +1,4 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.Assurance.front;
 
 import com.webandit.webuild.models.Assurance;
 import com.webandit.webuild.models.Demande;
@@ -94,7 +94,7 @@ private TextField montanttxt;
         }
 
         // Set default values for user and status
-        int defaultUser = 1;
+        int defaultUser = 4;
         Integer defaultStatus = 0; // Using Integer instead of int to allow null values
 
 

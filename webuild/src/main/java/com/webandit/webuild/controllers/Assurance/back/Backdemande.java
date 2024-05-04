@@ -1,4 +1,4 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.Assurance.back;
 
 
 import com.webandit.webuild.models.Assurance;
@@ -20,7 +20,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
+
 import java.time.LocalDate;
 import com.itextpdf.kernel.pdf.PdfDocument;
 import com.itextpdf.kernel.pdf.PdfWriter;
@@ -191,7 +191,7 @@ public class Backdemande {
         }
 
             // Set default values for user and status
-            int defaultUser = 1;
+            int defaultUser = 4;
                 Integer defaultStatus = 0; // Using Integer instead of int to allow null values
 
 

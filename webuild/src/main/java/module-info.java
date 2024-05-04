@@ -13,6 +13,10 @@ module com.webandit.webuild {
     opens com.webandit.webuild.models to javafx.base;
     exports com.webandit.webuild.test;
     opens com.webandit.webuild.test to javafx.fxml;
+    exports com.webandit.webuild.controllers.Assurance.front;
+    opens com.webandit.webuild.controllers.Assurance.front to javafx.fxml;
+    exports com.webandit.webuild.controllers.Assurance.back;
+    opens com.webandit.webuild.controllers.Assurance.back to javafx.fxml;
 
 
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Demandefront">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Assurance.front.Demandefront">
    <children>
       <TextField fx:id="assuranceField" layoutX="119.0" layoutY="86.0" prefHeight="26.0" prefWidth="110.0" />
       <TextField fx:id="montanttxt" layoutX="405.0" layoutY="91.0" prefHeight="30.0" prefWidth="150.0" />
