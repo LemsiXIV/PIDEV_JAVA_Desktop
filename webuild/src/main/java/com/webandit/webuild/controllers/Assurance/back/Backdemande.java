@@ -375,7 +375,7 @@ public class Backdemande {
 
             // Send an SMS notification to the client
             String clientPhoneNumber = "+21698134491"; // Get the client's phone number from the demande or any other source
-            String message = "On est desolé, Votre demande a été rejetée."; // Message to send
+            String message = "On est desolé, Votre demande pour l'assurance "+ selectedDemande.getA().getNom()+" a été rejetée."; // Message to send
             TwilioSMSFXML.sendSMS(clientPhoneNumber, message);
 
             // Show a success message
@@ -441,7 +441,39 @@ public class Backdemande {
         try {    String pdfFileName = "contract_" + selectedDemande.getId_d() + ".pdf";
             PdfDocument pdfDocument = new PdfDocument(new PdfWriter(pdfFileName));
             Document document = new Document(pdfDocument);
-
+            document.add(new Paragraph("Contrat d'Assurance\n" + selectedDemande.getId_d()+
+                    "\n" +
+                    "Entre l'assureur WEBUILD, une société d'assurance enregistrée selon les lois en vigueur en Tunisie, avec son siège social situé à Ariana, " +
+                    "\n" +
+                    "Et l'Assuré,\n" +
+                    "\n" +
+                    "Il est convenu ce qui suit :\n" +
+                    "\n" +
+                    "1. Objet de l'Assurance : "+ selectedDemande.getA().getNom()+"\n" +
+                    "L'Assureur s'engage à fournir à l'Assuré une couverture d'assurance conformément aux termes et conditions spécifiés dans le présent contrat, pour les risques et événements assurés tels que définis dans les annexes et documents complémentaires joints à ce contrat.\n" +
+                    "\n" +
+                    "2. Durée du Contrat : de "+ selectedDemande.getDate_debut()+" à "+ selectedDemande.getDate_fin()+"\n" +
+                    "Le présent contrat entre en vigueur à partir de la date de signature par les deux parties et demeure en vigueur pour une période de [durée], sauf résiliation anticipée conformément aux dispositions prévues dans ce contrat.\n" +
+                    "\n" +
+                    "3. Prime d'Assurance :" + selectedDemande.getA().getPrime()+"\n" +
+                    "En contrepartie de la couverture d'assurance fournie par l'Assureur, l'Assuré s'engage à payer à l'Assureur une prime d'assurance périodique de"+  selectedDemande.getA().getPrime()+" selon les modalités et les échéances convenues entre les parties.\n" +
+                    "\n" +
+                    "4. Obligations de l'Assuré :\n" +
+                    "L'Assuré s'engage à fournir à l'Assureur toutes les informations et documents nécessaires à l'évaluation du risque assuré, ainsi qu'à notifier à l'Assureur tout changement significatif dans les circonstances qui pourraient affecter l'assurance couverte par ce contrat.\n" +
+                    "\n" +
+                    "5. Obligations de l'Assureur :\n" +
+                    "L'Assureur s'engage à fournir à l'Assuré une couverture d'assurance conforme aux termes de ce contrat, et à traiter toute réclamation de manière équitable et en temps opportun, conformément aux dispositions légales et réglementaires en vigueur.\n" +
+                    "\n" +
+                    "6. Réclamations :\n" +
+                    "En cas de survenance d'un événement assuré, l'Assuré s'engage à notifier à l'Assureur dans les délais spécifiés dans les conditions générales de ce contrat, et à fournir à l'Assureur toutes les preuves et informations nécessaires à la gestion de la réclamation.\n" +
+                    "\n" +
+                    "7. Résiliation :\n" +
+                    "Ce contrat peut être résilié par l'une ou l'autre des parties conformément aux conditions générales et particulières spécifiées dans les documents contractuels.\n" +
+                    "\n" +
+                    "8. Loi Applicable et Juridiction compétente :\n" +
+                    "Ce contrat est régi par les lois en vigueur en Tunisie. Tout litige découlant de ce contrat sera soumis à la juridiction exclusive des tribunaux compétents de Tunis.\n" +
+                    "\n"
+                     ));
             // Add content to the PDF document
             document.add(new Paragraph("Contract for Demande ID: " + selectedDemande.getId_d()));
             document.add(new Paragraph("Montant: " + selectedDemande.getMontant()));
