@@ -1,24 +1,25 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.Project;
 
+import java.sql.Date;
 import java.time.ZonedDateTime;
 
 public class CalendarActivity {
-    private ZonedDateTime date;
+    private Date datee;
     private String clientName;
     private Integer serviceNo;
 
-    public CalendarActivity(ZonedDateTime date, String clientName, Integer serviceNo) {
-        this.date = date;
+    public CalendarActivity(Date date, String clientName, Integer serviceNo) {
+        this.datee = date;
         this.clientName = clientName;
         this.serviceNo = serviceNo;
     }
 
-    public ZonedDateTime getDate() {
-        return date;
+    public Date getDate() {
+        return datee;
     }
 
-    public void setDate(ZonedDateTime date) {
-        this.date = date;
+    public void setDate(Date date) {
+        this.datee = date;
     }
 
     public String getClientName() {
@@ -40,7 +41,7 @@ public class CalendarActivity {
     @Override
     public String toString() {
         return "CalenderActivity{" +
-                "date=" + date +
+                "date=" + datee +
                 ", clientName='" + clientName + '\'' +
                 ", serviceNo=" + serviceNo +
                 '}';

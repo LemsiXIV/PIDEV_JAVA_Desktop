@@ -1,16 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Materiel">
+<AnchorPane prefHeight="664.0" prefWidth="892.0" styleClass="main-pane" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Materiel.Back.MaterielController">
    <children>
-      <ImageView fitHeight="332.0" fitWidth="379.0" layoutX="134.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../image/youfez.jpg" />
-         </image>
-      </ImageView>
+      <TableView fx:id="tableMateriel" layoutX="41.0" layoutY="32.0" onMouseClicked="#handleTableViewSelection" prefHeight="200.0" prefWidth="709.0" styleClass="table-view">
+         <columns>
+            <TableColumn fx:id="libelleColumn" prefWidth="150.0" text="Libelle" />
+            <TableColumn fx:id="descriptionColumn" prefWidth="300.0" text="Description" />
+            <TableColumn fx:id="prixColumn" prefWidth="100.0" text="Prix" />
+            <TableColumn fx:id="imageColumn" prefWidth="150.0" text="Image" />
+         </columns>
+      </TableView>
+      <Text layoutX="94.0" layoutY="290.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-text" text="Libelle" />
+      <Text layoutX="91.0" layoutY="336.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-text" text="Description" />
+      <Text layoutX="94.0" layoutY="450.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-text" text="Prix" />
+      <Button fx:id="savebtn" layoutX="41.0" layoutY="490.0" mnemonicParsing="false" onAction="#saveMateriel" prefHeight="31.0" prefWidth="150.0" styleClass="button" text="Ajouter">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="savebtn2" layoutX="201.0" layoutY="490.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" styleClass="button" text="Modifier">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="savebtn3" layoutX="361.0" layoutY="490.0" mnemonicParsing="false" onAction="#deleteMateriel" prefHeight="31.0" prefWidth="150.0" styleClass="button" text="Supprimer">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <Button fx:id="importImageButton" layoutX="521.0" layoutY="490.0" mnemonicParsing="false" onAction="#importImage" prefHeight="31.0" prefWidth="150.0" styleClass="button" text="Importer image">
+         <effect>
+            <DropShadow />
+         </effect>
+      </Button>
+      <TextField fx:id="libelleField" layoutX="200.0" layoutY="262.0" prefHeight="31.0" prefWidth="200.0" styleClass="text-input">
+         <effect>
+            <DropShadow />
+         </effect>
+      </TextField>
+      <TextArea fx:id="descriptionField" layoutX="200.0" layoutY="314.0" prefHeight="100.0" prefWidth="400.0" styleClass="text-area">
+         <effect>
+            <DropShadow />
+         </effect>
+      </TextArea>
+      <TextField fx:id="prixField" layoutX="200.0" layoutY="430.0" prefHeight="31.0" prefWidth="200.0" styleClass="text-input">
+         <effect>
+            <DropShadow />
+         </effect>
+      </TextField>
    </children>
 </AnchorPane>
