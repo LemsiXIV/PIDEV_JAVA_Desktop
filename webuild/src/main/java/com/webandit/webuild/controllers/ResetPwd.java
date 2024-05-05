@@ -31,6 +31,7 @@ public class ResetPwd {
     @FXML
     private Button codeVerifier;
 
+
     private String generateVerificationCode() {
         // Generate a random 6-digit code
         return String.format("%06d", (int) (Math.random() * 1000000));
@@ -38,14 +39,12 @@ public class ResetPwd {
 
     @FXML
     void validerEmail(ActionEvent event) {
-
+        generatedCode=generateVerificationCode();
         String emailAddress = email.getText();
         if (!isValidEmail(emailAddress)) {
             showAlert(Alert.AlertType.ERROR, "Invalid Email", "Please enter a valid email address.");
             return;
         }
-
-        generatedCode = generateVerificationCode();
         try {
             sendEmail(emailAddress, "Verification Code", "Your verification code is: " + generatedCode);
             showAlert(Alert.AlertType.INFORMATION, "Email Sent", "A verification code has been sent to your email address.");
@@ -111,23 +110,21 @@ public class ResetPwd {
     }
 
     @FXML
-    void verifierCode(ActionEvent event) {
+    void verifierCode(ActionEvent event) throws IOException {
         String enteredCode = code.getText();
         if (enteredCode.equals(generatedCode)) {
             showAlert(Alert.AlertType.INFORMATION, "Code Verified", "Verification code is correct. You can proceed.");
-            try {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Change-pwd.fxml"));
-                Parent root = loader.load();
+                Parent root =(Parent) loader.load();
+                ChangePwd changePwdController = loader.getController();
+
+            // Set the email in the ChangePwd controller
+                changePwdController.setEmail(email.getText());
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) codeVerifier.getScene().getWindow();
                 stage.setScene(scene);
                 stage.show();
-            } catch (IOException e) {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Erreur de saisie");
-                alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
-                alert.show();
-            }
+
         } else {
             showAlert(Alert.AlertType.ERROR, "Invalid Verification Code", "The verification code you entered is invalid.");
         }

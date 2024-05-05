@@ -117,23 +117,5 @@ public class serviceUtilisateur implements CRUD<Utilisateur>{
         statement.executeUpdate(sql);
         statement.close();
     }
-    public boolean verifyToken(String token) {
-        try {
-            String query = "SELECT * FROM verification_tokens WHERE token = '" + token + "' AND expiry_time > NOW()";
-            Statement statement = cnx.createStatement();
-            // Execute the query
-            ResultSet resultSet = statement.executeQuery(query);
 
-            // If the token exists and is not expired, return true
-            if (resultSet.next()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            // Handle any SQL exceptions
-            e.printStackTrace();
-        }
-
-        // If token verification fails, return false
-        return false;
-    }
 }

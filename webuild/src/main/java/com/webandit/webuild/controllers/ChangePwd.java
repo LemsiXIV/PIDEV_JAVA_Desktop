@@ -27,21 +27,37 @@ public class ChangePwd {
 
     @FXML
     private Label nvpwderr;
-    String email= SessionManagement.getInstance().getEmail();
-    String pwd= SessionManagement.getInstance().getPwd();
+
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     @FXML
     void changerPwd(ActionEvent event) {
-        String nvPwd=nvPassw.getText() ;
-        String confirmPwd= confirmNvPwd.getText();
+        String nvPwd = nvPassw.getText();
+        String confirmPwd = confirmNvPwd.getText();
+
+        if (!nvPwd.equals(confirmPwd)) {
+            nvpwderr.setStyle("-fx-text-fill: red;");
+            nvpwderr.setText("Passwords do not match");
+            nvpwderr.requestFocus();
+            return;
+        }
         com.webandit.webuild.services.serviceUtilisateur sp = new serviceUtilisateur();
         try{
-            sp.updatePassword(email,pwd);
+            sp.updatePassword(email,nvPwd);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Password Updated");
+            alert.setContentText("Password Updated");
             alert.show();
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Change-pwd.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
                 Parent root = loader.load();
                 Scene scene = new Scene(root);
                 Stage stage = (Stage) newPWD.getScene().getWindow();
@@ -62,5 +78,7 @@ public class ChangePwd {
             throw new RuntimeException(e);
         }
     }
+
+
 
 }

@@ -23,15 +23,7 @@ public class VerifierAccount {
     private Button vérifier;
 
     private String codeG;
-    private String emailCurrent;
 
-    public String getEmailCurrent(String email) {
-        return emailCurrent;
-    }
-
-    public void setEmailCurrent(String emailCurrent) {
-        this.emailCurrent = emailCurrent;
-    }
 
     public String getCodeG() {
         return codeG;
@@ -40,7 +32,7 @@ public class VerifierAccount {
     public void setCodeG(String codeG) {
         this.codeG = codeG;
     }
-
+    String emailCurrent=SessionManagement.getInstance().getEmail();
     @FXML
     void verif_account(ActionEvent event) throws SQLException {
             String entredCode= code.getText();

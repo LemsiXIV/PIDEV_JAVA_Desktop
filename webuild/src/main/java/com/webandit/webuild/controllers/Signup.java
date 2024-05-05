@@ -121,7 +121,8 @@ public class Signup {
                 sp.insertOne(u);
                 SessionManagement sessionManagement = new SessionManagement(u.getId(), u.getNom(), u.getPrenom(), u.getTelephone(), u.getAdresse(), u.getEmail(), u.getPassword(), u.getRoles(), u.getIs_verified());
                 // Set the current session
-                SessionManagement.setInstance(sessionManagement);                try {
+                SessionManagement.setInstance(sessionManagement);
+                try {
                     sendEmail(email, "Verification Code", "Your verification code is: " + generatedCode);
                     showAlert(Alert.AlertType.INFORMATION, "Email Sent", "A verification code has been sent to your email address.");
                 } catch (MessagingException e) {
@@ -133,7 +134,7 @@ public class Signup {
             Parent root = loader.load();
             VerifierAccount verifierAccountController = loader.getController(); // Get the controller instance
             verifierAccountController.setCodeG(generatedCode);
-            verifierAccountController.getEmailCurrent(email);// Set the generated code
+            //verifierAccountController.getEmailCurrent(email);// Set the generated code
             Scene scene = new Scene(root);
             Stage stage = (Stage) savebtn.getScene().getWindow();
             stage.setScene(scene);
