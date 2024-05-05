@@ -1,22 +1,24 @@
 package com.webandit.webuild.models;
 
 import java.math.BigDecimal;
-
+import java.sql.Blob;
 public class Candidature {
 
     private int id;
     private Offre offre;
     private String offreTitle;
+
     private int id_client;
     private String description;
 
     private String competences;
     private  String email;
+    private String cv;
 
 
     public Candidature() {};
 
-    public Candidature(int id, Offre offre, String offreTitle, int id_client, String description, String competences, String email) {
+    public Candidature(int id, Offre offre, String offreTitle, int id_client, String description, String competences, String email,String cv) {
         this.id = id;
         this.offre = offre;
         this.offreTitle = offreTitle;
@@ -24,6 +26,13 @@ public class Candidature {
         this.description = description;
         this.competences = competences;
         this.email = email;
+        this.cv=cv;
+    }
+    public Candidature(int id, String description, String email,String cv) {
+        this.id = id;
+        this.description = description;
+        this.email = email;
+        this.cv=cv;
     }
 
     public int getId() {
@@ -82,6 +91,14 @@ public class Candidature {
         this.offreTitle = offreTitle;
     }
 
+    public String getCv() {
+        return cv;
+    }
+
+    public void setCv(String cv) {
+        this.cv = cv;
+    }
+
     @Override
     public String toString() {
         return "Candidature{" +
@@ -92,6 +109,7 @@ public class Candidature {
                 ", description='" + description + '\'' +
                 ", competences='" + competences + '\'' +
                 ", email='" + email + '\'' +
+                ", cv='" + cv + '\'' +
                 '}';
     }
 }

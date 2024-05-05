@@ -2,6 +2,9 @@ module com.webandit.webuild {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires javafx.web;
+    requires jdk.jsobject;
+    requires java.mail;
 
     // Open packages to JavaFX modules
     opens com.webandit.webuild.controllers to javafx.fxml;

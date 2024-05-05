@@ -17,7 +17,7 @@ public class ServiceCandidature implements CRUD<Candidature>{
     }
     @Override
     public void insertOne(Candidature candidature) throws SQLException {
-        String req = "INSERT INTO `candidature`(`offre_id`, `id_client`, `description`, `competences`, `email`) VALUES (?, ?, ?, ?, ?)";
+        String req = "INSERT INTO `candidature`(`offre_id`, `id_client`, `description`, `competences`, `email`,`cv`) VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = cnx.prepareStatement(req);
 
         ps.setInt(1, candidature.getOffre().getId());
@@ -25,7 +25,7 @@ public class ServiceCandidature implements CRUD<Candidature>{
         ps.setString(3, candidature.getDescription());
         ps.setString(4, candidature.getCompetences());
         ps.setString(5, candidature.getEmail());
-
+        ps.setString(6, candidature.getCv());
         // Execute the prepared statement
         ps.executeUpdate();
         System.out.println("Candidature Added !");
@@ -33,7 +33,7 @@ public class ServiceCandidature implements CRUD<Candidature>{
 
     @Override
     public void updateOne(Candidature candidature) throws SQLException {
-        String req = "UPDATE `candidature` SET `offre_id`=?, `id_client`=?, `description`=?, `competences`=?, `email`=? WHERE `id`=?";
+        String req = "UPDATE `candidature` SET `offre_id`=?, `id_client`=?, `description`=?, `competences`=?, `email`=? ,`cv`=? WHERE `id`=?";
         PreparedStatement ps = cnx.prepareStatement(req);
 
         ps.setInt(1, candidature.getOffre().getId());
@@ -42,6 +42,7 @@ public class ServiceCandidature implements CRUD<Candidature>{
         ps.setString(4, candidature.getCompetences());
         ps.setString(5, candidature.getEmail());
         ps.setInt(6, candidature.getId());
+        ps.setString(7, candidature.getCv());
 
         ps.executeUpdate();
         System.out.println("Candidature Updated !");
@@ -52,6 +53,13 @@ public class ServiceCandidature implements CRUD<Candidature>{
         String req = "DELETE FROM `candidature` WHERE `id`=?";
         PreparedStatement ps = cnx.prepareStatement(req);
         ps.setInt(1, candidature.getId());
+        ps.executeUpdate();
+        System.out.println("Candidature Deleted !");
+    }
+    public void deleteCan(int id) throws SQLException {
+        String req = "DELETE FROM `candidature` WHERE `id`=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1, id);
         ps.executeUpdate();
         System.out.println("Candidature Deleted !");
     }
@@ -82,6 +90,7 @@ public class ServiceCandidature implements CRUD<Candidature>{
             c.setDescription(rs.getString("description"));
             c.setCompetences(rs.getString("competences"));
             c.setEmail(rs.getString("email"));
+            c.setCv(rs.getString("cv"));
 
             candidatureList.add(c);
         }
@@ -109,6 +118,7 @@ public class ServiceCandidature implements CRUD<Candidature>{
                     candidature.setDescription(resultSet.getString("description"));
                     candidature.setCompetences(resultSet.getString("competences"));
                     candidature.setEmail(resultSet.getString("email"));
+                    candidature.setCv(resultSet.getString("cv"));
                     candidatures.add(candidature);
                 }
             }
@@ -135,6 +145,17 @@ public class ServiceCandidature implements CRUD<Candidature>{
         return candidatures;
     }
 
+    public void updatepro(Candidature candidature) throws SQLException {
+        String req = "UPDATE `candidature` SET  `description`=?, `email`=? ,`cv`=? WHERE `id`=?";
+        PreparedStatement ps = cnx.prepareStatement(req);
 
+        ps.setString(1, candidature.getDescription());
+        ps.setString(2, candidature.getEmail());
+        ps.setString(3, candidature.getCv());
+        ps.setInt(4, candidature.getId());
+
+        ps.executeUpdate();
+        System.out.println("Candidature Updated !");
+    }
 }
 
