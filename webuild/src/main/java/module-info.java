@@ -14,6 +14,7 @@ module com.webandit.webuild {
     requires javafx.swing;
     requires java.mail;
     requires jdk.jsobject;
+    requires android.json;
 
 
     exports com.webandit.webuild.controllers;
@@ -35,6 +36,8 @@ module com.webandit.webuild {
     opens com.webandit.webuild.controllers.Materiel.Back to javafx.fxml;
     opens com.webandit.webuild.controllers.Materiel.Front to javafx.fxml;
     opens com.webandit.webuild.controllers.offres to javafx.fxml;
+    opens com.webandit.webuild.controllers.back to javafx.fxml;
+    opens com.webandit.webuild.controllers.front to javafx.fxml;
     opens com.webandit.webuild.test to javafx.fxml;
     opens com.webandit.webuild.models;
     exports com.webandit.webuild.test;

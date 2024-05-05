@@ -137,7 +137,7 @@ public class FrontOffres {
     @FXML
     void showMap(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("/fxml/map.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/offre/map.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setTitle("OpenStreetMap");

@@ -3,7 +3,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -45,7 +44,7 @@ public class card {
     void Postuler(ActionEvent event) {
         try {
             // Load the Candidatures.fxml file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/addCandidatureFront.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/offre/addCandidatureFront.fxml"));
             Parent candidaturesRoot = loader.load();
 
             // Create a new stage for the Candidatures scene

@@ -36,7 +36,7 @@ public class FrontCandidature implements Initializable {
 
         for (int i=0; i< condidature.size();i++){
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/fxml/CandidatureRow.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/fxml/offre/CandidatureRow.fxml"));
 
             try {
                 HBox hBox = fxmlLoader.load();
@@ -61,7 +61,7 @@ public class FrontCandidature implements Initializable {
 
     }
     public void refreche() throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/FrontCandidature.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/offre/FrontCandidature.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
 

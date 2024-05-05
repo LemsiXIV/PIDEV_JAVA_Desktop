@@ -19,16 +19,16 @@
             <children>
                 <ScrollPane prefHeight="200.0" prefWidth="200.0">
                     <content>
-                        <VBox prefHeight="700.0" prefWidth="1097.0" styleClass="white-background" stylesheets="@../css/tableCan.css">
+                        <VBox prefHeight="700.0" prefWidth="1097.0" styleClass="white-background" stylesheets="@../../css/tableCan.css">
                             <children>
                                 <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                     <children>
                                         <Pane prefHeight="200.0" prefWidth="200.0" HBox.hgrow="ALWAYS" />
-                                        <Button mnemonicParsing="false" styleClass="transparent" stylesheets="@../css/tableCan.css">
+                                        <Button mnemonicParsing="false" styleClass="transparent" stylesheets="@../../css/tableCan.css">
                                             <graphic>
                                                 <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                                     <image>
-                                                        <Image url="@../image/malek.jpg" />
+                                                        <Image url="@../../image/malek.jpg" />
                                                     </image>
                                                 </ImageView>
                                             </graphic>
@@ -57,11 +57,11 @@
                                 </HBox>
                                 <HBox maxHeight="559.0" maxWidth="1102.0" minHeight="559.0" minWidth="990.0" prefHeight="559.0" prefWidth="1102.0" VBox.vgrow="ALWAYS">
                                     <children>
-                                        <ScrollPane maxHeight="559.0" maxWidth="1067.0" minHeight="559.0" minWidth="928.0" prefHeight="559.0" prefWidth="1067.0" styleClass="transparent" stylesheets="@../css/tableCan.css">
+                                        <ScrollPane maxHeight="559.0" maxWidth="1067.0" minHeight="559.0" minWidth="928.0" prefHeight="559.0" prefWidth="1067.0" styleClass="transparent" stylesheets="@../../css/tableCan.css">
                                             <content>
-                                                <VBox fx:id="Candidature_Ligne_Info" prefHeight="557.0" prefWidth="1052.0" spacing="10.0" styleClass="white-background" stylesheets="@../css/tableCan.css">
+                                                <VBox fx:id="Candidature_Ligne_Info" prefHeight="557.0" prefWidth="1052.0" spacing="10.0" styleClass="white-background" stylesheets="@../../css/tableCan.css">
                                                     <children>
-                                                        <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="200.0" spacing="10.0" styleClass="light-gray-background" stylesheets="@../css/tableCan.css">
+                                                        <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="200.0" spacing="10.0" styleClass="light-gray-background" stylesheets="@../../css/tableCan.css">
                                                             <children>
                                                                 <Label alignment="CENTER" prefWidth="50.0" text="A">
                                                                     <font>
@@ -101,137 +101,137 @@
                                             <children>
                                                 <VBox maxHeight="560.0" minHeight="494.0" prefHeight="560.0" prefWidth="46.0">
                                                     <children>
-                                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="55.0" maxWidth="43.0" minHeight="55.0" prefHeight="55.0" prefWidth="43.0" styleClass="light-gray-background" stylesheets="@../css/tableCan.css" text="#">
+                                                        <Label alignment="CENTER" contentDisplay="CENTER" maxHeight="55.0" maxWidth="43.0" minHeight="55.0" prefHeight="55.0" prefWidth="43.0" styleClass="light-gray-background" stylesheets="@../../css/tableCan.css" text="#">
                                                             <font>
                                                                 <Font name="Corbel Bold" size="20.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="A" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="A" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="B" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="B" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="C" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="C" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="D" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="D" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="E" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="E" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="F" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="F" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="G" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="G" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="H" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="H" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="I" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="I" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="J" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="J" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="K" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="K" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="L" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="L" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="M" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="M" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="N" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="N" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="O" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="O" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="P" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="P" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="Q" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="Q" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="R" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="R" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="S" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="S" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="T" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="T" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="U" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="U" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="V" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="V" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="W" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="W" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="X" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="X" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="Y" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="Y" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>
                                                         </Label>
-                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../css/tableCan.css" text="Z" textFill="#575757">
+                                                        <Label alignment="CENTER" prefHeight="55.0" prefWidth="43.0" stylesheets="@../../css/tableCan.css" text="Z" textFill="#575757">
                                                             <font>
                                                                 <Font name="Corbel" size="18.0" />
                                                             </font>

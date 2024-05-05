@@ -314,7 +314,7 @@ public class Candidatures {
     @FXML
     void SendingMails(ActionEvent event) throws IOException {
 // Load the EmailForm.fxml file
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EmailConfirmation.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/offre/EmailConfirmation.fxml"));
         Parent root = fxmlLoader.load();
 
         // Create a new stage for the email form
