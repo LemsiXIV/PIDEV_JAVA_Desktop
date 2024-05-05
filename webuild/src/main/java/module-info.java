@@ -13,6 +13,7 @@ module com.webandit.webuild {
     requires stripe.java;
     requires javafx.swing;
     requires java.mail;
+    requires jdk.jsobject;
 
 
     exports com.webandit.webuild.controllers;
@@ -33,11 +34,13 @@ module com.webandit.webuild {
     opens com.webandit.webuild.controllers.Project to javafx.fxml;
     opens com.webandit.webuild.controllers.Materiel.Back to javafx.fxml;
     opens com.webandit.webuild.controllers.Materiel.Front to javafx.fxml;
+    opens com.webandit.webuild.controllers.offres to javafx.fxml;
     opens com.webandit.webuild.test to javafx.fxml;
     opens com.webandit.webuild.models;
     exports com.webandit.webuild.test;
     exports com.webandit.webuild.controllers.Project.BackControl;
     exports com.webandit.webuild.controllers.Project.FrontControl;
+    exports com.webandit.webuild.controllers.offres;
 
 
 

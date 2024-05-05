@@ -48,6 +48,15 @@
                            </font></Button>
                             </children>
                         </HBox>
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#Offres" prefHeight="45.0" prefWidth="158.0" text="Offres" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="94.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
                                 <Button mnemonicParsing="false" onAction="#Assurence" prefHeight="45.0" prefWidth="158.0" text="Assurance" textFill="#fffbfb">

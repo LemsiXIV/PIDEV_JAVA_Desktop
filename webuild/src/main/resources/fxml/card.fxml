@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="279.0" prefWidth="271.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.offres.card">
+
+    <children>
+        <VBox prefHeight="279.0" prefWidth="271.0" spacing="10">
+            <padding>
+                <Insets bottom="10" left="10" right="10" top="10" />
+            </padding>
+            <children>
+                <!-- Image -->
+                <ImageView fx:id="img" fitHeight="142.0" fitWidth="291.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../image/malek.jpg" />
+                    </image>
+                </ImageView>
+                <!-- Conteneur pour les détails -->
+                <VBox prefHeight="139.0" prefWidth="210.0" spacing="5.0">
+                    <!-- Titre -->
+                    <Label fx:id="titre" style="-fx-font-weight: bold;">
+                        <font>
+                            <Font name="Cambria" size="24.0" />
+                        </font>
+                    </Label>
+                    <!-- Contenu -->
+                    <Label fx:id="descrp" style="-fx-font-weight: normal;">
+                        <font>
+                            <Font name="Cambria" size="20.0" />
+                        </font>
+                    </Label>
+                    <!-- Salary -->
+                    <Label fx:id="salary" style="-fx-font-weight: normal;">
+                        <font>
+                            <Font name="Cambria" size="20.0" />
+                        </font>
+                    </Label>
+               <Button mnemonicParsing="false" onAction="#Postuler" text="Postuler" />
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+    <styleClass>
+        <String fx:value="fruit-item" />
+        <String fx:value="shadow" />
+    </styleClass>
+</AnchorPane>

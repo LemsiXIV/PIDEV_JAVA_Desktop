@@ -52,7 +52,12 @@ public class Controller implements Initializable {
     }
 
     public void Condidatures(ActionEvent actionEvent)throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Condidatures.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/FrontCandidature.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
+    public void Offres(ActionEvent actionEvent)throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/FrontOffres.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
