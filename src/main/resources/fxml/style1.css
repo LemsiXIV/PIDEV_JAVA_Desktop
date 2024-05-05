@@ -1,0 +1,272 @@
+/* Style pour la boîte d'article */
+.article-box {
+    width: 70%;
+    margin: 0 auto 20px; /* Marge haut et bas de 20px, centrée horizontalement */
+    border: 1px solid #09cc7f; /* Bordure de 1 pixel, solide, couleur #09cc7f */
+    padding: 20px;
+    border-radius: 10px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 10px #09cc7f; /* Ombre */
+}
+
+/* Style pour chaque article */
+.article {
+    display: flex; /* Utilisation de flexbox */
+    margin-bottom: 20px; /* Espace en bas de chaque article */
+    align-items: center; /* Alignement vertical */
+    position: relative; /* Position relative pour la ligne de séparation */
+}
+
+/* Style pour l'image de l'article */
+.article img {
+    max-width: 100px; /* Largeur maximale de l'image */
+    max-height: 100px; /* Hauteur maximale de l'image */
+    margin-right: 10px; /* Marge à droite de l'image */
+}
+
+/* Style pour le contenu de l'article */
+.article-content {
+    flex: 1; /* Utilisation de l'espace restant */
+}
+
+/* Style pour la date de l'article */
+.article-date {
+    font-size: 12px; /* Taille de police de 12px */
+    color: #09cc7f; /* Couleur du texte */
+    text-align: right; /* Alignement à droite */
+    position: absolute; /* Position absolue pour le positionnement */
+    bottom: 0; /* En bas */
+    right: 0; /* À droite */
+}
+
+/* Style pour les actions de l'article */
+.article-actions a {
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.article-actions a:hover {
+    opacity: 0.7;
+}
+
+.article-actions i {
+    font-size: 20px;
+    color: #09cc7f;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.article-actions i:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+.container {
+    -fx-alignment: center;
+    -fx-padding: 20px;
+    -fx-background-color: transparent; /* Couleur verte claire */
+}
+
+.form-style-3 {
+    -fx-pref-width: 70%;
+    -fx-border-color: #09cc7f; /* Bordure verte */
+    -fx-border-width: 1px;
+    -fx-border-radius: 10px;
+    -fx-background-color: #e1f2e1; /* Couleur verte claire */
+    -fx-padding: 20px;
+    -fx-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 10px #09cc7f; /* Ombre */
+}
+
+.label {
+    -fx-float: left;
+    -fx-width: 100px;
+    -fx-color: #000;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-text-shadow: 1px 1px 1px #fff;
+}
+
+.fieldset {
+    -fx-background-color: #e1f2e1; /* Couleur verte claire */
+    -fx-border-color: #09cc7f;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px 5px 0px 0px;
+    -fx-background-radius: 5px 5px 0px 0px;
+    -fx-padding: 3px 8px;
+    -fx-text-fill: white;
+    -fx-font-weight: normal;
+    -fx-font-size: 12px;
+    -fx-effect: dropshadow(gaussian, #e1f2e1, 2, 0, -1, 0);
+
+}
+
+.button-ajouter,
+.button-afficher,
+.button-charger {
+    -fx-background-color: linear-gradient(to bottom, #09cc7f, #0fa563);
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-text-fill: #fff;
+    -fx-padding: 10px 20px;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-effect: dropshadow( gaussian , rgba(0,0,0,0.75) , 5,0,0,1 );
+}
+
+
+.required {
+    -fx-text-fill: black;
+    -fx-font-weight: normal;
+}
+/* style.css */
+.anchor-pane {
+    -fx-background-color: #f0f0f0; /* Couleur de fond pour tout l'AnchorPane */
+}
+
+#drawerImage {
+    -fx-padding: 10px; /* Ajoute un espacement autour de l'image du tiroir */
+}
+
+.button {
+    -fx-font-size: 14px; /* Taille de police pour les boutons */
+}
+
+.anchor-pane > .anchor-pane > .pane {
+    -fx-background-color: #d9ecf2; /* Couleur de fond pour le panneau principal */
+}
+
+.anchor-pane > .anchor-pane > .anchor-pane > .anchor-pane {
+    -fx-background-color: white; /* Couleur de fond pour les panneaux secondaires */
+}
+
+.vbox > .image-view {
+    -fx-padding: 5px; /* Ajoute un espacement autour des images dans la VBox */
+}
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+    -fx-background-color: linear-gradient(to left, #46C0BE, #6DD56F, #46C0BE);;
+    -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0.5, 0, 0);
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.chosen-article-card{
+    -fx-background-color: linear-gradient(to right, #f2f2f2, #c6f0bc);
+    -fx-background-radius: 30;
+    -fx-text-fill: black;
+
+
+}
+
+.comboBox{
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-radius: 30;
+}
+
+.add-btn{
+    -fx-background-color: linear-gradient(to left, #46C0BE, #6DD56F, #46C0BE);;
+    -fx-background-radius: 30;
+}
+
+
+.free-delivery-card{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+    -fx-background-color: #BAEAC3;
+    -fx-background-radius: 30;
+}
+
+.fruit-item{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30;
+}
+.label-clickable {
+    -fx-text-fill: blue; /* Couleur du texte */
+    -fx-underline: true; /* Soulignement */
+    -fx-cursor: hand; /* Curseur de la souris */
+}
+.menu-item {
+    -fx-text-fill: black;
+}
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: black;
+    -fx-font: black;
+
+
+}
+
+/* Style pour la section "Éducation" lorsqu'elle est cliquée */
+.menu-button:hover {
+    -fx-background-color: green;
+}
+/* Style pour le ComboBox */
+.combo-box {
+    -fx-background-radius: 20; /* Pour rendre le ComboBox rond */
+    -fx-background-color: lightgreen; /* Pour définir la couleur de fond en vert clair */
+}
+.my-dialog {
+    -fx-background-color: #ffcccc; /* Couleur de fond de l'alerte (rouge clair) */
+}
+
+.my-dialog .alert-title {
+    -fx-text-fill: #cc0000; /* Couleur du titre de l'alerte (rouge foncé) */
+}
+
+.my-dialog .content {
+    -fx-text-fill: #660000; /* Couleur du texte de contenu de l'alerte (rouge foncé) */
+}
+
+.my-dialog .button {
+    -fx-background-color: #cc0000; /* Couleur de fond des boutons de l'alerte (rouge foncé) */
+    -fx-text-fill: white; /* Couleur du texte des boutons de l'alerte (blanc) */
+}
+
+.my-dialog .button:hover {
+    -fx-background-color: #990000; /* Couleur de fond des boutons de l'alerte au survol (rouge plus foncé) */
+}
+.chat-area {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+    -fx-padding: 10px;
+    -fx-border-width: 1px;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+}
+
+.chat-area .bubble {
+    -fx-background-color: #b2d8f2; /* Light blue background */
+    -fx-background-radius: 5px;
+    -fx-padding: 8px;
+    -fx-max-width: 70%; /* Max width for the speech bubble */
+    -fx-wrap-text: true;
+}
+
+.chat-area .bubble.right {
+    -fx-background-color: #4CAF50; /* Green background for messages from the user */
+    -fx-text-fill: #ffffff; /* White text color */
+    -fx-alignment: center-right; /* Align to the right */
+}
+
+.chat-area .bubble.left {
+    -fx-background-color: #f0f0f0; /* Light gray background for messages from the chatbot */
+    -fx-text-fill: #000000; /* Black text color */
+    -fx-alignment: center-left; /* Align to the left */
+}
