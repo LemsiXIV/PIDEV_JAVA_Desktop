@@ -17,9 +17,7 @@ public class SessionManagement {
     private String  roles;
     private int is_verified;
 
-    public SessionManagement(String emailAddress) {
-        this.email=emailAddress;
-    }
+
 
     public int getIs_verified() {
         return is_verified;

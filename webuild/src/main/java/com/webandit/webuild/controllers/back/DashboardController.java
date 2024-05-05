@@ -88,7 +88,9 @@ public class DashboardController implements Initializable {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/UpdateUser.fxml"));
                                 Parent root = loader.load();
                                 UpdateUser userUpdate = loader.getController();
-                                userUpdate.setUserId(userEmail);
+                                userUpdate.setEmail(userEmail);
+                                UpdateUser userUpdate1 = loader.getController();
+                                userUpdate1.setEmail(userEmail);
                                 Scene scene = new Scene(root);
                                 Stage stage = (Stage) updateButton.getScene().getWindow();
                                 stage.setScene(scene);

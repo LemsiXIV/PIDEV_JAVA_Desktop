@@ -45,6 +45,8 @@ public class UserProfilController {
     private Label tlperr;
     @FXML
     private Button delete;
+    @FXML
+    private Button logoutButton;
 
     private boolean validatorNom() {
         String nom = nomtxt.getText();
@@ -214,6 +216,30 @@ public class UserProfilController {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    void logout(ActionEvent event) {
+        SessionManagement.getInstance().cleanUserSession();
+        System.out.println("User ID: " + SessionManagement.getInstance().getId());
+        System.out.println("User Nom: " + SessionManagement.getInstance().getNom());
+        System.out.println("User Prenom: " + SessionManagement.getInstance().getPrenom());
+        System.out.println("User Email: " + SessionManagement.getInstance().getEmail());
+        System.out.println("User Adresse: " + SessionManagement.getInstance().getAdresse());
+        System.out.println("User Telephone: " + SessionManagement.getInstance().getTelephone());
+        System.out.println("User Role: " + SessionManagement.getInstance().getRoles());
+        System.out.println("User status: " + SessionManagement.getInstance().getIs_verified());
+        // Navigate to the login page
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

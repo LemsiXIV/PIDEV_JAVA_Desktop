@@ -18,17 +18,18 @@
       <TextField fx:id="emailtxt" layoutX="164.0" layoutY="166.0" />
       <TextField fx:id="tlptxt" layoutX="159.0" layoutY="265.0" />
       <TextField fx:id="adressetxt" layoutX="164.0" layoutY="216.0" />
-      <Button layoutX="300.0" layoutY="318.0" mnemonicParsing="false" onAction="#updateUtilisateur" style="-fx-background-color: #FAD02C;" text="Save" />
+      <Button layoutX="213.0" layoutY="318.0" mnemonicParsing="false" onAction="#updateUtilisateur" style="-fx-background-color: #FAD02C;" text="Save" />
       <Label fx:id="nomerr" layoutX="164.0" layoutY="104.0" prefHeight="18.0" prefWidth="282.0" />
       <Label fx:id="adresseerr" layoutX="164.0" layoutY="242.0" prefHeight="18.0" prefWidth="289.0" />
       <Label fx:id="tlperr" layoutX="159.0" layoutY="291.0" prefHeight="18.0" prefWidth="290.0" />
       <Label fx:id="emailerr" layoutX="164.0" layoutY="191.0" prefHeight="18.0" prefWidth="273.0" />
       <Label fx:id="prenomerr" layoutX="164.0" layoutY="146.0" prefHeight="18.0" prefWidth="281.0" />
-      <Button fx:id="delete" layoutX="450.0" layoutY="30.0" mnemonicParsing="false" onAction="#deleteUser" style="-fx-background-color: #ff0000;" text="supprimer compte" textFill="#151515" />
+      <Button fx:id="delete" layoutX="329.0" layoutY="318.0" mnemonicParsing="false" onAction="#deleteUser" style="-fx-background-color: #ff0000;" text="supprimer compte" textFill="#151515" />
       <Label layoutX="257.0" layoutY="22.0" text="Profile">
          <font>
             <Font name="System Bold Italic" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="logoutButton" layoutX="472.0" layoutY="49.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
    </children>
 </AnchorPane>

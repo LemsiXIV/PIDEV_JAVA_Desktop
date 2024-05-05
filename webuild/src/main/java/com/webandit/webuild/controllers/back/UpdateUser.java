@@ -13,8 +13,7 @@ import java.sql.SQLException;
 
 public class UpdateUser {
     private String userEmail;
-    public void setUserId(String userEmail) {
-        this.userEmail = userEmail;}
+
             @FXML
             private Slider activation;
 
@@ -24,7 +23,8 @@ public class UpdateUser {
             @FXML
             private TextField email;
 
-            @FXML
+
+        @FXML
             private TextField nom;
 
             @FXML
@@ -35,14 +35,11 @@ public class UpdateUser {
 
             @FXML
             private Button updateButton;
-    Utilisateur user= new Utilisateur();
-    serviceUtilisateur sp=new serviceUtilisateur();
-
+        Utilisateur user= new Utilisateur();
+        serviceUtilisateur sp=new serviceUtilisateur();
 
             @FXML
-            void active_True(SwipeEvent event) {
-
-            }
+            private TextField statuus;
 
             @FXML
             void active_false(SwipeEvent event) {
@@ -62,12 +59,9 @@ public class UpdateUser {
                         prenom.setText(resultSet.getString("prenom"));
                         adresse.setText(resultSet.getString("adresse"));
                         telephone.setText(String.valueOf(resultSet.getInt("telephone")));
-                        // Set activation slider based on user activation status
-                        //boolean isActive = resultSet.getBoolean("is_active");
-                        //activation.setValue(isActive ? 1 : 0);
+
                     }else {
-                        // User not found, display an error message
-                        // You can show a message in a label or display a dialog box
+
                         System.out.println("User not found!");
                     }
 
@@ -77,7 +71,10 @@ public class UpdateUser {
                 }
             }
 
-        }
+    public void setEmail(String userEmail) {
+                this.userEmail=userEmail;
+    }
+}
 
 
 

@@ -23,7 +23,7 @@ public class Utilisateur {
 
         this.roles = roles;
 
-            this.is_verified = 0;
+        this.is_verified = 0;
 
     }
 
