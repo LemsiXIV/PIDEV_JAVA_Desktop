@@ -1,4 +1,4 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.Materiel.Front;
 
 import com.stripe.Stripe;
 import com.stripe.exception.StripeException;
@@ -105,6 +105,7 @@ public class MaterielDetailController {
 
             // Redirect the user to the Stripe Checkout page
             String checkoutUrl = session.getUrl();
+            showSuccessAlert("payment link:",checkoutUrl);
             // Open checkoutUrl in a browser or WebView
             System.out.println("Redirect user to: " + checkoutUrl);
         } catch (StripeException e) {
@@ -119,18 +120,18 @@ public class MaterielDetailController {
         return SessionCreateParams.builder()
                 .addPaymentMethodType(SessionCreateParams.PaymentMethodType.CARD)
                 .setMode(SessionCreateParams.Mode.PAYMENT)
-                .setSuccessUrl("https://your-website.com/success") // Replace with your success URL
-                .setCancelUrl("https://your-website.com/cancel") // Replace with your cancel URL
+                .setSuccessUrl("https://webuild.com/success") // Replace with your success URL
+                .setCancelUrl("https://webuild.com/cancel") // Replace with your cancel URL
                 .addLineItem(
                         SessionCreateParams.LineItem.builder()
                                 .setQuantity(1L)
                                 .setPriceData(
                                         SessionCreateParams.LineItem.PriceData.builder()
-                                                .setCurrency("usd") // Replace with your currency
-                                                .setUnitAmount(1000L) // Replace with your amount in cents
+                                                .setCurrency("eur") // Replace with your currency
+                                                .setUnitAmount(Long.valueOf(materiel.getPrix())) // Replace with your amount in cents
                                                 .setProductData(
                                                         SessionCreateParams.LineItem.PriceData.ProductData.builder()
-                                                                .setName("Your Product Name")
+                                                                .setName(materiel.getLibelle())
                                                                 .build()
                                                 )
                                                 .build()
@@ -183,7 +184,7 @@ public class MaterielDetailController {
                 imageView.setFitHeight(48);
                 alert.setGraphic(imageView);
             } else {
-                System.out.println("Failed to load green_check.png");
+                System.out.println("succesful");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,7 +1,6 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.Materiel.Front;
 
 import com.google.zxing.common.BitMatrix;
-import com.webandit.webuild.models.Location;
 import com.webandit.webuild.models.Materiel;
 import com.webandit.webuild.services.ServiceMateriel;
 import javafx.event.ActionEvent;
@@ -35,9 +34,6 @@ import com.google.zxing.EncodeHintType;
 import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.QRCodeWriter;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 
 import javax.imageio.ImageIO;

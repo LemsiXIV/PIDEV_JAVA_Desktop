@@ -241,3 +241,32 @@
 .confirm-button:hover {
     -fx-background-color: #45a049; /* Darker Green */
 }
+
+.main-pane {
+    -fx-background-color: #BDA55D;
+}
+
+.table-view {
+    -fx-background-color: white;
+}
+
+.label-text {
+    -fx-fill: white;
+    -fx-font-size: 20px;
+}
+
+.button {
+    -fx-background-color: #3A9BDC;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.text-input {
+    -fx-background-color: white;
+    -fx-border-color: #3A9BDC;
+}
+
+.text-area {
+    -fx-background-color: white;
+    -fx-border-color: #3A9BDC;
+}

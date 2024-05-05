@@ -15,5 +15,9 @@ module com.webandit.webuild {
     opens com.webandit.webuild.test to javafx.fxml;
     exports com.webandit.webuild.models;
     opens com.webandit.webuild.models to javafx.base;
+    exports com.webandit.webuild.controllers.Materiel.Back;
+    opens com.webandit.webuild.controllers.Materiel.Back to javafx.fxml;
+    exports com.webandit.webuild.controllers.Materiel.Front;
+    opens com.webandit.webuild.controllers.Materiel.Front to javafx.fxml;
 
 }

@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,7 +18,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Controller implements Initializable {
+public class Controllerb implements Initializable {
     @FXML
     private Label exit;
 
@@ -26,9 +27,9 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    exit.setOnMouseClicked(e->{
-        System.exit(0);
-    });
+        exit.setOnMouseClicked(e->{
+            System.exit(0);
+        });
         try {
             Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
             contentArea.getChildren().removeAll();
@@ -62,14 +63,8 @@ public class Controller implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
 
-    public void MaterielController(ActionEvent actionEvent) throws IOException{
+    public void Materiel(ActionEvent actionEvent) throws IOException{
         Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Materiel.fxml"));
-        contentArea.getChildren().removeAll();
-        contentArea.getChildren().setAll(fxml);
-    }
-
-    public void LocationController(ActionEvent actionEvent) throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Location.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
@@ -85,17 +80,21 @@ public class Controller implements Initializable {
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
-    public void admin(ActionEvent actionEvent)
-    {try {
-        // Load the MaterielDetailView.fxml file
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back.fxml"));
-        Parent root = loader.load(); // No need to pass InputStream
-
-        // Create a new stage and set the MaterielDetailView as its content
-        Stage stage = new Stage();
-        stage.setScene(new Scene(root));
-        stage.show();
-    } catch (IOException e) {
-        e.printStackTrace();
+    @FXML
+    void Client(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/fxml/Acceuil.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
     }
-    }}
+
+
+
+    @FXML
+    void demande(ActionEvent event) throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/backdemande.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
+}

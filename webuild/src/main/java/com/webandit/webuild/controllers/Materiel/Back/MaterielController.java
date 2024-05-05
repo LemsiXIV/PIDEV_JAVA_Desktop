@@ -1,4 +1,4 @@
-package com.webandit.webuild.controllers;
+package com.webandit.webuild.controllers.Materiel.Back;
 
 import com.webandit.webuild.models.Materiel;
 import com.webandit.webuild.utils.DBConnection;
