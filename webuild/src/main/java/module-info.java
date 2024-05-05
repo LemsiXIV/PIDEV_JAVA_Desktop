@@ -4,11 +4,19 @@ module com.webandit.webuild {
     requires java.sql;
     requires org.controlsfx.controls;
     requires javafx.web;
+    requires kernel;
+    requires layout;
+    requires java.desktop;
+    requires twilio;
 
 
     exports com.webandit.webuild.controllers;
     exports com.webandit.webuild.controllers.mouna;
+    exports com.webandit.webuild.controllers.Assurance.front;
+    exports com.webandit.webuild.controllers.Assurance.back;
     opens com.webandit.webuild.controllers to javafx.fxml;
+    opens com.webandit.webuild.controllers.Assurance.front to javafx.fxml;
+    opens com.webandit.webuild.controllers.Assurance.back to javafx.fxml;
     opens com.webandit.webuild.controllers.mouna to javafx.fxml;
     opens com.webandit.webuild.controllers.Project.FrontControl to javafx.fxml;
     opens com.webandit.webuild.controllers.Project.BackControl to javafx.fxml;

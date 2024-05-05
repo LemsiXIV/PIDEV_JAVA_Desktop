@@ -55,6 +55,17 @@
             <artifactId>javafx-web</artifactId>
             <version>17.0.6</version>
         </dependency>
+        <!-- Ajout de la dépendance Twilio -->
+        <dependency>
+            <groupId>com.twilio.sdk</groupId>
+            <artifactId>twilio</artifactId>
+            <version>7.55.0</version> <!-- Version spécifiée -->
+        </dependency>
+        <dependency>
+            <groupId>com.itextpdf</groupId>
+            <artifactId>itext7-core</artifactId>
+            <version>7.1.16</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -90,4 +101,11 @@
             </plugin>
         </plugins>
     </build>
+    <!-- Ajout du référentiel Twilio -->
+    <repositories>
+        <repository>
+            <id>twilio-releases</id>
+            <url>https://repo.twilio.com/releases</url>
+        </repository>
+    </repositories>
 </project>

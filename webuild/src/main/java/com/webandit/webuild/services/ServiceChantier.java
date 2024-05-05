@@ -7,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceChantier implements CRUD<Chantier> {
+public class ServiceChantier implements CRUDL<Chantier> {
     private Connection cnx;
 
     public ServiceChantier() {

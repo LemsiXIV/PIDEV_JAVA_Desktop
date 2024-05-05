@@ -1,6 +1,5 @@
 package com.webandit.webuild.services;
 
-import com.webandit.webuild.models.Chantier;
 import com.webandit.webuild.models.Tasks;
 import com.webandit.webuild.utils.DBConnection;
 
@@ -8,7 +7,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ServiceTasks implements CRUD<Tasks> {
+public class ServiceTasks implements CRUDL<Tasks> {
     private Connection cnx;
 
     public ServiceTasks() {

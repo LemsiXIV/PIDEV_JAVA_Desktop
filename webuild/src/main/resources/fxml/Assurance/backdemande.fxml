@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="532.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Assurance.back.Backdemande">
+   <children>
+      <TableView fx:id="tabdem" layoutX="5.0" layoutY="43.0" onMouseClicked="#getdatadem" prefHeight="268.0" prefWidth="734.0" style="-fx-background-color: #c90e0e;">
+        <columns>
+          <TableColumn fx:id="colAssurance" prefWidth="75.0" text="assurance" />
+          <TableColumn fx:id="colMontant" prefWidth="75.0" text="montant" />
+            <TableColumn fx:id="colDebut" prefWidth="75.0" text="debut" />
+            <TableColumn fx:id="colFin" prefWidth="75.0" text="fin" />
+            <TableColumn fx:id="colStatut" prefWidth="73.59996337890624" text="statut" />
+        </columns>
+      </TableView>
+      <TextField fx:id="montanttxt" layoutX="214.0" layoutY="460.0" prefHeight="30.0" prefWidth="61.0" />
+      <Label layoutX="165.0" layoutY="436.0" text="Montant" />
+      <Label layoutX="158.0" layoutY="320.0" text="Date de Debut" />
+      <Label layoutX="167.0" layoutY="379.0" text="Date fin" />
+      <Label layoutX="452.0" layoutY="392.0" text="commentaire" />
+      <DatePicker fx:id="ddebuttxt" layoutX="197.0" layoutY="351.0" />
+      <DatePicker fx:id="dfintxt" layoutX="197.0" layoutY="401.0" />
+      <TextField fx:id="commentairetxt" layoutX="487.0" layoutY="424.0" prefHeight="70.0" prefWidth="239.0" />
+      <Button fx:id="adddembtn" layoutX="21.0" layoutY="375.0" mnemonicParsing="false" onAction="#addDemande" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #c90e0e;" text="Ajouter" textFill="WHITE">
+         <font>
+            <Font name="AGA Arabesque Desktop" size="12.0" />
+         </font></Button>
+      <Button fx:id="deldembtn" layoutX="20.0" layoutY="475.0" mnemonicParsing="false" onAction="#deldem" style="-fx-background-color: #c90e0e;" text="Supprimer" textFill="WHITE" />
+      <Button fx:id="moddembtn" layoutX="21.0" layoutY="432.0" mnemonicParsing="false" onAction="#moddem" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #c90e0e;" text="Modifier" textFill="WHITE">
+         <font>
+            <Font name="Berlin Sans FB" size="12.0" />
+         </font></Button>
+      <ChoiceBox fx:id="assurancetxt" layoutX="487.0" layoutY="364.0" prefWidth="150.0" />
+      <Label layoutX="443.0" layoutY="319.0" prefHeight="18.0" prefWidth="71.0" text="Assurance" />
+      <Text fill="#c90e0e" layoutX="305.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Demandes">
+         <font>
+            <Font name="AGA Arabesque Desktop" size="18.0" />
+         </font>
+      </Text>
+      <Button fx:id="validateBtn" layoutX="18.0" layoutY="325.0" mnemonicParsing="false" onAction="#RejectDemande" style="-fx-background-color: #c90e0e;" text="Rejeter" textFill="WHITE" />
+      <Button fx:id="valid" layoutX="346.0" layoutY="475.0" mnemonicParsing="false" onAction="#checkAndValidateDemande" text="validité" />
+      <Button fx:id="pdf" layoutX="417.0" layoutY="478.0" mnemonicParsing="false" onAction="#generateContract" text="pdf" />
+   </children>
+</AnchorPane>

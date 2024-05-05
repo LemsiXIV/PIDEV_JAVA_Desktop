@@ -4,9 +4,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
@@ -14,7 +17,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Controller implements Initializable {
+public class Controllerdash implements Initializable {
     @FXML
     private Label exit;
 
@@ -29,24 +32,24 @@ public class Controller implements Initializable {
             contentArea.getChildren().removeAll();
             contentArea.getChildren().setAll(fxml);
         }catch (IOException ex){
-            Logger.getLogger(Controller.class.getName()).log(Level.SEVERE,null,ex);
+            Logger.getLogger(Controllerdash.class.getName()).log(Level.SEVERE,null,ex);
         }
 
     }
 
-    public void home(javafx.event.ActionEvent actionEvent)throws IOException{
+    public void home(ActionEvent actionEvent)throws IOException{
         Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/home.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
 
-    public void project(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Project/front/front_project.fxml"));
+    public void project(ActionEvent actionEvent)throws IOException{
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Project/Back/Project.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
-    public void Assurence(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Assurance/assurancefront.fxml"));
+    public void Assurence(ActionEvent actionEvent)throws IOException{
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Assurance/Assurence.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
@@ -75,6 +78,23 @@ public class Controller implements Initializable {
         contentArea.getChildren().setAll(fxml);
     }
 
-
+    public void back(ActionEvent event) throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Project/front/front_project.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
+    public void demande(ActionEvent event) throws IOException {
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Assurance/backdemande.fxml"));
+        contentArea.getChildren().removeAll();
+        contentArea.getChildren().setAll(fxml);
+    }
+    @FXML
+    void Client(ActionEvent event) throws IOException {
+        Parent tableViewParent = FXMLLoader.load(getClass().getResource("/fxml/hello-view.fxml"));
+        Scene tableViewScene = new Scene(tableViewParent);
+        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+        window.setScene(tableViewScene);
+        window.show();
+    }
 }
 
