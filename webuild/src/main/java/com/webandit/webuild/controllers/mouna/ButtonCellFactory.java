@@ -1,13 +1,12 @@
 package com.webandit.webuild.controllers.mouna;
 
+import com.webandit.webuild.models.Post;
 import javafx.scene.control.Button;
 import javafx.scene.control.TreeTableCell;
 import javafx.scene.control.TreeTableColumn;
 import javafx.scene.control.TreeTableView;
 import javafx.scene.layout.HBox;
 import javafx.util.Callback;
-
-import com.webandit.webuild.models.Post;
 
 import java.util.function.Consumer;
 

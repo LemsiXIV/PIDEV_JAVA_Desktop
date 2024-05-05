@@ -18,13 +18,14 @@ public class PostService implements ICRUD<Post> {
 
     @Override
     public void create(Post post) throws SQLException, SQLIntegrityConstraintViolationException {
-        String sql = "INSERT INTO Post (titre, description, auteur, date) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Post (titre, description, auteur, date, img) VALUES (?, ?, ?, ? ,?)";
         PreparedStatement statement = cnx.prepareStatement(sql);
 
         statement.setString(1, post.getTitre());
         statement.setString(2, post.getDescription());
         statement.setString(3, post.getAuteur());
         statement.setDate(4, new java.sql.Date(post.getDate().getTime()));
+        statement.setString(5, post.getImg());
 
         statement.executeUpdate();
     }
@@ -47,7 +48,20 @@ public class PostService implements ICRUD<Post> {
             }
         }
     }
+    public List<Integer> getAllPostIds() throws SQLException {
+        List<Integer> postIds = new ArrayList<>();
 
+        String sql = "SELECT id FROM Post";
+        try (PreparedStatement statement = cnx.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                int postId = resultSet.getInt("id");
+                postIds.add(postId);
+            }
+        }
+
+        return postIds;
+    }
     @Override
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM Post WHERE id = ?";
@@ -70,6 +84,7 @@ public class PostService implements ICRUD<Post> {
             post.setDescription(rs.getString("description"));
             post.setAuteur(rs.getString("auteur"));
             post.setDate(rs.getDate("date"));
+            post.setImg(rs.getString("img"));
             posts.add(post);
         }
         return posts;
@@ -95,6 +110,31 @@ public class PostService implements ICRUD<Post> {
             return null;
         }
     }
+    public List<Post> rechercherPosts(String searchTerm) throws SQLException {
+        List<Post> searchResults = new ArrayList<>();
+        String query = "SELECT id, titre, description, img, date FROM post WHERE titre LIKE ? OR description LIKE ?";
+        try (PreparedStatement preparedStatement = cnx.prepareStatement(query)) {
+            String searchPattern = "%" + searchTerm + "%";
+            preparedStatement.setString(1, searchPattern);
+            preparedStatement.setString(2, searchPattern);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    Post post = new Post();
+                    post.setId(resultSet.getInt("id"));
+                    post.setTitre(resultSet.getString("titre"));
+                    post.setDescription(resultSet.getString("description"));
+                    post.setImg(resultSet.getString("img")); // Set the image URL
+                    post.setDate(resultSet.getDate("date")); // Set the date
+                    searchResults.add(post);
+                }
+            }
+        }
+        return searchResults;
+    }
+
+
+
+
     public java.util.Date GetCurentDate() throws SQLException {
         String sql = "SELECT CURRENT_DATE";
         Statement statement = cnx.createStatement();
@@ -106,5 +146,4 @@ public class PostService implements ICRUD<Post> {
         }
         return currentDate;
     }
-
 }

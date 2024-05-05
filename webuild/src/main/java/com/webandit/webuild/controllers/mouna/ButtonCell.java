@@ -27,6 +27,7 @@ public class ButtonCell<S, T> extends TreeTableCell<S, T> {
         if (empty) {
             setGraphic(null);
         } else {
+            Button commentaireButton = new Button("Commentaire");
             HBox buttons = new HBox(deleteButton, editButton);
             setGraphic(buttons);
         }

@@ -1,5 +1,6 @@
 package com.webandit.webuild.controllers.Project.BackControl;
 
+import com.webandit.webuild.controllers.Project.CalendarController;
 import com.webandit.webuild.models.Tasks;
 import com.webandit.webuild.services.ServiceTasks;
 import javafx.collections.FXCollections;
@@ -272,10 +273,19 @@ public class TasksControlleur {
     }
 
 
+    public void calander(ActionEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Project/front/calander.fxml"));
+        Parent root1 = (Parent) fxmlLoader.load();
+
+        // Get the controller
+        CalendarController controller = fxmlLoader.getController();
+
+        // Set the stage
+        Stage stage = new Stage();
 
 
-
-
-
-
+        controller.setStage(stage); // Pass the stage to the controller
+        stage.setScene(new Scene(root1));
+        stage.show();
+    }
 }

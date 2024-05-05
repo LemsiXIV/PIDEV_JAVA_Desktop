@@ -11,6 +11,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -33,6 +34,8 @@ public class CalendarController implements Initializable {
     @FXML
     private FlowPane calendar;
 
+    private Stage stage; // Declare Stage
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         dateFocus = ZonedDateTime.now();
@@ -48,6 +51,7 @@ public class CalendarController implements Initializable {
     void backOneMonth(ActionEvent event) throws SQLException {
         dateFocus = dateFocus.minusMonths(1);
         calendar.getChildren().clear();
+
         drawCalendar();
     }
 
@@ -111,6 +115,7 @@ public class CalendarController implements Initializable {
                     }
                 }
                 calendar.getChildren().add(stackPane);
+                calendar.setStyle("-fx-background-color: linear-gradient(from 25% 25% to 100% 100% , #D91F4E, #FF8540)");
             }
         }
     }
@@ -137,7 +142,7 @@ public class CalendarController implements Initializable {
         calendarActivityBox.setTranslateY((rectangleHeight / 2) * 0.20);
         calendarActivityBox.setMaxWidth(rectangleWidth * 0.8);
         calendarActivityBox.setMaxHeight(rectangleHeight * 0.65);
-        calendarActivityBox.setStyle("-fx-background-color:BLUE");
+        calendarActivityBox.setStyle("-fx-background-color: #26D48C");
         stackPane.getChildren().add(calendarActivityBox);
     }
 
@@ -170,5 +175,9 @@ public class CalendarController implements Initializable {
         }
 
         return createCalendarMap(calendarActivities);
+    }
+
+    public void setStage(Stage stage) {
+        this.stage = stage;
     }
 }

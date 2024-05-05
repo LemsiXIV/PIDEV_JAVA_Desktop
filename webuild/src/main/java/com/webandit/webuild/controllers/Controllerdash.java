@@ -67,7 +67,7 @@ public class Controllerdash implements Initializable {
     }
 
     public void Forum(ActionEvent actionEvent)throws IOException {
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/forumXml.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/forum/forumXml.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
