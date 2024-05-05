@@ -1,3 +1,4 @@
+
 package com.webandit.webuild.controllers.mouna.front;
 
 import com.sun.mail.imap.protocol.INTERNALDATE;
@@ -34,6 +35,7 @@ public class FrontCommentaire {
 
     @FXML
     private TextField searchField;
+
 
     List<Commentaire> id_post;
     public void setStage(Stage stage) {
@@ -73,7 +75,7 @@ public class FrontCommentaire {
         });
     }
 
-    private void actualise() throws SQLException {
+    public void actualise() throws SQLException {
         // Effacer les éléments actuels de la grille
         grid.getChildren().clear();
 
@@ -102,7 +104,7 @@ public class FrontCommentaire {
 
                 c.getData(commentaire);
                 c.setId(commentaire.getId());
-
+                c.setController(this);
 
 
                 grid.add(anchorPane, column++, row);
@@ -164,11 +166,14 @@ public class FrontCommentaire {
     public void addcommentairefront(ActionEvent actionEvent) throws IOException, SQLException {
       FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/zydcomment.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
+         add_commentaire controller = fxmlLoader.getController();
+        controller.setControllerAct(this);
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));
         stage.show();
 
     }
+
 
 
 }

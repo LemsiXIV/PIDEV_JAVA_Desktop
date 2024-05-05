@@ -36,7 +36,13 @@ public class Commentaire {
 
     public Commentaire(int idComment, String contentComment, int postId) {
     }
+    public void incrementLikes() {
+        this.nbrlikes++;
+    }
 
+    public void incrementDislikes() {
+        this.nbrdislikes++;
+    }
 
     public int getNbrlikes() {
         return nbrlikes;

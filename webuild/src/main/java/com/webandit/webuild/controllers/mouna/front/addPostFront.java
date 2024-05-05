@@ -44,6 +44,7 @@ public class addPostFront {
     @FXML
     private TextField imgField;
 
+    private frontpost frontpost;
 
     private String xamppFolderPath="c:/xampp/htdocs/img/";
 
@@ -94,6 +95,7 @@ public class addPostFront {
 
             // Ajoutez le post à la base de données
             ps.create(post);
+        frontpost.actualise();
         System.out.println("this is the data realte to the post " +post);
             // Affichez une alerte de succès
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -110,7 +112,7 @@ public class addPostFront {
         titreTextField.clear();
         descriptionTextArea.clear();
         auteurTextField.clear();
-        dateDatePicker.setValue(null);
+
     }
 
     // Méthode pour la validation des champs
@@ -155,5 +157,9 @@ public class addPostFront {
     // Méthode pour afficher un message dans une étiquette donnée avec une certaine couleur
     private void displayMessage(String message, Color color) {
         // Ici, vous pouvez afficher le message où vous le souhaitez, peut-être dans une étiquette de votre interface utilisateur
+    }
+
+    public void setFrontController(frontpost frontpost) {
+        this.frontpost = frontpost;
     }
 }

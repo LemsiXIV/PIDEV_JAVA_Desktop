@@ -1,4 +1,4 @@
-package com.webandit.webuild.controllers.mouna;
+package com.webandit.webuild.controllers.mouna.front;
 
 import com.webandit.webuild.models.Commentaire;
 import com.webandit.webuild.models.EmailSender;
@@ -17,10 +17,11 @@ import java.util.Arrays;
 import java.util.List;
 import static com.webandit.webuild.models.EmailSender.AjoutCommentaireEmail;
 
+
 public class add_commentaire {
 
     PostService ps = new PostService();
-
+    private  FrontCommentaire frontCommentaire;
     CommentaireService cs =new CommentaireService();
     // Méthode pour afficher une alerte en cas d'erreur
     private void showAlert(String title, String content) {
@@ -105,6 +106,9 @@ public class add_commentaire {
             if (setupValidationtype() == 0) {
                 // Ajouter le commentaire à la base de données
                 cs.insertOne(commentaire);
+                frontCommentaire.actualise();
+
+
                 EmailSender.AjoutCommentaireEmail("jomaamouna@gmail.com", "test");
 
                 // Afficher une alerte de succès
@@ -185,18 +189,7 @@ public class add_commentaire {
         }
 
         // Validation pour le nombre de likes
-        if (!isValidNumber(nbrLikesTextField.getText())) {
-            displayError(nbrLikesTextField, LikesLabelError, "Le nombre de likes doit être un entier positif");
-        } else {
-            displaySuccess(nbrLikesTextField, LikesLabelError);
-        }
 
-        // Validation pour le nombre de dislikes
-        if (!isValidNumber(nbrDislikesTextField.getText())) {
-            displayError(nbrDislikesTextField, DislikesLabelError, "Le nombre de dislikes doit être un entier positif");
-        } else {
-            displaySuccess(nbrDislikesTextField, DislikesLabelError);
-        }
     }
 
 
@@ -244,21 +237,6 @@ public class add_commentaire {
 
         // Validation pour le nombre de likes
         //int nbrlikes = Integer.parseInt(nbrLikesTextField.getText());
-        if (!isValidNumber(nbrLikesTextField.getText())) {
-            displayError(nbrLikesTextField, LikesLabelError, "Le nombre de likes doit être un entier");
-            error++;
-        } else {
-            displaySuccess(nbrLikesTextField, LikesLabelError);
-        }
-
-        // Validation pour le nombre de dislikes
-        //int nbrqislikes = Integer.parseInt(nbrDislikesTextField.getText());
-        if (!isValidNumber(nbrDislikesTextField.getText())) {
-            displayError(nbrDislikesTextField, DislikesLabelError, "Le nombre de dislikes doit être un entier");
-            error++;
-        } else {
-            displaySuccess(nbrDislikesTextField, DislikesLabelError);
-        }
 
         // Validation pour la date du commentaire (accepte les dates futures et passées)
         LocalDate commentDate = dateCreationDatePicker.getValue();
@@ -273,7 +251,7 @@ public class add_commentaire {
     }
 
 
-
-
-
+    public void setControllerAct(FrontCommentaire frontCommentaire) {
+        this. frontCommentaire = frontCommentaire;
+    }
 }

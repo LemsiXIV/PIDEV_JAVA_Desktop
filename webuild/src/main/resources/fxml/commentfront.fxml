@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="332.0" prefWidth="328.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.mouna.front.cardcommentaire">
+<AnchorPane prefHeight="493.0" prefWidth="372.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.mouna.front.cardcommentaire">
 
     <styleClass>
         <String fx:value="comment-item" />
@@ -22,38 +22,75 @@
       <children>
          <ImageView fitHeight="409.0" fitWidth="402.0" layoutX="-30.0" layoutY="-36.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@../image/cadrezinaaaa.png" />
+               <Image url="@../image/nchallahaad.png" />
             </image>
          </ImageView>
       </children>
    </Pane>
-    <VBox focusTraversable="true" prefHeight="266.0" prefWidth="328.0" spacing="10" stylesheets="@style.css">
+    <VBox focusTraversable="true" prefHeight="332.0" prefWidth="328.0" spacing="10" stylesheets="@style.css">
         <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
         </padding>
         <!-- Conteneur pour les détails -->
-        <VBox prefHeight="200.0" prefWidth="209.0" spacing="5.0">
+        <VBox prefHeight="403.0" prefWidth="438.0" spacing="5.0">
+         <HBox prefHeight="10.0" prefWidth="200.0">
+            <children>
+               <Button mnemonicParsing="false" onAction="#like" prefHeight="48.0" prefWidth="27.0" styleClass="transparent" stylesheets="@../css/style.css" textAlignment="RIGHT">
+                  <graphic>
+                     <ImageView fx:id="like" fitHeight="38.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true" translateY="-10.0">
+                        <image>
+                           <Image url="@../image/like.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Label fx:id="nbrLikesLabel" prefHeight="19.0" prefWidth="34.0" text="Label" />
+            </children>
+         </HBox>
+         <HBox prefHeight="20.0" prefWidth="200.0">
+            <children>
+                 <Button mnemonicParsing="false" onAction="#dislike" prefHeight="36.0" prefWidth="33.0" styleClass="transparent" stylesheets="@../css/style.css" textAlignment="RIGHT" translateX="250.0">
+                     <graphic>
+                         <ImageView fx:id="dislike" fitHeight="28.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" translateX="10.0">
+                             <image>
+                                 <Image url="@../image/dislike.png" />
+                             </image>
+                         </ImageView>
+                     </graphic>
+                 </Button>
+               <Label fx:id="nbrDislikesLabel" text="Label" translateX="250.0" />
+            </children>
+         </HBox>
             <!-- Nom du commentateur -->
-            <Label fx:id="nomCommentateurLabel" style="-fx-font-weight: bold;" stylesheets="@../css/mouna.css" translateX="100.0" translateY="50.0">
+            <Label fx:id="nomCommentateurLabel" style="-fx-font-weight: bold;" stylesheets="@../css/mouna.css" translateX="100.0" translateY="20.0">
                 <font>
                     <Font name="Cambria" size="24.0" />
                 </font>
             </Label>
             <!-- Contenu du commentaire -->
-            <Label fx:id="contenuCommentaireLabel" style="-fx-font-weight: normal;" translateX="100.0" translateY="80.0">
+            <Label fx:id="contenuCommentaireLabel" style="-fx-font-weight: normal;" translateX="100.0" translateY="40.0">
                 <font>
                     <Font name="Cambria" size="20.0" />
                 </font>
             </Label>
             <!-- Date de création -->
-            <Label fx:id="dateCreationLabel" style="-fx-font-weight: normal;" translateX="100.0" translateY="90.0">
+            <Label fx:id="dateCreationLabel" style="-fx-font-weight: normal;" translateX="100.0" translateY="50.0">
                 <font>
                     <Font name="Cambria" size="16.0" />
                 </font>
             </Label>
-         <HBox prefHeight="67.0" prefWidth="77.0" translateX="80.0" translateY="130.0">
+         <HBox prefHeight="67.0" prefWidth="77.0" translateX="100.0" translateY="60.0">
             <children>
-               <Button mnemonicParsing="false" onAction="#onButtonClickCommentFront" prefHeight="22.0" prefWidth="29.0" styleClass="transparent" stylesheets="@../css/style.css" textAlignment="RIGHT">
+               <Button mnemonicParsing="false" onAction="#deletecomment" prefHeight="22.0" prefWidth="30.0" styleClass="transparent" stylesheets="@../css/style.css" textAlignment="RIGHT" translateX="-5.0">
+                  <graphic>
+                     <ImageView fx:id="Delete12" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../image/trash-can.png" />
+                        </image>
+                     </ImageView>
+                  </graphic>
+               </Button>
+               <Button mnemonicParsing="false" onAction="#onButtonClickCommentFront" prefHeight="22.0" prefWidth="29.0" styleClass="transparent" stylesheets="@../css/style.css" textAlignment="RIGHT" translateX="-10.0">
                   <graphic>
                      <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                         <image>
@@ -62,15 +99,6 @@
                      </ImageView>
                   </graphic>
                </Button>
-                 <Button mnemonicParsing="false" onAction="#deletecomment" prefHeight="22.0" prefWidth="29.0" styleClass="transparent" stylesheets="@../css/style.css" textAlignment="RIGHT">
-                     <graphic>
-                         <ImageView fx:id="Delete1" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                             <image>
-                                 <Image url="@../image/trash-can.png" />
-                             </image>
-                         </ImageView>
-                     </graphic>
-                 </Button>
             </children>
          </HBox>
         </VBox>

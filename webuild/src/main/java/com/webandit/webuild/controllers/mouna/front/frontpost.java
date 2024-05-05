@@ -62,7 +62,7 @@ public class frontpost{
         }
     }
 
-    private void actualise() throws SQLException {
+    public void actualise() throws SQLException {
         // Effacer les éléments actuels de la grille
         grid.getChildren().clear();
 
@@ -90,7 +90,7 @@ public class frontpost{
 
                 p.getData(post);
                 p.setId(post.getId());
-
+                p.setControllerAct(this);
 
 
                 grid.add(anchorPane, column++, row);
@@ -149,6 +149,9 @@ public class frontpost{
     public void goadd(ActionEvent actionEvent) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/add_post.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
+
+        addPostFront controller = fxmlLoader.getController();
+        controller.setFrontController(this);
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));
         stage.show();

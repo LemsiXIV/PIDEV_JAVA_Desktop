@@ -94,6 +94,20 @@ public class CommentaireService implements CRUD<Commentaire> {
 
         return commentaires;
     }
+    public void incrementDislikes(int commentaireId) throws SQLException {
+        String req = "UPDATE commentaire SET nbrdislikes = nbrdislikes + 1 WHERE id = ?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1, commentaireId);
+        ps.executeUpdate();
+        System.out.println("Nombre de dislikes du commentaire avec l'ID " + commentaireId + " incrémenté !");
+    }
+    public void incrementLikes(int commentaireId) throws SQLException {
+        String req = "UPDATE commentaire SET nbrlikes = nbrlikes + 1 WHERE id = ?";
+        PreparedStatement ps = cnx.prepareStatement(req);
+        ps.setInt(1, commentaireId);
+        ps.executeUpdate();
+        System.out.println("Nombre de likes du commentaire avec l'ID " + commentaireId + " incrémenté avec succès !");
+    }
     public List<Commentaire> rechercherCommentaires(String searchTerm) throws SQLException {
         List<Commentaire> searchResults = new ArrayList<>();
         String query = "SELECT * FROM commentaire WHERE contenu LIKE ?";

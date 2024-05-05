@@ -20,6 +20,7 @@ public class editcommentshyh {
     private TextField nomElementTextField;
     private CommentaireService cs = new CommentaireService();
 
+    private cardcommentaire frontCommentaire;
     public void loadCommentToUpdate(Commentaire commentaire) {
         contenuElementTextArea.setText(commentaire.getContenu());
         nomElementTextField.setText(commentaire.getNom());
@@ -39,7 +40,7 @@ public class editcommentshyh {
 
             // Appelez la méthode pour mettre à jour le post dans la base de données
             cs.updateOne(commentToUpdate);
-
+            frontCommentaire.Frontcoment.actualise();
             // Affichez une alerte de succès
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Success");
@@ -60,5 +61,9 @@ public class editcommentshyh {
     public void clearFieldscomment() {
         nomElementTextField.clear();
         contenuElementTextArea.clear();
+    }
+
+    public void setController(cardcommentaire cardcommentaire) {
+        this.frontCommentaire = cardcommentaire;
     }
 }

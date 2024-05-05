@@ -36,7 +36,7 @@ public class cardpost {
     private Label date;
 
     private Post post;
-
+    private frontpost frontcontroller;
 
     public void getData(Post post) {
         this.post = post;
@@ -61,7 +61,8 @@ public class cardpost {
         if (id != 0) {
             try {
                 System.out.println(id+"ahawaaaaa");
-                ps.delete(id); // Accessing ServiceChantier methods via 'ps' instance
+                ps.delete(id);
+                frontcontroller.actualise(); // Accessing ServiceChantier methods via 'ps' instance
                 // Refresh the table after deleting a chantier
             } catch (SQLException e) {
 
@@ -69,6 +70,11 @@ public class cardpost {
             }
         }
     }
+
+    private void actualise() {
+        getData(post);
+    }
+
     public void comment(ActionEvent actionEvent) throws IOException, SQLException {
 
         if (post != null && post.getId() != 0) {
@@ -109,7 +115,13 @@ public class cardpost {
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));
         stage.show();
+        stage.setOnCloseRequest(event -> {
+            actualise();
+        });
 
+    }
 
+    public void setControllerAct(frontpost frontpost) {
+        this.frontcontroller =frontpost;
     }
 }
