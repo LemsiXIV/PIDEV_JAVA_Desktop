@@ -1,6 +1,11 @@
 package com.webandit.webuild.controllers.mouna.front;
 
 
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
 import com.webandit.webuild.controllers.mouna.front.cardpost;
 import com.webandit.webuild.models.Post;
 import com.webandit.webuild.services.PostService;
@@ -18,6 +23,8 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class frontpost{
@@ -102,6 +109,7 @@ public class frontpost{
         grid.getChildren().clear();
 
         List<Post> posts = ps.rechercherPosts(searchTerm);
+        System.out.println("searchraniala trabhek" + searchTerm+"posts."+posts);
         if (posts.isEmpty()) {
             System.out.println("Aucun post trouvé pour le terme de recherche : " + searchTerm);
             return;
@@ -145,4 +153,59 @@ public class frontpost{
         stage.setScene(new Scene(root1));
         stage.show();
     }
+    @FXML
+    void handleGeneratePdfButton(ActionEvent event) {
+        try (PdfWriter writer = new PdfWriter("posts.pdf");
+             PdfDocument pdf = new PdfDocument(writer);
+             Document document = new Document(pdf)) {
+
+            // Set the title for the PDF document
+            document.add(new Paragraph("List of Posts"));
+
+            // Retrieve posts data from the database
+            PostService postService = new PostService();
+            List<Post> posts = postService.read();
+
+            // Debugging: Print retrieved posts to console
+            for (Post post : posts) {
+                System.out.println(post);
+            }
+
+            // Format for date
+            // Format for date
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+
+// Create a table with 6 columns for post information
+            Table table = new Table(6);
+
+// Add table headers
+            table.addCell("ID");
+            table.addCell("Title");
+            table.addCell("Description");
+            table.addCell("Author");
+            table.addCell("Date");
+            table.addCell("Image");
+
+// Add each post to the table
+            for (Post post : posts) {
+                table.addCell(String.valueOf(post.getId()));
+                table.addCell(post.getTitre());
+                table.addCell(post.getDescription());
+                table.addCell(post.getAuteur());
+
+                // Convert java.sql.Date to java.util.Date
+                java.util.Date utilDate = new java.util.Date(post.getDate().getTime());
+                table.addCell(utilDate.toInstant().atZone(ZoneId.systemDefault()).format(formatter));
+
+                table.addCell(post.getImg());
+            }
+            // Add the table to the document
+            document.add(table);
+
+            System.out.println("PDF generated successfully!");
+        } catch (IOException | SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

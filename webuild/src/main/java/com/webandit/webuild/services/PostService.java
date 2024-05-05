@@ -112,7 +112,7 @@ public class PostService implements ICRUD<Post> {
     }
     public List<Post> rechercherPosts(String searchTerm) throws SQLException {
         List<Post> searchResults = new ArrayList<>();
-        String query = "SELECT * FROM post WHERE titre LIKE ? OR description LIKE ?";
+        String query = "SELECT id, titre, description, img, date FROM post WHERE titre LIKE ? OR description LIKE ?";
         try (PreparedStatement preparedStatement = cnx.prepareStatement(query)) {
             String searchPattern = "%" + searchTerm + "%";
             preparedStatement.setString(1, searchPattern);
@@ -123,12 +123,18 @@ public class PostService implements ICRUD<Post> {
                     post.setId(resultSet.getInt("id"));
                     post.setTitre(resultSet.getString("titre"));
                     post.setDescription(resultSet.getString("description"));
+                    post.setImg(resultSet.getString("img")); // Set the image URL
+                    post.setDate(resultSet.getDate("date")); // Set the date
                     searchResults.add(post);
                 }
             }
         }
         return searchResults;
     }
+
+
+
+
     public java.util.Date GetCurentDate() throws SQLException {
         String sql = "SELECT CURRENT_DATE";
         Statement statement = cnx.createStatement();

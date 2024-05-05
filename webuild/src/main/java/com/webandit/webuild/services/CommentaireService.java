@@ -96,11 +96,11 @@ public class CommentaireService implements CRUD<Commentaire> {
     }
     public List<Commentaire> rechercherCommentaires(String searchTerm) throws SQLException {
         List<Commentaire> searchResults = new ArrayList<>();
-        String query = "SELECT * FROM post WHERE contenu LIKE ?";
+        String query = "SELECT * FROM commentaire WHERE contenu LIKE ?";
         try (PreparedStatement preparedStatement = cnx.prepareStatement(query)) {
             String searchPattern = "%" + searchTerm + "%";
             preparedStatement.setString(1, searchPattern);
-            preparedStatement.setString(2, searchPattern);
+
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     Commentaire commentaire = new Commentaire();
@@ -113,28 +113,47 @@ public class CommentaireService implements CRUD<Commentaire> {
         }
         return searchResults;
     }
-    public List<Commentaire> getCommentairesByPostId(int postId) throws SQLException {
-        List<Commentaire> commentaires = new ArrayList<>();
-        String req = "SELECT * FROM commentaire WHERE post_id = ?";
-        PreparedStatement ps = cnx.prepareStatement(req);
-        ps.setInt(1, postId);
-        ResultSet rs = ps.executeQuery();
+    public List<Commentaire> getCommentsPostId(int post_id) throws SQLException {
+        List<Commentaire> commentList = new ArrayList<>();
+        String query = "SELECT * FROM commentaire WHERE post_id = ?"; // Remplacez comments et idblog par les noms réels de vos tables et colonnes
 
-        while (rs.next()) {
-            Commentaire commentaire = new Commentaire();
-            commentaire.setId(rs.getInt("id"));
-            commentaire.setContenu(rs.getString("contenu"));
-            commentaire.setNom(rs.getString("nom"));
-            commentaire.setDateCreation(rs.getDate("datecreation"));
-            commentaire.setNbrLikes(rs.getInt("nbrlikes"));
-            commentaire.setNbrDislikes(rs.getInt("nbrdislikes"));
-            commentaire.setRate(rs.getInt("rate"));
-            commentaire.setPost_id(rs.getInt("post_id"));
-            commentaires.add(commentaire);
+        try (PreparedStatement statement = cnx.prepareStatement(query)) {
+            statement.setInt(1, post_id);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                int idComment = resultSet.getInt("id");
+                String contentComment = resultSet.getString("contenu");
+
+                // Créez un objet Comments à partir des données récupérées
+                Commentaire comment = new Commentaire (idComment, contentComment,post_id);
+                commentList.add(comment);
+            }
         }
 
+        return commentList;
+    }
+    public List<Commentaire> selectAllv2(int id) throws SQLException {
+        List<Commentaire> commentaires = new ArrayList<>();
+        String req = "SELECT * FROM commentaire WHERE post_id = ?";
+
+        try (PreparedStatement statement = cnx.prepareStatement(req)) {
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                Commentaire commentaire = new Commentaire();
+                commentaire.setId(rs.getInt("id"));
+                commentaire.setContenu(rs.getString("contenu"));
+                commentaire.setNom(rs.getString("nom"));
+                commentaire.setDateCreation(rs.getDate("datecreation"));
+                commentaire.setNbrLikes(rs.getInt("nbrlikes"));
+                commentaire.setNbrDislikes(rs.getInt("nbrdislikes"));
+                commentaire.setRate(rs.getInt("rate"));
+                commentaire.setPost_id(rs.getInt("post_id"));
+                commentaires.add(commentaire);
+            }
+        }
         return commentaires;
     }
-
-
 }

@@ -49,7 +49,6 @@ public class cardpost {
         date.setText(String.valueOf(post.getDate()));
 
 
-
     }
 
     int id ;
@@ -71,39 +70,46 @@ public class cardpost {
         }
     }
     public void comment(ActionEvent actionEvent) throws IOException, SQLException {
-        System.out.println("Bouton Comment cliqué");
-        CommentaireService cs = new CommentaireService();
-        List<Commentaire> commentaires = cs.getCommentairesByPostId(post.getId());
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gridcommentaire.fxml"));
-        Parent root1 = (Parent) fxmlLoader.load();
 
+        if (post != null && post.getId() != 0) {
+            // Assurez-vous que post est défini et que son identifiant n'est pas 0
+            CommentaireService cs = new CommentaireService();
+            List<Commentaire> commentaires = cs.getCommentsPostId(post.getId());
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/gridcommentaire.fxml"));
+            Parent root1 = fxmlLoader.load();
+            PostDetails.getInstance().setIdPost(post.getId());
 
-        // Get the controller
-        FrontCommentaire controller = fxmlLoader.getController();
-        controller.setData(commentaires, post);
+            int newid =PostDetails.getInstance().getIdPost();
+            System.out.println(newid  + "\t ahaaawaaa cardpost controller");
+            // Get the controller
+            FrontCommentaire controller = fxmlLoader.getController();
+            System.out.println(post.getId() + "\t ahaaawaaa cardpost controller");
+            controller.setData(post.getId());
 
-        // Set the stage
-        Stage stage = new Stage();
-        controller.setStage(stage); // Pass the stage to the controller
-        stage.setScene(new Scene(root1));
-        stage.show();
+            // Set the stage
+            Scene scene = new Scene(root1);
+            Stage stage = new Stage();
+            stage.setScene(scene);
+            stage.show();
+        } else {
+            System.out.println("L'identifiant du post n'est pas correctement défini.");
+        }
     }
 
-    @FXML
-    private void onEditButtonClickFront(ActionEvent actionEvent) throws IOException {
+
+    public void onEditButtonClickFront(ActionEvent actionEvent) throws IOException {
+
+
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/editcomment.fxml"));
         Parent root1 = (Parent) fxmlLoader.load();
-
-        // Obtenez le contrôleur de la fenêtre d'édition
         editcomment editController = fxmlLoader.getController();
 
         // Passez le post sélectionné à la méthode pour charger les données du post à modifier
-        editController.loadPostToUpdate(post); // Utilisez le post actuel ou le post sélectionné selon votre implémentation
-
+        editController.loadPostToUpdate(post); //
         Stage stage = new Stage();
         stage.setScene(new Scene(root1));
         stage.show();
+
+
     }
-
-
 }

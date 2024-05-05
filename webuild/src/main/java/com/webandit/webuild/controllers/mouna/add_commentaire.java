@@ -13,6 +13,7 @@ import javafx.scene.paint.Color;
 import com.webandit.webuild.controllers.mouna.AjouterCommentaireController;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.List;
 import static com.webandit.webuild.models.EmailSender.AjoutCommentaireEmail;
 
@@ -70,7 +71,6 @@ public class add_commentaire {
                     rateTextField.getText().isEmpty() || dateCreationDatePicker.getValue() == null) {
                 setupValidation();
                 setupValidationtype();
-
                 return;
             }
 
@@ -94,13 +94,18 @@ public class add_commentaire {
 
             System.out.println(nom + "\t" + contenu + "\t" + nbrLikes + "\t" + nbrDislikes + "\t" + rate + "\t" + postid + "\t" + sqlDate);
 
+            // Vérifier si le commentaire contient des mots inappropriés
+            if (contientMotsInterdits(contenu)) {
+                showAlert("Erreur", "Le contenu du commentaire contient des mots inappropriés.");
+                return;
+            }
+
             // Créer une instance de Commentaire avec les valeurs récupérées
             Commentaire commentaire = new Commentaire(contenu, nom, sqlDate, nbrLikes, nbrDislikes, rate, postid);
             if (setupValidationtype() == 0) {
                 // Ajouter le commentaire à la base de données
-
                 cs.insertOne(commentaire);
-                EmailSender.AjoutCommentaireEmail("jomaamouna@gmail.com","test");
+                EmailSender.AjoutCommentaireEmail("jomaamouna@gmail.com", "test");
 
                 // Afficher une alerte de succès
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -118,6 +123,19 @@ public class add_commentaire {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private boolean contientMotsInterdits(String contenu) {
+        // Liste de mots interdits
+        List<String> motsInterdits = Arrays.asList("java", "esprit","pidev");
+
+        // Vérifier si le contenu contient des mots interdits
+        for (String mot : motsInterdits) {
+            if (contenu.toLowerCase().contains(mot)) {
+                return true;
+            }
+        }
+        return false;
     }
 
 
