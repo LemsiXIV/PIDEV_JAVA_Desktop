@@ -46,7 +46,10 @@ public class Map {
                 window.setMember("javaBridge", new JavaBridge());
 
                 // Pass the JSON data to the JavaScript function
-                webEngine.executeScript("displayOffres(" + offresJson + ")");
+                webEngine.executeScript("addMarkers(" + offresJson + ")");
+                    //man
+               // webEngine.executeScript("addMarker(36.806650, 10.181500, 'Decorateur')");
+
             }
         });
     }
@@ -60,7 +63,7 @@ public class Map {
             jsonBuilder.append("{")
                     .append("\"lat\":").append(offre.getLatitude()).append(",")
                     .append("\"lng\":").append(offre.getLongitude()).append(",")
-                    .append("\"title\":\"").append(offre.getTitle()).append("\"")
+                    .append("\"title\":\'").append(offre.getTitle()).append("\'")
                     .append("}");
             if (i < offresList.size() - 1) {
                 jsonBuilder.append(",");

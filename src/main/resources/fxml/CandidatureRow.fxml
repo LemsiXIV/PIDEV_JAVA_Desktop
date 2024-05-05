@@ -14,7 +14,7 @@
             <graphic>
                 <ImageView fx:id="img_user" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" style="-fx-border-radius: 50%;">
                     <image>
-                        <Image url="@../../../image/admin-22.jpg" />
+                        <Image url="@../image/admin-22.jpg" />
                     </image>
                 </ImageView>
             </graphic>
@@ -32,7 +32,7 @@
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../image/icons8-work-50.png" />
+                                <Image url="@../image/icons8-work-50.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -41,7 +41,7 @@
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../image/exchange.png" />
+                                <Image url="@../image/exchange.png" />
                             </image>
                         </ImageView>
                     </graphic>
@@ -50,7 +50,7 @@
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../../../image/trash-can.png" />
+                                <Image url="@../image/trash-can.png" />
                             </image>
                         </ImageView>
                     </graphic>

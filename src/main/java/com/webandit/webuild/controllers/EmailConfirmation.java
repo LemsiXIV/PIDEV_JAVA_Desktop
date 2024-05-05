@@ -32,8 +32,8 @@ public class EmailConfirmation {
         String content = emailcontent.getText();
 
         // Email sender's details
-        String senderEmail = "webuild";
-        String senderPassword = "211JFT1021";
+        String senderEmail = "webuild2026@gmail.com";
+        String senderPassword = "sgwc ggbh plhj auth";
 
         // Email properties
         Properties properties = new Properties();

@@ -13,12 +13,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -36,6 +39,8 @@ public class Candidatures {
 
     @FXML
     private TableColumn<Candidature, String> coloffre;
+    @FXML
+    private TableColumn<Candidature, String> colCv;
 
     @FXML
     private TextField comp;
@@ -59,7 +64,8 @@ public class Candidatures {
     private Button deleteCan;
     @FXML
     private Button mailBtn;
-
+    @FXML
+    private WebView webView;
     @FXML
     private Button selectCan;
     @FXML
@@ -101,6 +107,9 @@ public class Candidatures {
         }
         if (colemail != null) {
             colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        }
+        if (colCv != null) {
+            colCv.setCellValueFactory(new PropertyValueFactory<>("cv"));
         }
 
         // Populate the ChoiceBox with available offres titles
@@ -332,4 +341,28 @@ public class Candidatures {
         // Show the email form window
         stage.show();
     }
+    @FXML
+    public void displayPDF(ActionEvent event) {
+        Candidature selectedCandidature = tablecan.getSelectionModel().getSelectedItem();
+        if (selectedCandidature != null) {
+            String pdfURL = "file:///C:/Users/Malek/Downloads/Assistant%20visa%20-%20France-Visas.pdf"; // Assuming getCv() returns the URL of the PDF file
+
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/pdf.fxml"));
+                Parent root = loader.load();
+                pdf controller = loader.getController();
+                controller.loadPDF(pdfURL);
+
+                Stage stage = new Stage();
+                stage.setScene(new Scene(root));
+                stage.show();
+            } catch (IOException e) {
+                e.printStackTrace();
+                // Handle error loading WebView-only view
+            }
+        } else {
+            // Handle case where no candidature is selected
+        }
+    }
+
 }

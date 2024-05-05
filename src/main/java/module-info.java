@@ -6,6 +6,7 @@ module com.webandit.webuild {
     requires jdk.jsobject;
     requires java.mail;
 
+
     // Open packages to JavaFX modules
     opens com.webandit.webuild.controllers to javafx.fxml;
     opens com.webandit.webuild.models to javafx.fxml, javafx.base; // Open to javafx.base module as well

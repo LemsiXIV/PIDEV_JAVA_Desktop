@@ -27,7 +27,7 @@ public class HelloApplication extends Application {
             stage.setY(event.getSceneY() - y);
         });
 
-        stage.setScene(new Scene(root, 931 , 674));
+        stage.setScene(new Scene(root, 1300 , 800));
         stage.setTitle("WeBuild");
         stage.show();
     }

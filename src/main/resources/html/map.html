@@ -25,7 +25,11 @@
         console.log("Received offres:", offres);
         offres.forEach(function(offre) {
             console.log("Adding marker for:", offre);
-            addMarker(offre.lat, offre.lng, offre.title);
+            var marker = L.marker([offre.lat, offre.lng]).addTo(map); // Add marker to the map
+            marker.bindPopup(offre.title); // Bind popup to the marker
+            marker.on('click', function() { // Add click event listener to open popup on marker click
+                this.openPopup();
+            });
         });
     }
 
