@@ -63,7 +63,8 @@ public class Map {
             jsonBuilder.append("{")
                     .append("\"lat\":").append(offre.getLatitude()).append(",")
                     .append("\"lng\":").append(offre.getLongitude()).append(",")
-                    .append("\"title\":\'").append(offre.getTitle()).append("\'")
+                    .append("\"title\":\'").append(offre.getTitle()).append("\',")
+                    .append("\"salary\":").append(offre.getSalary())
                     .append("}");
             if (i < offresList.size() - 1) {
                 jsonBuilder.append(",");

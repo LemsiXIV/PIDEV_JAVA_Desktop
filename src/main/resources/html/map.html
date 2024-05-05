@@ -26,13 +26,14 @@
         offres.forEach(function(offre) {
             console.log("Adding marker for:", offre);
             var marker = L.marker([offre.lat, offre.lng]).addTo(map); // Add marker to the map
-            marker.bindPopup(offre.title); // Bind popup to the marker
+            var popupContent = "<b>Title:</b> " + offre.title + "<br>" +
+                "<b>Salary:</b> " + offre.salary+ "<br>" ; // Button to open candidature window
+            marker.bindPopup(popupContent); // Bind popup to the marker
             marker.on('click', function() { // Add click event listener to open popup on marker click
                 this.openPopup();
             });
         });
     }
-
     // Function to add a single marker
     function addMarker(lat, lng, title) {
         console.log("Adding marker at:", lat, lng, "with title:", title);
