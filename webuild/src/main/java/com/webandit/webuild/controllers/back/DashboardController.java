@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ResourceBundle;
 import com.webandit.webuild.services.serviceUtilisateur;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 public class DashboardController implements Initializable {
@@ -73,11 +74,13 @@ public class DashboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadData();
-        actionColumn.setCellFactory(param ->
-                new TableCell<>() {
-                    private final Button updateButton = new Button("Update");
 
-                    {
+        actionColumn.setCellFactory(param -> new TableCell<>() {
+            //    private final Button updateButton = new Button("Update");
+            private final Button updateButton = new Button("Update");
+
+            {
+
                         updateButton.setOnAction(event -> {
                             Utilisateur utilisateur = getTableView().getItems().get(getIndex());
                             String userEmail = utilisateur.getEmail();
@@ -98,6 +101,17 @@ public class DashboardController implements Initializable {
                             }
 
                         });
+                    }
+                    @Override
+                    protected void updateItem(Void item, boolean empty) {
+                        super.updateItem(item, empty);
+                        if (empty) {
+                            setGraphic(null);
+                        } else {
+                            HBox buttonBox = new HBox(5);
+                            buttonBox.getChildren().addAll(updateButton/*, deleteButton*/);
+                            setGraphic(buttonBox);
+                        }
                     }
                 });
     }

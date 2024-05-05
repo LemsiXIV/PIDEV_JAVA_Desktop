@@ -19,8 +19,8 @@ public class serviceUtilisateur implements CRUD<Utilisateur>{
     }
     @Override
     public void insertOne(Utilisateur utilisateur) throws SQLException {
-        String req= "INSERT INTO `utilisateur`(`nom`, `prénom`, `téléphone`, `adresse`, `email`, `pwd`) VALUES"+
-                " ('"+utilisateur.getNom()+"','"+utilisateur.getPrenom()+"','"+utilisateur.getTelephone()+"','"+utilisateur.getAdresse()+"','"+utilisateur.getEmail()+"','"+utilisateur.getPwd()+"')";
+        String req= "INSERT INTO `utilisateur`(`nom`, `prénom`, `téléphone`, `adresse`, `email`, `pwd`,`roles`) VALUES"+
+                " ('"+utilisateur.getNom()+"','"+utilisateur.getPrenom()+"','"+utilisateur.getTelephone()+"','"+utilisateur.getAdresse()+"','"+utilisateur.getEmail()+"','"+utilisateur.getPassword()+"','"+utilisateur.getRoles()+"')";
         Statement st=cnx.createStatement();
         st.executeUpdate(req);
         st.close();
@@ -57,6 +57,7 @@ public class serviceUtilisateur implements CRUD<Utilisateur>{
             p.setTelephone(rs.getInt("téléphone"));
             p.setAdresse(rs.getString("adresse"));
             p.setEmail(rs.getString("email"));
+            p.setRoles(rs.getString("roles"));
 
 
             personList.add(p);
@@ -77,8 +78,8 @@ public class serviceUtilisateur implements CRUD<Utilisateur>{
                 //String fonction = resultset.getString("fonction_utilisateur");
                 String adresse = resultset.getString("adresse");
                 int num=resultset.getInt("téléphone");
-
-                return new Utilisateur(nom, prenom,num,  adresse,  email, pwd);
+                String roles = resultset.getString("roles");
+                return new Utilisateur(nom, prenom,num,  adresse,  email, pwd, roles);
             }else {
                 return null;
             }
@@ -109,5 +110,30 @@ public class serviceUtilisateur implements CRUD<Utilisateur>{
         Statement statement = cnx.createStatement();
         statement.executeUpdate(query);
         statement.close();
+    }
+    public void updateIsVerified(String email) throws SQLException {
+        String sql = "UPDATE utilisateur SET is_verified = 1 WHERE email = '" + email + "'";
+        Statement statement = cnx.createStatement();
+        statement.executeUpdate(sql);
+        statement.close();
+    }
+    public boolean verifyToken(String token) {
+        try {
+            String query = "SELECT * FROM verification_tokens WHERE token = '" + token + "' AND expiry_time > NOW()";
+            Statement statement = cnx.createStatement();
+            // Execute the query
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // If the token exists and is not expired, return true
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException e) {
+            // Handle any SQL exceptions
+            e.printStackTrace();
+        }
+
+        // If token verification fails, return false
+        return false;
     }
 }

@@ -92,7 +92,31 @@ public class Login {
         try {
             Utilisateur utilisateur;
             if ((utilisateur = serviceutilisater.Login(emailtxt.getText(), pwdtxt.getText())) != null) {
-                SessionManagement.getInstance(utilisateur.getId(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getEmail(), utilisateur.getPwd(), utilisateur.getAdresse(), utilisateur.getTelephone());
+                SessionManagement.getInstance(utilisateur.getId(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getTelephone(), utilisateur.getAdresse(), utilisateur.getEmail(), utilisateur.getPassword(), utilisateur.getRoles(), utilisateur.getIs_verified());
+                System.out.println("User ID: " + SessionManagement.getInstance().getId());
+                System.out.println("User Nom: " + SessionManagement.getInstance().getNom());
+                System.out.println("User Prenom: " + SessionManagement.getInstance().getPrenom());
+                System.out.println("User Email: " + SessionManagement.getInstance().getEmail());
+                System.out.println("User Adresse: " + SessionManagement.getInstance().getAdresse());
+                System.out.println("User Telephone: " + SessionManagement.getInstance().getTelephone());
+                System.out.println("User Role: " + SessionManagement.getInstance().getRoles());
+                if (utilisateur.getRoles().equals("Admin")){
+try{
+    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/HomeAdmin.fxml"));
+    Parent root = loader.load();
+    Scene scene = new Scene(root);
+    Stage stage = (Stage) LoginButton.getScene().getWindow();
+    stage.setScene(scene);
+    stage.show();
+} catch (IOException e) {
+    Alert alert = new Alert(Alert.AlertType.ERROR);
+    alert.setTitle("Erreur de saisie");
+    alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
+    alert.show();
+}
+}else{
+
+
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/front/hello-view.fxml"));
                     Parent root = loader.load();
@@ -105,16 +129,18 @@ public class Login {
                     alert.setTitle("Erreur de saisie");
                     alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
                     alert.show();
-                }
-            } else {
+
+                }}
+            }else {
                 pwderr.setText("Your username or password are incorrect");
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
+
     @FXML
-    void changeToSignIn(ActionEvent event) {
+    void changeToSignIn(MouseEvent event) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Signup.fxml"));
             Parent root = loader.load();
@@ -123,13 +149,17 @@ public class Login {
             stage.setScene(scene);
             stage.show();
         } catch (IOException e) {
+            // Display error message using Alert
             Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Erreur de saisie");
-            alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
-            alert.show();
+            alert.setTitle("Erreur lors du chargement de la page de connexion");
+            alert.setHeaderText(null);
+            alert.setContentText("Une erreur s'est produite lors du chargement de la page de connexion. Veuillez réessayer.");
+            alert.showAndWait();
+            e.printStackTrace(); // Print the stack trace for debugging
         }
-
     }
+
+
     @FXML
     void hidePassword(KeyEvent event) {
         pwd=pwdtxt.getText();

@@ -1,4 +1,7 @@
 package com.webandit.webuild.controllers;
+
+import org.json.JSONObject;
+
 public class SessionManagement {
 
     private static SessionManagement instance;
@@ -11,6 +14,16 @@ public class SessionManagement {
     private String prenom;
     private String adresse;
     private int telephone;
+    private String  roles;
+    private int is_verified;
+
+    public int getIs_verified() {
+        return is_verified;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
 
     public int getId() {
         return id;
@@ -40,7 +53,9 @@ public class SessionManagement {
         return telephone;
     }
 
-    public SessionManagement(int id, String nom, String email, String pwd, String prenom, String adresse, int telephone) {
+
+
+    public SessionManagement(int id, String nom, String prenom,int telephone,String adresse,String email, String pwd, String roles,int is_verified) {
         this.id = id;
         this.nom = nom;
         this.email = email;
@@ -48,11 +63,17 @@ public class SessionManagement {
         this.prenom = prenom;
         this.adresse = adresse;
         this.telephone = telephone;
+        this.roles= roles;
+        this.is_verified=is_verified;
     }
 
-    public static SessionManagement getInstance(int id,String nom, String email, String pwd, String prenom, String adresse, int telephone) {
+    public static void setInstance(SessionManagement instance) {
+        SessionManagement.instance = instance;
+    }
+
+    public static SessionManagement getInstance(int id, String nom, String prenom, int telephone, String adresse, String email, String pwd, String  roles, int is_verified) {
         if (instance == null) {
-            instance = new SessionManagement(id, nom, email,pwd,prenom,adresse,telephone);
+            instance = new SessionManagement( id,  nom,  prenom, telephone, adresse, email,  pwd,  roles, is_verified);
         }
         return instance;
     }
@@ -82,6 +103,8 @@ public class SessionManagement {
                 ", prenom='" + prenom + '\'' +
                 ", adresse='" + adresse + '\'' +
                 ", telephone='" + telephone + '\'' +
+                ", role='" + roles + '\'' +
+                ", is_verified='" + is_verified + '\'' +
                 '}';
     }
 

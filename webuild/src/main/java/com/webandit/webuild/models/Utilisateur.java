@@ -1,14 +1,16 @@
 package com.webandit.webuild.models;
 
 import java.util.Date;
-
+import org.json.JSONObject;
 public class Utilisateur {
-    private int id, telephone;
+    private int id, telephone,cin;
     private Date datenaiss;
-    private String nom, prenom, fonction, adresse, email, pwd, role;
-    private Boolean isActivated;
+    private String nom, prenom, fonction, adresse, email, password,bio;
+    private int is_verified;
+    private String roles;
 
-    public Utilisateur(int id, int telephone, Date datenaiss, String nom, String prenom, String fonction, String adresse, String email, String pwd, Boolean isActivated, String role) {
+
+    public Utilisateur(int id, int telephone, Date datenaiss, String nom, String prenom, String fonction, String adresse, String email, String pwd, String roles,int is_verified) {
         this.id = id;
         this.telephone = telephone;
         this.datenaiss = datenaiss;
@@ -17,18 +19,26 @@ public class Utilisateur {
         this.fonction = fonction;
         this.adresse = adresse;
         this.email = email;
-        this.pwd = pwd;
-        this.isActivated = isActivated;
-        this.role="User";
+        this.password = pwd;
+
+        this.roles = roles;
+
+            this.is_verified = 0;
+
     }
 
-    public Utilisateur( String nom, String prenom,int telephone, String adresse, String email, String pwd) {
+    public Utilisateur( String nom, String prenom,int telephone, String adresse, String email, String pwd, Integer is_verified) {
         this.telephone = telephone;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.email = email;
-        this.pwd = pwd;
+        this.password = pwd;
+        if (is_verified != null) {
+            this.is_verified = is_verified;
+        } else {
+            this.is_verified = 0;
+        }
     }
     public Utilisateur( String nom, String prenom,int telephone, String adresse, String email) {
         this.telephone = telephone;
@@ -37,18 +47,32 @@ public class Utilisateur {
         this.adresse = adresse;
         this.email = email;
 
+
     }
-    public Utilisateur( int id,String nom, String prenom,int telephone, String adresse, String email, String pwd) {
+    public Utilisateur( int id,String nom, String prenom,int telephone, String adresse, String email, String pwd, String roles) {
         this.telephone = telephone;
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
         this.email = email;
         this.id= id;
-        this.pwd=pwd;
+        this.password=pwd;
+        this.roles = roles;
 
     }
-    public Utilisateur(int telephone, Date datenaiss, String nom, String prenom, String fonction, String adresse, String email, String pwd, Boolean isActivated) {
+    public Utilisateur( int id,String nom, String prenom,int telephone, String adresse, String email, String pwd, String roles,int is_verified) {
+        this.telephone = telephone;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.id= id;
+        this.password=pwd;
+        this.roles = roles;
+        this.is_verified=is_verified;
+
+    }
+    public Utilisateur(int telephone, Date datenaiss, String nom, String prenom, String fonction, String adresse, String email, String pwd, int is_verified) {
         this.telephone = telephone;
         this.datenaiss = datenaiss;
         this.nom = nom;
@@ -56,11 +80,33 @@ public class Utilisateur {
         this.fonction = fonction;
         this.adresse = adresse;
         this.email = email;
-        this.pwd = pwd;
-        this.isActivated = isActivated;
+        this.password = pwd;
+        this.is_verified=is_verified;
     }
 
     public Utilisateur() {}
+
+    public Utilisateur(String nom, String prenom, int telephone, String adresse, String email, String pwd, String role) {
+        this.telephone = telephone;
+        this.nom = nom;
+        this.prenom = prenom;
+        this.adresse = adresse;
+        this.email = email;
+        this.password=pwd;
+        this.roles = role;
+
+    }
+
+    public Utilisateur(String nom, String prenom, int telephone, String adresse, String email, String pwd, String defaultRole, int is_verified) {
+        this.nom=nom;
+        this.prenom=prenom;
+        this.telephone=telephone;
+        this.adresse=adresse;
+        this.email=email;
+        this.password=pwd;
+        this.roles=defaultRole;
+        this.is_verified=is_verified;
+    }
 
     public int getId() {
         return id;
@@ -126,27 +172,29 @@ public class Utilisateur {
         this.email = email;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPwd(String pwd) {
-        this.pwd = pwd;
+    public void setPassword(String pwd) {
+        this.password = pwd;
     }
 
-    public Boolean getActive() {
-        return isActivated;
+    public int getIs_verified() {
+        return is_verified;
     }
 
-    public void setActive(Boolean active) {
-        isActivated = true;
+    public void setIs_verified(Integer is_verified) {
+        this.is_verified=is_verified;
     }
 
-    public String getRole() {
-        return role;
+
+    public String getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(String roles) {
+        this.roles = roles;
     }
+
 }

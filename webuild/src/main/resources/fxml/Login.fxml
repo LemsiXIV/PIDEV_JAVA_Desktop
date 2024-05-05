@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
@@ -22,7 +21,7 @@
       <Label layoutX="333.0" layoutY="182.0" text="Password :" />
       <TextField fx:id="emailtxt" layoutX="398.0" layoutY="116.0" promptText="Entrer votre email" />
       <Button fx:id="LoginButton" layoutX="439.0" layoutY="276.0" mnemonicParsing="false" onAction="#Login" text="Log In" />
-      <Hyperlink fx:id="signinlink" layoutX="429.0" layoutY="344.0" onAction="#changeToSignIn" text="Sign In" textFill="#2980f2">
+      <Hyperlink fx:id="signinlink" layoutX="429.0" layoutY="344.0" onMouseClicked="#changeToSignIn" text="Sign In" textFill="#2980f2">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
