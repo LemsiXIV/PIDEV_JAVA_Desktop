@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>OpenStreetMap</title>
+    <meta charset="UTF-8">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"/>
+    <style>
+        #map {
+            height: 600px;
+        }
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+    var map = L.map('map').setView([0, 0], 2); // Set initial view to center of the map
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Function to add a marker for each offre
+    function addMarkers(offres) {
+        console.log("Received offres:", offres);
+        offres.forEach(function(offre) {
+            console.log("Adding marker for:", offre);
+            addMarker(offre.lat, offre.lng, offre.title);
+        });
+    }
+
+    // Function to add a single marker
+    function addMarker(lat, lng, title) {
+        console.log("Adding marker at:", lat, lng, "with title:", title);
+        L.marker([lat, lng]).addTo(map).bindPopup(title).openPopup();
+    }
+
+    function displayOffres(offresJson) {
+        try {
+            var offres = JSON.parse(offresJson); // Parse the JSON data
+            // Add markers for the offres
+            addMarkers(offres);
+        } catch (error) {
+            console.error('Error parsing offres JSON:', error);
+        }
+    }
+</script>
+</body>
+</html>

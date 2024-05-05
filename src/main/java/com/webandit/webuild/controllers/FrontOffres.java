@@ -19,6 +19,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 public class FrontOffres {
     @FXML
     private GridPane grid;
@@ -28,6 +30,8 @@ public class FrontOffres {
 
     @FXML
     private TextField searchField;
+    @FXML
+    private Button btnMaps;
 
     private final ServiceOffre sa = new ServiceOffre();
 
@@ -135,7 +139,17 @@ public class FrontOffres {
             }
         }
     }
+    @FXML
+    void showMap(ActionEvent event) {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("/fxml/map.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setTitle("OpenStreetMap");
+            stage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    }
 
-
-
-}

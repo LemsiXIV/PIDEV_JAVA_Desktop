@@ -8,9 +8,17 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -42,15 +50,20 @@ public class Candidatures {
     private TextField email;
 
     @FXML
+    private Button fileBtn;
+    @FXML
     private Button clear;
     @FXML
     private Button addCan;
     @FXML
     private Button deleteCan;
+    @FXML
+    private Button mailBtn;
 
     @FXML
     private Button selectCan;
-
+    @FXML
+    private Label fileNameLabel;
     @FXML
     private Button updateCan;
     @FXML
@@ -58,7 +71,7 @@ public class Candidatures {
 
     @FXML
     private TableView<Candidature> tablecan;
-
+    public String filePath;
     private void showAlert(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
@@ -77,27 +90,40 @@ public class Candidatures {
     @FXML
     void initialize() {
         // Set up column cell value factories
-        coloffre.setCellValueFactory(new PropertyValueFactory<>("offreTitle"));
-        coldescrp.setCellValueFactory(new PropertyValueFactory<>("description"));
-        colcomp.setCellValueFactory(new PropertyValueFactory<>("competences"));
-        colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        if (coloffre != null) {
+            coloffre.setCellValueFactory(new PropertyValueFactory<>("offreTitle"));
+        }
+        if (coldescrp != null) {
+            coldescrp.setCellValueFactory(new PropertyValueFactory<>("description"));
+        }
+        if (colcomp != null) {
+            colcomp.setCellValueFactory(new PropertyValueFactory<>("competences"));
+        }
+        if (colemail != null) {
+            colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
+        }
 
         // Populate the ChoiceBox with available offres titles
-        populateOffresChoiceBox();
+        if (offreChoiceBox != null) {
+            populateOffresChoiceBox();
+        }
 
         // Handle ChoiceBox selection
-        offreChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                try {
-                    updateTableViewWithCandidaturesForOffre(newValue);
-                } catch (SQLException e) {
-                    throw new RuntimeException(e);
+        if (offreChoiceBox != null) {
+            offreChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    try {
+                        updateTableViewWithCandidaturesForOffre(newValue);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
-            }
-        });
+            });
+        }
 
-        // Refresh the table view
-        afficherCandidature();
+        if (tablecan != null) {
+            afficherCandidature();
+        }
     }
 
     @FXML
@@ -136,6 +162,10 @@ public class Candidatures {
                 String idClientValue = idclient.getText();
                 String emailValue = email.getText();
                 String selectedOffreTitle = offreChoiceBox.getValue();
+                if (filePath == null) {
+                    showAlert("Erreur", "Aucun fichier sélectionné.");
+                    return;
+                }
 
                 // Validate input fields
                 if (compValue.isEmpty() || descpValue.isEmpty() || idClientValue.isEmpty() || emailValue.isEmpty() || selectedOffreTitle == null) {
@@ -155,7 +185,7 @@ public class Candidatures {
                 ServiceOffre serviceOffre = new ServiceOffre();
                 Offre selectedOffre = serviceOffre.getOffreByTitle(selectedOffreTitle);
                 // Create a new Candidature object
-                Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,Integer.parseInt(idClientValue), descpValue,compValue, emailValue);
+                Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,Integer.parseInt(idClientValue), descpValue,compValue, emailValue,filePath);
 
                 // Call the method to insert the Candidature into the database
                 ServiceCandidature serviceCandidature = new ServiceCandidature();
@@ -262,5 +292,44 @@ public class Candidatures {
         descp.clear();
         idclient.clear();
         email.clear();
+    }
+
+    @FXML
+    String uploadCV(ActionEvent event) {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Upload CV");
+        File selectedFile = fileChooser.showOpenDialog(null);
+        if (selectedFile != null) {
+            String fileName = selectedFile.getName();
+            fileNameLabel.setText(fileName);
+            // Process the selected file
+           filePath = selectedFile.getAbsolutePath();
+            return filePath;
+        } else {
+            fileNameLabel.setText("No file selected");
+            return null; // Return null if no file is selected
+        }
+    }
+
+    //i actually dont know
+    private FrontCandidature frontController; // Reference to the task_front controller
+    public void setFrontController(FrontCandidature frontController) {
+        this.frontController = frontController;
+    }
+
+
+    @FXML
+    void SendingMails(ActionEvent event) throws IOException {
+// Load the EmailForm.fxml file
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/EmailConfirmation.fxml"));
+        Parent root = fxmlLoader.load();
+
+        // Create a new stage for the email form
+        Stage stage = new Stage();
+        stage.setTitle("Email Form");
+        stage.setScene(new Scene(root));
+
+        // Show the email form window
+        stage.show();
     }
 }
