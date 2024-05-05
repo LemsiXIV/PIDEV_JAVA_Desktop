@@ -11,20 +11,18 @@ public class Candidature {
     private int id_client;
     private String description;
 
-    private String competences;
     private  String email;
     private String cv;
 
 
     public Candidature() {};
 
-    public Candidature(int id, Offre offre, String offreTitle, int id_client, String description, String competences, String email,String cv) {
+    public Candidature(int id, Offre offre, String offreTitle, int id_client, String description, String email,String cv) {
         this.id = id;
         this.offre = offre;
         this.offreTitle = offreTitle;
         this.id_client = id_client;
         this.description = description;
-        this.competences = competences;
         this.email = email;
         this.cv=cv;
     }
@@ -51,9 +49,6 @@ public class Candidature {
         return description;
     }
 
-    public String getCompetences() {
-        return competences;
-    }
 
     public String getEmail() {
         return email;
@@ -74,10 +69,6 @@ public class Candidature {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public void setCompetences(String competences) {
-        this.competences = competences;
     }
 
     public void setEmail(String email) {
@@ -107,7 +98,6 @@ public class Candidature {
                 ", offreTitle='" + offreTitle + '\'' +
                 ", id_client=" + id_client +
                 ", description='" + description + '\'' +
-                ", competences='" + competences + '\'' +
                 ", email='" + email + '\'' +
                 ", cv='" + cv + '\'' +
                 '}';

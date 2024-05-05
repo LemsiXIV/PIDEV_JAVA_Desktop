@@ -45,22 +45,10 @@
                                 <String fx:value="selected" />
                             </styleClass>
                         </HBox>
-                        <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
-                            <children>
-                                <Button mnemonicParsing="false" onAction="#Offres" prefHeight="45.0" prefWidth="158.0" text="BackOffice:Offres">
-                                    <graphic>
-                                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
-                                            <image>
-                                                <Image url="@../image/icons8-candidates-66.png" />
-                                            </image>
-                                        </ImageView>
-                                    </graphic>
-                                </Button>
-                            </children>
-                        </HBox>
+
                         <HBox alignment="CENTER" layoutX="10.0" layoutY="195.0" prefHeight="45.0" prefWidth="158.0" spacing="15.0" styleClass="mouse-moved" stylesheets="@../css/style.css">
                             <children>
-                                <Button mnemonicParsing="false" onAction="#FrontCandidature" prefHeight="45.0" prefWidth="158.0" text="Candidatures">
+                                <Button mnemonicParsing="false" onAction="#FrontCandidature" prefHeight="45.0" prefWidth="158.0" text="Mes Candidatures">
                                     <graphic>
                                         <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
                                             <image>

@@ -18,8 +18,6 @@ import java.util.List;
 
 public class addCandidatureFront {
 
-    @FXML
-    private TextField comp;
 
     @FXML
     private TextField descp;
@@ -51,7 +49,6 @@ public class addCandidatureFront {
     void ConfirmerCan(ActionEvent event) {
         try {
             // Retrieve values from UI controls
-            String compValue = comp.getText();
             String descpValue = descp.getText();
             String idClientValue = idclient.getText();
             String emailValue = email.getText();
@@ -62,7 +59,7 @@ public class addCandidatureFront {
             }
 
             // Validate input fields
-            if (compValue.isEmpty() || descpValue.isEmpty() || idClientValue.isEmpty() || emailValue.isEmpty() || selectedOffreTitle == null) {
+            if (descpValue.isEmpty() || idClientValue.isEmpty() || emailValue.isEmpty() || selectedOffreTitle == null) {
                 showAlert("Erreur de saisie", "Veuillez remplir tous les champs et sélectionner une offre.");
                 return; // Exit the method if any field is empty or no offre is selected
             }
@@ -79,7 +76,7 @@ public class addCandidatureFront {
             ServiceOffre serviceOffre = new ServiceOffre();
             Offre selectedOffre = serviceOffre.getOffreByTitle(selectedOffreTitle);
             // Create a new Candidature object
-            Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,Integer.parseInt(idClientValue), descpValue,compValue, emailValue,filePath);
+            Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,Integer.parseInt(idClientValue), descpValue, emailValue,filePath);
 
             // Call the method to insert the Candidature into the database
             ServiceCandidature serviceCandidature = new ServiceCandidature();

@@ -17,15 +17,14 @@ public class ServiceCandidature implements CRUD<Candidature>{
     }
     @Override
     public void insertOne(Candidature candidature) throws SQLException {
-        String req = "INSERT INTO `candidature`(`offre_id`, `id_client`, `description`, `competences`, `email`,`cv`) VALUES (?, ?, ?, ?, ?, ?)";
+        String req = "INSERT INTO `candidature`(`offre_id`, `id_client`, `description`, `email`,`cv`) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement ps = cnx.prepareStatement(req);
 
         ps.setInt(1, candidature.getOffre().getId());
         ps.setInt(2, candidature.getId_client());
         ps.setString(3, candidature.getDescription());
-        ps.setString(4, candidature.getCompetences());
-        ps.setString(5, candidature.getEmail());
-        ps.setString(6, candidature.getCv());
+        ps.setString(4, candidature.getEmail());
+        ps.setString(5, candidature.getCv());
         // Execute the prepared statement
         ps.executeUpdate();
         System.out.println("Candidature Added !");
@@ -33,16 +32,15 @@ public class ServiceCandidature implements CRUD<Candidature>{
 
     @Override
     public void updateOne(Candidature candidature) throws SQLException {
-        String req = "UPDATE `candidature` SET `offre_id`=?, `id_client`=?, `description`=?, `competences`=?, `email`=? ,`cv`=? WHERE `id`=?";
+        String req = "UPDATE `candidature` SET `offre_id`=?, `id_client`=?, `description`=?, `email`=? ,`cv`=? WHERE `id`=?";
         PreparedStatement ps = cnx.prepareStatement(req);
 
         ps.setInt(1, candidature.getOffre().getId());
         ps.setInt(2, candidature.getId_client());
         ps.setString(3, candidature.getDescription());
-        ps.setString(4, candidature.getCompetences());
-        ps.setString(5, candidature.getEmail());
-        ps.setInt(6, candidature.getId());
-        ps.setString(7, candidature.getCv());
+        ps.setString(4, candidature.getEmail());
+        ps.setInt(5, candidature.getId());
+        ps.setString(6, candidature.getCv());
 
         ps.executeUpdate();
         System.out.println("Candidature Updated !");
@@ -88,7 +86,6 @@ public class ServiceCandidature implements CRUD<Candidature>{
             }
             c.setId_client(rs.getInt("id_client"));
             c.setDescription(rs.getString("description"));
-            c.setCompetences(rs.getString("competences"));
             c.setEmail(rs.getString("email"));
             c.setCv(rs.getString("cv"));
 
@@ -116,7 +113,6 @@ public class ServiceCandidature implements CRUD<Candidature>{
                     candidature.setId(resultSet.getInt("id"));
                     candidature.setOffreTitle(resultSet.getString("offreTitle"));
                     candidature.setDescription(resultSet.getString("description"));
-                    candidature.setCompetences(resultSet.getString("competences"));
                     candidature.setEmail(resultSet.getString("email"));
                     candidature.setCv(resultSet.getString("cv"));
                     candidatures.add(candidature);

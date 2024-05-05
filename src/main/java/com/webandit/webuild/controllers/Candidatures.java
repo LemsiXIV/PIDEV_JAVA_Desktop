@@ -28,8 +28,6 @@ import java.util.List;
 public class Candidatures {
     ServiceCandidature cn = new ServiceCandidature();
 
-    @FXML
-    private TableColumn<Candidature, String> colcomp;
 
     @FXML
     private TableColumn<Candidature, String> coldescrp;
@@ -42,8 +40,6 @@ public class Candidatures {
     @FXML
     private TableColumn<Candidature, String> colCv;
 
-    @FXML
-    private TextField comp;
 
     @FXML
     private TextField descp;
@@ -102,9 +98,6 @@ public class Candidatures {
         if (coldescrp != null) {
             coldescrp.setCellValueFactory(new PropertyValueFactory<>("description"));
         }
-        if (colcomp != null) {
-            colcomp.setCellValueFactory(new PropertyValueFactory<>("competences"));
-        }
         if (colemail != null) {
             colemail.setCellValueFactory(new PropertyValueFactory<>("email"));
         }
@@ -139,7 +132,6 @@ public class Candidatures {
     void clearField(ActionEvent event) {
         idclient.clear();
         descp.clear();
-        comp.clear();
         email.clear();
         offreChoiceBox.getItems().clear();
     }
@@ -166,7 +158,6 @@ public class Candidatures {
     void addCandidature(ActionEvent event) {
             try {
                 // Retrieve values from UI controls
-                String compValue = comp.getText();
                 String descpValue = descp.getText();
                 String idClientValue = idclient.getText();
                 String emailValue = email.getText();
@@ -177,7 +168,7 @@ public class Candidatures {
                 }
 
                 // Validate input fields
-                if (compValue.isEmpty() || descpValue.isEmpty() || idClientValue.isEmpty() || emailValue.isEmpty() || selectedOffreTitle == null) {
+                if ( descpValue.isEmpty() || idClientValue.isEmpty() || emailValue.isEmpty() || selectedOffreTitle == null) {
                     showAlert("Erreur de saisie", "Veuillez remplir tous les champs et sélectionner une offre.");
                     return; // Exit the method if any field is empty or no offre is selected
                 }
@@ -194,7 +185,7 @@ public class Candidatures {
                 ServiceOffre serviceOffre = new ServiceOffre();
                 Offre selectedOffre = serviceOffre.getOffreByTitle(selectedOffreTitle);
                 // Create a new Candidature object
-                Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,Integer.parseInt(idClientValue), descpValue,compValue, emailValue,filePath);
+                Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,Integer.parseInt(idClientValue), descpValue, emailValue,filePath);
 
                 // Call the method to insert the Candidature into the database
                 ServiceCandidature serviceCandidature = new ServiceCandidature();
@@ -214,8 +205,6 @@ public class Candidatures {
                 e.printStackTrace();
             }
         }
-
-
 
     @FXML
     void deleteCandidature(ActionEvent event) {
@@ -244,7 +233,6 @@ public class Candidatures {
             // Set the values of UI controls with the selected Candidature's properties
             idclient.setText(String.valueOf(selectedCandidature.getId_client()));
             descp.setText(selectedCandidature.getDescription());
-            comp.setText(selectedCandidature.getCompetences());
             email.setText(selectedCandidature.getEmail());
 
             // Assuming offrelist is a ChoiceBox<Offre> for selecting offres,
@@ -267,12 +255,12 @@ public class Candidatures {
         if (selectedCandidature != null) {
             try {
                 // Retrieve values from UI controls
-                String compValue = comp.getText();
+
                 String descpValue = descp.getText();
                 String emailValue = email.getText();
 
                 // Update the selected Candidature object with the modified data
-                selectedCandidature.setCompetences(compValue);
+
                 selectedCandidature.setDescription(descpValue);
                 selectedCandidature.setEmail(emailValue);
 
@@ -297,7 +285,7 @@ public class Candidatures {
 
     @FXML
     void clear(ActionEvent event) {
-        comp.clear();
+
         descp.clear();
         idclient.clear();
         email.clear();
