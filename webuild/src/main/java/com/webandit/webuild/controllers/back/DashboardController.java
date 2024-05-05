@@ -80,12 +80,12 @@ public class DashboardController implements Initializable {
                     {
                         updateButton.setOnAction(event -> {
                             Utilisateur utilisateur = getTableView().getItems().get(getIndex());
-                            int userId = utilisateur.getId();
+                            String userEmail = utilisateur.getEmail();
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/UpdateUser.fxml"));
                                 Parent root = loader.load();
                                 UpdateUser userUpdate = loader.getController();
-                                userUpdate.setUserId(userId);
+                                userUpdate.setUserId(userEmail);
                                 Scene scene = new Scene(root);
                                 Stage stage = (Stage) updateButton.getScene().getWindow();
                                 stage.setScene(scene);

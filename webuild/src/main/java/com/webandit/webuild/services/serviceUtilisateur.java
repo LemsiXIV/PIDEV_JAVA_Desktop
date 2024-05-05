@@ -96,6 +96,12 @@ public class serviceUtilisateur implements CRUD<Utilisateur>{
         return emailExists;
 
      }
+    public ResultSet selectData( String email) throws SQLException{
+        String req="SELECT * FROM `utilisateur` WHERE `email` ='" + email + "'";
+        Statement st= cnx.createStatement();
+        ResultSet resultset =st.executeQuery(req);
+        return resultset;
+    }
     public void updatePassword(String email, String password) throws SQLException {
         //String passwordencrypted = encrypt(password);
 
