@@ -42,8 +42,8 @@ public class DashboardController implements Initializable {
     private TableColumn<Utilisateur, Integer> telephoneColumn;
     @FXML
     private TableView<Utilisateur> userTable;
-    @FXML
-    private TableColumn<Utilisateur, Boolean> statusColumn;
+   /* @FXML
+    private TableColumn<Utilisateur, Boolean> statusColumn;*/
     @FXML
     private TableColumn<Utilisateur, Void> actionColumn;
 
@@ -61,6 +61,7 @@ public class DashboardController implements Initializable {
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         adresseColumn.setCellValueFactory(new PropertyValueFactory<>("adresse"));
         telephoneColumn.setCellValueFactory(new PropertyValueFactory<>("telephone"));
+        //statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         try {
             List<Utilisateur> users = sp.selectAll();
@@ -84,13 +85,13 @@ public class DashboardController implements Initializable {
                         updateButton.setOnAction(event -> {
                             Utilisateur utilisateur = getTableView().getItems().get(getIndex());
                             String userEmail = utilisateur.getEmail();
+                            System.out.println("Email: " + userEmail); // Print out the email
                             try {
                                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/UpdateUser.fxml"));
                                 Parent root = loader.load();
                                 UpdateUser userUpdate = loader.getController();
                                 userUpdate.setEmail(userEmail);
-                                UpdateUser userUpdate1 = loader.getController();
-                                userUpdate1.setEmail(userEmail);
+                                userUpdate.initialize();
                                 Scene scene = new Scene(root);
                                 Stage stage = (Stage) updateButton.getScene().getWindow();
                                 stage.setScene(scene);
