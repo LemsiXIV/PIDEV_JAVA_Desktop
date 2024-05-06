@@ -93,4 +93,16 @@ public class Controller implements Initializable {
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
+    public void Dashboard(ActionEvent actionEvent) {
+        try {
+            Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/dashboard.fxml"));
+            // Create a new window for the dashboard
+            javafx.stage.Stage stage = new javafx.stage.Stage();
+            stage.setScene(new javafx.scene.Scene(fxml));
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+            // Handle the exception appropriately
+        }
+    }
 }

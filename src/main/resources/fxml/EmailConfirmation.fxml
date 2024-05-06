@@ -7,8 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="494.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.EmailConfirmation">
+<AnchorPane prefHeight="494.0" prefWidth="680.0" stylesheets="@../css/email.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.EmailConfirmation">
    <children>
       <Label layoutX="222.0" layoutY="39.0" prefHeight="32.0" prefWidth="235.0" text="Email Confirmation">
          <font>
@@ -16,7 +15,7 @@
          </font>
       </Label>
       <Label layoutX="47.0" layoutY="113.0" prefHeight="18.0" prefWidth="92.0" text="Email Adress:" />
-      <Label layoutX="43.0" layoutY="155.0" prefHeight="18.0" prefWidth="52.0" text="Object:" />
+      <Label layoutX="47.0" layoutY="155.0" prefHeight="18.0" prefWidth="52.0" text="Object:" />
       <Label layoutX="46.0" layoutY="200.0" text="Content:" />
       <TextField fx:id="adres" layoutX="164.0" layoutY="109.0" />
       <TextField fx:id="objet" layoutX="165.0" layoutY="152.0" />

@@ -70,8 +70,8 @@ public class CandidatureRow implements Initializable {
     @FXML
     void unlock(ActionEvent event) {
         // Enable editing for the text fields
-        Offre.setEditable(true);
-        Cv.setEditable(true);
+        Offre.setEditable(false);
+        Cv.setEditable(false);
         Email.setEditable(true);
         Description.setEditable(true);
 

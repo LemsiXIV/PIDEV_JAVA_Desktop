@@ -38,7 +38,13 @@ public class addCandidatureFront {
     private ChoiceBox<String> offreChoiceBox;
     public String filePath;
 
-    private void showAlert(String title, String content) {
+    private void showAlertSu(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.show();
+    }
+    private void showAlertEr(String title, String content) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle(title);
         alert.setContentText(content);
@@ -54,23 +60,23 @@ public class addCandidatureFront {
             String emailValue = email.getText();
             String selectedOffreTitle = offreChoiceBox.getValue();
             if (filePath == null) {
-                showAlert("Erreur", "Aucun fichier sélectionné.");
+                showAlertEr("Erreur", "Aucun fichier sélectionné.");
                 return;
             }
 
             // Validate input fields
             if (descpValue.isEmpty() || idClientValue.isEmpty() || emailValue.isEmpty() || selectedOffreTitle == null) {
-                showAlert("Erreur de saisie", "Veuillez remplir tous les champs et sélectionner une offre.");
+                showAlertEr("Erreur de saisie", "Veuillez remplir tous les champs et sélectionner une offre.");
                 return; // Exit the method if any field is empty or no offre is selected
             }
             // Validate description length
             if (descpValue.length() <= 14) {
-                showAlert("Erreur de saisie", "La description doit contenir plus de 14 caractères.");
+                showAlertEr("Erreur de saisie", "La description doit contenir plus de 14 caractères.");
                 return; // Exit the method if description length is too short
             }
             // Validate email format using regular expression
             if (!isValidEmail(emailValue)) {
-                showAlert("Erreur de saisie", "Veuillez saisir une adresse e-mail valide.");
+                showAlertEr("Erreur de saisie", "Veuillez saisir une adresse e-mail valide.");
                 return; // Exit the method if email is invalid
             }
             ServiceOffre serviceOffre = new ServiceOffre();
@@ -81,16 +87,16 @@ public class addCandidatureFront {
             // Call the method to insert the Candidature into the database
             ServiceCandidature serviceCandidature = new ServiceCandidature();
             serviceCandidature.insertOne(candidature);
-            showAlert("Candidature ajoutée", "La candidature a été ajoutée avec succès.");
+            showAlertSu("Candidature ajoutée", "La candidature a été ajoutée avec succès.");
 
         } catch (NumberFormatException e) {
-            showAlert("Erreur de saisie", "Veuillez saisir une valeur numérique valide pour l'ID du client.");
+            showAlertEr("Erreur de saisie", "Veuillez saisir une valeur numérique valide pour l'ID du client.");
         } catch (SQLException e) {
-            showAlert("Erreur SQL", "Une erreur s'est produite lors de l'ajout de la candidature à la base de données. Veuillez réessayer plus tard ou contacter l'administrateur.");
+            showAlertEr("Erreur SQL", "Une erreur s'est produite lors de l'ajout de la candidature à la base de données. Veuillez réessayer plus tard ou contacter l'administrateur.");
             // Log the SQL exception for further analysis
             e.printStackTrace();
         } catch (Exception e) {
-            showAlert("Erreur", "Une erreur inattendue s'est produite. Veuillez réessayer ou contacter l'administrateur.");
+            showAlertEr("Erreur", "Une erreur inattendue s'est produite. Veuillez réessayer ou contacter l'administrateur.");
             // Log any other unexpected exceptions
             e.printStackTrace();
         }
@@ -110,7 +116,7 @@ public class addCandidatureFront {
             }
             offreChoiceBox.setItems(offreTitles);
         } catch (SQLException e) {
-            showAlert("Erreur", "Erreur lors de la récupération des offres!");
+            showAlertEr("Erreur", "Erreur lors de la récupération des offres!");
         }
     }
     @FXML

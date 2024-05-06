@@ -2,6 +2,7 @@ package com.webandit.webuild.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -23,7 +24,12 @@ public class EmailConfirmation {
 
     @FXML
     private Button sendBtn;
-
+    private void showAlertSu(String title, String content) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle(title);
+        alert.setContentText(content);
+        alert.show();
+    }
     @FXML
     void SendConfirmation(ActionEvent event) {
 
@@ -62,7 +68,7 @@ public class EmailConfirmation {
 
             // Confirmation message
             System.out.println("Email sent successfully.");
-
+            showAlertSu("Email envoyé avec succés", "L'email de confirmation est envoyé'.");
         } catch (MessagingException e) {
             e.printStackTrace();
 
