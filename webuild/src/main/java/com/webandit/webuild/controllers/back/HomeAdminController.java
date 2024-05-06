@@ -79,18 +79,12 @@ public class HomeAdminController implements Initializable {
         contentArea.getChildren().setAll(fxml);
 
     }
-    /*public void Signup(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Signup.fxml"));
+    public void add(javafx.event.ActionEvent actionEvent)throws IOException{
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/back/AddUser.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }
-    public void Login(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Login.fxml"));
 
-    }
-    public void ResetPwd(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Reset-pwd.fxml"));
-*/
 
 
 }

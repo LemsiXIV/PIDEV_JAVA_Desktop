@@ -65,10 +65,18 @@ public class UpdateUser {
                     alert.setHeaderText(null);
                     alert.setContentText("update successfully");
                     alert.showAndWait();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/HomeAdmin.fxml"));
+                    Parent root = loader.load();
+                    Scene scene = new Scene(root);
+                    Stage stage = (Stage) updateButton.getScene().getWindow();
+                    stage.setScene(scene);
+                    stage.show();
                 } catch (SQLException e) {
                     e.printStackTrace();
                     System.out.println(e);
 
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
     private String userEmail;

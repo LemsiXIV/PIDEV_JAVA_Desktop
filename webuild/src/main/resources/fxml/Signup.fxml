@@ -12,27 +12,27 @@
 
 <AnchorPane accessibleRole="IMAGE_VIEW" prefHeight="500.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.Signup">
    <children>
-      <Label layoutX="389.0" layoutY="29.0" text="Sign In">
+      <Label layoutX="389.0" layoutY="29.0" text="Seconnecter">
          <font>
             <Font name="System Bold Italic" size="24.0" />
          </font></Label>
-      <Button fx:id="savebtn" layoutX="474.0" layoutY="442.0" mnemonicParsing="false" onAction="#addUtilisateur" text="SignIn" />
+      <Button fx:id="savebtn" layoutX="474.0" layoutY="442.0" mnemonicParsing="false" onAction="#addUtilisateur" style="-fx-background-color: #009000;" text="Se connecter" />
       <Label layoutX="295.0" layoutY="92.0" text="nom" />
       <Label layoutX="286.0" layoutY="150.0" text="prenom" />
       <Label layoutX="287.0" layoutY="195.0" text="adresse" />
       <Label layoutX="279.0" layoutY="241.0" text="telephone" />
       <Label layoutX="293.0" layoutY="289.0" text="email" />
       <Label layoutX="282.0" layoutY="345.0" text="password" />
-      <TextField fx:id="nomtxt" layoutX="363.0" layoutY="97.0" />
-      <TextField fx:id="prenomtxt" layoutX="363.0" layoutY="146.0" />
-      <TextField fx:id="adressetxt" layoutX="363.0" layoutY="191.0" />
-      <TextField fx:id="telephonetxt" layoutX="363.0" layoutY="237.0" />
-      <TextField fx:id="emailtxt" layoutX="363.0" layoutY="285.0" />
-      <Label fx:id="nomerr" layoutX="369.0" layoutY="123.0" prefHeight="18.0" prefWidth="177.0" />
-      <Label fx:id="prenomerr" layoutX="369.0" layoutY="172.0" prefHeight="18.0" prefWidth="159.0" />
-      <Label fx:id="adresseerr" layoutX="360.0" layoutY="217.0" prefHeight="18.0" prefWidth="159.0" />
-      <Label fx:id="tlperr" layoutX="363.0" layoutY="259.0" prefHeight="18.0" prefWidth="249.0" />
-      <Label fx:id="emailerr" layoutX="363.0" layoutY="311.0" prefHeight="18.0" prefWidth="271.0" />
+      <TextField fx:id="nomtxt" layoutX="392.0" layoutY="97.0" />
+      <TextField fx:id="prenomtxt" layoutX="392.0" layoutY="146.0" />
+      <TextField fx:id="adressetxt" layoutX="392.0" layoutY="191.0" />
+      <TextField fx:id="telephonetxt" layoutX="392.0" layoutY="237.0" />
+      <TextField fx:id="emailtxt" layoutX="392.0" layoutY="285.0" />
+      <Label fx:id="nomerr" layoutX="370.0" layoutY="110.0" prefHeight="42.0" prefWidth="344.0" />
+      <Label fx:id="prenomerr" layoutX="370.0" layoutY="159.0" prefHeight="42.0" prefWidth="344.0" />
+      <Label fx:id="adresseerr" layoutX="358.0" layoutY="204.0" prefHeight="42.0" prefWidth="344.0" />
+      <Label fx:id="tlperr" layoutX="362.0" layoutY="265.0" prefHeight="18.0" prefWidth="344.0" />
+      <Label fx:id="emailerr" layoutX="363.0" layoutY="298.0" prefHeight="42.0" prefWidth="344.0" />
       <Label fx:id="pwderr" layoutX="358.0" layoutY="354.0" prefHeight="42.0" prefWidth="344.0" />
       <HBox prefHeight="500.0" prefWidth="258.0">
          <children>
@@ -52,31 +52,31 @@
             </AnchorPane>
          </children>
       </HBox>
-      <PasswordField fx:id="pwdtxt" layoutX="364.0" layoutY="341.0" onKeyReleased="#hidePassword" />
+      <PasswordField fx:id="pwdtxt" layoutX="399.0" layoutY="341.0" onKeyReleased="#hidePassword" />
       <Label layoutX="264.0" layoutY="392.0" text="Confirmer mot de passe" />
       <PasswordField fx:id="confirmPass" layoutX="399.0" layoutY="388.0" onKeyReleased="#hidePassword1" />
-      <ImageView fx:id="closeEyeIcon" fitHeight="18.0" fitWidth="25.0" layoutX="524.0" layoutY="347.0" onMouseClicked="#close_Eye" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="closeEyeIcon" fitHeight="18.0" fitWidth="25.0" layoutX="567.0" layoutY="347.0" onMouseClicked="#close_Eye" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/clipart2914561.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="openEyeIcon" fitHeight="26.0" fitWidth="25.0" layoutX="524.0" layoutY="341.0" onMouseClicked="#open_Eye" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="openEyeIcon" fitHeight="26.0" fitWidth="25.0" layoutX="567.0" layoutY="341.0" onMouseClicked="#open_Eye" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/clipart3894601.png" />
          </image>
       </ImageView>
-      <TextField fx:id="pwdtxtshow" layoutX="365.0" layoutY="341.0" onKeyReleased="#showPassword" />
-      <ImageView fx:id="openEyeIcon1" fitHeight="26.0" fitWidth="25.0" layoutX="554.0" layoutY="388.0" onMouseClicked="#open_Eye1" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="pwdtxtshow" layoutX="399.0" layoutY="341.0" onKeyReleased="#showPassword" />
+      <ImageView fx:id="openEyeIcon1" fitHeight="26.0" fitWidth="25.0" layoutX="567.0" layoutY="388.0" onMouseClicked="#open_Eye1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/clipart3894601.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="closeEyeIcon1" fitHeight="18.0" fitWidth="25.0" layoutX="554.0" layoutY="394.0" onMouseClicked="#close_Eye1" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="closeEyeIcon1" fitHeight="18.0" fitWidth="25.0" layoutX="567.0" layoutY="394.0" onMouseClicked="#close_Eye1" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../image/clipart2914561.png" />
          </image>
       </ImageView>
       <TextField fx:id="showconfpwd" layoutX="399.0" layoutY="388.0" onKeyReleased="#showPassword1" />
-      <Label fx:id="confirmerr" layoutX="399.0" layoutY="414.0" prefHeight="18.0" prefWidth="223.0" />
+      <Label fx:id="confirmerr" layoutX="357.0" layoutY="406.0" prefHeight="42.0" prefWidth="344.0" />
    </children>
 </AnchorPane>

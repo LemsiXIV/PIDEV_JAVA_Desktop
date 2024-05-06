@@ -133,7 +133,9 @@ public class Login {
 
                     }}
             }else {
-                pwderr.setText("Your username or password are incorrect");
+                pwderr.setStyle("-fx-text-fill: red;");
+                pwderr.setText("Mot de passe ou email est incorrect");
+                pwdtxt.requestFocus();
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

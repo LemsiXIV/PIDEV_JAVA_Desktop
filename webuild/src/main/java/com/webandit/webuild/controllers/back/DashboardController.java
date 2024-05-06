@@ -51,8 +51,13 @@ public class DashboardController implements Initializable {
     serviceUtilisateur sp = new serviceUtilisateur();
 
     @FXML
-    void addUser(MouseEvent event) {
-
+    void addUser(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/AddUser.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) addUserButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
     private void loadData() {
@@ -80,7 +85,11 @@ public class DashboardController implements Initializable {
             //    private final Button updateButton = new Button("Update");
             private final Button updateButton = new Button("Update");
 
+
+
+
             {
+                updateButton.setStyle("-fx-background-color: #BA0607;");
 
                         updateButton.setOnAction(event -> {
                             Utilisateur utilisateur = getTableView().getItems().get(getIndex());
