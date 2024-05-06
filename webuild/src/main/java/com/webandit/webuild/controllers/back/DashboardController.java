@@ -105,6 +105,8 @@ public class DashboardController implements Initializable {
                                 Stage stage = (Stage) updateButton.getScene().getWindow();
                                 stage.setScene(scene);
                                 stage.show();
+                                
+
                             } catch (IOException e) {
                                 Alert alert = new Alert(Alert.AlertType.ERROR);
                                 alert.setTitle("Erreur de saisie");

@@ -13,6 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.input.SwipeEvent;
 import com.webandit.webuild.services.serviceUtilisateur;
 import com.webandit.webuild.models.Utilisateur;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class UpdateUser {
 
             @FXML
             private TextField email;
+    @FXML
+    private StackPane contentArea;
     @FXML
     private Button deleteButton;
 
@@ -133,7 +136,7 @@ public class UpdateUser {
     }
     @FXML
     void back(MouseEvent event) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/front/hello-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/HomeAdmin.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         Stage stage = (Stage) backButton.getScene().getWindow();

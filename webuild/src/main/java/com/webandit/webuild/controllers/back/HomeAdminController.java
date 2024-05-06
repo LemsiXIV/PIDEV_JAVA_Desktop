@@ -39,7 +39,7 @@ public class HomeAdminController implements Initializable {
     }
 
     public void home(javafx.event.ActionEvent actionEvent)throws IOException{
-        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/back/Dashboard.fxml"));
+        Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/back/HomeAdmin.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
     }

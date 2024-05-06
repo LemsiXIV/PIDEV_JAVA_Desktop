@@ -69,6 +69,8 @@ public class AddUser {
     @FXML
     private Label tlperr;
     private String pwd;
+    @FXML
+    private ImageView backButton;
 
     @FXML
     void addUtilisateur(ActionEvent event) throws SQLException, IOException {
@@ -109,6 +111,15 @@ public class AddUser {
     void showPassword(KeyEvent event) {
         pwd=pwdtxtshow.getText();
         pwdtxt.setText(pwd);
+    }
+    @FXML
+    void back(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/HomeAdmin.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 }
