@@ -32,6 +32,11 @@
                         <Font name="Dubai Bold" size="48.0" />
                      </font>
                   </Label>
+                  <ImageView fx:id="backButton" fitHeight="34.0" fitWidth="46.0" layoutX="14.0" onMouseClicked="#back" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../image/3114883.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

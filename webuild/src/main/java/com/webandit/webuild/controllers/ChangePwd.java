@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -29,6 +31,8 @@ public class ChangePwd {
     private Label nvpwderr;
 
     private String email;
+    @FXML
+    private ImageView backButton;
 
     public String getEmail() {
         return email;
@@ -115,6 +119,15 @@ public class ChangePwd {
         } else {
             return true;
         }
+    }
+    @FXML
+    void back(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 

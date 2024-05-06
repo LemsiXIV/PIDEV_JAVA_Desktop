@@ -8,7 +8,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import javafx.scene.input.MouseEvent;
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -30,7 +32,8 @@ public class ResetPwd {
     private String generatedCode;
     @FXML
     private Button codeVerifier;
-
+    @FXML
+    private ImageView backButton;
 
     private String generateVerificationCode() {
         // Generate a random 6-digit code
@@ -66,7 +69,15 @@ public class ResetPwd {
         alert.setContentText(content);
         alert.show();
     }
-
+    @FXML
+    void back(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
     private void sendEmail(String toEmail, String subject, String body) throws MessagingException {
         // SMTP server configuration
         String host = "smtp.gmail.com"; // Replace with the actual SMTP server address
@@ -129,4 +140,6 @@ public class ResetPwd {
             showAlert(Alert.AlertType.ERROR, "Invalid Verification Code", "The verification code you entered is invalid.");
         }
     }
+
+
 }

@@ -94,6 +94,8 @@ public class Signup {
     private String pwd;
 
     private String generatedCode;
+    @FXML
+    private ImageView backButton;
 
     public void initialize(){
         pwdtxtshow.setVisible(false);
@@ -415,5 +417,14 @@ public class Signup {
         alert.setTitle(title);
         alert.setContentText(content);
         alert.show();
+    }
+    @FXML
+    void back(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }

@@ -8,8 +8,10 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import com.webandit.webuild.services.serviceUtilisateur;
+import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -23,6 +25,8 @@ public class VerifierAccount {
     private Button vérifier;
 
     private String codeG;
+    @FXML
+    private ImageView backButton;
 
 
     public String getCodeG() {
@@ -64,6 +68,15 @@ public class VerifierAccount {
         alert.setTitle(title);
         alert.setContentText(content);
         alert.show();
+    }
+    @FXML
+    void back(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Signup.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 
 

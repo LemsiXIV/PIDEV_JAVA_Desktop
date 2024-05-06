@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.SwipeEvent;
 import com.webandit.webuild.services.serviceUtilisateur;
@@ -43,7 +44,8 @@ public class UpdateUser {
 
             @FXML
             private Button updateButton;
-
+    @FXML
+    private ImageView backButton;
         serviceUtilisateur sp=new serviceUtilisateur();
 
           /*  @FXML
@@ -129,7 +131,15 @@ public class UpdateUser {
             throw new RuntimeException(e);
         }
     }
-
+    @FXML
+    void back(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/front/hello-view.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
+    }
 }
 
 
