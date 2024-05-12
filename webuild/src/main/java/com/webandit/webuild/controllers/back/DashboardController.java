@@ -1,6 +1,6 @@
 package com.webandit.webuild.controllers.back;
 
-import com.webandit.webuild.models.Utilisateur;
+import com.webandit.webuild.models.User;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -20,6 +20,7 @@ import java.util.ResourceBundle;
 import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
+import org.json.JSONException;
 
 public class DashboardController implements Initializable {
 
@@ -27,25 +28,25 @@ public class DashboardController implements Initializable {
     private Button addUserButton;
 
     @FXML
-    private TableColumn<Utilisateur, String> adresseColumn;
+    private TableColumn<User, String> adresseColumn;
 
     @FXML
-    private TableColumn<Utilisateur, String> emailColumn;
+    private TableColumn<User, String> emailColumn;
 
     @FXML
-    private TableColumn<Utilisateur, String> nomColumn;
+    private TableColumn<User, String> nomColumn;
 
     @FXML
-    private TableColumn<Utilisateur, String> prénomColumn;
+    private TableColumn<User, String> prénomColumn;
 
     @FXML
-    private TableColumn<Utilisateur, Integer> telephoneColumn;
+    private TableColumn<User, Integer> telephoneColumn;
     @FXML
-    private TableView<Utilisateur> userTable;
+    private TableView<User> userTable;
    /* @FXML
     private TableColumn<Utilisateur, Boolean> statusColumn;*/
     @FXML
-    private TableColumn<Utilisateur, Void> actionColumn;
+    private TableColumn<User, Void> actionColumn;
 
 
     serviceUtilisateur sp = new serviceUtilisateur();
@@ -69,10 +70,12 @@ public class DashboardController implements Initializable {
         //statusColumn.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         try {
-            List<Utilisateur> users = sp.selectAll();
-            ObservableList<Utilisateur> userList = FXCollections.observableList(users);
+            List<User> users = sp.selectAll();
+            ObservableList<User> userList = FXCollections.observableList(users);
             userTable.setItems(userList);
         } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } catch (JSONException e) {
             throw new RuntimeException(e);
         }
     }
@@ -92,7 +95,7 @@ public class DashboardController implements Initializable {
                 updateButton.setStyle("-fx-background-color: #BA0607;");
 
                         updateButton.setOnAction(event -> {
-                            Utilisateur utilisateur = getTableView().getItems().get(getIndex());
+                            User utilisateur = getTableView().getItems().get(getIndex());
                             String userEmail = utilisateur.getEmail();
                             System.out.println("Email: " + userEmail); // Print out the email
                             try {

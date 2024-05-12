@@ -2,6 +2,9 @@ package com.webandit.webuild.controllers;
 
 import org.json.JSONObject;
 
+import java.util.Collection;
+import java.util.Date;
+
 public class SessionManagement {
 
     private static SessionManagement instance;
@@ -10,72 +13,86 @@ public class SessionManagement {
     private int id;
     private String nom;
     private String email;
-    private String pwd;
+    private String password;
     private String prenom;
-    private String adresse;
-    private int telephone;
-    private String  roles;
+    private String address;
+    private String telephone;
+    private Collection<String> roles;
     private int is_verified;
+    private int is_Banned;
+    private Date date;
+    private String fonction;
+    private String cin;
+    private String bio;
 
 
 
-    public int getIs_verified() {
-        return is_verified;
-    }
 
-    public String getRoles() {
+
+    public Collection<String> getRoles() {
         return roles;
     }
-
     public int getId() {
         return id;
     }
-
     public String getNom() {
         return nom;
     }
-
     public String getEmail() {
         return email;
     }
-
-    public String getPwd() {
-        return pwd;
+    public String getPassword() {
+        return password;
     }
-
     public String getPrenom() {
         return prenom;
     }
-
-    public String getAdresse() {
-        return adresse;
+    public String getAddress() {
+        return address;
     }
-
-    public int getTelephone() {
+    public String  getTelephone() {
         return telephone;
     }
+    public String  getCin() {
+        return cin;
+    }
+    public String  getFonction() {
+        return fonction;
+    }
+    public String  getBio() {
+        return bio;
+    }
+    public Date  getDate() {
+        return date;
+    }
+    public int isIs_verified() { return is_verified; }
+    public int isIs_Banned() { return is_Banned; }
 
 
-
-    public SessionManagement(int id, String nom, String prenom,int telephone,String adresse,String email, String pwd, String roles,int is_verified) {
+    public SessionManagement(int id, String email, String password, String nom, String prenom, String telephone, String cin, String fonction, String address, Date date, String bio, Collection<String> roles, int is_Banned, int is_verified) {
         this.id = id;
-        this.nom = nom;
         this.email = email;
-        this.pwd = pwd;
+        this.password = password;
+        this.nom = nom;
         this.prenom = prenom;
-        this.adresse = adresse;
         this.telephone = telephone;
-        this.roles= roles;
-        this.is_verified=is_verified;
+        this.cin = cin;
+        this.fonction = fonction;
+        this.address = address;
+        this.date = date;
+        this.bio = bio;
+        this.roles = roles;
+        this.is_Banned = is_Banned;
+        this.is_verified = is_verified;
     }
 
     public static void setInstance(SessionManagement instance) {
         SessionManagement.instance = instance;
     }
 
-    public static SessionManagement getInstance(int id, String nom, String prenom, int telephone, String adresse, String email, String pwd, String  roles, int is_verified) {
+    public static SessionManagement getInstance(int id, String email, String password, String nom, String prenom, String telephone, String cin, String fonction, String address, Date date, String bio, Collection<String> roles, int is_Banned, int is_verified) {
         if (instance == null) {
-            instance = new SessionManagement( id,  nom,  prenom, telephone, adresse, email,  pwd,  roles, is_verified);
+            instance = new SessionManagement(  id,  email,  password,  nom,  prenom,  telephone,  cin,  fonction,  address,  date,  bio,  roles,  is_Banned,  is_verified);
         }
         return instance;
     }
@@ -87,26 +104,39 @@ public class SessionManagement {
     }
 
     public void cleanUserSession() {
-        id = 0;
-        nom = null;
-        email = null;
-        pwd = null;
-        prenom = null;
-        adresse = null;
-        telephone = 0;
+        id=0;
+        email=null;
+        password=null;
+        nom=null;
+        prenom=null;
+        telephone=null;
+        cin=null;
+        fonction=null;
+        address=null;
+        date=null;
+        bio=null;
+        roles=null;
+        is_verified=0;
+        is_Banned=0;
     }
     @Override
     public String toString() {
         return "UserSession{" +
-                //"id=" + id +
+                "id=" + id +
                 ", nom='" + nom + '\'' +
                 ", email='" + email + '\'' +
-                ", password='" + pwd + '\'' +
+                ", password='" + password + '\'' +
                 ", prenom='" + prenom + '\'' +
-                ", adresse='" + adresse + '\'' +
+                ", adresse='" + address + '\'' +
                 ", telephone='" + telephone + '\'' +
-                ", role='" + roles + '\'' +
+                ", roles='" + roles + '\'' +
                 ", is_verified='" + is_verified + '\'' +
+                ", is_Banned='" + is_Banned + '\'' +
+                ", fonction='" + fonction + '\'' +
+                ", cin='" + cin + '\'' +
+                ", date='" + date + '\'' +
+                ", bio='" + bio + '\'' +
+
                 '}';
     }
 

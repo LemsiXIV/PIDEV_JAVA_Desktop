@@ -4,21 +4,24 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.SwipeEvent;
 import com.webandit.webuild.services.serviceUtilisateur;
-import com.webandit.webuild.models.Utilisateur;
+import com.webandit.webuild.models.User;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Arrays;
+import java.util.Date;
 
 public class UpdateUser {
 
@@ -34,9 +37,23 @@ public class UpdateUser {
     private StackPane contentArea;
     @FXML
     private Button deleteButton;
+    @FXML
+    private TextField biotxt;
 
+    @FXML
+    private TextField cintxt;
 
-        @FXML
+    @FXML
+    private DatePicker datetxt;
+    LocalDate localDate = datetxt.getValue();
+    Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+    @FXML
+    private TextField fonctiontxt;
+
+    @FXML
+    private TextField verifiedtxt;
+
+    @FXML
             private TextField nom;
 
             @FXML
@@ -51,17 +68,21 @@ public class UpdateUser {
     private ImageView backButton;
         serviceUtilisateur sp=new serviceUtilisateur();
 
-          /*  @FXML
-            private TextField statuus;
-*/
-            @FXML
+    @FXML
+    private TextField bannedtxt;
+    @FXML
+    private TextField roletxt;
+
+
+
+    @FXML
             void active_false(SwipeEvent event) {
 
             }
 
             @FXML
             void update(MouseEvent event) {
-                Utilisateur u = new Utilisateur(nom.getText(), prenom.getText(), Integer.parseInt(telephone.getText()), adresse.getText(), email.getText());
+                User u = new User(email.getText(),nom.getText(),prenom.getText(),telephone.getText(),cintxt.getText(),fonctiontxt.getText(),adresse.getText(),date,biotxt.getText(), Arrays.asList("ROLE_USER"),Integer.parseInt(bannedtxt.getText()),Integer.parseInt(verifiedtxt.getText()));
                 // Update the user information in the database
                 try {
                     sp.updateOne(u);
@@ -100,10 +121,10 @@ public class UpdateUser {
                     if(resultSet.next()){
                         email.setText(resultSet.getString("email"));
                         nom.setText(resultSet.getString("nom"));
-                        prenom.setText(resultSet.getString("prénom"));
-                        adresse.setText(resultSet.getString("adresse"));
-                        telephone.setText(String.valueOf(resultSet.getInt("téléphone")));
-                        //statuus.setText(resultSet.getString("status"));
+                        prenom.setText(resultSet.getString("prenom"));
+                        adresse.setText(resultSet.getString("address"));
+                        telephone.setText(String.valueOf(resultSet.getInt("telephone")));
+
 
                     }else {
 
@@ -117,7 +138,11 @@ public class UpdateUser {
             }
     @FXML
     void delete(MouseEvent event) {
-        Utilisateur u = new Utilisateur(nom.getText(), prenom.getText(), Integer.parseInt(telephone.getText()), adresse.getText(), email.getText());
+        User u = new User(email.getText(), nom.getText(), prenom.getText(), telephone.getText(), cintxt.getText(),
+                fonctiontxt.getText(), adresse.getText(), date, biotxt.getText(),
+                Arrays.asList(roletxt.getText()),
+                Integer.parseInt(bannedtxt.getText()),
+                Integer.parseInt(verifiedtxt.getText()));
         try {
             sp.deleteOne(u);
             try {

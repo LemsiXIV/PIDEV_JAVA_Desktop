@@ -1,5 +1,5 @@
 package com.webandit.webuild.controllers;
-import com.webandit.webuild.models.Utilisateur;
+import com.webandit.webuild.models.User;
 import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,7 +10,10 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
+import java.util.Base64;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
@@ -19,6 +22,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
+import org.json.JSONObject;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
 public class Login {
 
     @FXML
@@ -26,6 +32,12 @@ public class Login {
 
     @FXML
     private PasswordField pwdtxt;
+    /*private String hashPassword(String password) {
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        // Hash the password using BCrypt
+        String hashedPassword = encoder.encode(password);
+        return hashedPassword;
+    }*/
     @FXML
     private Button LoginButton;
     @FXML
@@ -90,57 +102,67 @@ public class Login {
     @FXML
     void Login(ActionEvent event) {
         try {
-            Utilisateur utilisateur;
-            if ((utilisateur = serviceutilisater.Login(emailtxt.getText(), pwdtxt.getText())) != null) {
-                SessionManagement.getInstance(utilisateur.getId(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getTelephone(), utilisateur.getAdresse(), utilisateur.getEmail(), utilisateur.getPassword(), utilisateur.getRoles(), utilisateur.getIs_verified());
-                System.out.println("User ID: " + SessionManagement.getInstance().getId());
-                System.out.println("User Nom: " + SessionManagement.getInstance().getNom());
-                System.out.println("User Prenom: " + SessionManagement.getInstance().getPrenom());
-                System.out.println("User Email: " + SessionManagement.getInstance().getEmail());
-                System.out.println("User Adresse: " + SessionManagement.getInstance().getAdresse());
-                System.out.println("User Telephone: " + SessionManagement.getInstance().getTelephone());
-                System.out.println("User Role: " + SessionManagement.getInstance().getRoles());
-                System.out.println("User status: " + SessionManagement.getInstance().getIs_verified());
-                if (utilisateur.getRoles().equals("Admin")){
-                    try{
+            String pass = generateVerificationHash(pwdtxt.getText());
+            System.out.println(pass);
+            User utilisateur = serviceutilisater.Login(emailtxt.getText(), pass);
+
+            if (utilisateur != null ) {
+                if (utilisateur.isIs_verified()==1 && utilisateur.isIs_Banned()==0) {
+                    SessionManagement.getInstance(utilisateur.getId(), utilisateur.getEmail(), utilisateur.getPassword(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getTelephone(), utilisateur.getCin(), utilisateur.getFonction(), utilisateur.getAddress(), utilisateur.getDate(), utilisateur.getBio(), utilisateur.getRoles(), utilisateur.isIs_Banned(), utilisateur.isIs_verified());
+                    System.out.println("User ID: " + SessionManagement.getInstance().getId());
+                    System.out.println("User Nom: " + SessionManagement.getInstance().getNom());
+                    System.out.println("User Prenom: " + SessionManagement.getInstance().getPrenom());
+                    System.out.println("User Email: " + SessionManagement.getInstance().getEmail());
+                    System.out.println("User Adresse: " + SessionManagement.getInstance().getAddress());
+                    System.out.println("User Telephone: " + SessionManagement.getInstance().getTelephone());
+                    System.out.println("User CIN: " + SessionManagement.getInstance().getCin());
+                    System.out.println("User Bio: " + SessionManagement.getInstance().getBio());
+                    System.out.println("User Password: " + SessionManagement.getInstance().getPassword());
+                    System.out.println("User Fonction: " + SessionManagement.getInstance().getFonction());
+                    System.out.println("User Date: " + SessionManagement.getInstance().getDate());
+                    System.out.println("User Status: " + SessionManagement.getInstance().isIs_verified());
+                    System.out.println("User Role: " + SessionManagement.getInstance().getRoles());
+                    System.out.println("Account status: " + SessionManagement.getInstance().isIs_Banned());
+
+                    if (SessionManagement.getInstance().getRoles().contains("\"ROLE_ADMIN\"")) {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/HomeAdmin.fxml"));
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) LoginButton.getScene().getWindow();
                         stage.setScene(scene);
                         stage.show();
-                    } catch (IOException e) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Erreur de saisie");
-                        alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
-                        alert.show();
-                    }
-                }else{
-
-
-                    try {
+                    } else {
                         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/front/hello-view.fxml"));
                         Parent root = loader.load();
                         Scene scene = new Scene(root);
                         Stage stage = (Stage) LoginButton.getScene().getWindow();
                         stage.setScene(scene);
                         stage.show();
-                    } catch (IOException e) {
+                    }
+                } else {
+                    if (utilisateur.isIs_verified() == 0) {
                         Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Erreur de saisie");
-                        alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
+                        alert.setTitle("Pas d\'accès ");
+                        alert.setContentText("Votre Compte n\'est pas vérifié");
                         alert.show();
-
-                    }}
-            }else {
+                    } else if (utilisateur.isIs_Banned() == 1) {
+                        Alert alert = new Alert(Alert.AlertType.ERROR);
+                        alert.setTitle("Pas d'autorisation");
+                        alert.setContentText("Votre Compte n\'est pas autorisé de se connecter");
+                        alert.show();
+                    }
+                }
+            } else {
                 pwderr.setStyle("-fx-text-fill: red;");
                 pwderr.setText("Mot de passe ou email est incorrect");
                 pwdtxt.requestFocus();
             }
-        } catch (SQLException e) {
+        } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+
 
     @FXML
     void changeToSignIn(MouseEvent event) {
@@ -190,6 +212,21 @@ public class Login {
             alert.show();
         }
 
+    }
+    private String generateVerificationHash(String password) {
+        try {
+            // Create a MessageDigest instance for the SHA-256 algorithm
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            // Hash the password
+            byte[] hashBytes = digest.digest(password.getBytes());
+            // Encode the hash into a Base64 string
+            String hashString = Base64.getEncoder().encodeToString(hashBytes);
+            // Concatenate the prefix and the hashed password
+            return "$2y$13$" + hashString;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 
 }

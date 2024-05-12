@@ -4,6 +4,9 @@
     requires java.sql;
         requires java.mail;
         requires android.json;
+        requires spring.security.core;
+        requires jbcrypt;
+        requires com.google.gson;
 
         opens com.webandit.webuild.models to javafx.base;
         exports com.webandit.webuild.controllers;

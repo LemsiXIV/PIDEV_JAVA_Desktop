@@ -1,17 +1,13 @@
 package com.webandit.webuild.controllers;
 
-import com.webandit.webuild.models.Utilisateur;
+import com.webandit.webuild.models.User;
 import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.PasswordField;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -21,7 +17,16 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.Base64;
+import java.util.Date;
 import java.util.Properties;
 
 public class Signup {
@@ -40,6 +45,8 @@ public class Signup {
 
     @FXML
     private PasswordField pwdtxt;
+
+
 
     @FXML
     private PasswordField confirmPass;
@@ -88,10 +95,20 @@ public class Signup {
 
     @FXML
     private Label confirmerr;
+    @FXML
+    private TextField cintxt;
+    @FXML
+    private TextField biotxt;
+    @FXML
+    private DatePicker datetxt;
+    @FXML
+    private TextField fonctiontxt;
 
     private String confpwd;
 
     private String pwd;
+
+
 
     private String generatedCode;
     @FXML
@@ -102,14 +119,19 @@ public class Signup {
         openEyeIcon.setVisible(false);
         showconfpwd.setVisible(false);
         openEyeIcon1.setVisible(false);
+        LocalDate localDate = LocalDate.now(); // Set default date to today's date
+        datetxt.setValue(localDate);
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
     }
+
+
 
     @FXML
     void addUtilisateur(ActionEvent event) {
         serviceUtilisateur sp = new serviceUtilisateur();
-        if (!validatorNom() || !validatorPrenom() || !validatorAdresse() || !validatorEmail() || !validatorPassword() || !validatorTelephone() || !validatorConfirmPassword()) {
+       /* if (!validatorNom() || !validatorPrenom() || !validatorAdresse() || !validatorEmail() || !validatorPassword() || !validatorTelephone() || !validatorConfirmPassword()) {
             return;
-        }
+        }*/
         try {
             String email = emailtxt.getText();
             if (sp.selectByEmail(email)) {
@@ -119,9 +141,13 @@ public class Signup {
                 alert.show();
             } else {
                 generatedCode = generateVerificationCode();
-                Utilisateur u = new Utilisateur(nomtxt.getText(), prenomtxt.getText(), Integer.parseInt(telephonetxt.getText()), adressetxt.getText(), emailtxt.getText(), pwdtxt.getText(), "User", 0);
+                LocalDate localDate = datetxt.getValue();
+                java.sql.Date date = java.sql.Date.valueOf(localDate);
+                String pass = generateVerificationHash(pwdtxt.getText());
+                User u = new User(emailtxt.getText(), pass, nomtxt.getText(), prenomtxt.getText(), telephonetxt.getText(), cintxt.getText(), fonctiontxt.getText(), adressetxt.getText(), date, biotxt.getText(), Arrays.asList("\"ROLE_USER\""), 0, 0);
+                u.setRoles(Arrays.asList("\"ROLE_USER\""));
                 sp.insertOne(u);
-                SessionManagement sessionManagement = new SessionManagement(u.getId(), u.getNom(), u.getPrenom(), u.getTelephone(), u.getAdresse(), u.getEmail(), u.getPassword(), u.getRoles(), u.getIs_verified());
+                SessionManagement sessionManagement = new SessionManagement(u.getId(), u.getEmail(),u.getPassword(), u.getNom(), u.getPrenom(), u.getTelephone(),u.getCin(),u.getFonction(), u.getAddress(),u.getDate(),u.getBio(), u.getRoles(), u.isIs_Banned(),u.isIs_verified());
                 // Set the current session
                 SessionManagement.setInstance(sessionManagement);
                 try {
@@ -427,4 +453,20 @@ public class Signup {
         stage.setScene(scene);
         stage.show();
     }
+    private String generateVerificationHash(String password) {
+        try {
+            // Create a MessageDigest instance for the SHA-256 algorithm
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            // Hash the password
+            byte[] hashBytes = digest.digest(password.getBytes());
+            // Encode the hash into a Base64 string
+            String hashString = Base64.getEncoder().encodeToString(hashBytes);
+            // Concatenate the prefix and the hashed password
+            return "$2y$13$" + hashString;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }
