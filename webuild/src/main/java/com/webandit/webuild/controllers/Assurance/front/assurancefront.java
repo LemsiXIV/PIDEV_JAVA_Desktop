@@ -173,10 +173,20 @@ public class assurancefront {
         }
     }
     @FXML
-    void   seedem(ActionEvent event) throws IOException {    Parent tableViewParent = FXMLLoader.load(getClass().getResource("/fxml/Assurance/showDemandeFront.fxml"));
-        Scene tableViewScene = new Scene(tableViewParent);
-        Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
-        window.setScene(tableViewScene);
-        window.show();}
+    void   seedem(ActionEvent event) {
+        try {
+            // Load the MaterielDetailView.fxml file
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Assurance/showDemandeFront.fxml"));
+            Parent root = loader.load(); // No need to pass InputStream
 
+
+            // Create a new stage and set the MaterielDetailView as its content
+            Stage stage = new Stage();
+            stage.setTitle("listes de mes Demandes ");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

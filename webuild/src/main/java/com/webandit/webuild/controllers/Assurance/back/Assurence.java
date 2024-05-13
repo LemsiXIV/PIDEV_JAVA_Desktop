@@ -330,7 +330,7 @@ public class Assurence implements Initializable {
 
     private String uploadImage() {
         String imageUrl = null;
-        String destinationDirectory = "images"; // Change this to your desired directory
+        String destinationDirectory = "C:/xampp/htdocs/images"; // Change this to your desired directory
         File selectedFile = new File(txtImage.getText().replace("file:/", "")); // Remove "file:/" prefix
         File destinationFolder = new File(destinationDirectory);
         if (!destinationFolder.exists()) {
@@ -339,7 +339,7 @@ public class Assurence implements Initializable {
         File destinationFile = new File(destinationDirectory + File.separator + selectedFile.getName());
         try {
             Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            imageUrl = "C:/Users/hadil/IdeaProjects/javaIntegration/PIDEV_JAVA_Desktop/webuild/images/" + selectedFile.getName(); // Construct the image URL
+            imageUrl = "C:/xampp/htdocs/images/" + selectedFile.getName(); // Construct the image URL
         } catch (IOException e) {
             e.printStackTrace();
             // Handle file copying exception
