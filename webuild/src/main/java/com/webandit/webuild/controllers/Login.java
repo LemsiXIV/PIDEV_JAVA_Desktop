@@ -123,14 +123,14 @@ public class Login {
                 System.out.println("Account status: " + SessionManagement.getInstance().isIs_Banned());
 
                 if (SessionManagement.getInstance().getRoles().contains("[\"ROLE_ADMIN\"]")) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/HomeAdmin.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/backadmine.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) LoginButton.getScene().getWindow();
                     stage.setScene(scene);
                     stage.show();
                 } else {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/front/hello-view.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("fxml/hello-view.fxml"));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) LoginButton.getScene().getWindow();
