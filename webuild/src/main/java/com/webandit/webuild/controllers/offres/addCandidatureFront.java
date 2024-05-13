@@ -1,5 +1,6 @@
 package com.webandit.webuild.controllers.offres;
 
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Candidature;
 import com.webandit.webuild.models.Offre;
 import com.webandit.webuild.services.ServiceCandidature;
@@ -50,8 +51,9 @@ public class addCandidatureFront {
         try {
             // Retrieve values from UI controls
             String descpValue = descp.getText();
-            String idClientValue = idclient.getText();
-            String emailValue = email.getText();
+            int idClientValue = SessionManagement.getInstance().getId();
+            System.out.println(idClientValue);
+            String emailValue = SessionManagement.getInstance().getEmail();
             String selectedOffreTitle = offreChoiceBox.getValue();
             if (filePath == null) {
                 showAlert("Erreur", "Aucun fichier sélectionné.");
@@ -59,7 +61,7 @@ public class addCandidatureFront {
             }
 
             // Validate input fields
-            if (descpValue.isEmpty() || idClientValue.isEmpty() || emailValue.isEmpty() || selectedOffreTitle == null) {
+            if (descpValue.isEmpty()   || selectedOffreTitle == null) {
                 showAlert("Erreur de saisie", "Veuillez remplir tous les champs et sélectionner une offre.");
                 return; // Exit the method if any field is empty or no offre is selected
             }
@@ -76,7 +78,7 @@ public class addCandidatureFront {
             ServiceOffre serviceOffre = new ServiceOffre();
             Offre selectedOffre = serviceOffre.getOffreByTitle(selectedOffreTitle);
             // Create a new Candidature object
-            Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,Integer.parseInt(idClientValue), descpValue, emailValue,filePath);
+            Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,idClientValue, descpValue, emailValue,filePath);
 
             // Call the method to insert the Candidature into the database
             ServiceCandidature serviceCandidature = new ServiceCandidature();

@@ -1,6 +1,7 @@
 package com.webandit.webuild.controllers.Assurance.back;
 
 
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Assurance;
 import com.webandit.webuild.models.Demande;
 import com.webandit.webuild.services.ServiceAssurance;
@@ -191,7 +192,7 @@ public class Backdemande {
         }
 
             // Set default values for user and status
-            int defaultUser = 4;
+            int defaultUser = SessionManagement.getInstance().getId();
                 Integer defaultStatus = 0; // Using Integer instead of int to allow null values
 
 

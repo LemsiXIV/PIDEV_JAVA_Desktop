@@ -1,5 +1,6 @@
 package com.webandit.webuild.controllers.offres;
 
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Candidature;
 import com.webandit.webuild.models.Offre;
 import com.webandit.webuild.services.ServiceCandidature;
@@ -155,8 +156,8 @@ public class Candidatures {
             try {
                 // Retrieve values from UI controls
                 String descpValue = descp.getText();
-                String idClientValue = idclient.getText();
-                String emailValue = email.getText();
+                int idClientValue = SessionManagement.getInstance().getId();
+                String emailValue = SessionManagement.getInstance().getEmail();
                 String selectedOffreTitle = offreChoiceBox.getValue();
                 if (filePath == null) {
                     showAlert("Erreur", "Aucun fichier sélectionné.");
@@ -164,7 +165,7 @@ public class Candidatures {
                 }
 
                 // Validate input fields
-                if ( descpValue.isEmpty() || idClientValue.isEmpty() || emailValue.isEmpty() || selectedOffreTitle == null) {
+                if ( descpValue.isEmpty()  || selectedOffreTitle == null) {
                     showAlert("Erreur de saisie", "Veuillez remplir tous les champs et sélectionner une offre.");
                     return; // Exit the method if any field is empty or no offre is selected
                 }
@@ -181,7 +182,7 @@ public class Candidatures {
                 ServiceOffre serviceOffre = new ServiceOffre();
                 Offre selectedOffre = serviceOffre.getOffreByTitle(selectedOffreTitle);
                 // Create a new Candidature object
-                Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,Integer.parseInt(idClientValue), descpValue, emailValue,filePath);
+                Candidature candidature = new Candidature(selectedOffre.getId(),selectedOffre,selectedOffreTitle,idClientValue, descpValue, emailValue,filePath);
 
                 // Call the method to insert the Candidature into the database
                 ServiceCandidature serviceCandidature = new ServiceCandidature();
@@ -227,7 +228,6 @@ public class Candidatures {
         Candidature selectedCandidature = tablecan.getSelectionModel().getSelectedItem();
         if (selectedCandidature != null) {
             // Set the values of UI controls with the selected Candidature's properties
-            idclient.setText(String.valueOf(selectedCandidature.getId_client()));
             descp.setText(selectedCandidature.getDescription());
             email.setText(selectedCandidature.getEmail());
 
@@ -283,7 +283,7 @@ public class Candidatures {
     void clear(ActionEvent event) {
 
         descp.clear();
-        idclient.clear();
+       // idclient.clear();
         email.clear();
     }
 

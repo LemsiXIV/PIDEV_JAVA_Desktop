@@ -339,7 +339,7 @@ public class Assurence implements Initializable {
         File destinationFile = new File(destinationDirectory + File.separator + selectedFile.getName());
         try {
             Files.copy(selectedFile.toPath(), destinationFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            imageUrl = "C:/Users/Lemsi/Desktop/java_workshops/PIDEV-Desktop/PIDEV_JAVA_Desktop/webuild/images/" + selectedFile.getName(); // Construct the image URL
+            imageUrl = "C:/Users/hadil/IdeaProjects/javaIntegration/PIDEV_JAVA_Desktop/webuild/images/" + selectedFile.getName(); // Construct the image URL
         } catch (IOException e) {
             e.printStackTrace();
             // Handle file copying exception
