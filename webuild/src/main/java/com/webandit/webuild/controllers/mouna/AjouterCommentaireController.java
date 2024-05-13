@@ -80,6 +80,9 @@ public class AjouterCommentaireController {
     @FXML
     private Label datteee;
 
+    public static void actualise() {
+    }
+
   /*  @FXML
     void AddCommentaireeee(ActionEvent event) {
         if (contenu.getText().isEmpty() || nom.getText().isEmpty() || date.getValue() == null) {

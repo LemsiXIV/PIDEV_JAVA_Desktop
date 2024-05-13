@@ -56,7 +56,7 @@
                                     </font></Button>
                             </children>
                         </HBox>
-                        <Button mnemonicParsing="false"  prefHeight="45.0" prefWidth="158.0" text="Demande Assurance" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="158.0" text="Demande Assurance" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font></Button>
@@ -147,26 +147,6 @@
                             </children>
                         </HBox>
                         <Pane layoutX="10.0" layoutY="10.0" prefHeight="39.0" prefWidth="295.0" />
-                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="780.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="804.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
-                            </image>
-                        </ImageView>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="829.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../../image/426833032_7226501154106754_6397532767760208107_n.jpg" />
-                            </image>
-                        </ImageView>
                     </children>
                 </HBox>
                 <HBox alignment="CENTER_LEFT" prefHeight="60.0" prefWidth="200.0" spacing="20.0" style="-fx-background-color: #BA0607;" styleClass="navbar">
@@ -207,7 +187,17 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
+            <Label text="WELCOME!" textAlignment="CENTER" textFill="#f20404" translateX="210.0" translateY="260.0">
+               <font>
+                  <Font size="72.0" />
+               </font>
+            </Label>
                 <StackPane fx:id="contentArea" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <ImageView fitHeight="219.0" fitWidth="215.0" pickOnBounds="true" preserveRatio="true" translateX="280.0" translateY="20.0">
+               <image>
+                  <Image url="@../../image/logoWeBuild.png" />
+               </image>
+            </ImageView>
             </children>
         </AnchorPane>
     </center>

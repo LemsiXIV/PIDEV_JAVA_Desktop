@@ -1,4 +1,5 @@
 package com.webandit.webuild.controllers.mouna.front;
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Commentaire;
 import com.webandit.webuild.models.Post;
 import com.webandit.webuild.services.CommentaireService;
@@ -20,7 +21,7 @@ import java.util.List;
 public class cardpost {
 
     PostService ps = new PostService();
-
+    String auther = SessionManagement.getInstance().getNom();
     @FXML
     private Label titre;
 
@@ -34,6 +35,7 @@ public class cardpost {
     @FXML
     private Label date;
 
+    int iduser = SessionManagement.getInstance().getId();
     private Post post;
     private frontpost frontcontroller;
 
@@ -57,7 +59,7 @@ public class cardpost {
     }
 
     public void onDeleteButtonClickFront(ActionEvent actionEvent) {
-        if (id != 0) {
+        if (id != 0  ) {
             try {
                 System.out.println(id+"ahawaaaaa");
                 ps.delete(id);

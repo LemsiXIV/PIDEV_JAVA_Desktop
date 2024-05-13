@@ -36,11 +36,7 @@
                     </padding>
                 </HBox>
                 <HBox prefHeight="100.0" prefWidth="200.0" spacing="35.0">
-                    <children>
-                        <Label text="Date de création :" />
-                        <DatePicker fx:id="dateCreationDatePicker" prefWidth="175.0" />
-                        <Label fx:id="DateLabelError" prefHeight="18.0" prefWidth="257.0" />
-                    </children>
+
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </padding>

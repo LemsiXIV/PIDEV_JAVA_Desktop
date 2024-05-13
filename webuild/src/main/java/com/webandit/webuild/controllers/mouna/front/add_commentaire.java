@@ -1,5 +1,6 @@
 package com.webandit.webuild.controllers.mouna.front;
 
+import com.webandit.webuild.controllers.mouna.AjouterCommentaireController;
 import com.webandit.webuild.models.Commentaire;
 import com.webandit.webuild.models.EmailSender;
 import com.webandit.webuild.models.Post;
@@ -37,8 +38,7 @@ public class add_commentaire {
     @FXML
     private TextArea contenuTextArea;
 
-    @FXML
-    private DatePicker dateCreationDatePicker;
+
 
     @FXML
     private TextField nomTextField;
@@ -69,16 +69,15 @@ public class add_commentaire {
             // Vérifier si tous les champs requis sont remplis
             if (contenuTextArea.getText().isEmpty() || nomTextField.getText().isEmpty() ||
                     nbrLikesTextField.getText().isEmpty() || nbrDislikesTextField.getText().isEmpty() ||
-                    rateTextField.getText().isEmpty() || dateCreationDatePicker.getValue() == null) {
+                    rateTextField.getText().isEmpty() ) {
                 setupValidation();
                 setupValidationtype();
                 return;
             }
 
-            // Récupérer les valeurs des champs
-            LocalDate localDate = dateCreationDatePicker.getValue();
-            java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
 
+
+            java.sql.Date sqlDate = cs.GetCurentDate();
             // Récupérer le post sélectionné dans le ChoiceBox
             Post selectedPost = postChoiceBox.getValue();
             if (selectedPost == null) {
@@ -108,6 +107,8 @@ public class add_commentaire {
                 cs.insertOne(commentaire);
                 frontCommentaire.actualise();
 
+                AjouterCommentaireController.actualise();
+                System.out.println("ooooooooooooooo");
 
                 EmailSender.AjoutCommentaireEmail("jomaamouna@gmail.com", "test");
 
@@ -151,7 +152,7 @@ public class add_commentaire {
         nbrLikesTextField.clear();
         nbrDislikesTextField.clear();
         rateTextField.clear();
-        dateCreationDatePicker.setValue(null);
+
         postChoiceBox.setValue(null);
     }
 
@@ -181,12 +182,7 @@ public class add_commentaire {
             displaySuccess(nomTextField, NomLabelError);
         }
 
-        // Validation pour la date de création du commentaire
-        if (dateCreationDatePicker.getValue() == null || !dateCreationDatePicker.getValue().isEqual(LocalDate.now())) {
-            displayError(dateCreationDatePicker, DateLabelError, "La date de création du commentaire doit être sélectionnée et ne peut pas être dans le futur");
-        } else {
-            displaySuccess(dateCreationDatePicker, DateLabelError);
-        }
+
 
         // Validation pour le nombre de likes
 
@@ -239,13 +235,7 @@ public class add_commentaire {
         //int nbrlikes = Integer.parseInt(nbrLikesTextField.getText());
 
         // Validation pour la date du commentaire (accepte les dates futures et passées)
-        LocalDate commentDate = dateCreationDatePicker.getValue();
-        if (!commentDate.isEqual(LocalDate.now())) {
-            displayError(dateCreationDatePicker, DateLabelError, "Veuillez sélectionner une date valide");
-            error++;
-        } else {
-            displaySuccess(dateCreationDatePicker, DateLabelError);
-        }
+
 
         return error;
     }

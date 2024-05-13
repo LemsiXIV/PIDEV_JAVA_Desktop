@@ -18,7 +18,7 @@ public class PostService implements ICRUD<Post> {
 
     @Override
     public void create(Post post) throws SQLException, SQLIntegrityConstraintViolationException {
-        String sql = "INSERT INTO Post (titre, description, auteur, date, img) VALUES (?, ?, ?, ? ,?)";
+        String sql = "INSERT INTO Post (titre, description, auteur, date, img,user_id) VALUES (?, ?, ?, ? ,?,?)";
         PreparedStatement statement = cnx.prepareStatement(sql);
 
         statement.setString(1, post.getTitre());
@@ -26,6 +26,7 @@ public class PostService implements ICRUD<Post> {
         statement.setString(3, post.getAuteur());
         statement.setDate(4, new java.sql.Date(post.getDate().getTime()));
         statement.setString(5, post.getImg());
+        statement.setInt(6, post.getIdclient());
 
         statement.executeUpdate();
     }
@@ -62,6 +63,7 @@ public class PostService implements ICRUD<Post> {
 
         return postIds;
     }
+
     @Override
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM Post WHERE id = ?";
@@ -110,6 +112,7 @@ public class PostService implements ICRUD<Post> {
             return null;
         }
     }
+
     public List<Post> rechercherPosts(String searchTerm) throws SQLException {
         List<Post> searchResults = new ArrayList<>();
         String query = "SELECT id, titre, description, img, date FROM post WHERE titre LIKE ? OR description LIKE ?";

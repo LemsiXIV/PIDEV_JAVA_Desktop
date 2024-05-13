@@ -6,11 +6,22 @@ import java.util.List;
 
 public class Post {
     private int id;
+
+    public int getIdclient() {
+        return idclient;
+    }
+
+    public void setIdclient(int idclient) {
+        this.idclient = idclient;
+    }
+
+    private int idclient;
     private String titre;
     private String description;
     private String auteur;
     private Date date;
     private String img;
+
 
     public String getImg() {
         return img;
@@ -41,6 +52,18 @@ public class Post {
         this.img = img;
         this.commentaires = new ArrayList<>();
     }
+
+    public Post( String titre, String description, String auteur, Date date, String img , int idclient) {
+
+        this.titre = titre;
+        this.description = description;
+        this.auteur = auteur;
+        this.date = date;
+        this.img = img;
+        this.idclient=idclient;
+        this.commentaires = new ArrayList<>();
+    }
+
     public Post(int id, String titre, String description, String auteur, Date date) {
         this.id = id;
         this.titre = titre;

@@ -1,5 +1,6 @@
 package com.webandit.webuild.controllers.mouna.front;
 
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Post;
 import com.webandit.webuild.services.PostService;
 import javafx.event.ActionEvent;
@@ -32,8 +33,7 @@ public class addPostFront {
     @FXML
     private TextField auteurTextField;
 
-    @FXML
-    private DatePicker dateDatePicker;
+
     @FXML
     private ImageView image;
 
@@ -86,10 +86,10 @@ public class addPostFront {
 
         java.util.Date x = ps.GetCurentDate();
 
-
+        String auther = SessionManagement.getInstance().getNom();
+        int idclient = SessionManagement.getInstance().getId();
         // Créez une nouvelle instance de Post avec les données fournies
-        Post post = new Post(titreTextField.getText(), descriptionTextArea.getText(), auteurTextField.getText(), x,imgField.getText());
-
+        Post post = new Post(titreTextField.getText(), descriptionTextArea.getText(), auther, x,imgField.getText(),idclient);
 
             // Ajoutez le post à la base de données
             ps.create(post);
@@ -133,11 +133,7 @@ public class addPostFront {
             displaySuccess(auteurTextField);
         }
 
-        if (dateDatePicker.getValue() == null) {
-            displayError(dateDatePicker, "La date doit être sélectionnée");
-        } else {
-            displaySuccess(dateDatePicker);
-        }
+
     }
 
     // Méthode pour afficher un message d'erreur pour un champ donné

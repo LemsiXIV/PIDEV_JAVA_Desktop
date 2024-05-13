@@ -176,4 +176,15 @@ public class CommentaireService implements CRUDL<Commentaire> {
         }
         return commentaires;
     }
+    public   java.sql.Date GetCurentDate() throws SQLException {
+        String sql = "SELECT CURRENT_DATE";
+        Statement statement = cnx.createStatement();
+        ResultSet resultSet = statement.executeQuery(sql);
+
+        java.sql.Date currentDate = null;
+        if (resultSet.next()) {
+            currentDate = resultSet.getDate(1);
+        }
+        return currentDate;
+    }
 }

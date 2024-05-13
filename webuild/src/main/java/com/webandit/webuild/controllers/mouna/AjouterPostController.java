@@ -3,6 +3,7 @@ package com.webandit.webuild.controllers.mouna;
 
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Table;
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Post;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,11 +59,9 @@ public class AjouterPostController {
     @FXML
     private TextField description;
 
-    @FXML
-    private TextField auteur;
 
-    @FXML
-    private DatePicker date;
+
+
 
 
     @FXML
@@ -164,7 +163,7 @@ public class AjouterPostController {
     @FXML
     void AddPost(ActionEvent event) throws SQLException {
         // Vérifiez si les champs requis sont vides
-        if (titre.getText().isEmpty() || description.getText().isEmpty() || auteur.getText().isEmpty() || date.getValue() == null) {
+        if (titre.getText().isEmpty() || description.getText().isEmpty()  ) {
             setupValidation();
 
             return;
@@ -172,9 +171,10 @@ public class AjouterPostController {
         java.util.Date x = ps.GetCurentDate();
         // Date
        // java.sql.Date currentDate = java.sql.Date.valueOf(date.getValue());
-
+        String auther = SessionManagement.getInstance().getNom();
+        int idclient = SessionManagement.getInstance().getId();
         // Créez une nouvelle instance de Post avec les données fournies
-        Post post = new Post(titre.getText(), description.getText(), auteur.getText(), x,imgField.getText());
+        Post post = new Post(titre.getText(), description.getText(), auther, x,imgField.getText(),idclient);
 
         if (setupValidationtype() == 0) {
             // Ajoutez le post à la base de données
@@ -194,8 +194,8 @@ public class AjouterPostController {
     public void clearFields() {
         titre.clear();
         description.clear();
-        auteur.clear();
-        date.setValue(null);
+
+
     }
 
     @FXML
@@ -246,13 +246,7 @@ public class AjouterPostController {
         }
     }
 
-    @FXML
-    void selectdate(ActionEvent event) {
-        // Mettez à jour le libellé de la date pour afficher la date sélectionnée
-        if (date.getValue() != null) {
-            datteee.setText(date.getValue().toString());
-        }
-    }
+
 
     @FXML
     void handleGeneratePdfButton(ActionEvent event) {
@@ -335,27 +329,10 @@ public class AjouterPostController {
             descriptionErrorLabel.setTextFill(Color.GREEN);
         }
 
-        // Validation pour l'auteur du post
-        if (auteur.getText().isEmpty()) {
-            auteur.getStyleClass().add("empty-field");
-            auteurErrorLabel.setText("Veuillez donner l'auteur du post");
-            auteurErrorLabel.setTextFill(Color.RED);
-        } else {
-            auteur.getStyleClass().remove("empty-field");
-            auteurErrorLabel.setText("Validé !");
-            auteurErrorLabel.setTextFill(Color.GREEN);
-        }
+
 
         // Validation pour la date du post
-        if (date.getValue() == null) {
-            date.getStyleClass().add("empty-field");
-            dateErrorLabel.setText("Veuillez sélectionner une date");
-            dateErrorLabel.setTextFill(Color.RED);
-        } else {
-            date.getStyleClass().remove("empty-field");
-            dateErrorLabel.setText("Validé !");
-            dateErrorLabel.setTextFill(Color.GREEN);
-        }
+
     }
 
     public int setupValidationtype() {
@@ -378,20 +355,7 @@ public class AjouterPostController {
         }
 
         // Validation pour l'auteur du post
-        if (!isValidString(auteur.getText())) {
-            displayError(auteur, auteurErrorLabel, "L'auteur du post doit être une chaîne de caractères");
-            error++;
-        } else {
-            displaySuccess(auteur, auteurErrorLabel);
-        }
 
-        // Validation pour la date du post
-        if (!isValidDate(date.getValue())) {
-            displayError(date, dateErrorLabel, "Veuillez sélectionner une date valide");
-            error++;
-        } else {
-            displaySuccess(date, dateErrorLabel);
-        }
 
         return error;
     }
@@ -489,7 +453,7 @@ public class AjouterPostController {
             if (selectedPost != null) {
                 titre.setText(selectedPost.getTitre());
                 description.setText(selectedPost.getDescription());
-                auteur.setText(selectedPost.getAuteur());
+
                /* date.setValue(selectedPost.getDate());*/
             }
         } else {
@@ -507,7 +471,7 @@ public class AjouterPostController {
                     // Mettre à jour l'objet Post dans la base de données
                     selectedPost.setTitre(titre.getText());
                     selectedPost.setDescription(description.getText());
-                    selectedPost.setAuteur(auteur.getText());
+
                   /*  selectedPost.setDate(java.sql.Date.valueOf(date.getValue()));*/
 
                     // Call the update function from the service to update the database
