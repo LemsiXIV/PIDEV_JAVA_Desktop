@@ -1,9 +1,16 @@
 package com.webandit.webuild.controllers;
 
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Date;
+import java.util.EventObject;
 
 public class SessionManagement {
 
@@ -68,6 +75,61 @@ public class SessionManagement {
     public int isIs_verified() { return is_verified; }
     public int isIs_Banned() { return is_Banned; }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setPrenom(String prenom) {
+        this.prenom = prenom;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public void setRoles(Collection<String> roles) {
+        this.roles = roles;
+    }
+
+    public void setIs_verified(int is_verified) {
+        this.is_verified = is_verified;
+    }
+
+    public void setIs_Banned(int is_Banned) {
+        this.is_Banned = is_Banned;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public void setFonction(String fonction) {
+        this.fonction = fonction;
+    }
+
+    public void setCin(String cin) {
+        this.cin = cin;
+    }
+
+    public void setBio(String bio) {
+        this.bio = bio;
+    }
 
     public SessionManagement(int id, String email, String password, String nom, String prenom, String telephone, String cin, String fonction, String address, Date date, String bio, Collection<String> roles, int is_Banned, int is_verified) {
         this.id = id;
@@ -104,7 +166,7 @@ public class SessionManagement {
     }
 
     public void cleanUserSession() {
-        id=0;
+       /* id=0;
         email=null;
         password=null;
         nom=null;
@@ -115,9 +177,12 @@ public class SessionManagement {
         address=null;
         date=null;
         bio=null;
-        roles=null;
+        if (roles != null) {
+            roles.clear();
+        }
         is_verified=0;
-        is_Banned=0;
+        is_Banned=0;*/
+        instance = null;
     }
     @Override
     public String toString() {

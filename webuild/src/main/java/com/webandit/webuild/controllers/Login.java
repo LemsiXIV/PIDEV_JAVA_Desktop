@@ -103,7 +103,6 @@ public class Login {
             User utilisateur = serviceutilisater.Login(emailtxt.getText(), pwdtxt.getText());
 
             if (utilisateur != null && utilisateur.isIs_verified() == 1 && utilisateur.isIs_Banned() == 0) {
-                // L'utilisateur est vérifié et non banni
 
                 SessionManagement.getInstance(utilisateur.getId(), utilisateur.getEmail(), utilisateur.getPassword(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getTelephone(), utilisateur.getCin(), utilisateur.getFonction(), utilisateur.getAddress(), utilisateur.getDate(), utilisateur.getBio(), utilisateur.getRoles(), utilisateur.isIs_Banned(), utilisateur.isIs_verified());
 
@@ -121,6 +120,7 @@ public class Login {
                 System.out.println("User Status: " + SessionManagement.getInstance().isIs_verified());
                 System.out.println("User Role: " + SessionManagement.getInstance().getRoles());
                 System.out.println("Account status: " + SessionManagement.getInstance().isIs_Banned());
+                System.out.println("instance "+SessionManagement.getInstance());
 
                 if (SessionManagement.getInstance().getRoles().contains("[\"ROLE_ADMIN\"]")) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/backadmine.fxml"));
