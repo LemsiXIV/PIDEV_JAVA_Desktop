@@ -1,0 +1,23 @@
+/* Styling for Button */
+.button {
+    -fx-background-color: rgba(239, 239, 11, 0.71); /* Yellow background color */
+    -fx-background-radius: 20px; /* Round edges */
+    -fx-text-fill: black; /* Set text color */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-padding: 8px 16px; /* Add padding */
+}
+
+/* Styling for Button hover */
+.button:hover {
+    -fx-background-color: #2aa60c; /* Green background on hover */
+}
+
+/* Styling for TextFields and TextArea */
+.text-field, .text-area {
+    -fx-background-radius: 10px; /* Round edges */
+}
+
+/* Styling for Labels */
+.label {
+    -fx-font-weight: bold; /* Make text bold */
+}

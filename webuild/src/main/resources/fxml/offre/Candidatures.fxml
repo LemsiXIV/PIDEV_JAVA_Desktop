@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="552.0" prefWidth="764.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.offres.Candidatures">
+<AnchorPane prefHeight="552.0" prefWidth="764.0" stylesheets="@../css/CanBack.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.webandit.webuild.controllers.offres.Candidatures">
     <children>
         <Label contentDisplay="CENTER" layoutX="197.0" layoutY="29.0" lineSpacing="3.0" prefHeight="32.0" prefWidth="205.0" text="Mes Candidatures" textAlignment="CENTER" textFill="#2aa60c">
             <font>

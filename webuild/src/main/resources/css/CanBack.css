@@ -1,0 +1,62 @@
+.root {
+    -fx-background-color: #f0f0f0; /* Set background color */
+}
+
+/* Styling for TableView */
+.table-view {
+    -fx-background-color: transparent; /* Set background color to transparent */
+}
+
+/* Styling for TableView columns */
+.table-column {
+    -fx-font-size: 14px; /* Set font size */
+    -fx-background-color: rgba(86, 121, 238, 0.07); /* Faded yellow background */
+}
+
+/* Styling for TextFields */
+.text-field {
+    -fx-border-radius: 20px; /* Round edges */
+    -fx-background-radius: 20px; /* Round edges */
+    -fx-background-color: #e0e0e0; /* Set background color */
+    -fx-padding: 5px; /* Add padding */
+}
+
+/* Styling for Buttons */
+.button {
+    -fx-background-color: rgba(239, 239, 11, 0.71); /* Faded yellow background */
+    -fx-text-fill: white; /* Set text color */
+    -fx-font-size: 14px; /* Set font size */
+    -fx-border-radius: 20px; /* Round edges */
+    -fx-background-radius: 20px; /* Round edges */
+    -fx-padding: 8px 16px; /* Add padding */
+    -fx-cursor: hand; /* Change cursor to hand */
+}
+
+/* Styling for Button hover */
+.button:hover {
+    -fx-background-color: #2aa60c; /* Green background on hover */
+}
+
+/* Styling for ChoiceBox */
+.choice-box {
+    -fx-background-color: #e0e0e0; /* Set background color */
+    -fx-border-radius: 20px; /* Round edges */
+    -fx-background-radius: 20px; /* Round edges */
+    -fx-padding: 5px; /* Add padding */
+}
+
+/* Styling for Labels */
+.label {
+    -fx-font-size: 14px; /* Set font size */
+    -fx-font-weight: bold; /* Set font weight */
+}
+
+/* Styling for ButtonBar */
+.button-bar {
+    -fx-padding: 10px; /* Add padding */
+}
+
+/* Styling for ButtonBar buttons */
+.button-bar .button {
+    -fx-font-size: 14px; /* Set font size */
+}
