@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Chantier {
     //variabels
-    private int id ;
+    private int id ,id_user;
     private String nom,description;
     private Date date;
     private float remuneration;
@@ -29,13 +29,13 @@ public class Chantier {
         this.remuneration=rem;
 
     }
-    public Chantier( String nom, String description, Date date, float remuneration) {
+    public Chantier( String nom, String description, Date date, float remuneration,int id_user) {
 
         this.nom = nom;
         this.description = description;
         this.date = date;
         this.remuneration = remuneration;
-
+        this.id_user = id_user;
         this.tasks = new ArrayList<>();
     }
 
@@ -94,7 +94,13 @@ public class Chantier {
     public void setRemuneration(float remuneration) {
         this.remuneration = remuneration;
     }
+    public int getId_user() {
+        return id_user;
+    }
 
+    public void setId_user(int id_user) {
+        this.id_user = id_user;
+    }
     @Override
     public String toString() {
         return "Chantier{" +
@@ -103,6 +109,7 @@ public class Chantier {
                 ", description='" + description + '\'' +
                 ", date='" + date + '\'' +
                 ", remuneration=" + remuneration +
+                ", userid=" + id_user +
                 '}';
     }
 }

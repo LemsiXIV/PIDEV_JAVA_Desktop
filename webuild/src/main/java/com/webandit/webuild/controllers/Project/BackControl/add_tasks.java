@@ -1,6 +1,7 @@
 package com.webandit.webuild.controllers.Project.BackControl;
 
 import com.webandit.webuild.controllers.Project.FrontControl.task_front;
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Chantier;
 import com.webandit.webuild.models.Tasks;
 import com.webandit.webuild.services.ServiceChantier;
@@ -127,41 +128,41 @@ public class add_tasks {
         this.frontController = frontController;
     }
 
-  public void setStage(Stage stage) {
-      this.stage = stage;
-  }
+    public void setStage(Stage stage) {
+        this.stage = stage;
+    }
 
     public void Add_task(ActionEvent event) {
-      try {
-          // Perform validation
-          if (validateFields()) {
-              LocalDate localDate = ts_due.getValue();
-              java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
+        try {
+            // Perform validation
+            if (validateFields()) {
+                LocalDate localDate = ts_due.getValue();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
 
-              Chantier selectedChantier = ts_chantierChoiceBox.getValue(); // Get selected Chantier
-              if (selectedChantier == null) {
-                  showAlert("Error", "Please select a Chantier");
-                  return;
-              }
+                Chantier selectedChantier = ts_chantierChoiceBox.getValue(); // Get selected Chantier
+                if (selectedChantier == null) {
+                    showAlert("Error", "Please select a Chantier");
+                    return;
+                }
 
-              Tasks task = new Tasks(ts_name.getText(), ts_priority.getText(), 0, ts_description.getText(), sqlDate, selectedChantier);
-              ps.insertOne(task);
-              if (frontController != null) {
-                  frontController.acctualise(); // Call acctualise() method of task_front
-              }
-              Notifications notification = Notifications.create()
-                      .title("Title")
-                      .text("Your notification message")
-                      .graphic(null) // You can set a graphic if needed
-                      .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
-                      .position(Pos.BOTTOM_RIGHT);
-              notification.show();
-              stage.close();
-          }
-      } catch (SQLException | NumberFormatException e) {
-          showAlert("Erreur de saisie", "Erreur dans la saisie des données!");
-      }
-  }
+                Tasks task = new Tasks(ts_name.getText(), ts_priority.getText(), 0, ts_description.getText(), sqlDate, selectedChantier);
+                ps.insertOne(task);
+                if (frontController != null) {
+                    frontController.acctualise(); // Call acctualise() method of task_front
+                }
+                Notifications notification = Notifications.create()
+                        .title("Title")
+                        .text("Your notification message")
+                        .graphic(null) // You can set a graphic if needed
+                        .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
+                        .position(Pos.BOTTOM_RIGHT);
+                notification.show();
+                stage.close();
+            }
+        } catch (SQLException | NumberFormatException e) {
+            showAlert("Erreur de saisie", "Erreur dans la saisie des données!");
+        }
+    }
 
     public void clear(ActionEvent event) {
         ts_name.clear();

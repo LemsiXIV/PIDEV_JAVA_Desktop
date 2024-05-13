@@ -1,6 +1,7 @@
 package com.webandit.webuild.controllers.Project.FrontControl;
 
 import com.webandit.webuild.controllers.Project.BackControl.add_tasks;
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Chantier;
 import com.webandit.webuild.services.ServiceChantier;
 import javafx.event.ActionEvent;
@@ -26,13 +27,13 @@ public class project_front implements Initializable {
     @FXML
     public StackPane contentArea;
     ServiceChantier cs = new ServiceChantier();
-
+    int iduser = SessionManagement.getInstance().getId();
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         List<Chantier> chantiers = null;
         try {
-            chantiers = cs.selectAll();
+            chantiers = cs.selectAllByUser(iduser);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -73,7 +74,7 @@ public class project_front implements Initializable {
     }
 
     public void Refrech_page(ActionEvent event) throws IOException {
-       refreche();
+        refreche();
 
     }
     public void refreche() throws IOException {

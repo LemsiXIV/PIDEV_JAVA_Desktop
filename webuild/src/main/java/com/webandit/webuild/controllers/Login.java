@@ -23,6 +23,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
 import org.json.JSONObject;
+import org.mindrot.jbcrypt.BCrypt;
 
 
 import javax.crypto.SecretKey;
@@ -100,9 +101,10 @@ public class Login {
     @FXML
     void Login(ActionEvent event) {
         try {
+            //String password= serviceutilisater.getPasswordByEmail(emailtxt.getText());
             User utilisateur = serviceutilisater.Login(emailtxt.getText(), pwdtxt.getText());
 
-            if (utilisateur != null && utilisateur.isIs_verified() == 1 && utilisateur.isIs_Banned() == 0) {
+            if (utilisateur != null && utilisateur.isIs_verified() == 1 && utilisateur.isIs_Banned() == 0 /*&& checkPassword(pwdtxt.getText(),password)*/) {
 
                 SessionManagement.getInstance(utilisateur.getId(), utilisateur.getEmail(), utilisateur.getPassword(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getTelephone(), utilisateur.getCin(), utilisateur.getFonction(), utilisateur.getAddress(), utilisateur.getDate(), utilisateur.getBio(), utilisateur.getRoles(), utilisateur.isIs_Banned(), utilisateur.isIs_verified());
 
@@ -212,7 +214,20 @@ public class Login {
         }
 
     }
+    public static String EncryptPassword(String password){
 
+        return BCrypt.hashpw(password, BCrypt.gensalt(12));
+
+    }
+    public static boolean checkPassword(String password, String hashedPassword){
+        try{
+
+            return BCrypt.checkpw(password, hashedPassword);
+
+        }catch (Exception e){
+            return false;
+        }
+    }
 }
 
 

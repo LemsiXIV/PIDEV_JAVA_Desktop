@@ -15,14 +15,25 @@ public class ServiceChantier implements CRUDL<Chantier> {
     }
     @Override
     public void insertOne(Chantier person) throws SQLException {
-        String req = "INSERT INTO `chantier`(`nom`, `description`, `remuneration`, `start_date`) VALUES " +
-                "('"+person.getNom()+"','"+person.getDescription()+"',"+person.getRemuneration()+",'"+person.getDate()+"')";
-        Statement st = cnx.createStatement();
-        st.executeUpdate(req);
-        System.out.println("Person Added !");
+        String req = "INSERT INTO `chantier`(`nom`, `description`, `remuneration`, `start_date`, `user_id`) VALUES (?, ?, ?, ?, ?)";
+
+        try (PreparedStatement st = cnx.prepareStatement(req)) {
+            // Set parameter values
+            st.setString(1, person.getNom());
+            st.setString(2, person.getDescription());
+            st.setDouble(3, person.getRemuneration());
+            st.setDate(4, person.getDate());
+            st.setInt(5, person.getId_user());
+
+            // Execute the update
+            int rowsAffected = st.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Chantier Added !");
+            } else {
+                System.out.println("Failed to add Chantier !");
+            }
+        }
     }
-
-
 
     public void insertOne12(Chantier chantier) throws SQLException {
         String req = "INSERT INTO `chantier`(`nom`, `description`, `remuneration`, `start_date`) VALUES (?,?,?,?)";
@@ -89,6 +100,32 @@ public class ServiceChantier implements CRUDL<Chantier> {
             ch.setDate(result.getDate("start_date"));
             chantierList.add(ch);
         }
+        return chantierList;
+    }
+    public List<Chantier> selectAllByUser(int userId) throws SQLException {
+        List<Chantier> chantierList = new ArrayList<>();
+        String req = "SELECT * FROM `chantier` WHERE user_id = ?";
+
+        try (PreparedStatement st = cnx.prepareStatement(req)) {
+            // Set the user_id parameter
+            st.setInt(1, userId);
+
+            // Execute the query
+            ResultSet result = st.executeQuery();
+
+            // Process the results
+            while (result.next()) {
+                Chantier ch = new Chantier();
+                ch.setId(result.getInt("id"));
+                ch.setNom(result.getString("nom"));
+                ch.setDescription(result.getString("description"));
+                ch.setRemuneration(result.getFloat("remuneration"));
+                ch.setDate(result.getDate("start_date"));
+                // Add the Chantier object to the list
+                chantierList.add(ch);
+            }
+        }
+
         return chantierList;
     }
 

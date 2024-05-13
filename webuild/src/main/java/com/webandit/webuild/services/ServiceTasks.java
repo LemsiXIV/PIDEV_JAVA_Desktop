@@ -67,23 +67,51 @@ public class ServiceTasks implements CRUDL<Tasks> {
         List<Tasks> tasksList = new ArrayList<>();
         String req = "SELECT * FROM `task` t INNER JOIN `chantier` c ON t.id_chantier_id = c.id ";
         Statement  st = cnx.createStatement();
-            ResultSet result = st.executeQuery(req);
-            while (result.next()) {
-                Tasks ts = new Tasks();
-                ts.setId(result.getInt("t.id"));
-                ts.setNomchantier(result.getString("c.nom"));
-                ts.setName(result.getString("t.name"));
-                ts.setPriority(result.getString("t.priority"));
-                ts.setStatus(result.getInt("t.status"));
-                ts.setDescription(result.getString("t.description"));
-                ts.setDue(result.getDate("t.due"));
-                tasksList.add(ts);
-            }
+        ResultSet result = st.executeQuery(req);
+        while (result.next()) {
+            Tasks ts = new Tasks();
+            ts.setId(result.getInt("t.id"));
+            ts.setNomchantier(result.getString("c.nom"));
+            ts.setName(result.getString("t.name"));
+            ts.setPriority(result.getString("t.priority"));
+            ts.setStatus(result.getInt("t.status"));
+            ts.setDescription(result.getString("t.description"));
+            ts.setDue(result.getDate("t.due"));
+            tasksList.add(ts);
+        }
 
         System.out.println(tasksList);
         return tasksList;
     }
+    public List<Tasks> selectAllByIdChantier(int id_chant) throws SQLException {
+        List<Tasks> tasksList = new ArrayList<>();
+        String req = "SELECT t.*, c.nom FROM `task` t INNER JOIN `chantier` c ON t.id_chantier_id = c.id WHERE id_chantier_id = ?";
 
+        try (PreparedStatement st = cnx.prepareStatement(req)) {
+            // Set the id_chantier_id parameter
+            st.setInt(1, id_chant);
+
+            // Execute the query
+            ResultSet result = st.executeQuery();
+
+            // Process the results
+            while (result.next()) {
+                Tasks ts = new Tasks();
+                ts.setId(result.getInt("id"));
+                ts.setNomchantier(result.getString("nom"));
+                ts.setName(result.getString("name"));
+                ts.setPriority(result.getString("priority"));
+                ts.setStatus(result.getInt("status"));
+                ts.setDescription(result.getString("description"));
+                ts.setDue(result.getDate("due"));
+                // Add the Tasks object to the list
+                tasksList.add(ts);
+            }
+        }
+
+        System.out.println(tasksList);
+        return tasksList;
+    }
     @Override
     public List<Tasks> selectListDerou() throws SQLException {
         return null;

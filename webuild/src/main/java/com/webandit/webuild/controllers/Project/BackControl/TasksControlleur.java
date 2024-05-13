@@ -92,10 +92,10 @@ public class TasksControlleur {
         stage.show();
     }
 
-
+    int idchantier ;
     public void affichertasks(){
         try {
-            ts_view.getItems().setAll(taskSer.selectAll());
+            ts_view.getItems().setAll(taskSer.selectAllByIdChantier(idchantier));
         }
         catch (SQLException e){
             showAlert("Erreur","erreur lors du load du tabview");
@@ -166,7 +166,7 @@ public class TasksControlleur {
 
         // Update button action
         ts_view_action.setCellFactory(param -> new TableCell<>() {
-        //    private final Button updateButton = new Button("Update");
+            //    private final Button updateButton = new Button("Update");
             private final Button deleteButton = new Button("Delete");
 
             {

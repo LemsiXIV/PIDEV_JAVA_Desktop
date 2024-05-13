@@ -150,5 +150,21 @@ public class serviceUtilisateur implements CRUD<User>{
         statement.executeUpdate(sql);
         statement.close();
     }
+    public String getPasswordByEmail(String email) throws SQLException {
+        String req = "SELECT `password` FROM `user` WHERE `email` = '" + email + "'";
+        Statement st = cnx.createStatement();
+        ResultSet result = st.executeQuery(req);
+
+        String password = null;
+        if (result.next()) {
+            password = result.getString("password");
+        }
+
+        result.close();
+        st.close();
+
+        return password;
+    }
+
 
 }

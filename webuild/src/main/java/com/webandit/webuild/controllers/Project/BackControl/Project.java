@@ -1,23 +1,35 @@
 package com.webandit.webuild.controllers.Project.BackControl;
 
+import com.webandit.webuild.controllers.Project.FrontControl.objject;
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Chantier;
+import com.webandit.webuild.models.Tasks;
 import com.webandit.webuild.services.ServiceChantier;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
+import javafx.util.converter.DateStringConverter;
+import javafx.util.converter.FloatStringConverter;
+import javafx.util.converter.IntegerStringConverter;
+import org.controlsfx.control.Notifications;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.regex.Pattern;
 
 public class Project {
     ServiceChantier ps = new ServiceChantier();
-
+    int iduser = SessionManagement.getInstance().getId();
     @FXML
     private DatePicker ch_date;
 
@@ -56,7 +68,7 @@ public class Project {
     @FXML
     private TableColumn<Chantier, Float> ch_view_rem;
     @FXML
-    private TableColumn<Chantier, Float> ch_view_action;
+    private TableColumn<Chantier, Void> ch_view_action;
 
     // Utility method to show alert dialog
     private void showAlert(String title, String content) {
@@ -107,7 +119,7 @@ public class Project {
             }
 
             java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
-
+            int idUserVal = SessionManagement.getInstance().getId();
             if (!isValidChantierName(ch_nom.getText())) {
                 displayError(ch_nom, "Le nom du chantier doit contenir uniquement des lettres et avoir une longueur entre 5 et 20 caractères !");
                 return;
@@ -122,8 +134,8 @@ public class Project {
                 removeErrorStyle(ch_remuneration);
             }
 
-            Chantier ch = new Chantier(ch_nom.getText(), ch_description.getText(), sqlDate, Float.parseFloat(ch_remuneration.getText()));
-
+            Chantier ch = new Chantier(ch_nom.getText(), ch_description.getText(), sqlDate, Float.parseFloat(ch_remuneration.getText()),idUserVal);
+            System.out.println(ch);
             ps.insertOne(ch);
             afficherChantier();
         } catch (SQLException | NumberFormatException e) {
@@ -131,39 +143,154 @@ public class Project {
         }
     }
 
-    @FXML
-    void deleteChantier(ActionEvent event) {
-        Chantier selectedChantier = ch_view.getSelectionModel().getSelectedItem();
-        if (selectedChantier != null) {
-            try {
-                ps.deleteOne(selectedChantier.getId()); // Accessing ServiceChantier methods via 'ps' instance
-                afficherChantier(); // Refresh the table after deleting a chantier
-            } catch (SQLException e) {
-                showAlert("Erreur", "Erreur lors de la suppression du chantier!");
-            }
-        } else {
-            showAlert("Aucune sélection", "Aucun chantier sélectionné");
-        }
-    }
+
 
     public void afficherChantier() {
         try {
-            ch_view.getItems().setAll(ps.selectAll()); // Accessing ServiceChantier methods via 'ps' instance
+            ch_view.getItems().setAll(ps.selectAllByUser(iduser)); // Accessing ServiceChantier methods via 'ps' instance
         } catch (SQLException e) {
             showAlert("Erreur", "Erreur lors de la récupération des chantiers!");
         }
     }
 
     @FXML
-    void initialize() {
+    void initialize() throws SQLException{
         ch_view_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
         ch_view_desc.setCellValueFactory(new PropertyValueFactory<>("description"));
         ch_view_rem.setCellValueFactory(new PropertyValueFactory<>("remuneration"));
         ch_view_date.setCellValueFactory(new PropertyValueFactory<>("date"));
-        ch_view_action.setCellValueFactory(new PropertyValueFactory<>("Action"));
+
         afficherChantier(); //refrech el tableview
+
+
+
+
+        // Column bindings
+        ch_view_nom.setCellValueFactory(new PropertyValueFactory<>("nom"));
+        ch_view_desc.setCellValueFactory(new PropertyValueFactory<>("description"));
+        ch_view_rem.setCellValueFactory(new PropertyValueFactory<>("remuneration"));
+        ch_view_date.setCellValueFactory(new PropertyValueFactory<>("date"));
+
+
+
+        // Enable editing for each cell
+        ch_view_nom.setCellFactory(TextFieldTableCell.forTableColumn());
+        ch_view_desc.setCellFactory(TextFieldTableCell.forTableColumn());
+        ch_view_rem.setCellFactory(TextFieldTableCell.forTableColumn(new FloatStringConverter()));
+        ch_view_date.setCellFactory(TextFieldTableCell.forTableColumn(new DateStringConverter()));
+
+        // Handle edit commit events
+        ch_view_nom.setOnEditCommit(event -> {
+            try {
+                handleEditCommit(event, "nom");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        ch_view_desc.setOnEditCommit(event -> {
+            try {
+                handleEditCommit(event, "description");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        ch_view_rem.setOnEditCommit(event -> {
+            try {
+                handleEditCommit(event, "remuneration");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+        ch_view_date.setOnEditCommit(event -> {
+            try {
+                handleEditCommit(event, "date");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+
+        // Update button action
+        ch_view_action.setCellFactory(param -> new TableCell<>() {
+            //    private final Button updateButton = new Button("Update");
+            private final Button deleteButton = new Button("Delete");
+
+            {
+
+
+                deleteButton.setOnAction(event -> {
+                    Chantier chantier = getTableView().getItems().get(getIndex());
+                    int var = chantier.getId();
+                    if (var != 0 ) {
+                        try {
+                            ps.deleteOne(var);
+                            afficherChantier();
+                            Notifications notification = Notifications.create()
+                                    .title("DB_Updated")
+                                    .text("TASK DELETED SUCCUSFULY")
+                                    .graphic(null) // You can set a graphic if needed
+                                    .hideAfter(Duration.seconds(5))// Set how long the notification will be shown
+                                    .darkStyle()
+                                    .position(Pos.BOTTOM_RIGHT);
+
+                            notification.show();
+
+                        } catch (SQLException e) {
+                            showAlert("Erreur", "Erreur lors de la suppression de la tache !");
+                        }
+                    } else {
+
+                        Notifications notification = Notifications.create()
+                                .title("Nothing selected")
+                                .text("Aucun tache sélectionné")
+                                .graphic(null) // You can set a graphic if needed
+                                .hideAfter(Duration.seconds(5))// Set how long the notification will be shown
+                                .darkStyle()
+                                .position(Pos.BOTTOM_RIGHT);
+
+                        notification.show();
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    HBox buttonBox = new HBox(5);
+                    buttonBox.getChildren().addAll(/*updateButton, */deleteButton);
+                    setGraphic(buttonBox);
+                }
+            }
+        });
+
+        // Refresh the TableView
+        afficherChantier();
+
     }
 
+    // Method to handle edit commit events
+    private void handleEditCommit(TableColumn.CellEditEvent<Chantier, ?> event, String propertyName) throws IOException {
+        Chantier chantier = event.getRowValue();
+        if (propertyName.equals("date")) {
+            chantier.setDate(java.sql.Date.valueOf(event.getNewValue().toString()));
+        } else {
+            switch (propertyName) {
+                case "nom":
+                    chantier.setNom(event.getNewValue().toString());
+                    break;
+                case "description":
+                    chantier.setDescription(event.getNewValue().toString());
+                    break;
+                case "remuneration":
+                    chantier.setRemuneration(Float.parseFloat(event.getNewValue().toString()));
+                    break;
+            }
+        }
+
+        updateChantierr(chantier); // Corrected method call
+    }
 
     @FXML
     void resetFields(ActionEvent event) {
@@ -172,48 +299,46 @@ public class Project {
         ch_remuneration.clear();
         ch_date.setValue(null);
     }
-    @FXML
-    void selectChantier(ActionEvent event) {
-        Chantier selectedChantier = ch_view.getSelectionModel().getSelectedItem();
-        if (selectedChantier != null) {
-            ch_nom.setText(selectedChantier.getNom());
-            ch_description.setText(selectedChantier.getDescription());
-            ch_remuneration.setText(String.valueOf(selectedChantier.getRemuneration()));
-            ch_date.setValue(selectedChantier.getDate().toLocalDate());
-        } else {
-            showAlert("Aucune sélection", "Aucun chantier sélectionné");
-        }
-    }
 
-    @FXML
-    void updateChantier(ActionEvent event) {
-        Chantier selectedChantier = ch_view.getSelectionModel().getSelectedItem();
-        if (selectedChantier != null) {
-            try {
-                // Update the selected chantier object with the modified data
-                selectedChantier.setNom(ch_nom.getText());
-                selectedChantier.setDescription(ch_description.getText());
-                selectedChantier.setRemuneration(Float.parseFloat(ch_remuneration.getText()));
-                selectedChantier.setDate(java.sql.Date.valueOf(ch_date.getValue()));
 
-                // Call the updateOne function from the service to update the database
-                ps.updateOne(selectedChantier);
 
-                // Refresh the table view after updating
-                afficherChantier();
-            } catch (SQLException | NumberFormatException e) {
-                showAlert("Erreur", "Erreur lors de la mise à jour du chantier!");
-            }
-        } else {
-            showAlert("Aucune sélection", "Aucun chantier sélectionné");
+    private void updateChantierr(Chantier chantier) {
+        try {
+            ps.updateOne(chantier); // Update the modified task using the service
+
+            Notifications notification = Notifications.create()
+                    .title("Success")
+                    .text("Task updated!")
+                    .graphic(null) // You can set a graphic if needed
+                    .hideAfter(Duration.seconds(5))// Set how long the notification will be shown
+                    .darkStyle()
+                    .position(Pos.CENTER);
+
+            notification.show();
+
+            afficherChantier(); // Refresh the table after updating the task
+        } catch (SQLException e) {
+            Notifications notification = Notifications.create()
+                    .title("Error")
+                    .text("Error updating the task: " + e.getMessage())
+                    .graphic(null) // You can set a graphic if needed
+                    .hideAfter(Duration.seconds(5))// Set how long the notification will be shown
+                    .darkStyle()
+                    .position(Pos.CENTER);
+
+            notification.show();
+
+            e.printStackTrace(); // Print the stack trace for debugging
         }
     }
     @FXML
     private StackPane contentArea;
-    public void Tasks(ActionEvent actionEvent)throws IOException {
+    public void Tasks(ActionEvent actionEvent) throws IOException, SQLException {
         Parent fxml = FXMLLoader.load(getClass().getResource("/fxml/Project/Back/Tasks.fxml"));
         contentArea.getChildren().removeAll();
         contentArea.getChildren().setAll(fxml);
+
+
     }
 
 }

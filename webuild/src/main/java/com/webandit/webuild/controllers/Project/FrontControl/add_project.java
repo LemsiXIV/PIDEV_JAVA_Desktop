@@ -1,5 +1,6 @@
 package com.webandit.webuild.controllers.Project.FrontControl;
 
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Chantier;
 import com.webandit.webuild.services.ServiceChantier;
 import javafx.event.ActionEvent;
@@ -48,9 +49,9 @@ public class add_project {
         try {
             LocalDate localDate = Project_due.getValue();
             java.sql.Date sqlDate = java.sql.Date.valueOf(localDate);
-
-
-            Chantier ch = new Chantier(Project_name.getText(),Project_description.getText(),sqlDate,Float.parseFloat(Project_rem.getText()));
+            int iduser= SessionManagement.getInstance().getId();
+            System.out.println(iduser+"ahwa userrrrr");
+            Chantier ch = new Chantier(Project_name.getText(),Project_description.getText(),sqlDate,Float.parseFloat(Project_rem.getText()),iduser);
             ps.insertOne(ch);
             stage.close();
             Notifications notification = Notifications.create()
@@ -61,15 +62,16 @@ public class add_project {
                     .position(Pos.BOTTOM_RIGHT);
             notification.show();
             System.out.println(ch);
-    } catch (SQLException | NumberFormatException e) {
+        } catch (SQLException e ) {
             Notifications notification = Notifications.create()
                     .title("ADD Chantier")
-                    .text("Error when Collecting the data ")
+                    .text("Error when Collecting the data " )
                     .graphic(null) // You can set a graphic if needed
                     .hideAfter(Duration.seconds(5)) // Set how long the notification will be shown
                     .position(Pos.BOTTOM_RIGHT);
             notification.show();
-    }
+            e.printStackTrace();
+        }
     }
 
     @FXML

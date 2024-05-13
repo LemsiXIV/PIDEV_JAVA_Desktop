@@ -5,9 +5,11 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
@@ -29,63 +31,78 @@
                   </HBox>
                   <AnchorPane prefHeight="525.0" prefWidth="800.0">
                      <children>
-                        <AnchorPane prefHeight="239.0" prefWidth="303.0">
-                           <children>
-                              <VBox layoutX="14.0" layoutY="30.0" prefHeight="239.0" prefWidth="303.0" spacing="10.0">
-                                 <children>
-                                    <HBox alignment="CENTER" prefHeight="34.0" prefWidth="238.0" spacing="5.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom du chantier :" wrappingWidth="98.93670654296875" />
-                                          <TextField fx:id="ch_nom" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="238.0" spacing="5.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" wrappingWidth="98.93670654296875" />
-                                          <TextField fx:id="ch_description" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="34.0" prefWidth="238.0" spacing="5.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Remuneration :" wrappingWidth="98.93670654296875" />
-                                          <TextField fx:id="ch_remuneration" />
-                                       </children>
-                                    </HBox>
-                                    <HBox alignment="CENTER" layoutX="10.0" layoutY="79.0" prefHeight="34.0" prefWidth="238.0" spacing="5.0">
-                                       <children>
-                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Starting_date :" wrappingWidth="98.93670654296875" />
-                                          <DatePicker fx:id="ch_date" prefHeight="26.0" prefWidth="150.0" />
-                                       </children>
-                                    </HBox>
-                                 </children>
-                                 <padding>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </padding>
-                              </VBox>
-                           </children>
-                        </AnchorPane>
-                        <ButtonBar layoutX="-32.0" layoutY="273.0" prefHeight="46.0" prefWidth="402.0">
-                          <buttons>
-                            <Button fx:id="ch_save" mnemonicParsing="false" onAction="#addchantier" text="Save" />
+                        <AnchorPane prefHeight="239.0" prefWidth="303.0" />
+                        <ButtonBar layoutX="362.0" layoutY="322.0" prefHeight="46.0" prefWidth="402.0">
+                           <buttons>
+                              <Button fx:id="ch_save" mnemonicParsing="false" onAction="#addchantier" text="ADD" />
                               <Button fx:id="ch_reset" mnemonicParsing="false" onAction="#resetFields" text="Reset" />
-                              <Button fx:id="ch_update" mnemonicParsing="false" onAction="#updateChantier" text="Update" />
-                              <Button fx:id="ch_delete" mnemonicParsing="false" onAction="#deleteChantier" text="Delete" />
-                          </buttons>
+                              <Button mnemonicParsing="false" onAction="#Tasks" text="go to task" />
+                           </buttons>
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
                         </ButtonBar>
-                        <TableView fx:id="ch_view" layoutX="383.0" layoutY="14.0" prefHeight="282.0" prefWidth="402.0">
-                          <columns>
-                            <TableColumn fx:id="ch_view_nom" prefWidth="73.5999755859375" resizable="false" style="-fx-alignment: center;" text="Nom" />
-                            <TableColumn fx:id="ch_view_desc" prefWidth="107.20001220703125" resizable="false" style="-fx-alignment: center;" text="Description" />
-                              <TableColumn fx:id="ch_view_rem" prefWidth="73.599853515625" resizable="false" style="-fx-alignment: center;" text="Remuneration" />
-                              <TableColumn fx:id="ch_view_date" minWidth="8.79998779296875" prefWidth="85.5999755859375" resizable="false" style="-fx-alignment: center;" text="Starting_date" />
-                              <TableColumn fx:id="ch_view_action" minWidth="8.79998779296875" prefWidth="60.80002441406248" resizable="false" style="-fx-alignment: center;" text="Action" />
-                          </columns>
+                        <TableView fx:id="ch_view" editable="true" layoutX="35.0" layoutY="14.0" prefHeight="282.0" prefWidth="730.0" stylesheets="@../../../css/stylee.css">
+                           <columns>
+                              <TableColumn fx:id="ch_view_nom" prefWidth="115.20003509521484" resizable="false" style="-fx-alignment: center;" text="Nom" />
+                              <TableColumn fx:id="ch_view_desc" prefWidth="140.0" resizable="false" style="-fx-alignment: center;" text="Description" />
+                              <TableColumn fx:id="ch_view_rem" minWidth="0.0" prefWidth="154.39996337890625" resizable="false" style="-fx-alignment: center;" text="Remuneration" />
+                              <TableColumn fx:id="ch_view_date" minWidth="8.79998779296875" prefWidth="151.20004272460938" resizable="false" style="-fx-alignment: center;" text="Starting_date" />
+                              <TableColumn fx:id="ch_view_action" minWidth="0.0" prefWidth="155.199951171875" resizable="false" style="-fx-alignment: center;" text="Action" />
+                           </columns>
                         </TableView>
-                        <Button layoutX="323.0" layoutY="107.0" mnemonicParsing="false" onAction="#selectChantier" text="select" />
-                        <Button layoutX="297.0" layoutY="395.0" mnemonicParsing="false" onAction="#Tasks" text="Hez lel task" />
+                        <VBox layoutX="38.0" layoutY="308.0" prefHeight="239.0" prefWidth="303.0" spacing="10.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="34.0" prefWidth="238.0" spacing="5.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nom du chantier :" wrappingWidth="98.93670654296875" />
+                                    <TextField fx:id="ch_nom">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="34.0" prefWidth="238.0" spacing="5.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Description :" wrappingWidth="98.93670654296875" />
+                                    <TextField fx:id="ch_description">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="44.0" prefHeight="34.0" prefWidth="238.0" spacing="5.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Remuneration :" wrappingWidth="98.93670654296875" />
+                                    <TextField fx:id="ch_remuneration">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </TextField>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER" layoutX="10.0" layoutY="79.0" prefHeight="34.0" prefWidth="238.0" spacing="5.0">
+                                 <children>
+                                    <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Starting_date :" wrappingWidth="98.93670654296875" />
+                                    <DatePicker fx:id="ch_date" prefHeight="26.0" prefWidth="150.0">
+                                       <effect>
+                                          <DropShadow />
+                                       </effect>
+                                    </DatePicker>
+                                 </children>
+                              </HBox>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </VBox>
+                        <Separator layoutY="294.0" prefWidth="800.0">
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Separator>
                      </children>
                   </AnchorPane>
                </children>
