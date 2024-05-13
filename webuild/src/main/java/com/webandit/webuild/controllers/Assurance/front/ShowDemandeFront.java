@@ -1,6 +1,7 @@
 package com.webandit.webuild.controllers.Assurance.front;
 
 import com.webandit.webuild.controllers.Assurance.front.CardDem;
+import com.webandit.webuild.controllers.SessionManagement;
 import com.webandit.webuild.models.Demande;
 import com.webandit.webuild.services.ServiceDemande;
 import javafx.fxml.FXML;
@@ -30,17 +31,20 @@ public class ShowDemandeFront {
     @FXML
     void initialize() {
         try {
-            actualise();
+            // Get the current user's ID
+            int userId = SessionManagement.getInstance().getId();
+            // Fetch demands for the current user only
+            actualise(userId);
         } catch (SQLException e) {
             e.printStackTrace();
         }
     }
 
-    private void actualise() throws SQLException {
+    private void actualise(int userId) throws SQLException {
         // Clear current elements from the grid
         grid.getChildren().clear();
 
-        List<Demande> demandes = serviceDemande.selectAll();
+        List<Demande> demandes = serviceDemande.selectAllByUser(userId);
         if (demandes.isEmpty()) {
             System.out.println("the demande list is empty.");
             return;
@@ -56,7 +60,7 @@ public class ShowDemandeFront {
                 FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Assurance/CardDem.fxml"));
                 AnchorPane anchorPane = fxmlLoader.load();
 
-                 CardDem controller = fxmlLoader.getController();
+                CardDem controller = fxmlLoader.getController();
                 if (controller == null) {
                     System.out.println("The controller for the item was not initialized.");
                     continue;
@@ -65,7 +69,6 @@ public class ShowDemandeFront {
                 controller.setData(demande);
 
                 // Add event handler to handle card click
-
 
                 grid.add(anchorPane, column++, row);
                 GridPane.setMargin(anchorPane, new Insets(10));
@@ -78,8 +81,9 @@ public class ShowDemandeFront {
             }
         }
     }
-
-
-
-
 }
+
+
+
+
+

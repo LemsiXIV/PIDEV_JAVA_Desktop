@@ -138,5 +138,27 @@ public class ServiceDemande implements CRUD<Demande> {
         }
         return null; // Retourner null si aucune assurance correspondante n'est trouvée
     }
+    public List<Demande> selectAllByUser(int userId) throws SQLException {
+        List<Demande> demandes = new ArrayList<>();
+        String query = "SELECT * FROM demande WHERE user_id = ?";
+        PreparedStatement pstmt = cnx.prepareStatement(query);
+        pstmt.setInt(1, userId);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            Demande demande = new Demande();
+            demande.setId_d(rs.getInt("id_d"));
+            ServiceAssurance serviceAssurance = new ServiceAssurance();
+            Assurance assurance = serviceAssurance.selectOne(rs.getInt("assurance_id"));
+            demande.setA(assurance); // Set the Assurance object for the demand
+            demande.setMontant(rs.getInt("montant"));
+            demande.setUser(rs.getInt("user_id"));
+            demande.setDate_debut(rs.getDate("date_debut"));
+            demande.setDate_fin(rs.getDate("date_fin"));
+            demande.setCommentaire(rs.getString("commentaire"));
+            demande.setStatus(rs.getInt("status"));
+            demandes.add(demande);
+        }
+        return demandes;
+    }
 
 }
