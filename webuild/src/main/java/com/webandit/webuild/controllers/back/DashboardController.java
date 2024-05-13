@@ -108,15 +108,16 @@ public class DashboardController implements Initializable {
                         stage.show();
 
 
-                    } catch (IOException e) {
-                                /*Alert alert = new Alert(Alert.AlertType.ERROR);
-                                alert.setTitle("Erreur de saisie");
-                                alert.setContentText("Vous avez une erreur dans la saisie de vos données!");
-                                alert.show();*/
-                        System.out.println(e);
-                    }
+                    }catch (IOException e) {
+                            System.out.println("Une erreur s'est produite lors du chargement du fichier FXML :");
+                            System.out.println("Message d'erreur : " + e.getMessage()); // Afficher le message d'erreur
+                            System.out.println("Cause de l'erreur : " + e.getCause()); // Afficher la cause de l'erreur
+                            System.out.println("Pile d'appels : ");
+                            e.printStackTrace(); // Afficher la pile d'appels complète
+                        }
 
-                });
+
+                    });
             }
             @Override
             protected void updateItem(Void item, boolean empty) {

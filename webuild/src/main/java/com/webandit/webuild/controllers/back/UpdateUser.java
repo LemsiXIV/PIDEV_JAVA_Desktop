@@ -1,5 +1,8 @@
 package com.webandit.webuild.controllers.back;
+
 import com.webandit.webuild.controllers.SessionManagement;
+import com.webandit.webuild.models.User;
+import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,20 +12,16 @@ import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.input.SwipeEvent;
-import com.webandit.webuild.services.serviceUtilisateur;
-import com.webandit.webuild.models.User;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import org.json.JSONException;
-import org.json.JSONObject;
-
+//import java.util.Date;
+import java.sql.Date;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
-import java.util.Date;
 
 public class UpdateUser {
 
@@ -46,8 +45,7 @@ public class UpdateUser {
 
     @FXML
     private DatePicker datetxt;
-    LocalDate localDate = datetxt.getValue();
-    Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
     @FXML
     private TextField fonctiontxt;
 
@@ -83,7 +81,9 @@ public class UpdateUser {
 
     @FXML
     void update(MouseEvent event) {
-        User u = new User(email.getText(),nom.getText(),prenom.getText(),telephone.getText(),cintxt.getText(),fonctiontxt.getText(),adresse.getText(),date,biotxt.getText(), Arrays.asList("ROLE_USER"),Integer.parseInt(bannedtxt.getText()),Integer.parseInt(verifiedtxt.getText()));
+        LocalDate localDate = datetxt.getValue();
+        java.util.Date utilDate = java.util.Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        User u = new User(email.getText(),nom.getText(),prenom.getText(),telephone.getText(),cintxt.getText(),fonctiontxt.getText(),adresse.getText(),utilDate,biotxt.getText(), Arrays.asList("ROLE_USER"),Integer.parseInt(bannedtxt.getText()),Integer.parseInt(verifiedtxt.getText()));
         // Update the user information in the database
         try {
             sp.updateOne(u);
@@ -116,35 +116,41 @@ public class UpdateUser {
 
     public void initialize(){
 
-
+System.out.println(userEmail);
         try {
             ResultSet resultSet=sp.selectData(userEmail);
             if(resultSet.next()){
                 email.setText(resultSet.getString("email"));
                 nom.setText(resultSet.getString("nom"));
                 prenom.setText(resultSet.getString("prenom"));
-                adresse.setText(resultSet.getString("adresse"));
-                telephone.setText(String.valueOf(resultSet.getInt("téléphone")));
+                adresse.setText(resultSet.getString("address"));
+                telephone.setText(String.valueOf(resultSet.getInt("telephone")));
+                Date dateFromDB = resultSet.getDate("date");
+                if (dateFromDB != null) {
+                    LocalDate localDate = dateFromDB.toLocalDate();
+                    datetxt.setValue(localDate);
+                }
+                cintxt.setText(resultSet.getString("cin"));
+                biotxt.setText(SessionManagement.getInstance().getBio());
+                roletxt.setText(String.valueOf(SessionManagement.getInstance().getRoles()));
+                fonctiontxt.setText(SessionManagement.getInstance().getFonction());
 
-                        /*cintxt.setText(resultSet.getString("cin"));
-                        biotxt.setText(SessionManagement.getInstance().getBio());
-
-                        fonctiontxt.setText(SessionManagement.getInstance().getFonction());
-*/
             }else {
 
                 System.out.println("User not found!");
             }
-
         }catch (SQLException e) {
-            e.printStackTrace();
+           System.out.println(e);
             // Handle exception, show error message, or log the error
         }
     }
     @FXML
     void delete(MouseEvent event) {
+        LocalDate localDate = datetxt.getValue();
+        java.util.Date utilDate = java.util.Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
         User u = new User(email.getText(), nom.getText(), prenom.getText(), telephone.getText(), cintxt.getText(),
-                fonctiontxt.getText(), adresse.getText(), date, biotxt.getText(),
+                fonctiontxt.getText(), adresse.getText(), utilDate, biotxt.getText(),
                 Arrays.asList(roletxt.getText()),
                 Integer.parseInt(bannedtxt.getText()),
                 Integer.parseInt(verifiedtxt.getText()));
