@@ -15,6 +15,7 @@ module com.webandit.webuild {
     requires java.mail;
     requires jdk.jsobject;
     requires android.json;
+    requires com.google.gson;
 
 
     exports com.webandit.webuild.controllers;

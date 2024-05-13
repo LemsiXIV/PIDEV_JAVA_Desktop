@@ -60,6 +60,6 @@
       </ImageView>
       <PasswordField fx:id="pwdtxt" layoutX="398.0" layoutY="185.0" onKeyReleased="#hidePassword" promptText="Entrer votre mot de passe" />
       <Hyperlink fx:id="forgotLink" layoutX="403.0" layoutY="238.0" onAction="#changeToReset" text="mot de passe oublié?" />
-    
+
    </children>
 </AnchorPane>

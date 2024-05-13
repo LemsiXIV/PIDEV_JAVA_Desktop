@@ -1,6 +1,7 @@
 package com.webandit.webuild.controllers.front;
 
 import com.webandit.webuild.controllers.SessionManagement;
+import com.webandit.webuild.models.User;
 import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,14 +9,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class UserProfilController {
 
@@ -46,7 +49,21 @@ public class UserProfilController {
     @FXML
     private Button delete;
     @FXML
+    private ImageView backButton;
+    @FXML
     private Button logoutButton;
+    @FXML
+    private TextField biotxt;
+
+    @FXML
+    private TextField cintxt;
+
+    @FXML
+    private DatePicker datetxt;
+
+
+    @FXML
+    private TextField fonctiontxt;
 
     private boolean validatorNom() {
         String nom = nomtxt.getText();
@@ -164,7 +181,9 @@ public class UserProfilController {
         if (!validatorNom() || !validatorPrenom() || !validatorAdresse() || !validatorEmail() || !validatorTelephone()) {
             return;
         }
-        com.webandit.webuild.models.Utilisateur u = new com.webandit.webuild.models.Utilisateur(nomtxt.getText(), prenomtxt.getText(), Integer.parseInt(tlptxt.getText()), adressetxt.getText(), emailtxt.getText());
+        LocalDate localDate = datetxt.getValue();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        User u = new User(nomtxt.getText(), prenomtxt.getText(), tlptxt.getText(), adressetxt.getText(), emailtxt.getText(),cintxt.getText(),fonctiontxt.getText(),date,biotxt.getText());
         com.webandit.webuild.services.serviceUtilisateur sp = new serviceUtilisateur();
         try {
             sp.updateOne(u);
@@ -192,14 +211,20 @@ public class UserProfilController {
         nomtxt.setText(SessionManagement.getInstance().getNom());
         prenomtxt.setText(SessionManagement.getInstance().getPrenom());
         emailtxt.setText(SessionManagement.getInstance().getEmail());
-        adressetxt.setText(SessionManagement.getInstance().getAdresse());
-        tlptxt.setText(String.valueOf(SessionManagement.getInstance().getTelephone()));
+        adressetxt.setText(SessionManagement.getInstance().getAddress());
+        tlptxt.setText(SessionManagement.getInstance().getTelephone());
+        cintxt.setText(SessionManagement.getInstance().getCin());
+        biotxt.setText(SessionManagement.getInstance().getBio());
+
+        fonctiontxt.setText(SessionManagement.getInstance().getFonction());
     }
 
 
     @FXML
     void deleteUser(ActionEvent event) {
-        com.webandit.webuild.models.Utilisateur u = new com.webandit.webuild.models.Utilisateur(nomtxt.getText(), prenomtxt.getText(), Integer.parseInt(tlptxt.getText()), adressetxt.getText(), emailtxt.getText());
+        LocalDate localDate = datetxt.getValue();
+        Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        User u = new User(nomtxt.getText(), prenomtxt.getText(), tlptxt.getText(), adressetxt.getText(), emailtxt.getText(),cintxt.getText(),fonctiontxt.getText(),date,biotxt.getText());
 
         try {
             sp.deleteOne(u);
@@ -226,10 +251,12 @@ public class UserProfilController {
         System.out.println("User Nom: " + SessionManagement.getInstance().getNom());
         System.out.println("User Prenom: " + SessionManagement.getInstance().getPrenom());
         System.out.println("User Email: " + SessionManagement.getInstance().getEmail());
-        System.out.println("User Adresse: " + SessionManagement.getInstance().getAdresse());
+        System.out.println("User Adresse: " + SessionManagement.getInstance().getAddress());
         System.out.println("User Telephone: " + SessionManagement.getInstance().getTelephone());
         System.out.println("User Role: " + SessionManagement.getInstance().getRoles());
-        System.out.println("User status: " + SessionManagement.getInstance().getIs_verified());
+        System.out.println("User status: " + SessionManagement.getInstance().isIs_verified());
+        System.out.println("User status: " + SessionManagement.getInstance().isIs_Banned());
+
         // Navigate to the login page
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Login.fxml"));
@@ -241,5 +268,14 @@ public class UserProfilController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @FXML
+    void back(MouseEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/front/hello-view.fxml"));
+        Parent root = loader.load();
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) backButton.getScene().getWindow();
+        stage.setScene(scene);
+        stage.show();
     }
 }
