@@ -88,6 +88,8 @@ public class objject implements Initializable {
             System.out.println(id + "\t ahwaaaaaaa");
         } catch (IOException e) {
             throw new RuntimeException(e);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
 
     }

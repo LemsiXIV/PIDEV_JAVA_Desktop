@@ -95,7 +95,7 @@ public class TasksControlleur {
     int idchantier ;
     public void affichertasks(){
         try {
-            ts_view.getItems().setAll(taskSer.selectAllByIdChantier(idchantier));
+            ts_view.getItems().setAll(taskSer.selectAll());
         }
         catch (SQLException e){
             showAlert("Erreur","erreur lors du load du tabview");

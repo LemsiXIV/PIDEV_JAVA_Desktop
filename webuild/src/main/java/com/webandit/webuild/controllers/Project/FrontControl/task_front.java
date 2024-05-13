@@ -43,8 +43,9 @@ public class task_front implements Initializable {
     ServiceTasks  cs = new ServiceTasks();
 
     int id ;
-    public void setId(int id) {
+    public void setId(int id) throws SQLException {
         this.id=id;
+        acctualise();
 
     }
 
@@ -67,7 +68,7 @@ public class task_front implements Initializable {
         // Effacer les éléments actuels de la grille
         Project_Ligne_Info.getChildren().clear();
         System.out.println("ahaya."+id);
-        List<Tasks> tasksList = cs.selectAll();
+        List<Tasks> tasksList = cs.selectAllByIdChantier(id);
         if (tasksList.isEmpty()) {
             System.out.println("List of Tasks Empty."+id);
             return;
