@@ -84,8 +84,8 @@ public class serviceUtilisateur implements CRUD<User>{
         }
         return  personList;
     }
-    public User Login (String mail, String pwd) throws SQLException {
-        String req = "SELECT * FROM `user` WHERE `email` = '" + mail + "' AND `password` = '" + pwd + "'";
+    public User Login (String mail) throws SQLException {
+        String req = "SELECT * FROM `user` WHERE `email` = '" + mail + "' ";
         Statement st = cnx.createStatement();
         ResultSet resultset =st.executeQuery(req);
         try (resultset){
@@ -151,6 +151,21 @@ public class serviceUtilisateur implements CRUD<User>{
         statement.close();
     }
     public String getPasswordByEmail(String email) throws SQLException {
+        String req = "SELECT `password` FROM `user` WHERE `email` = '" + email + "'";
+        Statement st = cnx.createStatement();
+        ResultSet result = st.executeQuery(req);
+
+        String password = null;
+        if (result.next()) {
+            password = result.getString("password");
+        }
+
+        result.close();
+        st.close();
+
+        return password;
+    }
+    public String getPassByEmail(String email) throws SQLException {
         String req = "SELECT `password` FROM `user` WHERE `email` = '" + email + "'";
         Statement st = cnx.createStatement();
         ResultSet result = st.executeQuery(req);

@@ -8,13 +8,8 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
-import javax.crypto.Cipher;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
-import java.util.Base64;
-
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import javafx.scene.control.Button;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -22,12 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
-import org.json.JSONObject;
 
-
-
-import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
 
 public class Login {
 
@@ -101,69 +91,76 @@ public class Login {
     @FXML
     void Login(ActionEvent event) {
         try {
-            //String password= serviceutilisater.getPasswordByEmail(emailtxt.getText());
-            User utilisateur = serviceutilisater.Login(emailtxt.getText(), pwdtxt.getText());
+            String email = emailtxt.getText();
+            String password = serviceutilisater.getPassByEmail(email);
+            BCrypt.Result result = BCrypt.verifyer().verify(pwdtxt.getText().getBytes(), password.getBytes());
 
-            if (utilisateur != null && utilisateur.isIs_verified() == 1 && utilisateur.isIs_Banned() == 0 /*&& checkPassword(pwdtxt.getText(),password)*/) {
+            if (result.verified) {
+                User utilisateur = serviceutilisater.Login(email);
 
-                SessionManagement.getInstance(utilisateur.getId(), utilisateur.getEmail(), utilisateur.getPassword(), utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getTelephone(), utilisateur.getCin(), utilisateur.getFonction(), utilisateur.getAddress(), utilisateur.getDate(), utilisateur.getBio(), utilisateur.getRoles(), utilisateur.isIs_Banned(), utilisateur.isIs_verified());
+                if (utilisateur != null && utilisateur.isIs_verified() == 1 && utilisateur.isIs_Banned() == 0) {
+                    SessionManagement session = SessionManagement.getInstance(
+                            utilisateur.getId(), utilisateur.getEmail(), utilisateur.getPassword(),
+                            utilisateur.getNom(), utilisateur.getPrenom(), utilisateur.getTelephone(),
+                            utilisateur.getCin(), utilisateur.getFonction(), utilisateur.getAddress(),
+                            utilisateur.getDate(), utilisateur.getBio(), utilisateur.getRoles(),
+                            utilisateur.isIs_Banned(), utilisateur.isIs_verified()
+                    );
 
-                System.out.println("User ID: " + SessionManagement.getInstance().getId());
-                System.out.println("User Nom: " + SessionManagement.getInstance().getNom());
-                System.out.println("User Prenom: " + SessionManagement.getInstance().getPrenom());
-                System.out.println("User Email: " + SessionManagement.getInstance().getEmail());
-                System.out.println("User Adresse: " + SessionManagement.getInstance().getAddress());
-                System.out.println("User Telephone: " + SessionManagement.getInstance().getTelephone());
-                System.out.println("User CIN: " + SessionManagement.getInstance().getCin());
-                System.out.println("User Bio: " + SessionManagement.getInstance().getBio());
-                System.out.println("User Password: " + SessionManagement.getInstance().getPassword());
-                System.out.println("User Fonction: " + SessionManagement.getInstance().getFonction());
-                System.out.println("User Date: " + SessionManagement.getInstance().getDate());
-                System.out.println("User Status: " + SessionManagement.getInstance().isIs_verified());
-                System.out.println("User Role: " + SessionManagement.getInstance().getRoles());
-                System.out.println("Account status: " + SessionManagement.getInstance().isIs_Banned());
-                System.out.println("instance "+SessionManagement.getInstance());
+                    System.out.println("User ID: " + session.getId());
+                    System.out.println("User Nom: " + session.getNom());
+                    System.out.println("User Prenom: " + session.getPrenom());
+                    System.out.println("User Email: " + session.getEmail());
+                    System.out.println("User Adresse: " + session.getAddress());
+                    System.out.println("User Telephone: " + session.getTelephone());
+                    System.out.println("User CIN: " + session.getCin());
+                    System.out.println("User Bio: " + session.getBio());
+                    System.out.println("User Password: " + session.getPassword());
+                    System.out.println("User Fonction: " + session.getFonction());
+                    System.out.println("User Date: " + session.getDate());
+                    System.out.println("User Status: " + session.isIs_verified());
+                    System.out.println("User Role: " + session.getRoles());
+                    System.out.println("Account status: " + session.isIs_Banned());
+                    System.out.println("instance " + session);
 
-                if (SessionManagement.getInstance().getRoles().contains("[\"ROLE_ADMIN\"]")) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/backadmine.fxml"));
+                    String fxmlPath = session.getRoles().contains("[\"ROLE_ADMIN\"]") ? "/fxml/backadmine.fxml" : "/fxml/hello-view.fxml";
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
                     Parent root = loader.load();
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) LoginButton.getScene().getWindow();
                     stage.setScene(scene);
                     stage.show();
-                } else {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/hello-view.fxml"));
-                    Parent root = loader.load();
-                    Scene scene = new Scene(root);
-                    Stage stage = (Stage) LoginButton.getScene().getWindow();
-                    stage.setScene(scene);
-                    stage.show();
-                }
-            } else {
-                // Affichage des messages d'erreur appropriés
-                if (utilisateur != null) {
-                    if (utilisateur.isIs_verified() == 0) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Pas d'accès");
-                        alert.setContentText("Votre compte n'est pas vérifié.");
-                        alert.show();
-                    } else if (utilisateur.isIs_Banned() == 1) {
-                        Alert alert = new Alert(Alert.AlertType.ERROR);
-                        alert.setTitle("Pas d'autorisation");
-                        alert.setContentText("Votre compte n'est pas autorisé à se connecter.");
-                        alert.show();
-                    }
                 } else {
                     Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Erreur de connexion");
-                    alert.setContentText("Adresse e-mail ou mot de passe incorrect.");
+                    if (utilisateur != null) {
+                        if (utilisateur.isIs_verified() == 0) {
+                            alert.setTitle("Pas d'accès");
+                            alert.setContentText("Votre compte n'est pas vérifié.");
+                        } else if (utilisateur.isIs_Banned() == 1) {
+                            alert.setTitle("Pas d'autorisation");
+                            alert.setContentText("Votre compte n'est pas autorisé à se connecter.");
+                        }
+                    } else {
+                        alert.setTitle("Erreur de connexion");
+                        alert.setContentText("Adresse e-mail ou mot de passe incorrect.");
+                    }
                     alert.show();
                 }
+            } else {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Erreur de connexion");
+                alert.setContentText("Adresse e-mail ou mot de passe incorrect.");
+                alert.show();
             }
         } catch (Exception e) {
-            e.printStackTrace(); // Affiche les erreurs de manière appropriée dans la console
+            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Erreur");
+            alert.setContentText("Une erreur est survenue lors de la connexion.");
+            alert.show();
         }
     }
+
 
     @FXML
     void changeToSignIn(MouseEvent event) {

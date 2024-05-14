@@ -1,5 +1,6 @@
 package com.webandit.webuild.controllers;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.webandit.webuild.models.User;
 import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.event.ActionEvent;
@@ -144,8 +145,10 @@ public class Signup {
                 generatedCode = generateVerificationCode();
                 LocalDate localDate = datetxt.getValue();
                 java.sql.Date date = java.sql.Date.valueOf(localDate);
-                //String hashedPassword = EncryptPassword(pwdtxt.getText());
-                User u = new User(emailtxt.getText(), pwdtxt.getText(), nomtxt.getText(), prenomtxt.getText(), telephonetxt.getText(), cintxt.getText(), fonctiontxt.getText(), adressetxt.getText(), date, biotxt.getText(), Arrays.asList("\"ROLE_USER\""), 0, 0);
+                char[] bcryptChars = BCrypt.with(BCrypt.Version.VERSION_2Y).hashToChar(6, pwdtxt.getText().toCharArray());
+                System.out.println(bcryptChars);
+                String bcryptString = new String(bcryptChars);
+                User u = new User(emailtxt.getText(), bcryptString, nomtxt.getText(), prenomtxt.getText(), telephonetxt.getText(), cintxt.getText(), fonctiontxt.getText(), adressetxt.getText(), date, biotxt.getText(), Arrays.asList("\"ROLE_USER\""), 0, 0);
                 u.setRoles(Arrays.asList("\"ROLE_USER\""));
                 sp.insertOne(u);
                 SessionManagement sessionManagement = new SessionManagement(u.getId(), u.getEmail(),u.getPassword(), u.getNom(), u.getPrenom(), u.getTelephone(),u.getCin(),u.getFonction(), u.getAddress(),u.getDate(),u.getBio(), u.getRoles(), u.isIs_Banned(),u.isIs_verified());

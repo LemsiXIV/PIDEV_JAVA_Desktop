@@ -1,5 +1,6 @@
 package com.webandit.webuild.controllers.back;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.webandit.webuild.models.User;
 import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.event.ActionEvent;
@@ -91,8 +92,10 @@ public class AddUser {
         serviceUtilisateur sp = new serviceUtilisateur();
         LocalDate localDate = datetxt.getValue();
         java.sql.Date date = java.sql.Date.valueOf(localDate);
-
-        User u = new User(emailtxt.getText(), pwdtxt.getText(),nomtxt.getText(), prenomtxt.getText(), telephonetxt.getText(),cintxt.getText(),fonctiontxt.getText(), adressetxt.getText(),date, biotxt.getText(),  Arrays.asList("ROLE_USER"), 0,1);
+        char[] bcryptChars = BCrypt.with(BCrypt.Version.VERSION_2Y).hashToChar(6, pwdtxt.getText().toCharArray());
+        System.out.println(bcryptChars);
+        String bcryptString = new String(bcryptChars);
+        User u = new User(emailtxt.getText(), bcryptString,nomtxt.getText(), prenomtxt.getText(), telephonetxt.getText(),cintxt.getText(),fonctiontxt.getText(), adressetxt.getText(),date, biotxt.getText(),  Arrays.asList("ROLE_USER"), 0,1);
         sp.insertOne(u);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/HomeAdmin.fxml"));
         Parent root = loader.load();

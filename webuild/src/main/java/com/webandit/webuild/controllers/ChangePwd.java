@@ -1,5 +1,6 @@
 package com.webandit.webuild.controllers;
 
+import at.favre.lib.crypto.bcrypt.BCrypt;
 import com.webandit.webuild.services.serviceUtilisateur;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -51,7 +52,10 @@ public class ChangePwd {
         }
         com.webandit.webuild.services.serviceUtilisateur sp = new serviceUtilisateur();
         try{
-            sp.updatePassword(email,nvPwd);
+            char[] bcryptChars = BCrypt.with(BCrypt.Version.VERSION_2Y).hashToChar(6, nvPassw.getText().toCharArray());
+            System.out.println(bcryptChars);
+            String bcryptString = new String(bcryptChars);
+            sp.updatePassword(email,bcryptString);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Password Updated");
             alert.setContentText("Password Updated");
