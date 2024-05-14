@@ -23,7 +23,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.image.ImageView;
 import org.json.JSONObject;
-import org.mindrot.jbcrypt.BCrypt;
+
 
 
 import javax.crypto.SecretKey;
@@ -214,20 +214,7 @@ public class Login {
         }
 
     }
-    public static String EncryptPassword(String password){
 
-        return BCrypt.hashpw(password, BCrypt.gensalt(12));
-
-    }
-    public static boolean checkPassword(String password, String hashedPassword){
-        try{
-
-            return BCrypt.checkpw(password, hashedPassword);
-
-        }catch (Exception e){
-            return false;
-        }
-    }
 }
 
 

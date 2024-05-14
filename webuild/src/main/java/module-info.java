@@ -16,7 +16,7 @@ module com.webandit.webuild {
     requires jdk.jsobject;
     requires android.json;
     requires com.google.gson;
-    requires jbcrypt;
+
 
 
     exports com.webandit.webuild.controllers;

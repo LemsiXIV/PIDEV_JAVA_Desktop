@@ -28,7 +28,7 @@ import java.util.Arrays;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Properties;
-import org.mindrot.jbcrypt.BCrypt;
+
 
 public class Signup {
 
@@ -144,8 +144,8 @@ public class Signup {
                 generatedCode = generateVerificationCode();
                 LocalDate localDate = datetxt.getValue();
                 java.sql.Date date = java.sql.Date.valueOf(localDate);
-                String hashedPassword = EncryptPassword(pwdtxt.getText());
-                User u = new User(emailtxt.getText(), hashedPassword, nomtxt.getText(), prenomtxt.getText(), telephonetxt.getText(), cintxt.getText(), fonctiontxt.getText(), adressetxt.getText(), date, biotxt.getText(), Arrays.asList("\"ROLE_USER\""), 0, 0);
+                //String hashedPassword = EncryptPassword(pwdtxt.getText());
+                User u = new User(emailtxt.getText(), pwdtxt.getText(), nomtxt.getText(), prenomtxt.getText(), telephonetxt.getText(), cintxt.getText(), fonctiontxt.getText(), adressetxt.getText(), date, biotxt.getText(), Arrays.asList("\"ROLE_USER\""), 0, 0);
                 u.setRoles(Arrays.asList("\"ROLE_USER\""));
                 sp.insertOne(u);
                 SessionManagement sessionManagement = new SessionManagement(u.getId(), u.getEmail(),u.getPassword(), u.getNom(), u.getPrenom(), u.getTelephone(),u.getCin(),u.getFonction(), u.getAddress(),u.getDate(),u.getBio(), u.getRoles(), u.isIs_Banned(),u.isIs_verified());
@@ -454,19 +454,6 @@ public class Signup {
         stage.setScene(scene);
         stage.show();
     }
-    public static String EncryptPassword(String password){
 
-        return BCrypt.hashpw(password, BCrypt.gensalt(12));
-
-    }
-    public static boolean checkPassword(String password, String hashedPassword){
-        try{
-
-            return BCrypt.checkpw(password, hashedPassword);
-
-        }catch (Exception e){
-            return false;
-        }
-    }
 
 }

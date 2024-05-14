@@ -12,10 +12,11 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
-import org.json.JSONObject;
+
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
@@ -80,14 +81,17 @@ public class AddUser {
     private TextField cintxt;
     @FXML
     private DatePicker datetxt;
-    LocalDate localDate = datetxt.getValue();
-    Date date = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+
     @FXML
     private TextField fonctiontxt;
 
     @FXML
     void addUtilisateur(ActionEvent event) throws SQLException, IOException {
         serviceUtilisateur sp = new serviceUtilisateur();
+        LocalDate localDate = datetxt.getValue();
+        java.sql.Date date = java.sql.Date.valueOf(localDate);
+
         User u = new User(emailtxt.getText(), pwdtxt.getText(),nomtxt.getText(), prenomtxt.getText(), telephonetxt.getText(),cintxt.getText(),fonctiontxt.getText(), adressetxt.getText(),date, biotxt.getText(),  Arrays.asList("ROLE_USER"), 0,1);
         sp.insertOne(u);
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/back/HomeAdmin.fxml"));

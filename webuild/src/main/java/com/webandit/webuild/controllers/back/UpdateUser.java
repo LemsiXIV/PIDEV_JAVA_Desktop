@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
+import java.util.Collection;
 
 public class UpdateUser {
 
@@ -116,7 +117,7 @@ public class UpdateUser {
 
     public void initialize(){
 
-System.out.println(userEmail);
+        System.out.println(userEmail);
         try {
             ResultSet resultSet=sp.selectData(userEmail);
             if(resultSet.next()){
@@ -131,16 +132,43 @@ System.out.println(userEmail);
                     datetxt.setValue(localDate);
                 }
                 cintxt.setText(resultSet.getString("cin"));
-                biotxt.setText(SessionManagement.getInstance().getBio());
-                roletxt.setText(String.valueOf(SessionManagement.getInstance().getRoles()));
-                fonctiontxt.setText(SessionManagement.getInstance().getFonction());
+                biotxt.setText(resultSet.getString("bio"));
+                String rolesString = resultSet.getString("roles");
+                System.out.println(rolesString);
+                // Transformez la chaîne des rôles en une collection
+                Collection<String> roles = Arrays.asList(rolesString.split(","));
+
+                // Vérifiez si l'utilisateur a le rôle "ROLE_USER"
+                if (roles.contains("[ROLE_USER]")) {
+                    roletxt.setText("User");
+                } else {
+                    roletxt.setText("Admin");
+                }
+
+                fonctiontxt.setText(resultSet.getString("fonction"));
+                String isVerified = resultSet.getString("is_verified");
+
+                if ("1".equals(isVerified)) {
+                    verifiedtxt.setText("vérifié");
+                } else {
+                    verifiedtxt.setText("non vérifié");
+                }
+
+                String isBanned = resultSet.getString("is_Banned");
+
+                if ("1".equals(isBanned)) {
+                    bannedtxt.setText("désactivé");
+                } else {
+                    bannedtxt.setText("activé");
+                }
+
 
             }else {
 
                 System.out.println("User not found!");
             }
         }catch (SQLException e) {
-           System.out.println(e);
+            System.out.println(e);
             // Handle exception, show error message, or log the error
         }
     }
